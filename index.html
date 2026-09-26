@@ -1,76 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-<meta
-    name="theme-color"
-    content="#070606">
-
-<meta
-    name="description"
-    content="The Consortium. A private-house experience by House of Xander.">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Consortium | House of Xander</title>
 
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-
-
 <style>
-
-/* =========================
-   VARIABLES
-========================= */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-
-    --black: #070606;
-    --black-soft: #0d0a0a;
-    --black-card: #130e0f;
-    --black-deep: #040303;
-
-    --burgundy: #3b0d17;
-    --burgundy-deep: #21070d;
-    --burgundy-light: #591522;
-
+    --black: #080707;
+    --black-soft: #0e0c0c;
+    --burgundy: #321116;
+    --burgundy-deep: #1b090d;
     --gold: #c5a15a;
-    --gold-light: #e1c27b;
-
-    --cream: #eee8dc;
-    --white: #f8f5ef;
-    --muted: #968d83;
-
-    --line: rgba(197,161,90,.18);
-    --soft-line: rgba(255,255,255,.08);
-
-    --serif: "Cormorant Garamond", serif;
-    --sans: "DM Sans", sans-serif;
+    --gold-soft: #d8bd82;
+    --cream: #eee7da;
+    --muted: #958d82;
+    --line: rgba(197,161,90,.22);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter", Arial, sans-serif;
 }
 
-
-/* =========================
-   RESET
-========================= */
-
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -79,12 +34,12 @@ html {
 
 body {
     background: var(--black);
-    color: var(--white);
+    color: var(--cream);
     font-family: var(--sans);
     overflow-x: hidden;
 }
 
-body.no-scroll {
+body.menu-open {
     overflow: hidden;
 }
 
@@ -108,7 +63,6 @@ button {
     color: var(--black);
 }
 
-
 /* =========================
    INTRO
 ========================= */
@@ -117,214 +71,200 @@ button {
     position: fixed;
     inset: 0;
     z-index: 9999;
-
+    background: var(--black);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(59,13,23,.45),
-            transparent 55%
-        ),
-        var(--black-deep);
-
-    transition:
-        opacity .8s ease,
-        visibility .8s ease;
+    text-align: center;
+    transition: opacity .8s ease, visibility .8s ease;
 }
 
-.intro.hidden {
+.intro.hide {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
 }
 
 .intro-inner {
-    width: min(90%, 700px);
-    text-align: center;
-}
-
-.intro-classified {
-    color: var(--gold);
-    font-size: .62rem;
-    letter-spacing: .3em;
-    margin-bottom: 30px;
+    width: min(90%, 600px);
 }
 
 .intro-mark {
-    width: 80px;
-    height: 80px;
-
-    margin: 0 auto 25px;
-
-    display: grid;
-    place-items: center;
-
-    border: 1px solid var(--gold);
-
+    font-family: var(--serif);
     color: var(--gold);
-
-    font-family: var(--serif);
-    font-size: 2rem;
+    font-size: .72rem;
+    letter-spacing: .42em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
-.intro h1 {
+.intro-title {
     font-family: var(--serif);
-    font-size: clamp(3rem, 9vw, 7rem);
+    font-size: clamp(3.5rem, 13vw, 8rem);
+    line-height: .78;
     font-weight: 500;
-    letter-spacing: .04em;
+    letter-spacing: -.04em;
 }
 
-.intro-subtitle {
-    color: var(--muted);
-    font-size: .65rem;
-    letter-spacing: .3em;
-    margin-top: 10px;
-}
-
-.enter-house {
-    margin-top: 45px;
-
-    padding: 17px 30px;
-
-    background: transparent;
-
-    color: var(--gold-light);
-
-    border: 1px solid var(--gold);
-
-    letter-spacing: .2em;
-    font-size: .68rem;
-
-    transition: .3s ease;
-}
-
-.enter-house:hover {
+.intro-line {
+    width: 80px;
+    height: 1px;
     background: var(--gold);
-    color: var(--black);
+    margin: 34px auto;
 }
 
-.intro-note {
-    margin-top: 20px;
-
+.intro-sub {
     color: var(--muted);
-
-    font-size: .55rem;
-    letter-spacing: .2em;
+    font-size: .68rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
 }
-
 
 /* =========================
    HEADER
 ========================= */
 
-.header {
+header {
     position: fixed;
-
     top: 0;
     left: 0;
-    right: 0;
-
+    width: 100%;
     z-index: 1000;
-
-    height: 78px;
-
-    padding: 0 5vw;
-
+    padding: 25px 5vw;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(7,6,6,.95),
-            rgba(7,6,6,0)
-        );
+    align-items: center;
+    mix-blend-mode: normal;
 }
 
 .brand {
     font-family: var(--serif);
-    font-size: 1.7rem;
+    font-size: 1.1rem;
+    letter-spacing: .12em;
     color: var(--gold);
+    text-transform: uppercase;
 }
 
 .menu-toggle {
-    width: 45px;
-    height: 45px;
-
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    background: rgba(8,7,7,.72);
+    color: var(--gold);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     gap: 6px;
+    transition: .3s ease;
+}
 
-    background: transparent;
-
-    border: 1px solid var(--line);
+.menu-toggle:hover {
+    border-color: var(--gold);
 }
 
 .menu-toggle span {
-    width: 20px;
+    width: 17px;
     height: 1px;
-
     background: var(--gold);
-
     transition: .3s ease;
 }
 
-.main-nav {
+.menu-open .menu-toggle span:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+}
+
+.menu-open .menu-toggle span:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav-overlay {
     position: fixed;
-
-    top: 78px;
-    right: 5vw;
-
+    inset: 0;
+    z-index: 900;
+    background:
+        radial-gradient(circle at 75% 25%, rgba(80,15,25,.35), transparent 35%),
+        var(--black);
     display: flex;
-    flex-direction: column;
-
-    gap: 20px;
-
-    padding: 25px 30px;
-
-    min-width: 200px;
-
-    background: rgba(13,10,10,.98);
-
-    border: 1px solid var(--line);
-
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     visibility: hidden;
-
-    transform: translateY(-10px);
-
-    transition: .3s ease;
+    transition: .5s ease;
 }
 
-.main-nav.open {
+.menu-open .nav-overlay {
     opacity: 1;
     visibility: visible;
-
-    transform: translateY(0);
 }
 
-.main-nav a {
-    color: var(--cream);
+.nav-inner {
+    width: min(90%, 700px);
+}
 
-    font-size: .65rem;
-    letter-spacing: .15em;
-
+.nav-kicker {
+    color: var(--gold);
+    font-size: .62rem;
+    letter-spacing: .3em;
     text-transform: uppercase;
+    margin-bottom: 35px;
+}
 
+.nav-inner a {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 6vw, 4rem);
+    line-height: 1.05;
+    padding: 8px 0;
+    color: var(--cream);
     transition: .3s ease;
 }
 
-.main-nav a:hover {
+.nav-inner a:hover {
     color: var(--gold);
+    transform: translateX(10px);
 }
 
+/* =========================
+   GLOBAL
+========================= */
+
+section {
+    position: relative;
+    padding: 120px 7vw;
+}
+
+.section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.kicker {
+    color: var(--gold);
+    font-size: .62rem;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: .9;
+    letter-spacing: -.035em;
+}
+
+.section-intro {
+    max-width: 680px;
+    margin-top: 35px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.9;
+}
 
 /* =========================
    HERO
@@ -332,1494 +272,814 @@ button {
 
 .hero {
     min-height: 100vh;
-
-    position: relative;
-
     display: flex;
-    align-items: center;
-    justify-content: center;
-
+    align-items: flex-end;
+    padding-bottom: 90px;
     overflow: hidden;
-
-    border-bottom: 1px solid var(--line);
-}
-
-.hero-background {
-    position: absolute;
-    inset: 0;
-}
-
-.hero-orb {
-    position: absolute;
-
-    width: 65vw;
-    height: 65vw;
-
-    max-width: 800px;
-    max-height: 800px;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
     background:
-        radial-gradient(
-            circle,
-            rgba(89,21,34,.38),
-            transparent 65%
-        );
+        radial-gradient(circle at 80% 35%, rgba(100,20,30,.22), transparent 32%),
+        linear-gradient(135deg, var(--black), var(--burgundy-deep));
 }
 
-.hero-grid {
+.hero::before {
+    content: "";
     position: absolute;
     inset: 0;
-
-    opacity: .15;
-
-    background-image:
-        linear-gradient(
-            rgba(197,161,90,.5) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(197,161,90,.5) 1px,
-            transparent 1px
-        );
-
+    background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
     background-size: 70px 70px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent,
-            black 25%,
-            black 70%,
-            transparent
-        );
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 80%, transparent);
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-
-    width: min(1100px, 90%);
-
-    text-align: center;
-
-    padding-top: 70px;
-}
-
-.hero-kicker {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 14px;
-
-    color: var(--gold);
-
-    font-size: .58rem;
-    letter-spacing: .25em;
-}
-
-.hero-kicker span {
-    width: 35px;
-    height: 1px;
-
-    background: var(--gold);
+    max-width: 1050px;
 }
 
 .hero-classified {
-    margin-top: 25px;
-
-    color: var(--muted);
-
-    font-size: .55rem;
-    letter-spacing: .28em;
-}
-
-.hero-title {
-    margin-top: 20px;
-
-    font-family: var(--serif);
-
-    font-size: clamp(4rem, 13vw, 10rem);
-
-    line-height: .85;
-
-    font-weight: 500;
-
-    letter-spacing: -.02em;
-}
-
-.hero-title span {
     color: var(--gold);
+    font-size: .62rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
-.hero-line {
-    margin-top: 28px;
-
+.hero h1 {
     font-family: var(--serif);
-
-    font-size: clamp(1.3rem, 3vw, 2.2rem);
-
-    color: var(--cream);
+    font-weight: 500;
+    font-size: clamp(4.4rem, 13vw, 11rem);
+    line-height: .72;
+    letter-spacing: -.055em;
 }
 
-.hero-line em {
-    color: var(--gold-light);
+.hero h1 span {
+    display: block;
 }
 
-.hero-description {
-    max-width: 580px;
+.hero h1 span:last-child {
+    color: var(--gold);
+    font-style: italic;
+}
 
-    margin: 22px auto 0;
-
+.hero-sub {
+    max-width: 570px;
+    margin-top: 45px;
     color: var(--muted);
-
+    font-size: .82rem;
     line-height: 1.8;
-
-    font-size: .88rem;
-}
-
-.hero-meta {
-    display: flex;
-
-    justify-content: center;
-
-    max-width: 650px;
-
-    margin: 45px auto 0;
-
-    border: 1px solid var(--line);
-}
-
-.hero-meta div {
-    flex: 1;
-
-    padding: 18px 10px;
-
-    border-right: 1px solid var(--line);
-}
-
-.hero-meta div:last-child {
-    border-right: none;
-}
-
-.hero-meta strong {
-    display: block;
-
-    font-family: var(--serif);
-
-    color: var(--gold);
-
-    font-size: 1.8rem;
-
-    font-weight: 500;
-}
-
-.hero-meta span {
-    display: block;
-
-    margin-top: 4px;
-
-    color: var(--muted);
-
-    font-size: .52rem;
-
-    letter-spacing: .16em;
-}
-
-.hero-cta {
-    display: inline-flex;
-
-    gap: 20px;
-
-    align-items: center;
-
-    margin-top: 40px;
-
-    padding: 16px 24px;
-
-    border: 1px solid var(--gold);
-
-    color: var(--gold-light);
-
-    font-size: .63rem;
-
-    letter-spacing: .18em;
-
-    transition: .3s ease;
-}
-
-.hero-cta:hover {
-    background: var(--gold);
-    color: var(--black);
 }
 
 .hero-bottom {
-    position: absolute;
-
-    bottom: 25px;
-
-    left: 5vw;
-    right: 5vw;
-
     display: flex;
-
     justify-content: space-between;
-
-    color: var(--muted);
-
-    font-size: .5rem;
-
-    letter-spacing: .2em;
-}
-
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
-.section {
-    padding: 120px 6vw;
-
-    border-bottom: 1px solid var(--line);
-}
-
-.section-head {
-    max-width: 1100px;
-
-    margin: 0 auto 65px;
-
-    display: flex;
-
-    justify-content: space-between;
-
     align-items: flex-end;
-
-    gap: 50px;
+    margin-top: 60px;
+    gap: 30px;
 }
 
-.section-kicker {
-    color: var(--gold);
-
-    font-size: .58rem;
-
-    letter-spacing: .25em;
-
-    margin-bottom: 15px;
-}
-
-.section-head h2 {
-    font-family: var(--serif);
-
-    font-size: clamp(3rem, 7vw, 6rem);
-
-    font-weight: 500;
-}
-
-.section-head p {
-    max-width: 390px;
-
+.hero-meta {
     color: var(--muted);
-
-    line-height: 1.8;
-
-    font-size: .8rem;
+    font-size: .58rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
 }
 
-.reveal {
-    opacity: 0;
-
-    transform: translateY(35px);
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
+.hero-meta strong {
+    color: var(--cream);
+    display: block;
+    font-weight: 400;
+    margin-top: 7px;
 }
 
-.reveal.visible {
-    opacity: 1;
-
-    transform: translateY(0);
+.scroll-indicator {
+    color: var(--gold);
+    font-size: .58rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
 }
-
 
 /* =========================
    EXPERIENCE
 ========================= */
 
+.experience {
+    background: var(--black-soft);
+}
+
 .experience-grid {
-    max-width: 1100px;
-
-    margin: 0 auto;
-
+    margin-top: 75px;
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
-    border-top: 1px solid var(--soft-line);
-    border-left: 1px solid var(--soft-line);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
 }
 
 .experience-card {
-    min-height: 260px;
-
-    padding: 30px;
-
-    position: relative;
-
-    border-right: 1px solid var(--soft-line);
-    border-bottom: 1px solid var(--soft-line);
-
-    background: var(--black-card);
-
-    transition: .35s ease;
+    min-height: 300px;
+    padding: 38px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: .4s ease;
 }
 
 .experience-card:hover {
-    background: var(--burgundy-deep);
-
-    transform: translateY(-3px);
+    background: rgba(197,161,90,.035);
 }
 
-.card-number {
+.experience-number {
     color: var(--gold);
-
     font-size: .58rem;
-
-    letter-spacing: .15em;
-}
-
-.card-line {
-    width: 35px;
-    height: 1px;
-
-    background: var(--gold);
-
-    margin: 45px 0 20px;
+    letter-spacing: .2em;
 }
 
 .experience-card h3 {
     font-family: var(--serif);
-
-    font-size: 2rem;
-
+    font-size: 2.2rem;
     font-weight: 500;
-}
-
-.experience-card strong {
-    display: block;
-
-    margin-top: 7px;
-
-    color: var(--gold-light);
-
-    font-size: .62rem;
-
-    letter-spacing: .12em;
+    margin-top: 70px;
 }
 
 .experience-card p {
-    margin-top: 18px;
-
     color: var(--muted);
-
     font-size: .75rem;
+    line-height: 1.8;
+    margin-top: 15px;
 }
-
 
 /* =========================
    DOSSIER
 ========================= */
 
-.dossier-section {
-    padding: 120px 6vw;
-
+.dossier {
     background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(89,21,34,.2),
-            transparent 48%
-        ),
-        var(--black-deep);
-
-    border-bottom: 1px solid var(--line);
-}
-
-.dossier-wrap {
-    max-width: 1100px;
-
-    margin: 0 auto;
-}
-
-.dossier-heading {
-    text-align: center;
-
-    margin-bottom: 60px;
-}
-
-.dossier-kicker {
-    color: var(--gold);
-
-    font-size: .7rem;
-
-    letter-spacing: .28em;
-
-    text-transform: uppercase;
-
-    margin-bottom: 18px;
-}
-
-.dossier-heading h2 {
-    font-family: var(--serif);
-
-    font-size: clamp(3rem, 8vw, 6rem);
-
-    font-weight: 500;
-}
-
-.dossier-heading p {
-    max-width: 560px;
-
-    margin: 18px auto 0;
-
-    color: var(--muted);
-
-    line-height: 1.8;
-}
-
-.dossier-card {
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.035),
-            transparent 40%
-        ),
-        var(--black-card);
-
-    border: 1px solid var(--line);
-
-    padding: 34px;
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.35);
-}
-
-.dossier-card::before {
-    content: "CLASSIFIED";
-
-    position: absolute;
-
-    top: 25px;
-    right: -35px;
-
-    padding: 7px 45px;
-
-    background: var(--burgundy);
-
-    color: var(--gold-light);
-
-    font-size: .55rem;
-
-    letter-spacing: .25em;
-
-    transform: rotate(45deg);
-}
-
-.dossier-top {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    gap: 30px;
-
-    padding-bottom: 30px;
-
-    border-bottom: 1px solid var(--soft-line);
-}
-
-.dossier-mark {
-    width: 75px;
-    height: 75px;
-
-    display: grid;
-
-    place-items: center;
-
-    border: 1px solid var(--gold);
-
-    color: var(--gold);
-
-    font-family: var(--serif);
-
-    font-size: 2rem;
-}
-
-.dossier-status {
-    text-align: right;
-}
-
-.dossier-status span {
-    display: block;
-
-    color: var(--muted);
-
-    font-size: .58rem;
-
-    letter-spacing: .2em;
-
-    margin-bottom: 7px;
-}
-
-.dossier-status strong {
-    color: #7fcf91;
-
-    font-size: .72rem;
-
-    letter-spacing: .15em;
-}
-
-.dossier-name {
-    margin: 35px 0;
-}
-
-.dossier-name small {
-    display: block;
-
-    color: var(--gold);
-
-    font-size: .6rem;
-
-    letter-spacing: .25em;
-
-    margin-bottom: 8px;
-}
-
-.dossier-name h3 {
-    font-family: var(--serif);
-
-    font-size: clamp(2rem, 5vw, 3.5rem);
-
-    font-weight: 500;
+        linear-gradient(rgba(197,161,90,.025), rgba(197,161,90,.025)),
+        var(--black);
 }
 
 .dossier-grid {
+    margin-top: 75px;
     display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    border-top: 1px solid var(--soft-line);
-    border-left: 1px solid var(--soft-line);
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--line);
 }
 
-.dossier-field {
-    padding: 22px;
-
-    border-right: 1px solid var(--soft-line);
-    border-bottom: 1px solid var(--soft-line);
+.dossier-item {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
 }
 
-.dossier-field span {
-    display: block;
-
-    color: var(--muted);
-
-    font-size: .58rem;
-
-    letter-spacing: .18em;
-
-    margin-bottom: 9px;
-
-    text-transform: uppercase;
+.dossier-item:nth-child(odd) {
+    margin-right: 50px;
 }
 
-.dossier-field strong {
-    font-size: .85rem;
-
-    font-weight: 500;
-
-    letter-spacing: .06em;
-}
-
-.dossier-footer {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-top: 28px;
-
-    color: var(--muted);
-
-    font-size: .55rem;
-
-    letter-spacing: .16em;
-
-    text-transform: uppercase;
-}
-
-.dossier-lock {
+.dossier-label {
     color: var(--gold);
+    font-size: .57rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
 }
 
+.dossier-value {
+    font-family: var(--serif);
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.dossier-note {
+    margin-top: 55px;
+    padding: 35px;
+    border: 1px solid var(--line);
+    background: rgba(197,161,90,.025);
+}
+
+.dossier-note p {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1.2;
+}
 
 /* =========================
    MEMBER EXPERIENCE
 ========================= */
 
-.member-section {
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(59,13,23,.2),
-            transparent 40%
-        ),
-        var(--black-soft);
+.member {
+    background: var(--burgundy-deep);
 }
 
-.member-timeline {
-    max-width: 1000px;
-
-    margin: 0 auto;
-
-    border-top: 1px solid var(--soft-line);
+.member-journey {
+    margin-top: 75px;
+    border-top: 1px solid var(--line);
 }
 
 .member-step {
     display: grid;
-
-    grid-template-columns: 90px 1fr auto;
-
+    grid-template-columns: 80px 1fr 180px;
     gap: 30px;
-
     align-items: center;
-
     padding: 30px 0;
-
-    border-bottom: 1px solid var(--soft-line);
-
-    transition: .3s ease;
-}
-
-.member-step:hover {
-    padding-left: 12px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(59,13,23,.08),
-            transparent
-        );
+    border-bottom: 1px solid var(--line);
 }
 
 .member-number {
     color: var(--gold);
-
     font-family: var(--serif);
-
-    font-size: 2.2rem;
-}
-
-.member-content span {
-    color: var(--gold);
-
-    font-size: .55rem;
-
-    letter-spacing: .2em;
+    font-size: 2.4rem;
 }
 
 .member-content h3 {
-    margin-top: 6px;
-
     font-family: var(--serif);
-
-    font-size: 2.1rem;
-
+    font-size: 2rem;
     font-weight: 500;
 }
 
 .member-content p {
-    max-width: 570px;
-
-    margin-top: 8px;
-
     color: var(--muted);
-
+    font-size: .72rem;
     line-height: 1.7;
-
-    font-size: .75rem;
+    margin-top: 6px;
 }
 
 .member-status {
-    color: var(--muted);
-
-    font-size: .48rem;
-
-    letter-spacing: .18em;
-
     text-align: right;
+    color: var(--gold);
+    font-size: .55rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
 }
 
 .member-final {
-    max-width: 800px;
-
-    margin: 70px auto 0;
-
-    padding: 35px;
-
-    text-align: center;
-
+    margin-top: 60px;
+    padding: 45px;
     border: 1px solid var(--line);
-
-    background: var(--black-card);
-}
-
-.member-final span {
-    color: var(--gold);
-
-    font-size: .55rem;
-
-    letter-spacing: .25em;
+    text-align: center;
 }
 
 .member-final h3 {
-    margin-top: 12px;
-
     font-family: var(--serif);
-
-    font-size: clamp(2rem, 5vw, 3.5rem);
-
+    font-size: 2.8rem;
     font-weight: 500;
 }
 
 .member-final p {
-    max-width: 550px;
-
-    margin: 12px auto 0;
-
     color: var(--muted);
-
-    line-height: 1.7;
-
-    font-size: .76rem;
+    max-width: 550px;
+    margin: 15px auto 0;
+    font-size: .75rem;
+    line-height: 1.8;
 }
-
 
 /* =========================
    GAME
 ========================= */
 
-.game-timeline {
-    max-width: 1000px;
-
-    margin: 0 auto;
-
-    border-top: 1px solid var(--soft-line);
+.game {
+    background:
+        radial-gradient(circle at 20% 60%, rgba(80,15,25,.28), transparent 30%),
+        var(--black);
 }
 
-.game-step {
-    display: grid;
-
-    grid-template-columns: 100px 1fr;
-
-    gap: 35px;
-
-    padding: 35px 0;
-
-    border-bottom: 1px solid var(--soft-line);
-
-    transition: .3s ease;
+.game-intro {
+    max-width: 800px;
 }
 
-.game-step:hover {
-    padding-left: 15px;
-}
-
-.game-step-number {
-    color: var(--gold);
-
+.game-intro h3 {
     font-family: var(--serif);
-
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1;
+    margin-top: 45px;
 }
 
-.game-step-content span {
+.game-intro p {
+    color: var(--muted);
+    font-size: .78rem;
+    line-height: 1.9;
+    margin-top: 20px;
+}
+
+.game-phases {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.phase {
+    min-height: 290px;
+    padding: 35px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: .4s ease;
+}
+
+.phase:hover {
+    background: rgba(197,161,90,.035);
+}
+
+.phase-number {
     color: var(--gold);
-
-    font-size: .55rem;
-
+    font-size: .58rem;
     letter-spacing: .2em;
 }
 
-.game-step-content h3 {
-    margin-top: 7px;
-
+.phase h3 {
     font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-top: 65px;
+}
 
-    font-size: 2.4rem;
+.phase p {
+    color: var(--muted);
+    font-size: .7rem;
+    line-height: 1.8;
+    margin-top: 12px;
+}
 
+/* GAME MECHANICS */
+
+.game-mechanics {
+    margin-top: 90px;
+}
+
+.game-mechanics-title {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 35px;
+}
+
+.mechanic-list {
+    border-top: 1px solid var(--line);
+}
+
+.mechanic {
+    display: grid;
+    grid-template-columns: 70px 220px 1fr;
+    gap: 25px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+}
+
+.mechanic-number {
+    color: var(--gold);
+    font-size: .62rem;
+    letter-spacing: .18em;
+}
+
+.mechanic h4 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
     font-weight: 500;
 }
 
-.game-step-content p {
-    max-width: 550px;
-
-    margin-top: 10px;
-
+.mechanic p {
     color: var(--muted);
-
-    line-height: 1.7;
-
-    font-size: .78rem;
+    font-size: .72rem;
+    line-height: 1.8;
 }
 
-.game-quote {
-    max-width: 900px;
+/* ALLIANCE */
 
-    margin: 80px auto 0;
-
-    text-align: center;
+.alliance-window {
+    margin-top: 80px;
+    padding: 50px;
+    border: 1px solid var(--line);
+    background:
+        linear-gradient(135deg, rgba(197,161,90,.035), transparent);
 }
 
-.game-quote span {
+.alliance-label {
     color: var(--gold);
-
-    font-size: .55rem;
-
+    font-size: .58rem;
     letter-spacing: .25em;
+    text-transform: uppercase;
 }
 
-.game-quote blockquote {
-    margin-top: 15px;
-
+.alliance-window h3 {
     font-family: var(--serif);
-
-    font-size: clamp(2rem, 5vw, 4rem);
-
-    color: var(--cream);
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 500;
+    margin-top: 20px;
 }
 
+.alliance-window p {
+    max-width: 700px;
+    color: var(--muted);
+    font-size: .75rem;
+    line-height: 1.9;
+    margin-top: 15px;
+}
+
+.alliance-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.alliance-points span {
+    padding: 10px 15px;
+    border: 1px solid var(--line);
+    color: var(--cream);
+    font-size: .55rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+/* FINAL */
+
+.final-game {
+    margin-top: 80px;
+    padding: 65px 45px;
+    text-align: center;
+    background: var(--burgundy-deep);
+    border: 1px solid var(--line);
+}
+
+.final-game .final-label {
+    color: var(--gold);
+    font-size: .58rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+}
+
+.final-game h3 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.final-game p {
+    max-width: 650px;
+    margin: 20px auto 0;
+    color: var(--muted);
+    font-size: .75rem;
+    line-height: 1.8;
+}
+
+.after-hours {
+    margin-top: 30px;
+    color: var(--gold);
+    font-size: .62rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+}
 
 /* =========================
    HOUSES
 ========================= */
 
+.houses {
+    background: var(--black-soft);
+}
+
 .houses-grid {
-    max-width: 1100px;
-
-    margin: 0 auto;
-
+    margin-top: 75px;
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
-    border-top: 1px solid var(--soft-line);
-    border-left: 1px solid var(--soft-line);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
 }
 
 .house-card {
-    min-height: 280px;
-
-    padding: 35px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    border-right: 1px solid var(--soft-line);
-    border-bottom: 1px solid var(--soft-line);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(59,13,23,.12),
-            transparent
-        );
-
-    transition: .35s ease;
+    min-height: 370px;
+    padding: 38px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: .4s ease;
 }
 
 .house-card:hover {
-    background: var(--burgundy-deep);
+    background: rgba(197,161,90,.035);
 }
-
-.house-number {
-    color: var(--gold);
-
-    font-family: var(--serif);
-
-    font-size: 2rem;
-}
-
-
-/* HOUSE ICONS */
 
 .house-icon {
     width: 34px;
     height: 34px;
-
     margin-bottom: 22px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     color: var(--gold);
-
     border: 1px solid var(--line);
-
     font-family: var(--serif);
-
     font-size: 1.15rem;
-
     line-height: 1;
-
     background: rgba(197,161,90,.025);
-
     transition: .35s ease;
 }
 
 .house-card:hover .house-icon {
     border-color: var(--gold);
-
     background: rgba(197,161,90,.08);
-
     transform: translateY(-2px);
 }
 
-.house-label {
-    color: var(--muted);
-
-    font-size: .55rem;
-
-    letter-spacing: .2em;
-}
-
 .house-card h3 {
-    margin-top: 7px;
-
     font-family: var(--serif);
-
-    font-size: clamp(2rem, 4vw, 3rem);
-
+    font-size: 2.8rem;
     font-weight: 500;
 }
 
-.house-card p {
-    margin-top: 10px;
-
-    color: var(--gold-light);
-
+.house-card .house-motto {
+    color: var(--gold);
     font-size: .58rem;
-
-    letter-spacing: .12em;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-top: 7px;
 }
 
+.house-card p {
+    color: var(--muted);
+    font-size: .72rem;
+    line-height: 1.8;
+    margin-top: 28px;
+    max-width: 390px;
+}
+
+.house-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 25px;
+}
+
+.house-traits span {
+    border: 1px solid var(--line);
+    padding: 7px 10px;
+    color: var(--cream);
+    font-size: .52rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
 
 /* =========================
    SCOREBOARD
 ========================= */
 
 .scoreboard {
-    max-width: 1100px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: var(--black-soft);
+}
 
-    margin: 90px auto 0;
-
+.scoreboard-box {
     border: 1px solid var(--line);
-
-    background: var(--black-card);
 }
 
-.scoreboard-head {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 20px 25px;
-
-    border-bottom: 1px solid var(--soft-line);
-}
-
-.scoreboard-head span {
-    color: var(--gold);
-
-    font-size: .58rem;
-
-    letter-spacing: .2em;
-}
-
-.scoreboard-head small {
-    color: var(--muted);
-
-    font-size: .48rem;
-
-    letter-spacing: .15em;
-}
-
-.scoreboard-grid {
+.scoreboard-header,
+.score-row {
     display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 70px 1fr 140px;
+    gap: 20px;
+    align-items: center;
 }
 
-.score-card {
-    padding: 30px 20px;
-
-    text-align: center;
-
-    border-right: 1px solid var(--soft-line);
-}
-
-.score-card:last-child {
-    border-right: none;
-}
-
-.score-card span {
-    display: block;
-
-    color: var(--muted);
-
-    font-size: .52rem;
-
-    letter-spacing: .12em;
-}
-
-.score-card strong {
-    display: block;
-
-    margin: 10px 0;
-
-    font-family: var(--serif);
-
-    font-size: 3rem;
-
+.scoreboard-header {
+    padding: 18px 25px;
+    border-bottom: 1px solid var(--line);
     color: var(--gold);
+    font-size: .55rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
 }
 
-.score-card small {
+.score-row {
+    padding: 23px 25px;
+    border-bottom: 1px solid var(--line);
+}
+
+.score-row:last-child {
+    border-bottom: 0;
+}
+
+.score-rank {
     color: var(--muted);
-
-    font-size: .45rem;
-
-    letter-spacing: .15em;
+    font-family: var(--serif);
+    font-size: 1.5rem;
 }
 
-.scoreboard-note {
-    padding: 15px;
-
-    text-align: center;
-
-    color: var(--muted);
-
-    font-size: .48rem;
-
-    letter-spacing: .18em;
-
-    border-top: 1px solid var(--soft-line);
+.score-house {
+    font-family: var(--serif);
+    font-size: 1.5rem;
 }
 
+.score-value {
+    text-align: right;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 1.5rem;
+}
 
 /* =========================
    VAULT
 ========================= */
 
-.vault-section {
+.vault {
     background:
-        radial-gradient(
-            circle at center,
-            rgba(59,13,23,.25),
-            transparent 55%
-        ),
-        var(--black-deep);
+        radial-gradient(circle at 50% 50%, rgba(197,161,90,.06), transparent 38%),
+        var(--black);
 }
 
-.vault-wrap {
+.vault-box {
     max-width: 850px;
-
-    margin: 0 auto;
-
+    margin: 70px auto 0;
+    padding: 65px 45px;
+    border: 1px solid var(--line);
     text-align: center;
 }
 
-.vault-label {
-    color: var(--gold);
-
-    font-size: .6rem;
-
-    letter-spacing: .3em;
-}
-
-.vault-wrap h2 {
-    margin-top: 20px;
-
-    font-family: var(--serif);
-
-    font-size: clamp(3.5rem, 9vw, 7rem);
-
-    font-weight: 500;
-
-    line-height: .9;
-}
-
-.vault-wrap h2 span {
-    color: var(--gold);
-}
-
-.vault-wrap > p {
-    max-width: 600px;
-
-    margin: 30px auto;
-
-    color: var(--muted);
-
-    line-height: 1.8;
-}
-
-.vault-button {
-    padding: 16px 28px;
-
-    background: transparent;
-
+.vault-symbol {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 30px;
     border: 1px solid var(--gold);
-
-    color: var(--gold-light);
-
-    font-size: .62rem;
-
-    letter-spacing: .2em;
-
-    transition: .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 2rem;
 }
 
-.vault-button:hover {
-    background: var(--gold);
-
-    color: var(--black);
+.vault-box h3 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 500;
 }
 
-.vault-choice {
-    display: none;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 15px;
-
-    max-width: 650px;
-
-    margin: 35px auto 0;
+.vault-box p {
+    max-width: 600px;
+    margin: 20px auto 0;
+    color: var(--muted);
+    font-size: .75rem;
+    line-height: 1.9;
 }
 
-.vault-choice.show {
+.vault-options {
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 40px;
 }
 
 .vault-option {
-    padding: 30px;
-
-    background: var(--black-card);
-
+    padding: 25px;
     border: 1px solid var(--line);
-
-    color: var(--white);
-
+    background: transparent;
+    color: var(--cream);
     transition: .3s ease;
 }
 
 .vault-option:hover {
     border-color: var(--gold);
-
-    background: var(--burgundy-deep);
+    background: rgba(197,161,90,.05);
 }
 
-.vault-option.risk:hover {
-    border-color: var(--burgundy-light);
+.vault-option strong {
+    display: block;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 500;
 }
 
 .vault-option span {
     display: block;
-
-    font-family: var(--serif);
-
-    font-size: 2rem;
-
-    color: var(--gold);
-}
-
-.vault-option small {
-    display: block;
-
     margin-top: 8px;
-
     color: var(--muted);
-
-    font-size: .5rem;
-
+    font-size: .55rem;
     letter-spacing: .15em;
-}
-
-.vault-message {
-    display: none;
-
-    max-width: 600px;
-
-    margin: 35px auto 0;
-
-    padding: 30px;
-
-    border: 1px solid var(--gold);
-
-    background: var(--black-card);
-}
-
-.vault-message.show {
-    display: block;
-}
-
-.vault-message-title {
-    color: var(--gold);
-
-    font-size: .6rem;
-
-    letter-spacing: .2em;
-}
-
-.vault-message p {
-    margin-top: 12px;
-
-    color: var(--cream);
-
-    line-height: 1.7;
-
-    font-size: .78rem;
+    text-transform: uppercase;
 }
 
 .vault-note {
     margin-top: 30px;
-
     color: var(--muted);
-
     font-size: .5rem;
-
     letter-spacing: .15em;
 }
-
 
 /* =========================
    THE CODE
 ========================= */
 
+.code {
+    background: var(--burgundy-deep);
+}
+
 .code-list {
-    max-width: 1000px;
-
-    margin: 0 auto;
-
-    border-top: 1px solid var(--soft-line);
+    margin-top: 70px;
+    border-top: 1px solid var(--line);
 }
 
 .code-item {
     display: grid;
-
-    grid-template-columns: 80px 1fr;
-
-    gap: 30px;
-
-    padding: 35px 0;
-
-    border-bottom: 1px solid var(--soft-line);
+    grid-template-columns: 70px 1fr;
+    gap: 25px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
 }
 
-.code-item > span {
+.code-number {
     color: var(--gold);
-
     font-family: var(--serif);
-
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .code-item h3 {
     font-family: var(--serif);
-
-    font-size: 2rem;
-
+    font-size: 1.8rem;
     font-weight: 500;
 }
 
 .code-item p {
-    margin-top: 8px;
-
     color: var(--muted);
-
-    line-height: 1.7;
-
-    font-size: .78rem;
+    font-size: .7rem;
+    line-height: 1.8;
+    margin-top: 5px;
 }
-
-.code-signature {
-    max-width: 1000px;
-
-    margin: 40px auto 0;
-
-    color: var(--gold);
-
-    font-size: .55rem;
-
-    letter-spacing: .25em;
-}
-
 
 /* =========================
    ACCESS
 ========================= */
 
-.access-section {
+.access {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
     background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(59,13,23,.25),
-            transparent 40%
-        ),
-        var(--black-soft);
+        radial-gradient(circle at 80% 20%, rgba(100,20,30,.28), transparent 35%),
+        var(--black);
 }
 
-.access-wrap {
-    max-width: 1000px;
-
-    margin: 0 auto;
+.access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
 }
 
-.access-intro {
-    max-width: 750px;
-}
-
-.access-intro h2 {
-    margin-top: 15px;
-
+.access-copy h2 {
     font-family: var(--serif);
-
-    font-size: clamp(3rem, 7vw, 6rem);
-
-    line-height: .95;
-
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: .82;
     font-weight: 500;
 }
 
-.access-intro h2 span {
+.access-copy h2 span {
     color: var(--gold);
+    font-style: italic;
 }
 
-.access-intro p {
-    max-width: 600px;
-
-    margin-top: 25px;
-
+.access-copy p {
+    max-width: 480px;
+    margin-top: 30px;
     color: var(--muted);
-
-    line-height: 1.8;
-}
-
-.access-status-grid {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    margin-top: 60px;
-
-    border-top: 1px solid var(--soft-line);
-    border-left: 1px solid var(--soft-line);
-}
-
-.access-status-grid div {
-    padding: 25px;
-
-    border-right: 1px solid var(--soft-line);
-    border-bottom: 1px solid var(--soft-line);
-}
-
-.access-status-grid span {
-    display: block;
-
-    color: var(--muted);
-
-    font-size: .5rem;
-
-    letter-spacing: .18em;
-
-    margin-bottom: 8px;
-}
-
-.access-status-grid strong {
-    color: var(--gold-light);
-
-    font-size: .65rem;
-
-    letter-spacing: .1em;
+    font-size: .75rem;
+    line-height: 1.9;
 }
 
 .access-form {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 20px;
-
-    margin-top: 60px;
+    border: 1px solid var(--line);
+    padding: 40px;
+    background: rgba(197,161,90,.02);
 }
 
 .form-group {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
+    margin-bottom: 22px;
 }
 
 .form-group label {
+    display: block;
     color: var(--gold);
-
-    font-size: .52rem;
-
-    letter-spacing: .18em;
+    font-size: .55rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 9px;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-
-    padding: 16px;
-
-    background: var(--black);
-
-    color: var(--white);
-
-    border: 1px solid var(--soft-line);
-
+    border: 1px solid var(--line);
     outline: none;
-
-    resize: vertical;
-
+    background: transparent;
+    color: var(--cream);
+    padding: 13px;
+    font-size: .7rem;
     transition: .3s ease;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
 .form-group input:focus,
@@ -1827,247 +1087,136 @@ button {
     border-color: var(--gold);
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #5e5852;
-}
-
 .access-submit {
-    grid-column: 1 / -1;
-
-    justify-self: start;
-
-    margin-top: 10px;
-
-    padding: 17px 30px;
-
-    background: transparent;
-
-    color: var(--gold-light);
-
+    width: 100%;
+    padding: 16px;
     border: 1px solid var(--gold);
-
-    font-size: .62rem;
-
+    background: var(--gold);
+    color: var(--black);
+    font-size: .6rem;
     letter-spacing: .2em;
-
+    text-transform: uppercase;
     transition: .3s ease;
 }
 
 .access-submit:hover {
-    background: var(--gold);
-
-    color: var(--black);
+    background: transparent;
+    color: var(--gold);
 }
 
-.access-success {
+.access-message {
     display: none;
-
-    margin-top: 60px;
-
-    padding: 55px 30px;
-
-    text-align: center;
-
-    border: 1px solid var(--gold);
-
-    background: var(--black-card);
-}
-
-.access-success.show {
-    display: block;
-}
-
-.success-mark {
-    width: 65px;
-    height: 65px;
-
-    margin: 0 auto 25px;
-
-    display: grid;
-
-    place-items: center;
-
-    border: 1px solid var(--gold);
-
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid var(--line);
     color: var(--gold);
-
-    font-family: var(--serif);
-
-    font-size: 1.6rem;
+    font-size: .62rem;
+    line-height: 1.6;
 }
-
-.success-kicker {
-    color: var(--gold);
-
-    font-size: .58rem;
-
-    letter-spacing: .25em;
-}
-
-.access-success h3 {
-    margin-top: 15px;
-
-    font-family: var(--serif);
-
-    font-size: 2.5rem;
-
-    font-weight: 500;
-}
-
-.access-success p {
-    max-width: 500px;
-
-    margin: 15px auto 0;
-
-    color: var(--muted);
-
-    line-height: 1.7;
-
-    font-size: .78rem;
-}
-
-.access-warning {
-    margin-top: 30px;
-
-    color: var(--muted);
-
-    font-size: .5rem;
-
-    letter-spacing: .15em;
-}
-
 
 /* =========================
    FOOTER
 ========================= */
 
-.footer {
-    padding: 70px 6vw 30px;
-
-    background: var(--black-deep);
-
+footer {
+    padding: 60px 7vw 35px;
     border-top: 1px solid var(--line);
+    background: var(--black);
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: flex-end;
 }
 
 .footer-brand {
     font-family: var(--serif);
-
-    font-size: 4rem;
-
+    font-size: 2.2rem;
     color: var(--gold);
 }
 
-.footer-main {
-    margin-top: 25px;
-}
-
-.footer-main h3 {
-    font-family: var(--serif);
-
-    font-size: 2rem;
-
-    font-weight: 500;
-}
-
-.footer-main p {
-    margin-top: 8px;
-
+.footer-small {
     color: var(--muted);
-
     font-size: .55rem;
-
-    letter-spacing: .15em;
+    line-height: 1.8;
+    letter-spacing: .08em;
+    text-transform: uppercase;
 }
 
-.footer-meta {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-top: 70px;
-
-    padding-top: 20px;
-
-    border-top: 1px solid var(--soft-line);
-
-    color: var(--muted);
-
-    font-size: .48rem;
-
-    letter-spacing: .15em;
+.footer-right {
+    text-align: right;
 }
 
-.footer-final {
-    margin-top: 45px;
+/* =========================
+   REVEAL
+========================= */
 
-    text-align: center;
-
-    color: var(--gold);
-
-    font-family: var(--serif);
-
-    font-size: 1.7rem;
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s ease, transform .8s ease;
 }
 
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
-    .hero-meta {
-        display: grid;
-
-        grid-template-columns: repeat(2, 1fr);
+    section {
+        padding: 90px 6vw;
     }
 
-    .hero-meta div:nth-child(2) {
-        border-right: none;
+    header {
+        padding: 20px 6vw;
     }
 
-    .hero-meta div:nth-last-child(-n+2) {
-        border-bottom: none;
+    .hero {
+        min-height: 100svh;
+        padding-bottom: 55px;
     }
 
-    .section {
-        padding: 90px 5vw;
+    .hero h1 {
+        font-size: clamp(4rem, 19vw, 7rem);
     }
 
-    .section-head {
+    .hero-bottom {
         display: block;
     }
 
-    .section-head p {
-        margin-top: 20px;
+    .scroll-indicator {
+        margin-top: 25px;
     }
 
-    .experience-grid {
+    .experience-grid,
+    .game-phases {
         grid-template-columns: 1fr;
     }
 
-    .dossier-section {
-        padding: 90px 5vw;
-    }
-
-    .dossier-card {
-        padding: 24px;
+    .experience-card,
+    .phase {
+        min-height: 250px;
     }
 
     .dossier-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 
-    .dossier-footer {
-        flex-direction: column;
+    .dossier-item:nth-child(odd) {
+        margin-right: 0;
     }
 
     .member-step {
         grid-template-columns: 50px 1fr;
-
         gap: 18px;
     }
 
@@ -2081,2552 +1230,1169 @@ button {
 
     .member-status {
         grid-column: 2;
-
         text-align: left;
     }
 
-    .game-step {
-        grid-template-columns: 55px 1fr;
-
-        gap: 20px;
+    .mechanic {
+        grid-template-columns: 45px 1fr;
+        gap: 15px;
     }
 
-    .game-step-number {
-        font-size: 1.8rem;
+    .mechanic p {
+        grid-column: 2;
     }
 
-    .game-step-content h3 {
-        font-size: 1.8rem;
+    .alliance-window {
+        padding: 35px 25px;
+    }
+
+    .final-game {
+        padding: 50px 25px;
     }
 
     .houses-grid {
         grid-template-columns: 1fr;
     }
 
-    .scoreboard-grid {
-        grid-template-columns: 1fr 1fr;
+    .house-card {
+        min-height: 320px;
     }
 
-    .score-card:nth-child(2) {
-        border-right: none;
+    .vault-box {
+        padding: 45px 25px;
     }
 
-    .score-card:nth-child(-n+2) {
-        border-bottom: 1px solid var(--soft-line);
-    }
-
-    .vault-choice {
+    .vault-options {
         grid-template-columns: 1fr;
     }
 
-    .code-item {
-        grid-template-columns: 50px 1fr;
-        gap: 15px;
-    }
-
-    .code-item h3 {
-        font-size: 1.7rem;
-    }
-
-    .access-status-grid {
-        grid-template-columns: 1fr 1fr;
+    .access-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
     }
 
     .access-form {
-        grid-template-columns: 1fr;
+        padding: 28px 22px;
     }
 
-    .form-group.full {
-        grid-column: auto;
+    .footer-inner {
+        display: block;
     }
 
-    .access-submit {
-        grid-column: auto;
-        width: 100%;
+    .footer-right {
+        text-align: left;
+        margin-top: 25px;
     }
-
-    .footer-meta {
-        flex-direction: column;
-    }
-
-    .hero-bottom {
-        font-size: .42rem;
-    }
-
 }
-
 </style>
-
 </head>
 
-
-<body class="no-scroll">
-
+<body>
 
 <!-- =========================
      INTRO
 ========================= -->
 
 <div class="intro" id="intro">
-
     <div class="intro-inner">
-
-        <div class="intro-classified">
-            CONFIDENTIAL // HOUSE OF XANDER
-        </div>
-
-        <div class="intro-mark">
-            CX
-        </div>
-
-        <h1>
-            THE CONSORTIUM
-        </h1>
-
-        <div class="intro-subtitle">
-            A PRIVATE-HOUSE EXPERIENCE
-        </div>
-
-        <button
-            type="button"
-            class="enter-house"
-            id="enterHouse">
-
-            ENTER THE HOUSE
-
-        </button>
-
-        <div class="intro-note">
-            ACCESS IS PRIVATE
-        </div>
-
+        <div class="intro-mark">House of Xander presents</div>
+        <div class="intro-title">THE<br>CONSORTIUM</div>
+        <div class="intro-line"></div>
+        <div class="intro-sub">Private House Experience</div>
     </div>
-
 </div>
-
 
 <!-- =========================
      HEADER
 ========================= -->
 
-<header class="header">
+<header>
+    <a href="#top" class="brand">The Consortium</a>
 
-    <a href="#top" class="brand">
-        CX
-    </a>
-
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false">
-
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
         <span></span>
         <span></span>
-
     </button>
-
-
-    <nav class="main-nav" id="mainNav">
-
-        <a href="#experience">
-            Experience
-        </a>
-
-        <a href="#dossier">
-            Dossier
-        </a>
-
-        <a href="#member">
-            Member Experience
-        </a>
-
-        <a href="#game">
-            The Game
-        </a>
-
-        <a href="#houses">
-            Houses
-        </a>
-
-        <a href="#code">
-            The Code
-        </a>
-
-        <a href="#access">
-            Access
-        </a>
-
-    </nav>
-
 </header>
 
+<!-- =========================
+     NAV
+========================= -->
+
+<div class="nav-overlay" id="navOverlay">
+    <nav class="nav-inner">
+        <div class="nav-kicker">CONFIDENTIAL // HOUSE OF XANDER</div>
+
+        <a href="#experience">Experience</a>
+        <a href="#dossier">Dossier</a>
+        <a href="#member">Member Experience</a>
+        <a href="#game">The Game</a>
+        <a href="#houses">The Houses</a>
+        <a href="#vault">The Vault</a>
+        <a href="#code">The Code</a>
+        <a href="#access">Access</a>
+    </nav>
+</div>
+
+<main id="top">
 
 <!-- =========================
      HERO
 ========================= -->
 
-<section class="hero" id="top">
-
-    <div class="hero-background">
-
-        <div class="hero-orb"></div>
-
-        <div class="hero-grid"></div>
-
-    </div>
-
-
-    <div class="hero-content">
-
-        <div class="hero-kicker">
-
-            <span></span>
-
-            HOUSE OF XANDER PRESENTS
-
-            <span></span>
-
-        </div>
-
+<section class="hero">
+    <div class="section-inner hero-content reveal">
 
         <div class="hero-classified">
-            CONFIDENTIAL // PRIVATE-HOUSE EXPERIENCE
+            CONFIDENTIAL // HOUSE OF XANDER
         </div>
 
-
-        <h1 class="hero-title">
-
-            THE <span>CONSORTIUM.</span>
-
+        <h1>
+            <span>SOME</span>
+            <span>EXPERIENCES</span>
+            <span>AREN'T FOR</span>
+            <span>EVERYBODY.</span>
         </h1>
 
-
-        <p class="hero-line">
-
-            SOME EXPERIENCES
-            <em>AREN’T FOR EVERYBODY.</em>
-
+        <p class="hero-sub">
+            The Consortium is a private-house experience built around
+            competition, strategy, conversation, connection and the
+            unpredictable energy of one unforgettable night.
         </p>
 
+        <div class="hero-bottom">
+            <div class="hero-meta">
+                STATUS
+                <strong>TO BE REVEALED</strong>
+            </div>
 
-        <p class="hero-description">
-
-            A private-house experience built around
-            strategy, competition, alliances,
-            music and controlled chaos.
-
-        </p>
-
-
-        <div class="hero-meta">
-
-            <div>
+            <div class="hero-meta">
+                MEMBERS
                 <strong>30</strong>
-                <span>GUESTS</span>
             </div>
 
-            <div>
-                <strong>01</strong>
-                <span>HOUSE</span>
+            <div class="scroll-indicator">
+                Scroll to enter ↓
             </div>
-
-            <div>
-                <strong>04</strong>
-                <span>HOUSES</span>
-            </div>
-
-            <div>
-                <strong>01</strong>
-                <span>NIGHT</span>
-            </div>
-
         </div>
 
-
-        <a
-            href="#experience"
-            class="hero-cta">
-
-            ENTER THE EXPERIENCE
-
-            <b>↗</b>
-
-        </a>
-
     </div>
-
-
-    <div class="hero-bottom">
-
-        <span>
-            TO BE REVEALED
-        </span>
-
-        <span>
-            CONFIDENTIAL
-        </span>
-
-    </div>
-
 </section>
-
-
-<main>
-
 
 <!-- =========================
-     THE EXPERIENCE
+     EXPERIENCE
 ========================= -->
 
-<section
-    class="section experience-section reveal"
-    id="experience">
+<section class="experience" id="experience">
+    <div class="section-inner reveal">
 
+        <div class="kicker">THE HOUSE // 01</div>
 
-    <div class="section-head">
+        <h2 class="section-title">
+            ONE HOUSE.<br>
+            ONE NIGHT.<br>
+            ONE STORY.
+        </h2>
 
-        <div>
+        <p class="section-intro">
+            A curated private-house experience where food, conversation,
+            games, strategy, music, alliances and competition come together
+            under one roof.
+        </p>
 
-            <div class="section-kicker">
-                THE HOUSE // 01
+        <div class="experience-grid">
+
+            <div class="experience-card">
+                <div class="experience-number">01</div>
+                <h3>The House</h3>
+                <p>
+                    A private environment designed for conversation,
+                    connection, discovery and unforgettable moments.
+                </p>
             </div>
 
-            <h2>
-                THE EXPERIENCE.
-            </h2>
+            <div class="experience-card">
+                <div class="experience-number">02</div>
+                <h3>The Game</h3>
+                <p>
+                    Challenges, strategy, alliances and pressure determine
+                    which House controls the night.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-number">03</div>
+                <h3>The Night</h3>
+                <p>
+                    When the competition ends, the House opens fully.
+                    Music, food, photographs, conversations and after-hours.
+                </p>
+            </div>
 
         </div>
 
-
-        <p>
-
-            One house. One night. Thirty people.
-            What happens inside is entirely up
-            to the people who enter.
-
-        </p>
-
     </div>
-
-
-    <div class="experience-grid">
-
-
-        <article class="experience-card">
-
-            <span class="card-number">
-                01
-            </span>
-
-            <div class="card-line"></div>
-
-            <h3>
-                ARRIVE
-            </h3>
-
-            <strong>
-                ENTER THE HOUSE.
-            </strong>
-
-            <p>
-                Leave the ordinary outside.
-            </p>
-
-        </article>
-
-
-        <article class="experience-card">
-
-            <span class="card-number">
-                02
-            </span>
-
-            <div class="card-line"></div>
-
-            <h3>
-                CHOOSE YOUR SIDE
-            </h3>
-
-            <strong>
-                FOUR HOUSES. ONE CHOICE.
-            </strong>
-
-            <p>
-                Your House becomes your alliance.
-            </p>
-
-        </article>
-
-
-        <article class="experience-card">
-
-            <span class="card-number">
-                03
-            </span>
-
-            <div class="card-line"></div>
-
-            <h3>
-                PLAY THE GAME
-            </h3>
-
-            <strong>
-                THINK. MOVE.
-            </strong>
-
-            <p>
-                Every challenge changes the board.
-            </p>
-
-        </article>
-
-
-        <article class="experience-card">
-
-            <span class="card-number">
-                04
-            </span>
-
-            <div class="card-line"></div>
-
-            <h3>
-                MAKE YOUR MOVE
-            </h3>
-
-            <strong>
-                TRUST CAREFULLY.
-            </strong>
-
-            <p>
-                Everyone has an agenda.
-            </p>
-
-        </article>
-
-
-        <article class="experience-card">
-
-            <span class="card-number">
-                05
-            </span>
-
-            <div class="card-line"></div>
-
-            <h3>
-                ENTER THE VAULT
-            </h3>
-
-            <strong>
-                PROTECT. OR RISK.
-            </strong>
-
-            <p>
-                Some decisions are better kept private.
-            </p>
-
-        </article>
-
-
-        <article class="experience-card">
-
-            <span class="card-number">
-                06
-            </span>
-
-            <div class="card-line"></div>
-
-            <h3>
-                AFTER DARK
-            </h3>
-
-            <strong>
-                THE GAME ENDS.
-            </strong>
-
-            <p>
-                The night doesn't.
-            </p>
-
-        </article>
-
-
-    </div>
-
 </section>
-
 
 <!-- =========================
      DOSSIER
 ========================= -->
 
-<section
-    class="dossier-section reveal"
-    id="dossier">
+<section class="dossier" id="dossier">
+    <div class="section-inner reveal">
 
+        <div class="kicker">CONFIDENTIAL // DOSSIER</div>
 
-    <div class="dossier-wrap">
+        <h2 class="section-title">
+            THE<br>
+            BRIEF.
+        </h2>
 
+        <div class="dossier-grid">
 
-        <div class="dossier-heading">
-
-            <div class="dossier-kicker">
-                CLASSIFIED // MEMBER FILE
+            <div class="dossier-item">
+                <div class="dossier-label">Format</div>
+                <div class="dossier-value">Private House Experience</div>
             </div>
 
-            <h2>
-                THE DOSSIER.
-            </h2>
+            <div class="dossier-item">
+                <div class="dossier-label">Members</div>
+                <div class="dossier-value">30</div>
+            </div>
 
-            <p>
+            <div class="dossier-item">
+                <div class="dossier-label">Houses</div>
+                <div class="dossier-value">04</div>
+            </div>
 
-                Every member enters the Consortium
-                with an identity. Some information
-                is public. The rest belongs to the House.
+            <div class="dossier-item">
+                <div class="dossier-label">Duration</div>
+                <div class="dossier-value">12 Hours</div>
+            </div>
 
-            </p>
+            <div class="dossier-item">
+                <div class="dossier-label">Competition</div>
+                <div class="dossier-value">House vs House</div>
+            </div>
+
+            <div class="dossier-item">
+                <div class="dossier-label">Location</div>
+                <div class="dossier-value">Private House</div>
+            </div>
 
         </div>
 
-
-        <div class="dossier-card">
-
-
-            <div class="dossier-top">
-
-
-                <div class="dossier-mark">
-                    CX
-                </div>
-
-
-                <div class="dossier-status">
-
-                    <span>
-                        ACCESS STATUS
-                    </span>
-
-                    <strong>
-                        ● PENDING REVIEW
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="dossier-name">
-
-                <small>
-                    MEMBER NAME
-                </small>
-
-                <h3>
-                    CLASSIFIED MEMBER
-                </h3>
-
-            </div>
-
-
-            <div class="dossier-grid">
-
-
-                <div class="dossier-field">
-
-                    <span>
-                        Consortium ID
-                    </span>
-
-                    <strong>
-                        CX-000
-                    </strong>
-
-                </div>
-
-
-                <div class="dossier-field">
-
-                    <span>
-                        House
-                    </span>
-
-                    <strong>
-                        UNASSIGNED
-                    </strong>
-
-                </div>
-
-
-                <div class="dossier-field">
-
-                    <span>
-                        Access Level
-                    </span>
-
-                    <strong>
-                        RESTRICTED
-                    </strong>
-
-                </div>
-
-
-                <div class="dossier-field">
-
-                    <span>
-                        Player Status
-                    </span>
-
-                    <strong>
-                        AWAITING ENTRY
-                    </strong>
-
-                </div>
-
-
-                <div class="dossier-field">
-
-                    <span>
-                        Mission Status
-                    </span>
-
-                    <strong>
-                        CLASSIFIED
-                    </strong>
-
-                </div>
-
-
-                <div class="dossier-field">
-
-                    <span>
-                        House Status
-                    </span>
-
-                    <strong>
-                        CLASSIFIED
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="dossier-footer">
-
-                <span>
-                    CONFIDENTIAL // HOUSE OF XANDER
-                </span>
-
-                <span class="dossier-lock">
-                    FILE LOCKED
-                </span>
-
-            </div>
-
-
+        <div class="dossier-note">
+            <p>
+                “Not every detail is meant to be known before you enter.”
+            </p>
         </div>
 
     </div>
-
 </section>
-
 
 <!-- =========================
      MEMBER EXPERIENCE
 ========================= -->
 
-<section
-    class="section member-section reveal"
-    id="member">
+<section class="member" id="member">
+    <div class="section-inner reveal">
 
+        <div class="kicker">THE HOUSE // 02</div>
 
-    <div class="section-head">
+        <h2 class="section-title">
+            THE MEMBER<br>
+            EXPERIENCE.
+        </h2>
 
-        <div>
+        <p class="section-intro">
+            From the first invitation to the final exit, every member moves
+            through a carefully designed journey inside the Consortium.
+        </p>
 
-            <div class="section-kicker">
-                THE HOUSE // 02
+        <div class="member-journey">
+
+            <div class="member-step">
+                <div class="member-number">01</div>
+                <div class="member-content">
+                    <h3>The Invitation</h3>
+                    <p>Discover the Consortium through private invitation or an approved route.</p>
+                </div>
+                <div class="member-status">Discovery</div>
             </div>
 
-            <h2>
-                THE MEMBER EXPERIENCE.
-            </h2>
+            <div class="member-step">
+                <div class="member-number">02</div>
+                <div class="member-content">
+                    <h3>The Request</h3>
+                    <p>Submit your details and tell the House why you should experience it.</p>
+                </div>
+                <div class="member-status">Request</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">03</div>
+                <div class="member-content">
+                    <h3>The Clearance</h3>
+                    <p>Requests are reviewed. Entry is limited.</p>
+                </div>
+                <div class="member-status">Review</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">04</div>
+                <div class="member-content">
+                    <h3>Access Granted</h3>
+                    <p>Approved members receive confirmation and the information required for entry.</p>
+                </div>
+                <div class="member-status">Confirmation</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">05</div>
+                <div class="member-content">
+                    <h3>Enter The House</h3>
+                    <p>Check in. Verify access. Step inside.</p>
+                </div>
+                <div class="member-status">Arrival</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">06</div>
+                <div class="member-content">
+                    <h3>Find Your House</h3>
+                    <p>Your faction is revealed. The game begins.</p>
+                </div>
+                <div class="member-status">Assignment</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">07</div>
+                <div class="member-content">
+                    <h3>Play The Game</h3>
+                    <p>Challenges, alliances, decisions and pressure shape the night.</p>
+                </div>
+                <div class="member-status">Participation</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">08</div>
+                <div class="member-content">
+                    <h3>The Final</h3>
+                    <p>The board closes. The remaining Houses fight for the final outcome.</p>
+                </div>
+                <div class="member-status">Conclusion</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">09</div>
+                <div class="member-content">
+                    <h3>The Game Ends</h3>
+                    <p>Music, conversation, food, photographs and the real House experience begin.</p>
+                </div>
+                <div class="member-status">After Hours</div>
+            </div>
+
+            <div class="member-step">
+                <div class="member-number">10</div>
+                <div class="member-content">
+                    <h3>Leave The House</h3>
+                    <p>Take the memories. Take the stories. Leave the House changed by the experience.</p>
+                </div>
+                <div class="member-status">Departure</div>
+            </div>
 
         </div>
 
-
-        <p>
-
-            The Consortium begins long before
-            you enter the House. From invitation
-            to departure, every stage is part
-            of the experience.
-
-        </p>
+        <div class="member-final">
+            <div class="kicker">THE MEMBER JOURNEY</div>
+            <h3>INVITED. CLEARED. ADMITTED.</h3>
+            <p>
+                From the first invitation to the final exit, every member
+                has a place in the story of the Consortium.
+            </p>
+        </div>
 
     </div>
-
-
-    <div class="member-timeline">
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                01
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    DISCOVERY
-                </span>
-
-                <h3>
-                    THE INVITATION
-                </h3>
-
-                <p>
-                    Discover the Consortium through
-                    a private invitation or an approved
-                    route into the House.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                ACCESS BEGINS
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                02
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    REQUEST
-                </span>
-
-                <h3>
-                    THE REQUEST
-                </h3>
-
-                <p>
-                    Submit your details and tell the
-                    House why you should experience
-                    the Consortium.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                UNDER REVIEW
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                03
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    REVIEW
-                </span>
-
-                <h3>
-                    THE CLEARANCE
-                </h3>
-
-                <p>
-                    Every request is considered before
-                    access is confirmed. Entry is limited.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                HOUSE REVIEW
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                04
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    CONFIRMATION
-                </span>
-
-                <h3>
-                    ACCESS GRANTED
-                </h3>
-
-                <p>
-                    Approved members receive their
-                    confirmation and the information
-                    required before entering the House.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                CONFIRMED
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                05
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    ARRIVAL
-                </span>
-
-                <h3>
-                    ENTER THE HOUSE
-                </h3>
-
-                <p>
-                    Check in, verify your access and
-                    step into the world of the Consortium.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                ADMITTED
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                06
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    ASSIGNMENT
-                </span>
-
-                <h3>
-                    FIND YOUR HOUSE
-                </h3>
-
-                <p>
-                    Discover your faction and meet the
-                    people who will become your allies,
-                    rivals and competition.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                HOUSE ASSIGNED
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                07
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    PARTICIPATION
-                </span>
-
-                <h3>
-                    PLAY THE GAME
-                </h3>
-
-                <p>
-                    Enter the challenges, build alliances,
-                    make decisions and adapt to the House.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                PLAYER ACTIVE
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                08
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    CONCLUSION
-                </span>
-
-                <h3>
-                    THE FINAL
-                </h3>
-
-                <p>
-                    The competition reaches its conclusion
-                    and the final House outcome is decided.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                FINAL ROUND
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                09
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    AFTER HOURS
-                </span>
-
-                <h3>
-                    THE GAME ENDS
-                </h3>
-
-                <p>
-                    Competition is over. Music, conversation,
-                    food, photos and the night take over.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                COMPETITION CLOSED
-            </div>
-
-        </article>
-
-
-        <article class="member-step">
-
-            <div class="member-number">
-                10
-            </div>
-
-            <div class="member-content">
-
-                <span>
-                    DEPARTURE
-                </span>
-
-                <h3>
-                    LEAVE THE HOUSE
-                </h3>
-
-                <p>
-                    Leave with the memories, the stories
-                    and whatever the night leaves behind.
-                </p>
-
-            </div>
-
-            <div class="member-status">
-                HOUSE CLOSED
-            </div>
-
-        </article>
-
-
-    </div>
-
-
-    <div class="member-final">
-
-        <span>
-            THE MEMBER JOURNEY
-        </span>
-
-        <h3>
-            INVITED. CLEARED. ADMITTED.
-        </h3>
-
-        <p>
-            From the first invitation to the final exit,
-            every member has a place in the story
-            of the Consortium.
-        </p>
-
-    </div>
-
-
 </section>
-
 
 <!-- =========================
      THE GAME
 ========================= -->
 
-<section
-    class="section game-section reveal"
-    id="game">
+<section class="game" id="game">
+    <div class="section-inner reveal">
 
+        <div class="kicker">THE HOUSE // 03</div>
 
-    <div class="section-head">
-
-        <div>
-
-            <div class="section-kicker">
-                THE HOUSE // 03
-            </div>
-
-            <h2>
-                THE GAME.
-            </h2>
-
-        </div>
-
-
-        <p>
-
-            Strategy, pressure, alliances
-            and decisions. Every move changes
-            what happens next.
-
-        </p>
-
-    </div>
-
-
-    <div class="game-timeline">
-
-
-        <article class="game-step">
-
-            <div class="game-step-number">
-                01
-            </div>
-
-            <div class="game-step-content">
-
-                <span>
-                    THE HOUSE
-                </span>
-
-                <h3>
-                    ARRIVAL
-                </h3>
-
-                <p>
-                    Enter the house. Meet the players.
-                    Discover where you stand.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="game-step">
-
-            <div class="game-step-number">
-                02
-            </div>
-
-            <div class="game-step-content">
-
-                <span>
-                    THE CHALLENGES
-                </span>
-
-                <h3>
-                    THE TRIALS
-                </h3>
-
-                <p>
-                    Mind, social and pressure challenges
-                    determine who gains the advantage.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="game-step">
-
-            <div class="game-step-number">
-                03
-            </div>
-
-            <div class="game-step-content">
-
-                <span>
-                    MAKE YOUR MOVE
-                </span>
-
-                <h3>
-                    THE ALLIANCE
-                </h3>
-
-                <p>
-                    Negotiate. Trade. Bluff.
-                    Trust is a currency inside the house.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="game-step">
-
-            <div class="game-step-number">
-                04
-            </div>
-
-            <div class="game-step-content">
-
-                <span>
-                    PROTECT OR RISK
-                </span>
-
-                <h3>
-                    THE VAULT
-                </h3>
-
-                <p>
-                    Your House has something to lose.
-                    The Vault gives you a choice.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="game-step">
-
-            <div class="game-step-number">
-                05
-            </div>
-
-            <div class="game-step-content">
-
-                <span>
-                    KINGMAKERS
-                </span>
-
-                <h3>
-                    THE FINAL
-                </h3>
-
-                <p>
-                    Two Houses remain.
-                    The others decide how the night ends.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="game-step">
-
-            <div class="game-step-number">
-                06
-            </div>
-
-            <div class="game-step-content">
-
-                <span>
-                    THE GAME ENDS
-                </span>
-
-                <h3>
-                    AFTER HOURS
-                </h3>
-
-                <p>
-                    Competition is over.
-                    The house finally becomes
-                    what it was meant to be.
-                </p>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-
-    <div class="game-quote">
-
-        <span>
-            THE CONSORTIUM
-        </span>
-
-        <blockquote>
-            “The game ends. The house doesn't.”
-        </blockquote>
-
-    </div>
-
-
-</section>
-
-
-<!-- =========================
-     THE HOUSES
-========================= -->
-
-<section
-    class="section houses-section reveal"
-    id="houses">
-
-
-    <div class="section-head">
-
-        <div>
-
-            <div class="section-kicker">
-                THE HOUSE // 04
-            </div>
-
-            <h2>
-                THE HOUSES.
-            </h2>
-
-        </div>
-
-
-        <p>
-
-            Four identities. Four approaches.
-            One night to prove your House
-            deserves the crown.
-
-        </p>
-
-    </div>
-
-
-    <div class="houses-grid">
-
-
-        <article class="house-card">
-
-            <span class="house-number">
-                I
-            </span>
-
-            <div>
-
-                <div class="house-icon">
-                    ♛
-                </div>
-
-                <span class="house-label">
-                    HOUSE I
-                </span>
-
-                <h3>
-                    THE SOVEREIGNS
-                </h3>
-
-                <p>
-                    AUTHORITY · STRATEGY · COMPOSURE
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="house-card">
-
-            <span class="house-number">
-                II
-            </span>
-
-            <div>
-
-                <div class="house-icon">
-                    ⚔
-                </div>
-
-                <span class="house-label">
-                    HOUSE II
-                </span>
-
-                <h3>
-                    THE VANGUARD
-                </h3>
-
-                <p>
-                    BOLDNESS · COMPETITION · PRESSURE
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="house-card">
-
-            <span class="house-number">
-                III
-            </span>
-
-            <div>
-
-                <div class="house-icon">
-                    ◈
-                </div>
-
-                <span class="house-label">
-                    HOUSE III
-                </span>
-
-                <h3>
-                    THE COVENANT
-                </h3>
-
-                <p>
-                    LOYALTY · INTELLIGENCE · NEGOTIATION
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="house-card">
-
-            <span class="house-number">
-                IV
-            </span>
-
-            <div>
-
-                <div class="house-icon">
-                    ◇
-                </div>
-
-                <span class="house-label">
-                    HOUSE IV
-                </span>
-
-                <h3>
-                    THE ROGUES
-                </h3>
-
-                <p>
-                    CHAOS · CREATIVITY · UNPREDICTABILITY
-                </p>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-
-    <!-- =========================
-         SCOREBOARD
-    ========================= -->
-
-    <div class="scoreboard">
-
-
-        <div class="scoreboard-head">
-
-            <span>
-                LIVE HOUSE STATUS // CLASSIFIED
-            </span>
-
-            <small>
-                UPDATED DURING THE CONSORTIUM
-            </small>
-
-        </div>
-
-
-        <div class="scoreboard-grid">
-
-
-            <div class="score-card">
-
-                <span>
-                    THE SOVEREIGNS
-                </span>
-
-                <strong>
-                    000
-                </strong>
-
-                <small>
-                    SCORE // CLASSIFIED
-                </small>
-
-            </div>
-
-
-            <div class="score-card">
-
-                <span>
-                    THE VANGUARD
-                </span>
-
-                <strong>
-                    000
-                </strong>
-
-                <small>
-                    SCORE // CLASSIFIED
-                </small>
-
-            </div>
-
-
-            <div class="score-card">
-
-                <span>
-                    THE COVENANT
-                </span>
-
-                <strong>
-                    000
-                </strong>
-
-                <small>
-                    SCORE // CLASSIFIED
-                </small>
-
-            </div>
-
-
-            <div class="score-card">
-
-                <span>
-                    THE ROGUES
-                </span>
-
-                <strong>
-                    000
-                </strong>
-
-                <small>
-                    SCORE // CLASSIFIED
-                </small>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="scoreboard-note">
-
-            SCOREBOARD ACTIVE DURING THE CONSORTIUM.
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     THE VAULT
-========================= -->
-
-<section
-    class="section vault-section reveal"
-    id="vault">
-
-
-    <div class="vault-wrap">
-
-
-        <div class="vault-label">
-            CLASSIFIED // VAULT
-        </div>
-
-
-        <h2>
-
-            PROTECT.
-            <span>OR RISK.</span>
-
+        <h2 class="section-title">
+            THE<br>
+            GAME.
         </h2>
 
+        <div class="game-intro">
+            <h3>
+                30 MEMBERS.<br>
+                4 HOUSES.<br>
+                ONE CHAMPION.
+            </h3>
 
-        <p>
+            <p>
+                The Consortium is not simply a collection of games.
+                It is a living competition where every decision can
+                change the position of your House.
+            </p>
+        </div>
 
-            Your House has something to lose.
-            The Vault gives you a choice.
-            Protect your position, or risk it
-            for a greater reward.
+        <div class="game-phases">
 
-        </p>
+            <div class="phase">
+                <div class="phase-number">01 // ARRIVAL</div>
+                <h3>The Board Opens</h3>
+                <p>
+                    Members enter, Houses are revealed and the night officially begins.
+                </p>
+            </div>
 
+            <div class="phase">
+                <div class="phase-number">02 // TRIALS</div>
+                <h3>The Challenges</h3>
+                <p>
+                    Mind, Social and Pressure challenges begin putting each House to the test.
+                </p>
+            </div>
 
-        <button
-            class="vault-button"
-            id="vaultButton"
-            type="button">
+            <div class="phase">
+                <div class="phase-number">03 // ALLIANCE</div>
+                <h3>The Window</h3>
+                <p>
+                    Houses negotiate, exchange information, form alliances and decide who they trust.
+                </p>
+            </div>
 
-            OPEN THE VAULT
+            <div class="phase">
+                <div class="phase-number">04 // VAULT</div>
+                <h3>The Decision</h3>
+                <p>
+                    Protect your position or risk it for the possibility of greater reward.
+                </p>
+            </div>
 
-        </button>
+            <div class="phase">
+                <div class="phase-number">05 // FINAL</div>
+                <h3>The Board Closes</h3>
+                <p>
+                    The top Houses enter the final. Everyone else gets one last opportunity to influence the outcome.
+                </p>
+            </div>
 
-
-        <div
-            class="vault-choice"
-            id="vaultChoice">
-
-
-            <button
-                class="vault-option"
-                id="protectButton"
-                type="button">
-
-                <span>
-                    PROTECT
-                </span>
-
-                <small>
-                    SECURE YOUR CURRENT POSITION
-                </small>
-
-            </button>
-
-
-            <button
-                class="vault-option risk"
-                id="riskButton"
-                type="button">
-
-                <span>
-                    RISK
-                </span>
-
-                <small>
-                    PUT YOUR POSITION ON THE LINE
-                </small>
-
-            </button>
-
+            <div class="phase">
+                <div class="phase-number">06 // AFTER HOURS</div>
+                <h3>The House Opens</h3>
+                <p>
+                    Competition ends. Music, food, conversation and celebration take over.
+                </p>
+            </div>
 
         </div>
 
+        <!-- GAME MECHANICS -->
 
-        <div
-            class="vault-message"
-            id="vaultMessage">
+        <div class="game-mechanics">
 
+            <h3 class="game-mechanics-title">
+                THE MECHANICS.
+            </h3>
 
-            <div class="vault-message-title">
+            <div class="mechanic-list">
 
-                VAULT DECISION RECORDED
+                <div class="mechanic">
+                    <div class="mechanic-number">01</div>
+                    <h4>Mind</h4>
+                    <p>
+                        Logic, memory, observation, knowledge and problem-solving.
+                        Think before you move.
+                    </p>
+                </div>
+
+                <div class="mechanic">
+                    <div class="mechanic-number">02</div>
+                    <h4>Social</h4>
+                    <p>
+                        Communication, negotiation, influence and reading the room.
+                        Sometimes the strongest move is knowing what to say.
+                    </p>
+                </div>
+
+                <div class="mechanic">
+                    <div class="mechanic-number">03</div>
+                    <h4>Pressure</h4>
+                    <p>
+                        Speed, composure, decision-making and performance when the clock is working against you.
+                    </p>
+                </div>
+
+                <div class="mechanic">
+                    <div class="mechanic-number">04</div>
+                    <h4>House Points</h4>
+                    <p>
+                        Every challenge can affect the scoreboard. Winning matters,
+                        but strategic decisions can matter just as much.
+                    </p>
+                </div>
+
+                <div class="mechanic">
+                    <div class="mechanic-number">05</div>
+                    <h4>Secret Missions</h4>
+                    <p>
+                        Selected members may receive private objectives.
+                        Complete them without exposing the mission.
+                    </p>
+                </div>
+
+                <div class="mechanic">
+                    <div class="mechanic-number">06</div>
+                    <h4>Kingmakers</h4>
+                    <p>
+                        Not every House reaches the final. Those that don't may still
+                        hold information, influence or decisions that affect the ending.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ALLIANCE WINDOW -->
+
+        <div class="alliance-window">
+
+            <div class="alliance-label">
+                CLASSIFIED // ALLIANCE WINDOW
+            </div>
+
+            <h3>
+                TRUST IS A CURRENCY.
+            </h3>
+
+            <p>
+                During the Alliance Window, the House temporarily becomes
+                a marketplace of information and influence. Negotiate.
+                Collaborate. Trade. Bluff. Make promises. Decide who is
+                worth trusting.
+            </p>
+
+            <div class="alliance-points">
+                <span>Negotiate</span>
+                <span>Collaborate</span>
+                <span>Trade</span>
+                <span>Exchange Information</span>
+                <span>Bluff</span>
+                <span>Strategise</span>
+            </div>
+
+        </div>
+
+        <!-- FINAL -->
+
+        <div class="final-game">
+
+            <div class="final-label">THE FINAL // CLASSIFIED</div>
+
+            <h3>
+                TWO HOUSES.<br>
+                ONE ENDGAME.
+            </h3>
+
+            <p>
+                When the board closes, the leading Houses advance.
+                The remaining Houses become kingmakers, and the final
+                challenge combines the qualities that defined the night:
+                mind, social intelligence, strategy and pressure.
+            </p>
+
+            <div class="after-hours">
+                The game ends. The House opens.
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================
+     HOUSES
+========================= -->
+
+<section class="houses" id="houses">
+    <div class="section-inner reveal">
+
+        <div class="kicker">THE HOUSE // 04</div>
+
+        <h2 class="section-title">
+            FOUR<br>
+            HOUSES.
+        </h2>
+
+        <p class="section-intro">
+            Every member enters the Consortium through one of four Houses.
+            Your House becomes your team, your identity and your stake in the game.
+        </p>
+
+        <div class="houses-grid">
+
+            <div class="house-card">
+                <div class="house-icon">♛</div>
+
+                <h3>The Sovereigns</h3>
+
+                <div class="house-motto">
+                    Authority // Strategy // Composure
+                </div>
+
+                <p>
+                    Built around calculated decisions, leadership and control.
+                    The Sovereigns believe every move should serve a larger plan.
+                </p>
+
+                <div class="house-traits">
+                    <span>Authority</span>
+                    <span>Strategy</span>
+                    <span>Composure</span>
+                </div>
+            </div>
+
+            <div class="house-card">
+                <div class="house-icon">⚔</div>
+
+                <h3>The Vanguard</h3>
+
+                <div class="house-motto">
+                    Boldness // Competition // Pressure
+                </div>
+
+                <p>
+                    Direct, competitive and unafraid of pressure.
+                    The Vanguard enters every challenge ready to make the first move.
+                </p>
+
+                <div class="house-traits">
+                    <span>Boldness</span>
+                    <span>Competition</span>
+                    <span>Pressure</span>
+                </div>
+            </div>
+
+            <div class="house-card">
+                <div class="house-icon">◈</div>
+
+                <h3>The Covenant</h3>
+
+                <div class="house-motto">
+                    Loyalty // Intelligence // Negotiation
+                </div>
+
+                <p>
+                    Information is power and relationships are leverage.
+                    The Covenant knows when to speak, when to listen and when to deal.
+                </p>
+
+                <div class="house-traits">
+                    <span>Loyalty</span>
+                    <span>Intelligence</span>
+                    <span>Negotiation</span>
+                </div>
+            </div>
+
+            <div class="house-card">
+                <div class="house-icon">◇</div>
+
+                <h3>The Rogues</h3>
+
+                <div class="house-motto">
+                    Chaos // Creativity // Unpredictability
+                </div>
+
+                <p>
+                    Unconventional by design. The Rogues turn uncertainty
+                    into opportunity and refuse to play the obvious game.
+                </p>
+
+                <div class="house-traits">
+                    <span>Chaos</span>
+                    <span>Creativity</span>
+                    <span>Unpredictability</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================
+     SCOREBOARD
+========================= -->
+
+<section class="scoreboard">
+    <div class="section-inner reveal">
+
+        <div class="kicker">LIVE BOARD // CLASSIFIED</div>
+
+        <div class="scoreboard-box">
+
+            <div class="scoreboard-header">
+                <div>Rank</div>
+                <div>House</div>
+                <div>Points</div>
+            </div>
+
+            <div class="score-row">
+                <div class="score-rank">01</div>
+                <div class="score-house">The Sovereigns</div>
+                <div class="score-value">—</div>
+            </div>
+
+            <div class="score-row">
+                <div class="score-rank">02</div>
+                <div class="score-house">The Vanguard</div>
+                <div class="score-value">—</div>
+            </div>
+
+            <div class="score-row">
+                <div class="score-rank">03</div>
+                <div class="score-house">The Covenant</div>
+                <div class="score-value">—</div>
+            </div>
+
+            <div class="score-row">
+                <div class="score-rank">04</div>
+                <div class="score-house">The Rogues</div>
+                <div class="score-value">—</div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================
+     VAULT
+========================= -->
+
+<section class="vault" id="vault">
+    <div class="section-inner reveal">
+
+        <div class="kicker">CLASSIFIED // THE VAULT</div>
+
+        <h2 class="section-title">
+            RISK<br>
+            CHANGES<br>
+            EVERYTHING.
+        </h2>
+
+        <div class="vault-box">
+
+            <div class="vault-symbol">V</div>
+
+            <h3>The Vault</h3>
+
+            <p>
+                Every House may eventually face a decision:
+                protect what you have or risk it for what you could gain.
+                The consequences are part of the game.
+            </p>
+
+            <div class="vault-options">
+
+                <button class="vault-option" data-vault="protect">
+                    <strong>PROTECT</strong>
+                    <span>Hold your position</span>
+                </button>
+
+                <button class="vault-option" data-vault="risk">
+                    <strong>RISK</strong>
+                    <span>Put it on the line</span>
+                </button>
 
             </div>
 
-
-            <p id="vaultMessageText"></p>
-
-
-        </div>
-
-
-        <div class="vault-note">
-
-            THE OUTCOME REMAINS CLASSIFIED UNTIL THE NIGHT.
+            <div class="vault-note" id="vaultNote">
+                VAULT MECHANICS REMAIN CLASSIFIED.
+            </div>
 
         </div>
-
 
     </div>
-
 </section>
-
 
 <!-- =========================
      THE CODE
 ========================= -->
 
-<section
-    class="section code-section reveal"
-    id="code">
+<section class="code" id="code">
+    <div class="section-inner reveal">
 
+        <div class="kicker">THE HOUSE // 05</div>
 
-    <div class="section-head">
+        <h2 class="section-title">
+            THE<br>
+            CODE.
+        </h2>
 
-        <div>
+        <div class="code-list">
 
-            <div class="section-kicker">
-                THE HOUSE // 05
+            <div class="code-item">
+                <div class="code-number">01</div>
+                <div>
+                    <h3>Enter With Intent</h3>
+                    <p>
+                        You were invited for a reason. Come ready to participate,
+                        connect and experience the House.
+                    </p>
+                </div>
             </div>
 
-            <h2>
-                THE CODE.
-            </h2>
+            <div class="code-item">
+                <div class="code-number">02</div>
+                <div>
+                    <h3>Respect The House</h3>
+                    <p>
+                        Respect the space, the people and the experience.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">03</div>
+                <div>
+                    <h3>What Happens Here Stays Here</h3>
+                    <p>
+                        The House is built on trust. Respect the privacy of the people and moments inside it.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">04</div>
+                <div>
+                    <h3>Play The Game</h3>
+                    <p>
+                        Competition is part of the experience. Think, compete,
+                        adapt and play with intention.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">05</div>
+                <div>
+                    <h3>Alliances Are Part Of The Game</h3>
+                    <p>
+                        Negotiate. Collaborate. Bluff. Trust is a currency inside the House.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">06</div>
+                <div>
+                    <h3>Expect The Unexpected</h3>
+                    <p>
+                        Plans change. Challenges shift. The House rewards those who can adapt.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">07</div>
+                <div>
+                    <h3>Know The Line</h3>
+                    <p>
+                        Strategy belongs in the game. Respect belongs everywhere.
+                        Know the difference.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">08</div>
+                <div>
+                    <h3>No Outside Play</h3>
+                    <p>
+                        What happens inside the Consortium should not be manipulated from outside the House.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">09</div>
+                <div>
+                    <h3>The House Decides</h3>
+                    <p>
+                        Challenges, decisions and outcomes are part of the experience.
+                        Respect the process.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">10</div>
+                <div>
+                    <h3>When The Game Ends</h3>
+                    <p>
+                        Leave the competition on the board. After Hours is for the House,
+                        not another round of the game.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-item">
+                <div class="code-number">11</div>
+                <div>
+                    <h3>Leave Your Mark</h3>
+                    <p>
+                        Enjoy the House. Make your move. Give people a night worth remembering.
+                    </p>
+                </div>
+            </div>
 
         </div>
 
-
-        <p>
-
-            The Consortium is built on trust,
-            competition and respect for the experience.
-
-        </p>
-
     </div>
-
-
-    <div class="code-list">
-
-
-        <article class="code-item">
-
-            <span>
-                01
-            </span>
-
-            <div>
-
-                <h3>
-                    ENTER WITH INTENT
-                </h3>
-
-                <p>
-                    You were invited for a reason.
-                    Come ready to participate, connect
-                    and experience the House.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                02
-            </span>
-
-            <div>
-
-                <h3>
-                    RESPECT THE HOUSE
-                </h3>
-
-                <p>
-                    Respect the space, the people
-                    and the experience.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                03
-            </span>
-
-            <div>
-
-                <h3>
-                    WHAT HAPPENS HERE STAYS HERE
-                </h3>
-
-                <p>
-                    The House is built on trust.
-                    Respect the privacy of the people
-                    and moments inside it.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                04
-            </span>
-
-            <div>
-
-                <h3>
-                    PLAY THE GAME
-                </h3>
-
-                <p>
-                    Competition is part of the experience.
-                    Think, compete, adapt and play
-                    with intention.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                05
-            </span>
-
-            <div>
-
-                <h3>
-                    ALLIANCES ARE PART OF THE GAME
-                </h3>
-
-                <p>
-                    Negotiate. Collaborate. Bluff.
-                    Trust is a currency inside the House.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                06
-            </span>
-
-            <div>
-
-                <h3>
-                    EXPECT THE UNEXPECTED
-                </h3>
-
-                <p>
-                    Plans change. Challenges shift.
-                    The House rewards those who can adapt.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                07
-            </span>
-
-            <div>
-
-                <h3>
-                    KNOW THE LINE
-                </h3>
-
-                <p>
-                    Strategy belongs in the game.
-                    Respect belongs everywhere.
-                    Know the difference.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                08
-            </span>
-
-            <div>
-
-                <h3>
-                    NO OUTSIDE PLAY
-                </h3>
-
-                <p>
-                    What happens inside the Consortium
-                    should not be manipulated from outside
-                    the House.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                09
-            </span>
-
-            <div>
-
-                <h3>
-                    THE HOUSE DECIDES
-                </h3>
-
-                <p>
-                    Challenges, decisions and outcomes
-                    are part of the experience.
-                    Respect the process.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                10
-            </span>
-
-            <div>
-
-                <h3>
-                    WHEN THE GAME ENDS
-                </h3>
-
-                <p>
-                    Leave the competition on the board.
-                    After Hours is for the House,
-                    not another round of the game.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="code-item">
-
-            <span>
-                11
-            </span>
-
-            <div>
-
-                <h3>
-                    LEAVE YOUR MARK
-                </h3>
-
-                <p>
-                    Enjoy the House. Make your move.
-                    Give people a night worth remembering.
-                </p>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-
-    <div class="code-signature">
-
-        CONFIDENTIAL // HOUSE OF XANDER
-
-    </div>
-
-
 </section>
-
 
 <!-- =========================
      ACCESS
 ========================= -->
 
-<section
-    class="section access-section reveal"
-    id="access">
+<section class="access" id="access">
+    <div class="section-inner reveal">
 
+        <div class="access-grid">
 
-    <div class="access-wrap">
+            <div class="access-copy">
 
+                <div class="kicker">ACCESS // REQUEST ENTRY</div>
 
-        <div class="access-intro">
+                <h2>
+                    ENTER<br>
+                    THE<br>
+                    <span>HOUSE.</span>
+                </h2>
 
-            <div class="section-kicker">
-                PRIVATE ACCESS
+                <p>
+                    The Consortium is intentionally limited.
+                    Submit a request for access and let the House decide.
+                </p>
+
             </div>
 
+            <form class="access-form" id="accessForm">
 
-            <h2>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your name"
+                        required
+                    >
+                </div>
 
-                YOU DON'T SIMPLY
-                <span>BUY YOUR WAY IN.</span>
+                <div class="form-group">
+                    <label for="contact">Contact</label>
+                    <input
+                        type="text"
+                        id="contact"
+                        placeholder="Phone or social handle"
+                        required
+                    >
+                </div>
 
-            </h2>
+                <div class="form-group">
+                    <label for="reason">Why The Consortium?</label>
+                    <textarea
+                        id="reason"
+                        placeholder="Tell the House..."
+                        required
+                    ></textarea>
+                </div>
 
+                <button type="submit" class="access-submit">
+                    Request Access
+                </button>
 
-            <p>
+                <div class="access-message" id="accessMessage">
+                    REQUEST RECEIVED. THE HOUSE WILL REVIEW YOUR ENTRY.
+                </div>
 
-                Access is limited. Requests are reviewed.
-                Confirmed guests receive the information
-                required to enter the House.
-
-            </p>
+            </form>
 
         </div>
-
-
-        <div class="access-status-grid">
-
-
-            <div>
-
-                <span>
-                    ACCESS
-                </span>
-
-                <strong>
-                    PRIVATE
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    CAPACITY
-                </span>
-
-                <strong>
-                    LIMITED
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    LOCATION
-                </span>
-
-                <strong>
-                    CONFIDENTIAL
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    DATE
-                </span>
-
-                <strong>
-                    TO BE REVEALED
-                </strong>
-
-            </div>
-
-
-        </div>
-
-
-        <form
-            class="access-form"
-            id="accessForm">
-
-
-            <div class="form-group">
-
-                <label for="fullName">
-                    FULL NAME
-                </label>
-
-                <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    placeholder="Your name"
-                    required>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="email">
-                    EMAIL
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Your email"
-                    required>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="phone">
-                    PHONE
-                </label>
-
-                <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="Your phone number"
-                    required>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="social">
-                    SOCIAL HANDLE
-                </label>
-
-                <input
-                    type="text"
-                    id="social"
-                    name="social"
-                    placeholder="@username">
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label for="reason">
-                    WHY SHOULD YOU ENTER THE HOUSE?
-                </label>
-
-                <textarea
-                    id="reason"
-                    name="reason"
-                    rows="5"
-                    placeholder="Tell us a little about yourself..."
-                    required></textarea>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="access-submit">
-
-                REQUEST ACCESS
-
-            </button>
-
-
-        </form>
-
-
-        <div
-            class="access-success"
-            id="accessSuccess">
-
-
-            <div class="success-mark">
-                CX
-            </div>
-
-
-            <div class="success-kicker">
-                ACCESS REQUEST RECEIVED
-            </div>
-
-
-            <h3>
-                THE HOUSE WILL BE IN TOUCH.
-            </h3>
-
-
-            <p>
-
-                Your request has been recorded.
-                Location details are only provided
-                to confirmed guests.
-
-            </p>
-
-
-        </div>
-
-
-        <div class="access-warning">
-
-            LOCATION DETAILS ARE PROVIDED ONLY
-            TO CONFIRMED GUESTS.
-
-        </div>
-
 
     </div>
-
 </section>
 
+</main>
 
 <!-- =========================
      FOOTER
 ========================= -->
 
-<footer class="footer">
+<footer>
+    <div class="footer-inner">
 
+        <div>
+            <div class="footer-brand">
+                THE CONSORTIUM
+            </div>
 
-    <div class="footer-brand">
-        CX
-    </div>
+            <div class="footer-small">
+                A private-house experience by House of Xander.
+            </div>
+        </div>
 
+        <div class="footer-right">
+            <div class="footer-small">
+                CONFIDENTIAL // HOUSE OF XANDER
+            </div>
 
-    <div class="footer-main">
-
-        <h3>
-            THE CONSORTIUM
-        </h3>
-
-        <p>
-            A PRIVATE-HOUSE EXPERIENCE BY HOUSE OF XANDER.
-        </p>
-
-    </div>
-
-
-    <div class="footer-meta">
-
-        <span>
-            CONFIDENTIAL // HOUSE OF XANDER
-        </span>
-
-        <span>
-            © 2026 HOUSE OF XANDER
-        </span>
+            <div class="footer-small">
+                © 2026 The Consortium
+            </div>
+        </div>
 
     </div>
-
-
-    <div class="footer-final">
-
-        THE HOUSE IS WAITING.
-
-    </div>
-
-
 </footer>
 
-
-</main>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
-
 
 /* =========================
    INTRO
 ========================= */
 
-const enterHouse =
-    document.getElementById("enterHouse");
+window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
 
-const intro =
-    document.getElementById("intro");
-
-
-if (enterHouse && intro) {
-
-    enterHouse.addEventListener(
-        "click",
-        () => {
-
-            intro.classList.add("hidden");
-
-            document.body.classList.remove(
-                "no-scroll"
-            );
-
-        }
-    );
-
-}
+    setTimeout(() => {
+        intro.classList.add("hide");
+    }, 1800);
+});
 
 
 /* =========================
    MENU
 ========================= */
 
-const menuToggle =
-    document.getElementById("menuToggle");
+const menuToggle = document.getElementById("menuToggle");
+const navOverlay = document.getElementById("navOverlay");
+const navLinks = document.querySelectorAll(".nav-inner a");
 
-const mainNav =
-    document.getElementById("mainNav");
+menuToggle.addEventListener("click", () => {
+    document.body.classList.toggle("menu-open");
+});
 
-
-if (menuToggle && mainNav) {
-
-    menuToggle.addEventListener(
-        "click",
-        () => {
-
-            const isOpen =
-                mainNav.classList.toggle("open");
-
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
-            );
-
-        }
-    );
-
-
-    mainNav
-        .querySelectorAll("a")
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    mainNav.classList.remove(
-                        "open"
-                    );
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-            );
-
-        });
-
-}
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        document.body.classList.remove("menu-open");
+    });
+});
 
 
 /* =========================
-   REVEAL ANIMATIONS
+   REVEAL
 ========================= */
 
-const revealElements =
-    document.querySelectorAll(".reveal");
+const revealElements = document.querySelectorAll(".reveal");
 
-
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(
-                entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-
-revealElements.forEach(
-    element => {
-
-        revealObserver.observe(
-            element
-        );
-
+const revealObserver = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    },
+    {
+        threshold: 0.12
     }
 );
+
+revealElements.forEach(element => {
+    revealObserver.observe(element);
+});
 
 
 /* =========================
    ACCESS FORM
 ========================= */
 
-const accessForm =
-    document.getElementById(
-        "accessForm"
-    );
+const accessForm = document.getElementById("accessForm");
+const accessMessage = document.getElementById("accessMessage");
 
+accessForm.addEventListener("submit", event => {
+    event.preventDefault();
 
-const accessSuccess =
-    document.getElementById(
-        "accessSuccess"
-    );
+    accessMessage.style.display = "block";
 
+    accessForm.querySelector(".access-submit").textContent = "Request Received";
 
-if (
-    accessForm &&
-    accessSuccess
-) {
-
-    accessForm.addEventListener(
-        "submit",
-        event => {
-
-            event.preventDefault();
-
-
-            accessForm.style.display =
-                "none";
-
-
-            accessSuccess.classList.add(
-                "show"
-            );
-
-
-            accessSuccess.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-        }
-    );
-
-}
+    accessForm.querySelector(".access-submit").disabled = true;
+});
 
 
 /* =========================
    VAULT
 ========================= */
 
-const vaultButton =
-    document.getElementById(
-        "vaultButton"
-    );
+const vaultOptions = document.querySelectorAll(".vault-option");
+const vaultNote = document.getElementById("vaultNote");
 
+vaultOptions.forEach(option => {
 
-const vaultChoice =
-    document.getElementById(
-        "vaultChoice"
-    );
+    option.addEventListener("click", () => {
 
+        const choice = option.dataset.vault;
 
-const protectButton =
-    document.getElementById(
-        "protectButton"
-    );
-
-
-const riskButton =
-    document.getElementById(
-        "riskButton"
-    );
-
-
-const vaultMessage =
-    document.getElementById(
-        "vaultMessage"
-    );
-
-
-const vaultMessageText =
-    document.getElementById(
-        "vaultMessageText"
-    );
-
-
-if (
-    vaultButton &&
-    vaultChoice &&
-    protectButton &&
-    riskButton &&
-    vaultMessage &&
-    vaultMessageText
-) {
-
-
-    vaultButton.addEventListener(
-        "click",
-        () => {
-
-            vaultButton.style.display =
-                "none";
-
-            vaultChoice.classList.add(
-                "show"
-            );
-
+        if (choice === "protect") {
+            vaultNote.textContent =
+                "PROTECT SELECTED // THE HOUSE REMEMBERS.";
         }
-    );
 
-
-    protectButton.addEventListener(
-        "click",
-        () => {
-
-            vaultChoice.classList.remove(
-                "show"
-            );
-
-
-            vaultMessageText.textContent =
-                "Your House has chosen security over uncertainty. The decision is recorded.";
-
-
-            vaultMessage.classList.add(
-                "show"
-            );
-
+        if (choice === "risk") {
+            vaultNote.textContent =
+                "RISK SELECTED // SOME MOVES CANNOT BE UNDONE.";
         }
-    );
 
+    });
 
-    riskButton.addEventListener(
-        "click",
-        () => {
-
-            vaultChoice.classList.remove(
-                "show"
-            );
-
-
-            vaultMessageText.textContent =
-                "Your House has chosen to put its position on the line. The outcome remains classified.";
-
-
-            vaultMessage.classList.add(
-                "show"
-            );
-
-        }
-    );
-
-}
+});
 
 
 /* =========================
-   SMOOTH LINKS
+   SMOOTH ANCHOR FALLBACK
 ========================= */
 
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(
-        link => {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-            link.addEventListener(
-                "click",
-                event => {
+    anchor.addEventListener("click", function(event) {
 
-                    const targetId =
-                        link.getAttribute(
-                            "href"
-                        );
+        const target = document.querySelector(this.getAttribute("href"));
 
+        if (!target) return;
 
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
+        event.preventDefault();
 
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
-                    if (target) {
+    });
 
-                        event.preventDefault();
-
-
-                        target.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start"
-                        });
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
+});
 
 </script>
-
 
 </body>
 </html>
