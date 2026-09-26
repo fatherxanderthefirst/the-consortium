@@ -978,6 +978,148 @@ button {
 
 
 /* =========================
+   MEMBER EXPERIENCE
+========================= */
+
+.member-section {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(59,13,23,.2),
+            transparent 40%
+        ),
+        var(--black-soft);
+}
+
+.member-timeline {
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    border-top: 1px solid var(--soft-line);
+}
+
+.member-step {
+    display: grid;
+
+    grid-template-columns: 90px 1fr auto;
+
+    gap: 30px;
+
+    align-items: center;
+
+    padding: 30px 0;
+
+    border-bottom: 1px solid var(--soft-line);
+
+    transition: .3s ease;
+}
+
+.member-step:hover {
+    padding-left: 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(59,13,23,.08),
+            transparent
+        );
+}
+
+.member-number {
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 2.2rem;
+}
+
+.member-content span {
+    color: var(--gold);
+
+    font-size: .55rem;
+
+    letter-spacing: .2em;
+}
+
+.member-content h3 {
+    margin-top: 6px;
+
+    font-family: var(--serif);
+
+    font-size: 2.1rem;
+
+    font-weight: 500;
+}
+
+.member-content p {
+    max-width: 570px;
+
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: .75rem;
+}
+
+.member-status {
+    color: var(--muted);
+
+    font-size: .48rem;
+
+    letter-spacing: .18em;
+
+    text-align: right;
+}
+
+.member-final {
+    max-width: 800px;
+
+    margin: 70px auto 0;
+
+    padding: 35px;
+
+    text-align: center;
+
+    border: 1px solid var(--line);
+
+    background: var(--black-card);
+}
+
+.member-final span {
+    color: var(--gold);
+
+    font-size: .55rem;
+
+    letter-spacing: .25em;
+}
+
+.member-final h3 {
+    margin-top: 12px;
+
+    font-family: var(--serif);
+
+    font-size: clamp(2rem, 5vw, 3.5rem);
+
+    font-weight: 500;
+}
+
+.member-final p {
+    max-width: 550px;
+
+    margin: 12px auto 0;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: .76rem;
+}
+
+
+/* =========================
    GAME
 ========================= */
 
@@ -1923,6 +2065,26 @@ button {
         flex-direction: column;
     }
 
+    .member-step {
+        grid-template-columns: 50px 1fr;
+
+        gap: 18px;
+    }
+
+    .member-number {
+        font-size: 1.8rem;
+    }
+
+    .member-content h3 {
+        font-size: 1.8rem;
+    }
+
+    .member-status {
+        grid-column: 2;
+
+        text-align: left;
+    }
+
     .game-step {
         grid-template-columns: 55px 1fr;
 
@@ -2074,6 +2236,10 @@ button {
 
         <a href="#dossier">
             Dossier
+        </a>
+
+        <a href="#member">
+            Member Experience
         </a>
 
         <a href="#game">
@@ -2569,6 +2735,374 @@ button {
 
 
 <!-- =========================
+     MEMBER EXPERIENCE
+========================= -->
+
+<section
+    class="section member-section reveal"
+    id="member">
+
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-kicker">
+                THE HOUSE // 02
+            </div>
+
+            <h2>
+                THE MEMBER EXPERIENCE.
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            The Consortium begins long before
+            you enter the House. From invitation
+            to departure, every stage is part
+            of the experience.
+
+        </p>
+
+    </div>
+
+
+    <div class="member-timeline">
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                01
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    DISCOVERY
+                </span>
+
+                <h3>
+                    THE INVITATION
+                </h3>
+
+                <p>
+                    Discover the Consortium through
+                    a private invitation or an approved
+                    route into the House.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                ACCESS BEGINS
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                02
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    REQUEST
+                </span>
+
+                <h3>
+                    THE REQUEST
+                </h3>
+
+                <p>
+                    Submit your details and tell the
+                    House why you should experience
+                    the Consortium.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                UNDER REVIEW
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                03
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    REVIEW
+                </span>
+
+                <h3>
+                    THE CLEARANCE
+                </h3>
+
+                <p>
+                    Every request is considered before
+                    access is confirmed. Entry is limited.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                HOUSE REVIEW
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                04
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    CONFIRMATION
+                </span>
+
+                <h3>
+                    ACCESS GRANTED
+                </h3>
+
+                <p>
+                    Approved members receive their
+                    confirmation and the information
+                    required before entering the House.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                CONFIRMED
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                05
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    ARRIVAL
+                </span>
+
+                <h3>
+                    ENTER THE HOUSE
+                </h3>
+
+                <p>
+                    Check in, verify your access and
+                    step into the world of the Consortium.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                ADMITTED
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                06
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    ASSIGNMENT
+                </span>
+
+                <h3>
+                    FIND YOUR HOUSE
+                </h3>
+
+                <p>
+                    Discover your faction and meet the
+                    people who will become your allies,
+                    rivals and competition.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                HOUSE ASSIGNED
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                07
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    PARTICIPATION
+                </span>
+
+                <h3>
+                    PLAY THE GAME
+                </h3>
+
+                <p>
+                    Enter the challenges, build alliances,
+                    make decisions and adapt to the House.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                PLAYER ACTIVE
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                08
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    CONCLUSION
+                </span>
+
+                <h3>
+                    THE FINAL
+                </h3>
+
+                <p>
+                    The competition reaches its conclusion
+                    and the final House outcome is decided.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                FINAL ROUND
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                09
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    AFTER HOURS
+                </span>
+
+                <h3>
+                    THE GAME ENDS
+                </h3>
+
+                <p>
+                    Competition is over. Music, conversation,
+                    food, photos and the night take over.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                COMPETITION CLOSED
+            </div>
+
+        </article>
+
+
+        <article class="member-step">
+
+            <div class="member-number">
+                10
+            </div>
+
+            <div class="member-content">
+
+                <span>
+                    DEPARTURE
+                </span>
+
+                <h3>
+                    LEAVE THE HOUSE
+                </h3>
+
+                <p>
+                    Leave with the memories, the stories
+                    and whatever the night leaves behind.
+                </p>
+
+            </div>
+
+            <div class="member-status">
+                HOUSE CLOSED
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <div class="member-final">
+
+        <span>
+            THE MEMBER JOURNEY
+        </span>
+
+        <h3>
+            INVITED. CLEARED. ADMITTED.
+        </h3>
+
+        <p>
+            From the first invitation to the final exit,
+            every member has a place in the story
+            of the Consortium.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
      THE GAME
 ========================= -->
 
@@ -2582,7 +3116,7 @@ button {
         <div>
 
             <div class="section-kicker">
-                THE HOUSE // 02
+                THE HOUSE // 03
             </div>
 
             <h2>
@@ -2796,7 +3330,7 @@ button {
         <div>
 
             <div class="section-kicker">
-                THE HOUSE // 03
+                THE HOUSE // 04
             </div>
 
             <h2>
@@ -3174,7 +3708,7 @@ button {
         <div>
 
             <div class="section-kicker">
-                THE HOUSE // 04
+                THE HOUSE // 05
             </div>
 
             <h2>
