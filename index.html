@@ -18,6 +18,7 @@
     --cream: #eee7da;
     --muted: #958d82;
     --line: rgba(197,161,90,.22);
+
     --serif: "Cormorant Garamond", Georgia, serif;
     --sans: "Inter", Arial, sans-serif;
 }
@@ -36,7 +37,11 @@ body {
     background: var(--black);
     color: var(--cream);
     font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 body.menu-open {
@@ -61,6 +66,59 @@ button {
 ::selection {
     background: var(--gold);
     color: var(--black);
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand,
+.intro-title,
+.nav-inner a,
+.section-title,
+.experience-card h3,
+.dossier-value,
+.dossier-note p,
+.member-number,
+.member-content h3,
+.member-final h3,
+.game-intro h3,
+.game-mechanics-title,
+.phase h3,
+.mechanic h4,
+.alliance-window h3,
+.final-game h3,
+.house-card h3,
+.score-rank,
+.score-house,
+.score-value,
+.vault-box h3,
+.vault-option strong,
+.code-number,
+.code-item h3,
+.access-copy h2,
+.footer-brand {
+    font-family: var(--serif);
+    font-weight: 500;
+}
+
+p,
+input,
+textarea,
+button {
+    font-family: var(--sans);
 }
 
 /* =========================
@@ -89,19 +147,18 @@ button {
 }
 
 .intro-mark {
-    font-family: var(--serif);
+    font-family: var(--sans);
     color: var(--gold);
-    font-size: .72rem;
-    letter-spacing: .42em;
+    font-size: .68rem;
+    line-height: 1.4;
+    letter-spacing: .32em;
     text-transform: uppercase;
     margin-bottom: 30px;
 }
 
 .intro-title {
-    font-family: var(--serif);
     font-size: clamp(3.5rem, 13vw, 8rem);
     line-height: .78;
-    font-weight: 500;
     letter-spacing: -.04em;
 }
 
@@ -114,7 +171,9 @@ button {
 
 .intro-sub {
     color: var(--muted);
-    font-size: .68rem;
+    font-family: var(--sans);
+    font-size: .65rem;
+    line-height: 1.5;
     letter-spacing: .25em;
     text-transform: uppercase;
 }
@@ -137,8 +196,8 @@ header {
 }
 
 .brand {
-    font-family: var(--serif);
     font-size: 1.1rem;
+    line-height: 1;
     letter-spacing: .12em;
     color: var(--gold);
     text-transform: uppercase;
@@ -207,7 +266,9 @@ header {
 
 .nav-kicker {
     color: var(--gold);
-    font-size: .62rem;
+    font-family: var(--sans);
+    font-size: .6rem;
+    line-height: 1.5;
     letter-spacing: .3em;
     text-transform: uppercase;
     margin-bottom: 35px;
@@ -215,7 +276,6 @@ header {
 
 .nav-inner a {
     display: block;
-    font-family: var(--serif);
     font-size: clamp(2.1rem, 6vw, 4rem);
     line-height: 1.05;
     padding: 8px 0;
@@ -244,15 +304,15 @@ section {
 
 .kicker {
     color: var(--gold);
-    font-size: .62rem;
+    font-family: var(--sans);
+    font-size: .6rem;
+    line-height: 1.5;
     letter-spacing: .32em;
     text-transform: uppercase;
     margin-bottom: 25px;
 }
 
 .section-title {
-    font-family: var(--serif);
-    font-weight: 500;
     font-size: clamp(3rem, 7vw, 6.5rem);
     line-height: .9;
     letter-spacing: -.035em;
@@ -262,7 +322,8 @@ section {
     max-width: 680px;
     margin-top: 35px;
     color: var(--muted);
-    font-size: .9rem;
+    font-family: var(--sans);
+    font-size: .84rem;
     line-height: 1.9;
 }
 
@@ -300,15 +361,15 @@ section {
 
 .hero-classified {
     color: var(--gold);
-    font-size: .62rem;
+    font-family: var(--sans);
+    font-size: .6rem;
+    line-height: 1.5;
     letter-spacing: .35em;
     text-transform: uppercase;
     margin-bottom: 30px;
 }
 
 .hero h1 {
-    font-family: var(--serif);
-    font-weight: 500;
     font-size: clamp(4.4rem, 13vw, 11rem);
     line-height: .72;
     letter-spacing: -.055em;
@@ -327,7 +388,8 @@ section {
     max-width: 570px;
     margin-top: 45px;
     color: var(--muted);
-    font-size: .82rem;
+    font-family: var(--sans);
+    font-size: .8rem;
     line-height: 1.8;
 }
 
@@ -341,7 +403,9 @@ section {
 
 .hero-meta {
     color: var(--muted);
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
+    line-height: 1.5;
     letter-spacing: .2em;
     text-transform: uppercase;
 }
@@ -355,7 +419,9 @@ section {
 
 .scroll-indicator {
     color: var(--gold);
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
+    line-height: 1.5;
     letter-spacing: .25em;
     text-transform: uppercase;
 }
@@ -390,20 +456,21 @@ section {
 
 .experience-number {
     color: var(--gold);
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
+    line-height: 1.5;
     letter-spacing: .2em;
 }
 
 .experience-card h3 {
-    font-family: var(--serif);
     font-size: 2.2rem;
-    font-weight: 500;
+    line-height: 1;
     margin-top: 70px;
 }
 
 .experience-card p {
     color: var(--muted);
-    font-size: .75rem;
+    font-size: .72rem;
     line-height: 1.8;
     margin-top: 15px;
 }
@@ -436,14 +503,16 @@ section {
 
 .dossier-label {
     color: var(--gold);
-    font-size: .57rem;
+    font-family: var(--sans);
+    font-size: .55rem;
+    line-height: 1.5;
     letter-spacing: .2em;
     text-transform: uppercase;
 }
 
 .dossier-value {
-    font-family: var(--serif);
     font-size: 2rem;
+    line-height: 1.05;
     margin-top: 10px;
 }
 
@@ -455,7 +524,6 @@ section {
 }
 
 .dossier-note p {
-    font-family: var(--serif);
     font-size: 1.6rem;
     line-height: 1.2;
 }
@@ -484,19 +552,18 @@ section {
 
 .member-number {
     color: var(--gold);
-    font-family: var(--serif);
     font-size: 2.4rem;
+    line-height: 1;
 }
 
 .member-content h3 {
-    font-family: var(--serif);
     font-size: 2rem;
-    font-weight: 500;
+    line-height: 1;
 }
 
 .member-content p {
     color: var(--muted);
-    font-size: .72rem;
+    font-size: .7rem;
     line-height: 1.7;
     margin-top: 6px;
 }
@@ -504,7 +571,9 @@ section {
 .member-status {
     text-align: right;
     color: var(--gold);
-    font-size: .55rem;
+    font-family: var(--sans);
+    font-size: .53rem;
+    line-height: 1.5;
     letter-spacing: .18em;
     text-transform: uppercase;
 }
@@ -517,16 +586,15 @@ section {
 }
 
 .member-final h3 {
-    font-family: var(--serif);
     font-size: 2.8rem;
-    font-weight: 500;
+    line-height: 1;
 }
 
 .member-final p {
     color: var(--muted);
     max-width: 550px;
     margin: 15px auto 0;
-    font-size: .75rem;
+    font-size: .72rem;
     line-height: 1.8;
 }
 
@@ -545,16 +613,14 @@ section {
 }
 
 .game-intro h3 {
-    font-family: var(--serif);
     font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 500;
     line-height: 1;
     margin-top: 45px;
 }
 
 .game-intro p {
     color: var(--muted);
-    font-size: .78rem;
+    font-size: .76rem;
     line-height: 1.9;
     margin-top: 20px;
 }
@@ -581,34 +647,36 @@ section {
 
 .phase-number {
     color: var(--gold);
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
+    line-height: 1.5;
     letter-spacing: .2em;
 }
 
 .phase h3 {
-    font-family: var(--serif);
     font-size: 2.2rem;
-    font-weight: 500;
+    line-height: 1;
     margin-top: 65px;
 }
 
 .phase p {
     color: var(--muted);
-    font-size: .7rem;
+    font-size: .68rem;
     line-height: 1.8;
     margin-top: 12px;
 }
 
-/* GAME MECHANICS */
+/* =========================
+   GAME MECHANICS
+========================= */
 
 .game-mechanics {
     margin-top: 90px;
 }
 
 .game-mechanics-title {
-    font-family: var(--serif);
     font-size: 3rem;
-    font-weight: 500;
+    line-height: 1;
     margin-bottom: 35px;
 }
 
@@ -627,23 +695,26 @@ section {
 
 .mechanic-number {
     color: var(--gold);
-    font-size: .62rem;
+    font-family: var(--sans);
+    font-size: .6rem;
+    line-height: 1.5;
     letter-spacing: .18em;
 }
 
 .mechanic h4 {
-    font-family: var(--serif);
     font-size: 1.8rem;
-    font-weight: 500;
+    line-height: 1;
 }
 
 .mechanic p {
     color: var(--muted);
-    font-size: .72rem;
+    font-size: .7rem;
     line-height: 1.8;
 }
 
-/* ALLIANCE */
+/* =========================
+   ALLIANCE
+========================= */
 
 .alliance-window {
     margin-top: 80px;
@@ -655,22 +726,23 @@ section {
 
 .alliance-label {
     color: var(--gold);
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
+    line-height: 1.5;
     letter-spacing: .25em;
     text-transform: uppercase;
 }
 
 .alliance-window h3 {
-    font-family: var(--serif);
     font-size: clamp(2.4rem, 6vw, 4.5rem);
-    font-weight: 500;
+    line-height: 1;
     margin-top: 20px;
 }
 
 .alliance-window p {
     max-width: 700px;
     color: var(--muted);
-    font-size: .75rem;
+    font-size: .72rem;
     line-height: 1.9;
     margin-top: 15px;
 }
@@ -686,12 +758,16 @@ section {
     padding: 10px 15px;
     border: 1px solid var(--line);
     color: var(--cream);
-    font-size: .55rem;
+    font-family: var(--sans);
+    font-size: .53rem;
+    line-height: 1.5;
     letter-spacing: .15em;
     text-transform: uppercase;
 }
 
-/* FINAL */
+/* =========================
+   FINAL
+========================= */
 
 .final-game {
     margin-top: 80px;
@@ -703,15 +779,16 @@ section {
 
 .final-game .final-label {
     color: var(--gold);
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
+    line-height: 1.5;
     letter-spacing: .3em;
     text-transform: uppercase;
 }
 
 .final-game h3 {
-    font-family: var(--serif);
     font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 500;
+    line-height: .9;
     margin-top: 20px;
 }
 
@@ -719,14 +796,16 @@ section {
     max-width: 650px;
     margin: 20px auto 0;
     color: var(--muted);
-    font-size: .75rem;
+    font-size: .72rem;
     line-height: 1.8;
 }
 
 .after-hours {
     margin-top: 30px;
     color: var(--gold);
-    font-size: .62rem;
+    font-family: var(--sans);
+    font-size: .58rem;
+    line-height: 1.5;
     letter-spacing: .3em;
     text-transform: uppercase;
 }
@@ -782,14 +861,15 @@ section {
 }
 
 .house-card h3 {
-    font-family: var(--serif);
     font-size: 2.8rem;
-    font-weight: 500;
+    line-height: 1;
 }
 
 .house-card .house-motto {
     color: var(--gold);
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
+    line-height: 1.5;
     letter-spacing: .2em;
     text-transform: uppercase;
     margin-top: 7px;
@@ -797,7 +877,7 @@ section {
 
 .house-card p {
     color: var(--muted);
-    font-size: .72rem;
+    font-size: .7rem;
     line-height: 1.8;
     margin-top: 28px;
     max-width: 390px;
@@ -814,7 +894,9 @@ section {
     border: 1px solid var(--line);
     padding: 7px 10px;
     color: var(--cream);
-    font-size: .52rem;
+    font-family: var(--sans);
+    font-size: .5rem;
+    line-height: 1.5;
     letter-spacing: .1em;
     text-transform: uppercase;
 }
@@ -845,7 +927,9 @@ section {
     padding: 18px 25px;
     border-bottom: 1px solid var(--line);
     color: var(--gold);
-    font-size: .55rem;
+    font-family: var(--sans);
+    font-size: .53rem;
+    line-height: 1.5;
     letter-spacing: .2em;
     text-transform: uppercase;
 }
@@ -861,20 +945,20 @@ section {
 
 .score-rank {
     color: var(--muted);
-    font-family: var(--serif);
     font-size: 1.5rem;
+    line-height: 1;
 }
 
 .score-house {
-    font-family: var(--serif);
     font-size: 1.5rem;
+    line-height: 1;
 }
 
 .score-value {
     text-align: right;
     color: var(--gold);
-    font-family: var(--serif);
     font-size: 1.5rem;
+    line-height: 1;
 }
 
 /* =========================
@@ -909,16 +993,15 @@ section {
 }
 
 .vault-box h3 {
-    font-family: var(--serif);
     font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 500;
+    line-height: 1;
 }
 
 .vault-box p {
     max-width: 600px;
     margin: 20px auto 0;
     color: var(--muted);
-    font-size: .75rem;
+    font-size: .72rem;
     line-height: 1.9;
 }
 
@@ -945,16 +1028,17 @@ section {
 .vault-option strong {
     display: block;
     color: var(--gold);
-    font-family: var(--serif);
     font-size: 1.7rem;
-    font-weight: 500;
+    line-height: 1;
 }
 
 .vault-option span {
     display: block;
     margin-top: 8px;
     color: var(--muted);
-    font-size: .55rem;
+    font-family: var(--sans);
+    font-size: .53rem;
+    line-height: 1.5;
     letter-spacing: .15em;
     text-transform: uppercase;
 }
@@ -962,7 +1046,9 @@ section {
 .vault-note {
     margin-top: 30px;
     color: var(--muted);
-    font-size: .5rem;
+    font-family: var(--sans);
+    font-size: .48rem;
+    line-height: 1.5;
     letter-spacing: .15em;
 }
 
@@ -989,19 +1075,18 @@ section {
 
 .code-number {
     color: var(--gold);
-    font-family: var(--serif);
     font-size: 1.4rem;
+    line-height: 1;
 }
 
 .code-item h3 {
-    font-family: var(--serif);
     font-size: 1.8rem;
-    font-weight: 500;
+    line-height: 1;
 }
 
 .code-item p {
     color: var(--muted);
-    font-size: .7rem;
+    font-size: .68rem;
     line-height: 1.8;
     margin-top: 5px;
 }
@@ -1027,10 +1112,8 @@ section {
 }
 
 .access-copy h2 {
-    font-family: var(--serif);
     font-size: clamp(3.5rem, 8vw, 7rem);
     line-height: .82;
-    font-weight: 500;
 }
 
 .access-copy h2 span {
@@ -1042,7 +1125,7 @@ section {
     max-width: 480px;
     margin-top: 30px;
     color: var(--muted);
-    font-size: .75rem;
+    font-size: .72rem;
     line-height: 1.9;
 }
 
@@ -1059,7 +1142,9 @@ section {
 .form-group label {
     display: block;
     color: var(--gold);
-    font-size: .55rem;
+    font-family: var(--sans);
+    font-size: .53rem;
+    line-height: 1.5;
     letter-spacing: .2em;
     text-transform: uppercase;
     margin-bottom: 9px;
@@ -1073,7 +1158,8 @@ section {
     background: transparent;
     color: var(--cream);
     padding: 13px;
-    font-size: .7rem;
+    font-size: .68rem;
+    line-height: 1.5;
     transition: .3s ease;
 }
 
@@ -1093,7 +1179,9 @@ section {
     border: 1px solid var(--gold);
     background: var(--gold);
     color: var(--black);
-    font-size: .6rem;
+    font-family: var(--sans);
+    font-size: .58rem;
+    line-height: 1.5;
     letter-spacing: .2em;
     text-transform: uppercase;
     transition: .3s ease;
@@ -1110,7 +1198,8 @@ section {
     padding: 15px;
     border: 1px solid var(--line);
     color: var(--gold);
-    font-size: .62rem;
+    font-family: var(--sans);
+    font-size: .6rem;
     line-height: 1.6;
 }
 
@@ -1120,30 +1209,24 @@ section {
 
 .private-access {
     background:
-        radial-gradient(circle at 20% 40%, rgba(100,20,30,.22), transparent 32%),
+        radial-gradient(circle at 20% 30%, rgba(80,15,25,.22), transparent 30%),
         var(--black-soft);
 }
 
 .private-access-box {
-    max-width: 760px;
-    margin: 65px auto 0;
+    max-width: 850px;
+    margin: 70px auto 0;
     padding: 55px 45px;
     border: 1px solid var(--line);
     background: rgba(197,161,90,.018);
 }
 
-.private-access-box h3 {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 500;
-}
-
-.private-access-box > p {
-    max-width: 600px;
-    margin-top: 15px;
+.private-access-intro {
+    max-width: 620px;
     color: var(--muted);
-    font-size: .75rem;
+    font-size: .74rem;
     line-height: 1.9;
+    margin-top: 25px;
 }
 
 .private-access-form {
@@ -1160,7 +1243,7 @@ section {
     background: transparent;
     color: var(--cream);
     padding: 15px;
-    font-size: .72rem;
+    font-size: .68rem;
     letter-spacing: .08em;
     text-transform: uppercase;
 }
@@ -1169,169 +1252,204 @@ section {
     border-color: var(--gold);
 }
 
-.private-access-button,
-.scanner-button {
+.private-access-button {
+    padding: 15px 25px;
     border: 1px solid var(--gold);
     background: var(--gold);
     color: var(--black);
-    padding: 15px 24px;
-    font-size: .58rem;
+    font-family: var(--sans);
+    font-size: .56rem;
     letter-spacing: .18em;
     text-transform: uppercase;
     transition: .3s ease;
 }
 
-.private-access-button:hover,
-.scanner-button:hover {
+.private-access-button:hover {
     background: transparent;
     color: var(--gold);
 }
 
-.access-result {
+.private-result {
     display: none;
     margin-top: 30px;
     border: 1px solid var(--line);
-    background: var(--burgundy-deep);
 }
 
-.access-result.show {
+.private-result.active {
     display: block;
 }
 
-.access-result-head {
+.private-result-header {
     padding: 20px 25px;
     border-bottom: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
-}
-
-.access-result-status {
     color: var(--gold);
+    font-family: var(--sans);
     font-size: .55rem;
     letter-spacing: .2em;
     text-transform: uppercase;
 }
 
-.access-result-name {
-    font-family: var(--serif);
-    font-size: 2rem;
+.private-result-body {
+    padding: 30px 25px;
 }
 
-.access-result-body {
-    padding: 25px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.access-detail {
-    border-top: 1px solid var(--line);
-    padding-top: 12px;
-}
-
-.access-detail-label {
+.private-status {
     color: var(--gold);
-    font-size: .5rem;
-    letter-spacing: .18em;
+    font-family: var(--sans);
+    font-size: .55rem;
+    letter-spacing: .2em;
     text-transform: uppercase;
 }
 
-.access-detail-value {
-    margin-top: 6px;
-    color: var(--cream);
+.private-name {
     font-family: var(--serif);
-    font-size: 1.35rem;
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-top: 10px;
+}
+
+.private-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.private-detail {
+    padding-top: 15px;
+    border-top: 1px solid var(--line);
+}
+
+.private-detail-label {
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: .5rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.private-detail-value {
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: .7rem;
+    margin-top: 7px;
 }
 
 .access-panel {
     display: none;
-    margin-top: 25px;
-    padding: 25px;
-    border-top: 1px solid var(--line);
-    background: rgba(197,161,90,.025);
+    margin-top: 30px;
+    padding: 30px;
+    border: 1px solid var(--line);
+    background: var(--burgundy-deep);
 }
 
-.access-panel.show {
+.access-panel.active {
     display: block;
 }
 
 .access-panel-label {
     color: var(--gold);
+    font-family: var(--sans);
     font-size: .52rem;
     letter-spacing: .2em;
     text-transform: uppercase;
 }
 
-.access-panel h4 {
-    font-family: var(--serif);
-    font-size: 2rem;
-    font-weight: 500;
-    margin-top: 8px;
+.access-panel h3 {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-top: 10px;
 }
 
 .access-panel p {
+    max-width: 600px;
     color: var(--muted);
     font-size: .7rem;
     line-height: 1.8;
-    margin-top: 8px;
+    margin-top: 12px;
 }
 
 /* =========================
-   SCANNER
+   QR VERIFICATION
 ========================= */
 
-.scanner {
+.verification {
     background: var(--burgundy-deep);
 }
 
-.scanner-box {
+.verification-box {
     max-width: 850px;
-    margin: 65px auto 0;
+    margin: 70px auto 0;
     padding: 45px;
     border: 1px solid var(--line);
-    background: rgba(0,0,0,.15);
 }
 
-.scanner-box > p {
+.verification-warning {
+    padding: 15px 18px;
+    border: 1px solid rgba(197,161,90,.3);
     color: var(--muted);
-    font-size: .7rem;
-    line-height: 1.8;
-    margin-bottom: 25px;
+    font-size: .62rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
 }
 
 #reader {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
-    border: 1px solid var(--line) !important;
     overflow: hidden;
-}
-
-#reader video {
-    width: 100% !important;
+    border: 1px solid var(--line);
 }
 
 .scanner-controls {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.scanner-button {
+    padding: 13px 20px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: .55rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.scanner-button:hover {
+    border-color: var(--gold);
+    color: var(--gold);
 }
 
 .scanner-result {
     display: none;
     margin-top: 25px;
-    padding: 18px;
+    padding: 20px;
     border: 1px solid var(--line);
-    color: var(--gold);
-    font-size: .62rem;
-    line-height: 1.7;
     text-align: center;
 }
 
-.scanner-result.show {
+.scanner-result.active {
     display: block;
+}
+
+.scanner-result strong {
+    display: block;
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: .55rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+.scanner-result span {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--serif);
+    font-size: 2rem;
 }
 
 /* =========================
@@ -1354,14 +1472,15 @@ footer {
 }
 
 .footer-brand {
-    font-family: var(--serif);
     font-size: 2.2rem;
+    line-height: 1;
     color: var(--gold);
 }
 
 .footer-small {
     color: var(--muted);
-    font-size: .55rem;
+    font-family: var(--sans);
+    font-size: .52rem;
     line-height: 1.8;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -1496,7 +1615,7 @@ footer {
     }
 
     .private-access-box,
-    .scanner-box {
+    .verification-box {
         padding: 35px 22px;
     }
 
@@ -1508,8 +1627,12 @@ footer {
         width: 100%;
     }
 
-    .access-result-body {
+    .private-details {
         grid-template-columns: 1fr;
+    }
+
+    .scanner-controls {
+        flex-wrap: wrap;
     }
 
     .footer-inner {
@@ -1569,7 +1692,7 @@ footer {
         <a href="#code">The Code</a>
         <a href="#access">Access</a>
         <a href="#private-access">Private Access</a>
-        <a href="#scanner">Verification</a>
+        <a href="#verification">Verification</a>
     </nav>
 </div>
 
@@ -2395,7 +2518,7 @@ footer {
 </section>
 
 <!-- =========================
-     ACCESS
+     ACCESS REQUEST
 ========================= -->
 
 <section class="access" id="access">
@@ -2480,98 +2603,140 @@ footer {
             ACCESS.
         </h2>
 
+        <p class="private-access-intro">
+            Official Consortium credentials provide access to information
+            assigned to your clearance level. Enter your credential code below.
+        </p>
+
         <div class="private-access-box">
 
-            <h3>Enter Your Credential.</h3>
-
-            <p>
-                Official Consortium credentials provide access to information
-                assigned to your role inside the House.
-            </p>
-
-            <form class="private-access-form" id="privateAccessForm">
-
+            <div class="private-access-form">
                 <input
                     type="text"
                     id="credentialInput"
-                    placeholder="ENTER ACCESS CODE"
+                    placeholder="ENTER CREDENTIAL CODE"
                     autocomplete="off"
-                    required
+                    spellcheck="false"
                 >
 
-                <button type="submit" class="private-access-button">
-                    Verify
+                <button
+                    type="button"
+                    class="private-access-button"
+                    id="verifyCredentialButton"
+                >
+                    Verify Access
                 </button>
+            </div>
 
-            </form>
+            <div class="private-result" id="privateResult">
 
-            <div class="access-result" id="accessResult">
+                <div class="private-result-header">
+                    ACCESS VERIFIED
+                </div>
 
-                <div class="access-result-head">
-                    <div>
-                        <div class="access-result-status" id="accessResultStatus">
-                            ACCESS VERIFIED
+                <div class="private-result-body">
+
+                    <div class="private-status" id="privateStatus">
+                        CREDENTIAL VERIFIED
+                    </div>
+
+                    <div class="private-name" id="privateName">
+                        MEMBER
+                    </div>
+
+                    <div class="private-details">
+
+                        <div class="private-detail">
+                            <div class="private-detail-label">Credential</div>
+                            <div class="private-detail-value" id="privateCredential">
+                                —
+                            </div>
                         </div>
 
-                        <div class="access-result-name" id="accessResultName">
-                            —
+                        <div class="private-detail">
+                            <div class="private-detail-label">Role</div>
+                            <div class="private-detail-value" id="privateRole">
+                                —
+                            </div>
                         </div>
+
+                        <div class="private-detail">
+                            <div class="private-detail-label">Access Class</div>
+                            <div class="private-detail-value" id="privateClass">
+                                —
+                            </div>
+                        </div>
+
+                        <div class="private-detail">
+                            <div class="private-detail-label">House</div>
+                            <div class="private-detail-value" id="privateHouse">
+                                —
+                            </div>
+                        </div>
+
+                        <div class="private-detail">
+                            <div class="private-detail-label">Credential Status</div>
+                            <div class="private-detail-value" id="privateCredentialStatus">
+                                —
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="access-result-status" id="accessResultClass">
-                        —
-                    </div>
-                </div>
+                    <!-- MEMBER AREA -->
 
-                <div class="access-result-body">
+                    <div class="access-panel" id="memberPanel">
 
-                    <div class="access-detail">
-                        <div class="access-detail-label">Credential</div>
-                        <div class="access-detail-value" id="accessResultCredential">—</div>
-                    </div>
+                        <div class="access-panel-label">
+                            MEMBER // PRIVATE AREA
+                        </div>
 
-                    <div class="access-detail">
-                        <div class="access-detail-label">Role</div>
-                        <div class="access-detail-value" id="accessResultRole">—</div>
-                    </div>
+                        <h3>THE MEMBER HOUSE.</h3>
 
-                    <div class="access-detail">
-                        <div class="access-detail-label">House</div>
-                        <div class="access-detail-value" id="accessResultHouse">—</div>
+                        <p>
+                            Your member clearance grants access to the
+                            private Consortium experience, your House
+                            assignment when released, member information
+                            and official event instructions.
+                        </p>
+
                     </div>
 
-                    <div class="access-detail">
-                        <div class="access-detail-label">Status</div>
-                        <div class="access-detail-value" id="accessResultAccessStatus">—</div>
+                    <!-- GUEST AREA -->
+
+                    <div class="access-panel" id="guestPanel">
+
+                        <div class="access-panel-label">
+                            GUEST // PRIVATE AREA
+                        </div>
+
+                        <h3>THE GUEST HOUSE.</h3>
+
+                        <p>
+                            Your guest clearance provides the information
+                            required for your approved guest access.
+                            Additional member-only information remains restricted.
+                        </p>
+
                     </div>
 
-                </div>
+                    <!-- ORGANISER AREA -->
 
-                <div class="access-panel" id="memberPanel">
-                    <div class="access-panel-label">MEMBER // PRIVATE AREA</div>
-                    <h4>The House Awaits.</h4>
-                    <p>
-                        Your member credential has been verified. Additional
-                        member information will appear here when assigned.
-                    </p>
-                </div>
+                    <div class="access-panel" id="organiserPanel">
 
-                <div class="access-panel" id="guestPanel">
-                    <div class="access-panel-label">GUEST // PRIVATE AREA</div>
-                    <h4>Guest Clearance.</h4>
-                    <p>
-                        Your guest credential has been verified. Guest-specific
-                        information will appear here when assigned.
-                    </p>
-                </div>
+                        <div class="access-panel-label">
+                            ORGANISER // PRIVATE AREA
+                        </div>
 
-                <div class="access-panel" id="organiserPanel">
-                    <div class="access-panel-label">ORGANISER // PRIVATE AREA</div>
-                    <h4>House Control.</h4>
-                    <p>
-                        Organiser clearance verified. Administrative information
-                        will appear here when the secure control system is connected.
-                    </p>
+                        <h3>THE CONTROL ROOM.</h3>
+
+                        <p>
+                            Organiser clearance provides access to operational
+                            verification tools and organiser-only information.
+                        </p>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -2582,10 +2747,10 @@ footer {
 </section>
 
 <!-- =========================
-     SCANNER
+     QR VERIFICATION
 ========================= -->
 
-<section class="scanner" id="scanner">
+<section class="verification" id="verification">
     <div class="section-inner reveal">
 
         <div class="kicker">CLASSIFIED // VERIFICATION</div>
@@ -2596,23 +2761,45 @@ footer {
             HOUSE.
         </h2>
 
-        <div class="scanner-box">
+        <div class="verification-box">
 
-            <p>
-                Authorized verification interface. Scan a Consortium QR credential
-                to verify its assigned access class.
-            </p>
+            <div class="verification-warning">
+                AUTHORIZED VERIFICATION INTERFACE.
+                Scan an official Consortium credential QR code to verify access.
+            </div>
 
             <div id="reader"></div>
 
             <div class="scanner-controls">
-                <button class="scanner-button" id="startScanner">
+
+                <button
+                    type="button"
+                    class="scanner-button"
+                    id="startScanner"
+                >
                     Start Scanner
                 </button>
+
+                <button
+                    type="button"
+                    class="scanner-button"
+                    id="stopScanner"
+                >
+                    Stop Scanner
+                </button>
+
             </div>
 
             <div class="scanner-result" id="scannerResult">
-                SCANNER READY.
+
+                <strong id="scannerStatus">
+                    VERIFICATION RESULT
+                </strong>
+
+                <span id="scannerMessage">
+                    —
+                </span>
+
             </div>
 
         </div>
@@ -2640,6 +2827,7 @@ footer {
         </div>
 
         <div class="footer-right">
+
             <div class="footer-small">
                 CONFIDENTIAL // HOUSE OF XANDER
             </div>
@@ -2647,10 +2835,15 @@ footer {
             <div class="footer-small">
                 © 2026 The Consortium
             </div>
+
         </div>
 
     </div>
 </footer>
+
+<!-- =========================
+     QR SCANNER LIBRARY
+========================= -->
 
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
@@ -2661,11 +2854,13 @@ footer {
 ========================= */
 
 window.addEventListener("load", () => {
+
     const intro = document.getElementById("intro");
 
     setTimeout(() => {
         intro.classList.add("hide");
     }, 1800);
+
 });
 
 
@@ -2682,9 +2877,11 @@ menuToggle.addEventListener("click", () => {
 });
 
 navLinks.forEach(link => {
+
     link.addEventListener("click", () => {
         document.body.classList.remove("menu-open");
     });
+
 });
 
 
@@ -2696,11 +2893,15 @@ const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
     entries => {
+
         entries.forEach(entry => {
+
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
             }
+
         });
+
     },
     {
         threshold: 0.12
@@ -2720,13 +2921,16 @@ const accessForm = document.getElementById("accessForm");
 const accessMessage = document.getElementById("accessMessage");
 
 accessForm.addEventListener("submit", event => {
+
     event.preventDefault();
 
     accessMessage.style.display = "block";
 
-    accessForm.querySelector(".access-submit").textContent = "Request Received";
+    accessForm.querySelector(".access-submit").textContent =
+        "Request Received";
 
     accessForm.querySelector(".access-submit").disabled = true;
+
 });
 
 
@@ -2744,13 +2948,17 @@ vaultOptions.forEach(option => {
         const choice = option.dataset.vault;
 
         if (choice === "protect") {
+
             vaultNote.textContent =
                 "PROTECT SELECTED // THE HOUSE REMEMBERS.";
+
         }
 
         if (choice === "risk") {
+
             vaultNote.textContent =
                 "RISK SELECTED // SOME MOVES CANNOT BE UNDONE.";
+
         }
 
     });
@@ -2759,553 +2967,286 @@ vaultOptions.forEach(option => {
 
 
 /* =========================
-   DEMO CREDENTIAL SYSTEM
+   CREDENTIAL REGISTRY
    =========================
-   This is a front-end prototype.
-   Production verification should be moved
-   to a secure backend/database.
+   
+   FRONT-END DEMO ONLY.
+
+   Production verification should move these
+   credentials to a secure backend/database.
 ========================= */
 
-const CREDENTIALS = {
-
-    "CX-M-01-7QK4P9": {
-        name: "MEMBER 01",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-02-3N8VQ2": {
-        name: "MEMBER 02",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-03-9K2XLP": {
-        name: "MEMBER 03",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-04-5R7QWM": {
-        name: "MEMBER 04",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-05-8T4NQZ": {
-        name: "MEMBER 05",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-06-2V9KRP": {
-        name: "MEMBER 06",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-07-6P3XTA": {
-        name: "MEMBER 07",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-08-4L8QVN": {
-        name: "MEMBER 08",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-09-7W2KFD": {
-        name: "MEMBER 09",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-10-9B5RQM": {
-        name: "MEMBER 10",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-11-3X7NLP": {
-        name: "MEMBER 11",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-12-8Q4VKT": {
-        name: "MEMBER 12",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-13-5N9RXP": {
-        name: "MEMBER 13",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-14-2K6WQM": {
-        name: "MEMBER 14",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-15-7P4XNZ": {
-        name: "MEMBER 15",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-16-9T3LQK": {
-        name: "MEMBER 16",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-17-4V8RMP": {
-        name: "MEMBER 17",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-18-6Q2XWT": {
-        name: "MEMBER 18",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-19-3N7KVP": {
-        name: "MEMBER 19",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-20-8R5QXL": {
-        name: "MEMBER 20",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-21-2P9VKM": {
-        name: "MEMBER 21",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-22-7X4NQT": {
-        name: "MEMBER 22",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-23-5K8RLP": {
-        name: "MEMBER 23",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-24-9Q3VWN": {
-        name: "MEMBER 24",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-25-4T7XKP": {
-        name: "MEMBER 25",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-26-6N2RQM": {
-        name: "MEMBER 26",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-27-8V5QTL": {
-        name: "MEMBER 27",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-28-3K9XWP": {
-        name: "MEMBER 28",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-29-7R4NQV": {
-        name: "MEMBER 29",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-M-30-K8N5TW": {
-        name: "MEMBER 30",
-        role: "MEMBER",
-        accessClass: "MEMBER",
-        house: "UNASSIGNED",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-01-Q7M4LX": {
-        name: "GUEST 01",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-02-8V2QKN": {
-        name: "GUEST 02",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-03-5R9XTP": {
-        name: "GUEST 03",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-04-3K7NQV": {
-        name: "GUEST 04",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-05-9P4WKM": {
-        name: "GUEST 05",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-06-6X8RQT": {
-        name: "GUEST 06",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-07-2N5VLP": {
-        name: "GUEST 07",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-08-7Q3KXN": {
-        name: "GUEST 08",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-09-4T9RWM": {
-        name: "GUEST 09",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-10-8K5QVP": {
-        name: "GUEST 10",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-11-3X7NLR": {
-        name: "GUEST 11",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-G-12-X4V8TN": {
-        name: "GUEST 12",
-        role: "GUEST",
-        accessClass: "GUEST",
-        house: "N/A",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-01-Z8Q4MK": {
-        name: "ORGANISER 01",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-02-5N7RQP": {
-        name: "ORGANISER 02",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-03-9K3VXT": {
-        name: "ORGANISER 03",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-04-4Q8WNP": {
-        name: "ORGANISER 04",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-05-7R2XKM": {
-        name: "ORGANISER 05",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-06-3V9NQT": {
-        name: "ORGANISER 06",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-07-8K5QRP": {
-        name: "ORGANISER 07",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    },
-
-    "CX-O-08-W6D9KC": {
-        name: "ORGANISER 08",
-        role: "ORGANISER",
-        accessClass: "ORGANISER",
-        house: "CONTROL",
-        status: "CLEARED",
-        used: false
-    }
-
-};
+const CREDENTIALS = {};
 
 
 /* =========================
-   PRIVATE ACCESS VERIFICATION
+   30 MEMBERS
 ========================= */
 
-const privateAccessForm = document.getElementById("privateAccessForm");
-const credentialInput = document.getElementById("credentialInput");
+const memberCodes = [
+    "CX-M-01-7QK4P9",
+    "CX-M-02-3N8VTX",
+    "CX-M-03-5K2RQM",
+    "CX-M-04-9F6LWD",
+    "CX-M-05-2H7XPA",
+    "CX-M-06-8M4QKS",
+    "CX-M-07-6T9VNB",
+    "CX-M-08-4P7YLC",
+    "CX-M-09-9R3KWF",
+    "CX-M-10-5D8NQJ",
+    "CX-M-11-7L2MTR",
+    "CX-M-12-3V9KPX",
+    "CX-M-13-8Q4WNF",
+    "CX-M-14-6Y7RKM",
+    "CX-M-15-2P5XVD",
+    "CX-M-16-9N4TQW",
+    "CX-M-17-7K8MPL",
+    "CX-M-18-4R2VXN",
+    "CX-M-19-6Q9WKT",
+    "CX-M-20-3M7PFR",
+    "CX-M-21-8X5LQV",
+    "CX-M-22-2N6KWP",
+    "CX-M-23-9T4RMD",
+    "CX-M-24-5V8QXL",
+    "CX-M-25-7P3NKW",
+    "CX-M-26-4M9TXQ",
+    "CX-M-27-6R2VLP",
+    "CX-M-28-8K5QMN",
+    "CX-M-29-3W7XRT",
+    "CX-M-30-K8N5TW"
+];
 
-const accessResult = document.getElementById("accessResult");
-const accessResultStatus = document.getElementById("accessResultStatus");
-const accessResultName = document.getElementById("accessResultName");
-const accessResultClass = document.getElementById("accessResultClass");
-const accessResultCredential = document.getElementById("accessResultCredential");
-const accessResultRole = document.getElementById("accessResultRole");
-const accessResultHouse = document.getElementById("accessResultHouse");
-const accessResultAccessStatus = document.getElementById("accessResultAccessStatus");
+memberCodes.forEach((code, index) => {
 
-const memberPanel = document.getElementById("memberPanel");
-const guestPanel = document.getElementById("guestPanel");
-const organiserPanel = document.getElementById("organiserPanel");
+    CREDENTIALS[code] = {
+        credential: code,
+        name: `MEMBER ${String(index + 1).padStart(2, "0")}`,
+        role: "MEMBER",
+        accessClass: "MEMBER",
+        house: "UNASSIGNED",
+        status: "ACTIVE",
+        used: false
+    };
+
+});
 
 
-function resetAccessPanels() {
-    memberPanel.classList.remove("show");
-    guestPanel.classList.remove("show");
-    organiserPanel.classList.remove("show");
-}
+/* =========================
+   12 GUESTS
+========================= */
 
+const guestCodes = [
+    "CX-G-01-Q7M4LX",
+    "CX-G-02-8K2VNP",
+    "CX-G-03-5R9TQM",
+    "CX-G-04-3X6WKL",
+    "CX-G-05-7P4NVD",
+    "CX-G-06-2M8QRT",
+    "CX-G-07-9K5XLP",
+    "CX-G-08-4V7NQM",
+    "CX-G-09-6R2WKT",
+    "CX-G-10-8P3XMN",
+    "CX-G-11-5Q7VLR",
+    "CX-G-12-X4V8TN"
+];
+
+guestCodes.forEach((code, index) => {
+
+    CREDENTIALS[code] = {
+        credential: code,
+        name: `GUEST ${String(index + 1).padStart(2, "0")}`,
+        role: "GUEST",
+        accessClass: "GUEST",
+        house: "N/A",
+        status: "ACTIVE",
+        used: false
+    };
+
+});
+
+
+/* =========================
+   8 ORGANISERS
+========================= */
+
+const organiserCodes = [
+    "CX-O-01-Z8Q4MK",
+    "CX-O-02-5N7VXP",
+    "CX-O-03-3R9KWT",
+    "CX-O-04-6M2QVL",
+    "CX-O-05-8P4XNR",
+    "CX-O-06-7K5TQM",
+    "CX-O-07-2V9LWP",
+    "CX-O-08-W6D9KC"
+];
+
+organiserCodes.forEach((code, index) => {
+
+    CREDENTIALS[code] = {
+        credential: code,
+        name: `ORGANISER ${String(index + 1).padStart(2, "0")}`,
+        role: "ORGANISER",
+        accessClass: "ORGANISER",
+        house: "CONTROL",
+        status: "ACTIVE",
+        used: false
+    };
+
+});
+
+
+/* =========================
+   PRIVATE ACCESS ELEMENTS
+========================= */
+
+const credentialInput =
+    document.getElementById("credentialInput");
+
+const verifyCredentialButton =
+    document.getElementById("verifyCredentialButton");
+
+const privateResult =
+    document.getElementById("privateResult");
+
+const privateStatus =
+    document.getElementById("privateStatus");
+
+const privateName =
+    document.getElementById("privateName");
+
+const privateCredential =
+    document.getElementById("privateCredential");
+
+const privateRole =
+    document.getElementById("privateRole");
+
+const privateClass =
+    document.getElementById("privateClass");
+
+const privateHouse =
+    document.getElementById("privateHouse");
+
+const privateCredentialStatus =
+    document.getElementById("privateCredentialStatus");
+
+const memberPanel =
+    document.getElementById("memberPanel");
+
+const guestPanel =
+    document.getElementById("guestPanel");
+
+const organiserPanel =
+    document.getElementById("organiserPanel");
+
+
+/* =========================
+   VERIFY CREDENTIAL
+========================= */
 
 function verifyCredential(code, markUsed = false) {
 
-    const cleanCode = code.trim().toUpperCase();
-    const credential = CREDENTIALS[cleanCode];
+    const cleanCode =
+        String(code || "")
+        .trim()
+        .toUpperCase();
 
-    resetAccessPanels();
+    const credential =
+        CREDENTIALS[cleanCode];
 
-    accessResult.classList.add("show");
+    privateResult.classList.add("active");
+
+    memberPanel.classList.remove("active");
+    guestPanel.classList.remove("active");
+    organiserPanel.classList.remove("active");
 
     if (!credential) {
 
-        accessResultStatus.textContent = "ACCESS DENIED";
-        accessResultStatus.style.color = "#958d82";
-        accessResultName.textContent = "Credential Not Found";
-        accessResultClass.textContent = "INVALID";
-        accessResultCredential.textContent = cleanCode || "—";
-        accessResultRole.textContent = "—";
-        accessResultHouse.textContent = "—";
-        accessResultAccessStatus.textContent = "DENIED";
+        privateStatus.textContent =
+            "ACCESS DENIED";
+
+        privateName.textContent =
+            "UNKNOWN CREDENTIAL";
+
+        privateCredential.textContent =
+            cleanCode || "NO CODE";
+
+        privateRole.textContent =
+            "UNVERIFIED";
+
+        privateClass.textContent =
+            "RESTRICTED";
+
+        privateHouse.textContent =
+            "—";
+
+        privateCredentialStatus.textContent =
+            "INVALID";
 
         return false;
     }
+
 
     if (credential.used) {
 
-        accessResultStatus.textContent = "ACCESS DENIED";
-        accessResultStatus.style.color = "#958d82";
-        accessResultName.textContent = credential.name;
-        accessResultClass.textContent = "ALREADY USED";
-        accessResultCredential.textContent = cleanCode;
-        accessResultRole.textContent = credential.role;
-        accessResultHouse.textContent = credential.house;
-        accessResultAccessStatus.textContent = "USED";
+        privateStatus.textContent =
+            "ACCESS DENIED";
+
+        privateName.textContent =
+            credential.name;
+
+        privateCredential.textContent =
+            credential.credential;
+
+        privateRole.textContent =
+            credential.role;
+
+        privateClass.textContent =
+            credential.accessClass;
+
+        privateHouse.textContent =
+            credential.house;
+
+        privateCredentialStatus.textContent =
+            "ALREADY USED";
 
         return false;
     }
 
-    accessResultStatus.textContent = "ACCESS VERIFIED";
-    accessResultStatus.style.color = "var(--gold)";
-    accessResultName.textContent = credential.name;
-    accessResultClass.textContent = credential.accessClass;
-    accessResultCredential.textContent = cleanCode;
-    accessResultRole.textContent = credential.role;
-    accessResultHouse.textContent = credential.house;
-    accessResultAccessStatus.textContent = credential.status;
 
-    if (credential.accessClass === "MEMBER") {
-        memberPanel.classList.add("show");
+    privateStatus.textContent =
+        "CREDENTIAL VERIFIED";
+
+    privateName.textContent =
+        credential.name;
+
+    privateCredential.textContent =
+        credential.credential;
+
+    privateRole.textContent =
+        credential.role;
+
+    privateClass.textContent =
+        credential.accessClass;
+
+    privateHouse.textContent =
+        credential.house;
+
+    privateCredentialStatus.textContent =
+        "ACTIVE";
+
+
+    if (credential.role === "MEMBER") {
+        memberPanel.classList.add("active");
     }
 
-    if (credential.accessClass === "GUEST") {
-        guestPanel.classList.add("show");
+    if (credential.role === "GUEST") {
+        guestPanel.classList.add("active");
     }
 
-    if (credential.accessClass === "ORGANISER") {
-        organiserPanel.classList.add("show");
+    if (credential.role === "ORGANISER") {
+        organiserPanel.classList.add("active");
     }
+
 
     if (markUsed) {
         credential.used = true;
@@ -3315,11 +3256,36 @@ function verifyCredential(code, markUsed = false) {
 }
 
 
-privateAccessForm.addEventListener("submit", event => {
+/* =========================
+   PRIVATE ACCESS BUTTON
+========================= */
 
-    event.preventDefault();
+verifyCredentialButton.addEventListener("click", () => {
 
-    verifyCredential(credentialInput.value, false);
+    verifyCredential(
+        credentialInput.value,
+        false
+    );
+
+});
+
+
+/* =========================
+   ENTER KEY
+========================= */
+
+credentialInput.addEventListener("keydown", event => {
+
+    if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        verifyCredential(
+            credentialInput.value,
+            false
+        );
+
+    }
 
 });
 
@@ -3328,36 +3294,110 @@ privateAccessForm.addEventListener("submit", event => {
    QR SCANNER
 ========================= */
 
-const scannerResult = document.getElementById("scannerResult");
-const startScanner = document.getElementById("startScanner");
-
-let html5QrCode = null;
+let scanner = null;
 let scannerRunning = false;
 
+const scannerResult =
+    document.getElementById("scannerResult");
 
-function showScannerMessage(message) {
-    scannerResult.textContent = message;
-    scannerResult.classList.add("show");
+const scannerStatus =
+    document.getElementById("scannerStatus");
+
+const scannerMessage =
+    document.getElementById("scannerMessage");
+
+const startScannerButton =
+    document.getElementById("startScanner");
+
+const stopScannerButton =
+    document.getElementById("stopScanner");
+
+
+function showScannerResult(status, message) {
+
+    scannerResult.classList.add("active");
+
+    scannerStatus.textContent = status;
+
+    scannerMessage.textContent = message;
+
 }
 
 
-async function startQrScanner() {
+function handleScan(decodedText) {
+
+    const cleanCode =
+        String(decodedText || "")
+        .trim()
+        .toUpperCase();
+
+    const credential =
+        CREDENTIALS[cleanCode];
+
+
+    if (!credential) {
+
+        showScannerResult(
+            "ACCESS DENIED",
+            "Credential not recognised."
+        );
+
+        return;
+    }
+
+
+    if (credential.used) {
+
+        showScannerResult(
+            "ACCESS DENIED",
+            "Credential already used."
+        );
+
+        return;
+    }
+
+
+    credential.used = true;
+
+    showScannerResult(
+        "ACCESS VERIFIED",
+        `${credential.role} // ${credential.name}`
+    );
+
+
+    verifyCredential(
+        cleanCode,
+        false
+    );
+
+}
+
+
+async function startScanner() {
 
     if (scannerRunning) {
         return;
     }
 
     if (typeof Html5Qrcode === "undefined") {
-        showScannerMessage("SCANNER UNAVAILABLE.");
+
+        showScannerResult(
+            "SCANNER UNAVAILABLE",
+            "QR scanner library could not be loaded."
+        );
+
         return;
     }
 
-    html5QrCode = new Html5Qrcode("reader");
+
+    scanner = new Html5Qrcode("reader");
 
     try {
 
-        await html5QrCode.start(
-            { facingMode: "environment" },
+        await scanner.start(
+            {
+                facingMode: "environment"
+            },
             {
                 fps: 10,
                 qrbox: {
@@ -3365,43 +3405,26 @@ async function startQrScanner() {
                     height: 250
                 }
             },
-            async decodedText => {
+            decodedText => {
 
-                const verified = verifyCredential(decodedText, true);
-
-                if (verified) {
-                    showScannerMessage(
-                        "ACCESS VERIFIED // " + decodedText.toUpperCase()
-                    );
-                } else {
-                    showScannerMessage(
-                        "ACCESS DENIED // " + decodedText.toUpperCase()
-                    );
-                }
-
-                if (html5QrCode && scannerRunning) {
-
-                    try {
-                        await html5QrCode.pause(true);
-                    } catch (error) {
-                        console.warn(error);
-                    }
-
-                }
+                handleScan(decodedText);
 
             },
             () => {}
         );
 
         scannerRunning = true;
-        startScanner.textContent = "Scanner Active";
-        showScannerMessage("SCANNER ACTIVE // POINT CAMERA AT A CREDENTIAL.");
+
+        showScannerResult(
+            "SCANNER ACTIVE",
+            "Point the camera at an official credential QR code."
+        );
 
     } catch (error) {
 
-        console.error(error);
-        showScannerMessage(
-            "CAMERA ACCESS REQUIRED TO VERIFY QR CREDENTIALS."
+        showScannerResult(
+            "SCANNER ERROR",
+            "Camera access could not be started."
         );
 
     }
@@ -3409,25 +3432,36 @@ async function startQrScanner() {
 }
 
 
-startScanner.addEventListener("click", async () => {
+async function stopScanner() {
 
-    if (!scannerRunning) {
-        await startQrScanner();
+    if (!scanner || !scannerRunning) {
         return;
     }
 
-    if (html5QrCode) {
+    try {
 
-        try {
-            await html5QrCode.resume();
-            showScannerMessage("SCANNER ACTIVE // READY FOR NEXT CREDENTIAL.");
-        } catch (error) {
-            console.warn(error);
-        }
+        await scanner.stop();
 
+        await scanner.clear();
+
+    } catch (error) {
+        /* Scanner already stopped */
     }
 
-});
+    scannerRunning = false;
+
+}
+
+
+startScannerButton.addEventListener(
+    "click",
+    startScanner
+);
+
+stopScannerButton.addEventListener(
+    "click",
+    stopScanner
+);
 
 
 /* =========================
@@ -3438,9 +3472,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     anchor.addEventListener("click", function(event) {
 
-        const target = document.querySelector(this.getAttribute("href"));
+        const target =
+            document.querySelector(
+                this.getAttribute("href")
+            );
 
-        if (!target) return;
+        if (!target) {
+            return;
+        }
 
         event.preventDefault();
 
