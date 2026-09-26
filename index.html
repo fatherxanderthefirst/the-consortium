@@ -41,6 +41,28 @@
             overflow-x: hidden;
         }
 
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9990;
+            pointer-events: none;
+            opacity: .035;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9989;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(197,161,90,.025), transparent 35%),
+                radial-gradient(circle at 0% 100%, rgba(50,17,22,.08), transparent 40%);
+        }
+
         body.intro-active {
             overflow: hidden;
         }
@@ -64,6 +86,26 @@
                 opacity .8s ease,
                 visibility .8s ease,
                 background .8s ease;
+        }
+
+        .intro::before {
+            content: "CONFIDENTIAL";
+            position: absolute;
+            top: 30px;
+            left: 35px;
+            color: rgba(197,161,90,.3);
+            font-size: 7px;
+            letter-spacing: .45em;
+        }
+
+        .intro::after {
+            content: "HOUSE OF XANDER";
+            position: absolute;
+            bottom: 30px;
+            right: 35px;
+            color: rgba(197,161,90,.3);
+            font-size: 7px;
+            letter-spacing: .35em;
         }
 
         .intro.opening {
@@ -179,6 +221,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            mix-blend-mode: normal;
         }
 
         .logo {
@@ -186,6 +229,7 @@
             color: var(--gold);
             font-size: 20px;
             letter-spacing: .16em;
+            text-shadow: 0 0 20px rgba(197,161,90,.08);
         }
 
         .menu-button {
@@ -199,6 +243,12 @@
             align-items: center;
             gap: 5px;
             cursor: pointer;
+            transition: border-color .3s ease, background .3s ease;
+        }
+
+        .menu-button:hover {
+            border-color: rgba(197,161,90,.5);
+            background: rgba(50,17,22,.65);
         }
 
         .menu-button span {
@@ -206,13 +256,16 @@
             width: 15px;
             height: 1px;
             background: var(--gold);
+            transition: transform .3s ease;
         }
 
         nav {
             position: fixed;
             inset: 0;
             z-index: 90;
-            background: rgba(8,7,7,.97);
+            background:
+                radial-gradient(circle at center, rgba(50,17,22,.35), transparent 55%),
+                rgba(8,7,7,.97);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -249,6 +302,18 @@
 
         section {
             position: relative;
+            overflow: hidden;
+        }
+
+        section::after {
+            content: "CONFIDENTIAL // HOUSE OF XANDER";
+            position: absolute;
+            bottom: 24px;
+            right: 7vw;
+            color: rgba(197,161,90,.13);
+            font-size: 6px;
+            letter-spacing: .35em;
+            pointer-events: none;
         }
 
         /* HERO */
@@ -265,8 +330,25 @@
                 linear-gradient(135deg, var(--black), var(--burgundy-deep));
         }
 
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border: 1px solid rgba(197,161,90,.06);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow:
+                0 0 0 70px rgba(197,161,90,.012),
+                0 0 0 140px rgba(197,161,90,.008);
+        }
+
         .hero-content {
             max-width: 900px;
+            position: relative;
+            z-index: 2;
         }
 
         .eyebrow {
@@ -300,6 +382,25 @@
         .experience {
             background: var(--black-soft);
             padding: 130px 8vw;
+        }
+
+        .experience::before,
+        .dossier::before,
+        .game::before,
+        .houses::before,
+        .code::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 8vw;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(197,161,90,.08),
+                transparent
+            );
         }
 
         .section-grid {
@@ -350,6 +451,17 @@
             gap: 35px;
             padding: 30px 0;
             border-top: 1px solid var(--line);
+            position: relative;
+        }
+
+        .dossier-item::after {
+            content: "FILE";
+            position: absolute;
+            right: 0;
+            top: 34px;
+            color: rgba(197,161,90,.12);
+            font-size: 7px;
+            letter-spacing: .3em;
         }
 
         .dossier-item:last-child {
@@ -393,6 +505,18 @@
         .journey-card {
             padding: 45px 30px;
             border-right: 1px solid var(--line);
+            position: relative;
+        }
+
+        .journey-card::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: 30px;
+            width: 35px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .5;
         }
 
         .journey-card:last-child {
@@ -427,6 +551,11 @@
                 var(--black-soft);
         }
 
+        .game::before {
+            left: auto;
+            right: 8vw;
+        }
+
         .game-intro {
             max-width: 850px;
             margin-bottom: 70px;
@@ -458,10 +587,22 @@
             padding: 38px 30px;
             border: 1px solid var(--line);
             background: rgba(8,7,7,.35);
+            position: relative;
             transition:
                 transform .3s ease,
                 border-color .3s ease,
                 background .3s ease;
+        }
+
+        .challenge::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .5;
         }
 
         .challenge:hover {
@@ -520,7 +661,18 @@
             background: var(--burgundy-deep);
             padding: 50px;
             min-height: 280px;
+            position: relative;
             transition: background .35s ease;
+        }
+
+        .house::after {
+            content: "HOUSE OF XANDER";
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            color: rgba(197,161,90,.1);
+            font-size: 6px;
+            letter-spacing: .3em;
         }
 
         .house:hover {
@@ -531,6 +683,7 @@
             color: var(--gold);
             font-size: 32px;
             margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(197,161,90,.08);
         }
 
         .house h3 {
@@ -575,6 +728,27 @@
             height: 1px;
             background: var(--line);
             margin: 60px auto 0;
+            position: relative;
+        }
+
+        .score-line::before,
+        .score-line::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            width: 7px;
+            height: 7px;
+            border: 1px solid var(--gold);
+            background: var(--black-soft);
+            transform: rotate(45deg);
+        }
+
+        .score-line::before {
+            left: 0;
+        }
+
+        .score-line::after {
+            right: 0;
         }
 
         /* VAULT */
@@ -598,6 +772,7 @@
             color: var(--gold);
             opacity: .5;
             margin-bottom: 10px;
+            text-shadow: 0 0 35px rgba(197,161,90,.07);
         }
 
         .vault h3 {
@@ -707,6 +882,18 @@
         .code-item {
             background: var(--burgundy-deep);
             padding: 35px;
+            position: relative;
+        }
+
+        .code-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .45;
         }
 
         .code-item span {
@@ -728,6 +915,24 @@
             padding: 140px 8vw;
             background: var(--black);
             text-align: center;
+        }
+
+        .access::before {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(197,161,90,.035);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .access > div {
+            position: relative;
+            z-index: 2;
         }
 
         .access h2 {
@@ -754,12 +959,17 @@
 
         .access-form input {
             flex: 1;
-            background: transparent;
+            background: rgba(50,17,22,.08);
             border: 1px solid var(--line);
             padding: 15px;
             color: var(--cream);
             outline: none;
             font-family: var(--sans);
+            transition: border-color .3s ease;
+        }
+
+        .access-form input:focus {
+            border-color: rgba(197,161,90,.55);
         }
 
         .access-form button {
@@ -771,6 +981,11 @@
             letter-spacing: .2em;
             text-transform: uppercase;
             cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .access-form button:hover {
+            background: var(--gold-soft);
         }
 
         .access-form button:disabled {
@@ -817,7 +1032,14 @@
             transform: translateY(0);
         }
 
+        /* RESPONSIVE */
+
         @media (max-width: 800px) {
+
+            section::after {
+                right: 5vw;
+                font-size: 5px;
+            }
 
             .section-grid,
             .journey-grid,
@@ -832,6 +1054,10 @@
                 border-bottom: 1px solid var(--line);
             }
 
+            .journey-card:last-child {
+                border-bottom: 0;
+            }
+
             .house {
                 min-height: auto;
                 padding: 35px;
@@ -840,6 +1066,10 @@
             .dossier-item {
                 grid-template-columns: 55px 1fr;
                 gap: 15px;
+            }
+
+            .dossier-item::after {
+                display: none;
             }
 
             .access-form {
@@ -852,6 +1082,30 @@
 
             .game-note {
                 font-size: 20px;
+            }
+
+            .hero::before {
+                width: 330px;
+                height: 330px;
+            }
+
+            .access::before {
+                width: 400px;
+                height: 400px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
             }
         }
     </style>
@@ -1556,6 +1810,7 @@
 
                         if (entry.isIntersecting) {
                             entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
                         }
 
                     });
@@ -1689,9 +1944,8 @@
                 } catch (formspreeError) {
 
                     /*
-                     * The Supabase request has already been saved.
-                     * Formspree is kept as a secondary notification
-                     * channel and does not determine success.
+                     * Supabase is the primary request record.
+                     * Formspree remains a secondary notification channel.
                      */
 
                 }
