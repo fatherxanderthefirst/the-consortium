@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | The Consortium</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+        :root {
+            --black: #080707;
+            --black-soft: #0e0c0c;
+            --burgundy: #321116;
+            --burgundy-deep: #1b090d;
+            --gold: #c5a15a;
+            --gold-soft: #d8bd82;
+            --cream: #eee7da;
+            --muted: #958d82;
+            --line: rgba(197,161,90,.22);
+            --serif: "Cormorant Garamond", Georgia, serif;
+            --sans: "Inter", Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(50,17,22,.5),
+                    transparent 45%
+                ),
+                var(--black);
+            color: var(--cream);
+            font-family: var(--sans);
+        }
+
+        .admin-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 460px;
+            padding: 55px 45px;
+            border: 1px solid var(--line);
+            background: rgba(14,12,12,.92);
+            text-align: center;
+        }
+
+        .label {
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: .38em;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: clamp(48px, 10vw, 75px);
+            font-weight: 500;
+            line-height: .85;
+            margin-bottom: 25px;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.9;
+            margin-bottom: 35px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 1px solid var(--line);
+            color: var(--cream);
+            outline: none;
+            font-family: var(--sans);
+            font-size: 12px;
+        }
+
+        .login-form input:focus {
+            border-color: var(--gold);
+        }
+
+        .login-form button {
+            margin-top: 8px;
+            padding: 16px;
+            border: 1px solid var(--gold);
+            background: var(--gold);
+            color: var(--black);
+            font-family: var(--sans);
+            font-size: 9px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .login-form button:hover {
+            background: var(--gold-soft);
+        }
+
+        .login-form button:disabled {
+            opacity: .6;
+            cursor: default;
+        }
+
+        .status {
+            min-height: 18px;
+            margin-top: 18px;
+            color: var(--gold-soft);
+            font-size: 9px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            line-height: 1.7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 35px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 9px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            transition: color .3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        .dashboard {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 30px;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 25px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .dashboard-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(42px, 7vw, 75px);
+            font-weight: 500;
+            line-height: .9;
+        }
+
+        .dashboard-header p {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .logout {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--gold);
+            padding: 12px 18px;
+            font-size: 9px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .admin-card {
+            padding: 30px;
+            border: 1px solid var(--line);
+            background: var(--black-soft);
+        }
+
+        .admin-card span {
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+        }
+
+        .admin-card h3 {
+            margin-top: 15px;
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 500;
+        }
+
+        .admin-card p {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 700px) {
+
+            .login-card {
+                padding: 45px 25px;
+            }
+
+            .dashboard {
+                padding: 30px 20px;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-shell">
+
+        <!-- LOGIN -->
+
+        <div class="login-card" id="loginCard">
+
+            <div class="label">
+                CONFIDENTIAL // HOUSE OF XANDER
+            </div>
+
+            <h1>
+                THE<br>
+                CONSORTIUM
+            </h1>
+
+            <p class="description">
+                Administrative access only.
+                This area is separate from the public House.
+            </p>
+
+            <form class="login-form" id="loginForm">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Admin email"
+                    autocomplete="username"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit" id="loginButton">
+                    Enter Administration
+                </button>
+
+            </form>
+
+            <div
+                class="status"
+                id="loginStatus"
+                aria-live="polite"
+            ></div>
+
+            <a
+                class="back-link"
+                href="../"
+            >
+                ← Return to The Consortium
+            </a>
+
+        </div>
+
+
+        <!-- DASHBOARD -->
+
+        <main class="dashboard" id="dashboard">
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <div class="label">
+                        HOUSE OF XANDER // ADMINISTRATION
+                    </div>
+
+                    <h2>
+                        The<br>
+                        House.
+                    </h2>
+
+                    <p>
+                        Administrative control panel
+                    </p>
+
+                </div>
+
+                <button
+                    class="logout"
+                    id="logoutButton"
+                    type="button"
+                >
+                    Sign Out
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="admin-card">
+
+                    <span>
+                        01 // ACCESS
+                    </span>
+
+                    <h3>
+                        Requests
+                    </h3>
+
+                    <p>
+                        Access requests will appear here once the
+                        secure request system is connected.
+                    </p>
+
+                </div>
+
+
+                <div class="admin-card">
+
+                    <span>
+                        02 // HOUSE
+                    </span>
+
+                    <h3>
+                        Members
+                    </h3>
+
+                    <p>
+                        House administration will be available
+                        here without exposing private information
+                        on the public website.
+                    </p>
+
+                </div>
+
+
+                <div class="admin-card">
+
+                    <span>
+                        03 // CONTROL
+                    </span>
+
+                    <h3>
+                        Settings
+                    </h3>
+
+                    <p>
+                        Administrative controls will live here.
+                        Nothing in this panel changes the public
+                        Consortium design.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        /*
+         * IMPORTANT
+         *
+         * This page intentionally does NOT contain a password.
+         *
+         * GitHub Pages is public, so putting an admin password
+         * inside this file would NOT be secure.
+         *
+         * The login below is prepared for a real authentication
+         * provider such as Supabase Auth.
+         *
+         * DO NOT put a Supabase service-role key here.
+         */
+
+
+        const loginCard =
+            document.getElementById("loginCard");
+
+        const dashboard =
+            document.getElementById("dashboard");
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const email =
+            document.getElementById("email");
+
+        const password =
+            document.getElementById("password");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const loginStatus =
+            document.getElementById("loginStatus");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+
+        /*
+         * TEMPORARY AUTH PLACEHOLDER
+         *
+         * Authentication will be connected here.
+         *
+         * No fake password is being added because that would
+         * create the appearance of security without actually
+         * protecting the admin area.
+         */
+
+
+        loginForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            loginStatus.textContent =
+                "SECURE AUTHENTICATION HAS NOT BEEN CONNECTED YET.";
+
+        });
+
+
+        logoutButton.addEventListener("click", function () {
+
+            dashboard.classList.remove("active");
+            loginCard.style.display = "block";
+
+            email.value = "";
+            password.value = "";
+
+            loginStatus.textContent = "";
+
+        });
+
+    </script>
+
+</body>
+</html>
