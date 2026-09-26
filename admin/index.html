@@ -29,6 +29,7 @@
             --line: rgba(197,161,90,.22);
             --danger: #b85c5c;
             --success: #6d9f78;
+            --blue: #708ba8;
             --serif: "Cormorant Garamond", Georgia, serif;
             --sans: "Inter", Arial, sans-serif;
         }
@@ -378,7 +379,8 @@
 
         .house-badge,
         .status-badge,
-        .category-badge {
+        .category-badge,
+        .round-badge {
             display: inline-block;
             padding: 5px 8px;
             border: 1px solid var(--line);
@@ -525,6 +527,183 @@
             font-family: var(--serif);
             font-size: 38px;
             margin-top: 8px;
+        }
+
+        .game-control {
+            border: 1px solid rgba(197,161,90,.16);
+            padding: 18px;
+            background:
+                radial-gradient(circle at top right, rgba(50,17,22,.4), transparent 60%),
+                rgba(27,9,13,.25);
+        }
+
+        .game-control + .game-control {
+            margin-top: 12px;
+        }
+
+        .game-control h3 {
+            font-family: var(--serif);
+            font-size: 27px;
+            font-weight: 500;
+        }
+
+        .game-control p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+            margin-top: 4px;
+        }
+
+        .stage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 9px;
+            margin-top: 15px;
+        }
+
+        .stage-btn {
+            min-height: 80px;
+            border: 1px solid var(--line);
+            background: #0a0909;
+            color: var(--cream);
+            text-align: left;
+            padding: 12px;
+        }
+
+        .stage-btn strong {
+            display: block;
+            color: var(--gold);
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .stage-btn span {
+            display: block;
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .stage-btn.active {
+            border-color: var(--gold);
+            background: rgba(50,17,22,.45);
+        }
+
+        .game-status {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .game-pill {
+            border: 1px solid var(--line);
+            padding: 7px 10px;
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .game-pill strong {
+            color: var(--gold-soft);
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .bonus-card {
+            border: 1px solid var(--line);
+            padding: 13px;
+            background: #0a0909;
+        }
+
+        .bonus-card label {
+            display: block;
+            color: var(--muted);
+            font-size: 8px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .bonus-card input {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--cream);
+            padding: 8px 0;
+            outline: none;
+        }
+
+        .mission-card,
+        .vault-card {
+            border: 1px solid rgba(197,161,90,.16);
+            padding: 16px;
+            background: rgba(27,9,13,.25);
+        }
+
+        .mission-card + .mission-card,
+        .vault-card + .vault-card {
+            margin-top: 10px;
+        }
+
+        .mission-top,
+        .vault-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .mission-card h3,
+        .vault-card h3 {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .mission-card p,
+        .vault-card p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+            margin-top: 7px;
+        }
+
+        .mission-actions,
+        .vault-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 13px;
+        }
+
+        .house-select-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .house-point-btn {
+            border: 1px solid var(--line);
+            background: #0a0909;
+            color: var(--cream);
+            padding: 10px;
+            font-size: 10px;
+        }
+
+        .house-point-btn:hover {
+            border-color: var(--gold);
         }
 
         .challenge {
@@ -683,7 +862,9 @@
         @media (max-width: 950px) {
             .stat-grid,
             .house-grid,
-            .leaderboard {
+            .leaderboard,
+            .stage-grid,
+            .bonus-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -718,7 +899,10 @@
             .stat-grid,
             .house-grid,
             .leaderboard,
-            .score-grid {
+            .score-grid,
+            .stage-grid,
+            .bonus-grid,
+            .house-select-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -746,17 +930,25 @@
 
     <!-- LOGIN -->
     <div class="login-screen" id="loginScreen">
+
         <div class="login-card">
-            <div class="eyebrow">CONFIDENTIAL // HOUSE OF XANDER</div>
+
+            <div class="eyebrow">
+                CONFIDENTIAL // HOUSE OF XANDER
+            </div>
+
             <h1>The Consortium</h1>
+
             <p>
-                Administrative access only. Sign in to manage access requests,
-                members, Houses, challenges and scores.
+                Administrative access only. Sign in to manage access
+                requests, members, Houses, challenges and the Game.
             </p>
 
             <form id="loginForm">
+
                 <div class="field">
                     <label for="loginEmail">Email</label>
+
                     <input
                         type="email"
                         id="loginEmail"
@@ -767,6 +959,7 @@
 
                 <div class="field">
                     <label for="loginPassword">Password</label>
+
                     <input
                         type="password"
                         id="loginPassword"
@@ -775,26 +968,43 @@
                     >
                 </div>
 
-                <button class="primary-btn full" type="submit">
+                <button
+                    class="primary-btn full"
+                    type="submit"
+                >
                     Enter Administration
                 </button>
 
-                <div class="login-status" id="loginStatus"></div>
+                <div
+                    class="login-status"
+                    id="loginStatus"
+                ></div>
+
             </form>
+
         </div>
+
     </div>
 
 
     <!-- ADMIN APP -->
-    <div class="admin-app hidden" id="adminApp">
+    <div
+        class="admin-app hidden"
+        id="adminApp"
+    >
 
         <header class="topbar">
+
             <div class="brand">
                 THE <span>CONSORTIUM</span>
             </div>
 
             <div class="top-actions">
-                <div class="admin-label" id="adminEmail"></div>
+
+                <div
+                    class="admin-label"
+                    id="adminEmail"
+                ></div>
 
                 <button
                     class="ghost-btn"
@@ -803,18 +1013,26 @@
                 >
                     Sign Out
                 </button>
+
             </div>
+
         </header>
 
 
         <main class="container">
 
             <div class="page-heading">
-                <div class="eyebrow">CONFIDENTIAL // HOUSE OF XANDER</div>
+
+                <div class="eyebrow">
+                    CONFIDENTIAL // HOUSE OF XANDER
+                </div>
+
                 <h1>Administration</h1>
+
                 <p>
                     Control the House, the Game and the Night.
                 </p>
+
             </div>
 
 
@@ -822,9 +1040,13 @@
             <section class="section">
 
                 <div class="section-head">
+
                     <div>
                         <h2>Access Requests</h2>
-                        <p>Incoming requests from the public access form.</p>
+
+                        <p>
+                            Incoming requests from the public access form.
+                        </p>
                     </div>
 
                     <button
@@ -834,6 +1056,7 @@
                     >
                         Refresh
                     </button>
+
                 </div>
 
                 <div class="section-body">
@@ -845,6 +1068,7 @@
                     </div>
 
                 </div>
+
             </section>
 
 
@@ -852,10 +1076,15 @@
             <section class="section">
 
                 <div class="section-head">
+
                     <div>
                         <h2>House Overview</h2>
-                        <p>Current distribution of Consortium members.</p>
+
+                        <p>
+                            Current distribution of Consortium members.
+                        </p>
                     </div>
+
                 </div>
 
                 <div class="section-body">
@@ -864,35 +1093,79 @@
 
                         <div class="house-card">
                             <div class="house-icon">♛</div>
+
                             <h3>The Sovereigns</h3>
-                            <p>Authority, Strategy, Composure.</p>
-                            <div class="house-total" id="sovereignsCount">0</div>
+
+                            <p>
+                                Authority, Strategy, Composure.
+                            </p>
+
+                            <div
+                                class="house-total"
+                                id="sovereignsCount"
+                            >
+                                0
+                            </div>
                         </div>
+
 
                         <div class="house-card">
                             <div class="house-icon">⚔</div>
+
                             <h3>The Vanguard</h3>
-                            <p>Boldness, Competition, Pressure.</p>
-                            <div class="house-total" id="vanguardCount">0</div>
+
+                            <p>
+                                Boldness, Competition, Pressure.
+                            </p>
+
+                            <div
+                                class="house-total"
+                                id="vanguardCount"
+                            >
+                                0
+                            </div>
                         </div>
+
 
                         <div class="house-card">
                             <div class="house-icon">◈</div>
+
                             <h3>The Covenant</h3>
-                            <p>Loyalty, Intelligence, Negotiation.</p>
-                            <div class="house-total" id="covenantCount">0</div>
+
+                            <p>
+                                Loyalty, Intelligence, Negotiation.
+                            </p>
+
+                            <div
+                                class="house-total"
+                                id="covenantCount"
+                            >
+                                0
+                            </div>
                         </div>
+
 
                         <div class="house-card">
                             <div class="house-icon">◇</div>
+
                             <h3>The Rogues</h3>
-                            <p>Chaos, Creativity, Unpredictability.</p>
-                            <div class="house-total" id="roguesCount">0</div>
+
+                            <p>
+                                Chaos, Creativity, Unpredictability.
+                            </p>
+
+                            <div
+                                class="house-total"
+                                id="roguesCount"
+                            >
+                                0
+                            </div>
                         </div>
 
                     </div>
 
                 </div>
+
             </section>
 
 
@@ -900,10 +1173,15 @@
             <section class="section">
 
                 <div class="section-head">
+
                     <div>
                         <h2>House Members</h2>
-                        <p>Manage current Consortium members.</p>
+
+                        <p>
+                            Manage current Consortium members.
+                        </p>
                     </div>
+
                 </div>
 
                 <div class="section-body">
@@ -917,18 +1195,46 @@
                         >
 
                         <select id="houseFilter">
-                            <option value="">All Houses</option>
-                            <option value="THE SOVEREIGNS">The Sovereigns</option>
-                            <option value="THE VANGUARD">The Vanguard</option>
-                            <option value="THE COVENANT">The Covenant</option>
-                            <option value="THE ROGUES">The Rogues</option>
+
+                            <option value="">
+                                All Houses
+                            </option>
+
+                            <option value="THE SOVEREIGNS">
+                                The Sovereigns
+                            </option>
+
+                            <option value="THE VANGUARD">
+                                The Vanguard
+                            </option>
+
+                            <option value="THE COVENANT">
+                                The Covenant
+                            </option>
+
+                            <option value="THE ROGUES">
+                                The Rogues
+                            </option>
+
                         </select>
 
+
                         <select id="statusFilter">
-                            <option value="">All Statuses</option>
-                            <option value="ACTIVE">Active</option>
-                            <option value="INACTIVE">Inactive</option>
+
+                            <option value="">
+                                All Statuses
+                            </option>
+
+                            <option value="ACTIVE">
+                                Active
+                            </option>
+
+                            <option value="INACTIVE">
+                                Inactive
+                            </option>
+
                         </select>
+
 
                         <button
                             class="ghost-btn"
@@ -940,9 +1246,13 @@
 
                     </div>
 
+
                     <div class="table-wrap">
+
                         <table>
+
                             <thead>
+
                                 <tr>
                                     <th>Name</th>
                                     <th>House</th>
@@ -950,13 +1260,17 @@
                                     <th>Added</th>
                                     <th>Actions</th>
                                 </tr>
+
                             </thead>
 
                             <tbody id="membersTableBody"></tbody>
+
                         </table>
+
                     </div>
 
                 </div>
+
             </section>
 
 
@@ -964,9 +1278,14 @@
             <section class="section">
 
                 <div class="section-head">
+
                     <div>
                         <h2>Game Administration</h2>
-                        <p>Challenges, points and live House standings.</p>
+
+                        <p>
+                            Run the Consortium's rounds, missions,
+                            Vault decisions and House scoring.
+                        </p>
                     </div>
 
                     <button
@@ -976,27 +1295,293 @@
                     >
                         + New Challenge
                     </button>
+
                 </div>
 
 
                 <div class="section-body">
 
-                    <div class="leaderboard" id="leaderboard"></div>
 
-                    <div style="height: 25px;"></div>
+                    <!-- LIVE GAME CONTROL -->
+                    <div class="game-control">
+
+                        <h3>Live Game Control</h3>
+
+                        <p>
+                            Move the experience through its major stages.
+                            The current stage is stored on this administration
+                            device so the Game can be managed without changing
+                            the existing database structure.
+                        </p>
+
+
+                        <div
+                            class="stage-grid"
+                            id="stageGrid"
+                        >
+
+                            <button
+                                class="stage-btn"
+                                data-stage="OPENING"
+                                type="button"
+                            >
+                                <strong>01</strong>
+                                <span>Opening Round</span>
+                            </button>
+
+                            <button
+                                class="stage-btn"
+                                data-stage="MIND"
+                                type="button"
+                            >
+                                <strong>02</strong>
+                                <span>Mind Games</span>
+                            </button>
+
+                            <button
+                                class="stage-btn"
+                                data-stage="SOCIAL"
+                                type="button"
+                            >
+                                <strong>03</strong>
+                                <span>Social Games</span>
+                            </button>
+
+                            <button
+                                class="stage-btn"
+                                data-stage="PRESSURE"
+                                type="button"
+                            >
+                                <strong>04</strong>
+                                <span>Pressure Games</span>
+                            </button>
+
+                            <button
+                                class="stage-btn"
+                                data-stage="MISSIONS"
+                                type="button"
+                            >
+                                <strong>05</strong>
+                                <span>Secret Missions</span>
+                            </button>
+
+                            <button
+                                class="stage-btn"
+                                data-stage="VAULT"
+                                type="button"
+                            >
+                                <strong>06</strong>
+                                <span>The Vault</span>
+                            </button>
+
+                            <button
+                                class="stage-btn"
+                                data-stage="KINGMAKER"
+                                type="button"
+                            >
+                                <strong>07</strong>
+                                <span>Kingmaker</span>
+                            </button>
+
+                            <button
+                                class="stage-btn"
+                                data-stage="FINAL"
+                                type="button"
+                            >
+                                <strong>08</strong>
+                                <span>The Final</span>
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="game-status"
+                            id="gameStatus"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- HOUSE BONUS / PENALTY CONTROL -->
+                    <div class="game-control">
+
+                        <h3>House Adjustments</h3>
+
+                        <p>
+                            Apply one-off bonuses or penalties from alliances,
+                            exceptional decisions, completed objectives or
+                            game consequences.
+                        </p>
+
+
+                        <div class="bonus-grid">
+
+                            <div class="bonus-card">
+                                <label>The Sovereigns</label>
+
+                                <input
+                                    type="number"
+                                    id="adjustment-SOVEREIGNS"
+                                    value="0"
+                                >
+                            </div>
+
+                            <div class="bonus-card">
+                                <label>The Vanguard</label>
+
+                                <input
+                                    type="number"
+                                    id="adjustment-VANGUARD"
+                                    value="0"
+                                >
+                            </div>
+
+                            <div class="bonus-card">
+                                <label>The Covenant</label>
+
+                                <input
+                                    type="number"
+                                    id="adjustment-COVENANT"
+                                    value="0"
+                                >
+                            </div>
+
+                            <div class="bonus-card">
+                                <label>The Rogues</label>
+
+                                <input
+                                    type="number"
+                                    id="adjustment-ROGUES"
+                                    value="0"
+                                >
+                            </div>
+
+                        </div>
+
+
+                        <div class="challenge-actions">
+
+                            <button
+                                class="primary-btn"
+                                id="saveAdjustmentsBtn"
+                                type="button"
+                            >
+                                Save Adjustments
+                            </button>
+
+                            <button
+                                class="ghost-btn"
+                                id="resetAdjustmentsBtn"
+                                type="button"
+                            >
+                                Reset Adjustments
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LEADERBOARD -->
+                    <div style="height: 18px;"></div>
 
                     <div
-                        id="challengesList"
-                    >
-                        <div class="empty">
-                            Loading challenges...
+                        class="leaderboard"
+                        id="leaderboard"
+                    ></div>
+
+
+                    <!-- SECRET MISSIONS -->
+                    <div class="game-control">
+
+                        <div class="section-head" style="padding:0 0 15px 0;border-bottom:1px solid var(--line);">
+                            <div>
+                                <h3>Secret Missions</h3>
+
+                                <p>
+                                    Harmless private objectives that test
+                                    strategy, observation and social play.
+                                </p>
+                            </div>
+
+                            <button
+                                class="secondary-btn"
+                                id="newMissionBtn"
+                                type="button"
+                            >
+                                + New Mission
+                            </button>
                         </div>
+
+
+                        <div
+                            id="missionsList"
+                            style="margin-top:15px;"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- VAULT -->
+                    <div class="game-control">
+
+                        <div class="section-head" style="padding:0 0 15px 0;border-bottom:1px solid var(--line);">
+
+                            <div>
+                                <h3>The Vault</h3>
+
+                                <p>
+                                    Each House chooses whether to protect
+                                    its current position or risk points for
+                                    a larger reward.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="vaultList"
+                            style="margin-top:15px;"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- CHALLENGES -->
+                    <div class="game-control">
+
+                        <div class="section-head" style="padding:0 0 15px 0;border-bottom:1px solid var(--line);">
+
+                            <div>
+                                <h3>Challenges</h3>
+
+                                <p>
+                                    Core Mind, Social and Pressure challenges.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="challengesList"
+                            style="margin-top:15px;"
+                        >
+                            <div class="empty">
+                                Loading challenges...
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
+
             </section>
 
         </main>
+
     </div>
 
 
@@ -1005,9 +1590,11 @@
         class="modal-overlay hidden"
         id="houseModal"
     >
+
         <div class="modal">
 
             <div class="modal-head">
+
                 <h2>Assign House</h2>
 
                 <button
@@ -1017,7 +1604,9 @@
                 >
                     ×
                 </button>
+
             </div>
+
 
             <div class="modal-body">
 
@@ -1025,19 +1614,28 @@
                     Assign this member to one of the four Consortium Houses.
                 </div>
 
+
                 <div class="field">
+
                     <label>Member</label>
+
                     <input
                         type="text"
                         id="houseMemberName"
                         readonly
                     >
+
                 </div>
 
+
                 <div class="field">
-                    <label for="houseSelect">House</label>
+
+                    <label for="houseSelect">
+                        House
+                    </label>
 
                     <select id="houseSelect">
+
                         <option value="THE SOVEREIGNS">
                             THE SOVEREIGNS
                         </option>
@@ -1053,10 +1651,14 @@
                         <option value="THE ROGUES">
                             THE ROGUES
                         </option>
+
                     </select>
+
                 </div>
 
+
                 <div class="modal-actions">
+
                     <button
                         class="ghost-btn"
                         id="cancelHouseBtn"
@@ -1072,10 +1674,13 @@
                     >
                         Save House
                     </button>
+
                 </div>
 
             </div>
+
         </div>
+
     </div>
 
 
@@ -1084,9 +1689,11 @@
         class="modal-overlay hidden"
         id="challengeModal"
     >
+
         <div class="modal">
 
             <div class="modal-head">
+
                 <h2 id="challengeModalTitle">
                     New Challenge
                 </h2>
@@ -1098,11 +1705,14 @@
                 >
                     ×
                 </button>
+
             </div>
+
 
             <div class="modal-body">
 
                 <div class="field">
+
                     <label for="challengeName">
                         Challenge Name
                     </label>
@@ -1112,21 +1722,37 @@
                         id="challengeName"
                         placeholder="Enter challenge name"
                     >
+
                 </div>
 
+
                 <div class="field">
+
                     <label for="challengeCategory">
                         Category
                     </label>
 
                     <select id="challengeCategory">
-                        <option value="MIND">MIND</option>
-                        <option value="SOCIAL">SOCIAL</option>
-                        <option value="PRESSURE">PRESSURE</option>
+
+                        <option value="MIND">
+                            MIND
+                        </option>
+
+                        <option value="SOCIAL">
+                            SOCIAL
+                        </option>
+
+                        <option value="PRESSURE">
+                            PRESSURE
+                        </option>
+
                     </select>
+
                 </div>
 
+
                 <div class="field">
+
                     <label for="challengeDescription">
                         Description
                     </label>
@@ -1135,9 +1761,12 @@
                         id="challengeDescription"
                         placeholder="Describe the challenge..."
                     ></textarea>
+
                 </div>
 
+
                 <div class="field">
+
                     <label for="challengePoints">
                         Maximum Points
                     </label>
@@ -1148,19 +1777,34 @@
                         min="0"
                         value="100"
                     >
+
                 </div>
 
+
                 <div class="field">
+
                     <label for="challengeStatus">
                         Status
                     </label>
 
                     <select id="challengeStatus">
-                        <option value="UPCOMING">UPCOMING</option>
-                        <option value="ACTIVE">ACTIVE</option>
-                        <option value="COMPLETED">COMPLETED</option>
+
+                        <option value="UPCOMING">
+                            UPCOMING
+                        </option>
+
+                        <option value="ACTIVE">
+                            ACTIVE
+                        </option>
+
+                        <option value="COMPLETED">
+                            COMPLETED
+                        </option>
+
                     </select>
+
                 </div>
+
 
                 <div class="modal-actions">
 
@@ -1183,7 +1827,115 @@
                 </div>
 
             </div>
+
         </div>
+
+    </div>
+
+
+    <!-- MISSION MODAL -->
+    <div
+        class="modal-overlay hidden"
+        id="missionModal"
+    >
+
+        <div class="modal">
+
+            <div class="modal-head">
+
+                <h2 id="missionModalTitle">
+                    New Secret Mission
+                </h2>
+
+                <button
+                    class="close-btn"
+                    id="closeMissionModal"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="modal-note">
+                    Secret missions should remain harmless and social.
+                    Use them for observation, negotiation, alliance building
+                    and strategy.
+                </div>
+
+
+                <div class="field">
+
+                    <label for="missionName">
+                        Mission Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="missionName"
+                        placeholder="Example: The Whisper"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="missionDescription">
+                        Objective
+                    </label>
+
+                    <textarea
+                        id="missionDescription"
+                        placeholder="Describe what the player must accomplish..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="missionPoints">
+                        Reward Points
+                    </label>
+
+                    <input
+                        type="number"
+                        id="missionPoints"
+                        min="0"
+                        value="50"
+                    >
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        class="ghost-btn"
+                        id="cancelMissionBtn"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="primary-btn"
+                        id="saveMissionBtn"
+                        type="button"
+                    >
+                        Save Mission
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
 
@@ -1192,9 +1944,11 @@
         class="modal-overlay hidden"
         id="requestHouseModal"
     >
+
         <div class="modal">
 
             <div class="modal-head">
+
                 <h2>Add to House</h2>
 
                 <button
@@ -1204,18 +1958,21 @@
                 >
                     ×
                 </button>
+
             </div>
+
 
             <div class="modal-body">
 
                 <div class="modal-note">
                     Approving this request will create a Consortium member
                     and immediately assign them to the selected House.
-                    The original access request will remain in the request
-                    history.
+                    The original access request will remain in request history.
                 </div>
 
+
                 <div class="field">
+
                     <label>Access Request</label>
 
                     <input
@@ -1223,9 +1980,12 @@
                         id="requestMemberName"
                         readonly
                     >
+
                 </div>
 
+
                 <div class="field">
+
                     <label for="requestHouseSelect">
                         Assign House
                     </label>
@@ -1249,7 +2009,9 @@
                         </option>
 
                     </select>
+
                 </div>
+
 
                 <div class="modal-actions">
 
@@ -1272,7 +2034,9 @@
                 </div>
 
             </div>
+
         </div>
+
     </div>
 
 
@@ -1284,6 +2048,7 @@
 
 
     <script>
+
         const SUPABASE_URL =
             "https://gtdznirtmbjoydlbwutp.supabase.co";
 
@@ -1305,6 +2070,57 @@
         ];
 
 
+        const GAME_STAGES = {
+            OPENING: {
+                number: "01",
+                name: "Opening Round",
+                description: "House formation and opening decisions."
+            },
+
+            MIND: {
+                number: "02",
+                name: "Mind Games",
+                description: "Cipher, memory, deduction and strategy."
+            },
+
+            SOCIAL: {
+                number: "03",
+                name: "Social Games",
+                description: "Negotiation, alliances and influence."
+            },
+
+            PRESSURE: {
+                number: "04",
+                name: "Pressure Games",
+                description: "Timed decisions, coordination and composure."
+            },
+
+            MISSIONS: {
+                number: "05",
+                name: "Secret Missions",
+                description: "Private social and strategic objectives."
+            },
+
+            VAULT: {
+                number: "06",
+                name: "The Vault",
+                description: "Protect or risk House points."
+            },
+
+            KINGMAKER: {
+                number: "07",
+                name: "Kingmaker",
+                description: "Eliminated Houses influence the final."
+            },
+
+            FINAL: {
+                number: "08",
+                name: "The Final",
+                description: "The final combined House challenge."
+            }
+        };
+
+
         let members = [];
         let requests = [];
         let challenges = [];
@@ -1313,6 +2129,27 @@
         let selectedMember = null;
         let selectedRequest = null;
         let editingChallenge = null;
+        let editingMission = null;
+
+        let missions = loadLocalData(
+            "consortium_missions",
+            []
+        );
+
+        let vaultState = loadLocalData(
+            "consortium_vault",
+            {}
+        );
+
+        let houseAdjustments = loadLocalData(
+            "consortium_house_adjustments",
+            {}
+        );
+
+        let currentStage =
+            localStorage.getItem(
+                "consortium_current_stage"
+            ) || "OPENING";
 
 
         const loginScreen =
@@ -1328,24 +2165,66 @@
             document.getElementById("loginStatus");
 
 
-        function showToast(message, type = "success") {
+        function loadLocalData(key, fallback) {
+
+            try {
+
+                const raw =
+                    localStorage.getItem(key);
+
+                if (!raw) {
+                    return fallback;
+                }
+
+                return JSON.parse(raw);
+
+            } catch (error) {
+
+                console.error(error);
+
+                return fallback;
+            }
+        }
+
+
+        function saveLocalData(key, value) {
+
+            localStorage.setItem(
+                key,
+                JSON.stringify(value)
+            );
+        }
+
+
+        function showToast(
+            message,
+            type = "success"
+        ) {
+
             const toast =
                 document.getElementById("toast");
 
             toast.textContent = message;
+
             toast.className =
                 `toast ${type}`;
 
-            clearTimeout(window.toastTimer);
+            clearTimeout(
+                window.toastTimer
+            );
 
             window.toastTimer =
-                setTimeout(() => {
-                    toast.classList.add("hidden");
-                }, 3500);
+                setTimeout(
+                    () => {
+                        toast.classList.add("hidden");
+                    },
+                    3500
+                );
         }
 
 
         function escapeHtml(value) {
+
             return String(value ?? "")
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
@@ -1356,11 +2235,19 @@
 
 
         function formatDate(value) {
-            if (!value) return "Unknown";
 
-            const date = new Date(value);
+            if (!value) {
+                return "Unknown";
+            }
 
-            if (Number.isNaN(date.getTime())) {
+            const date =
+                new Date(value);
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
                 return "Unknown";
             }
 
@@ -1378,6 +2265,7 @@
 
 
         function normalizeName(value) {
+
             return String(value || "")
                 .trim()
                 .replace(/\s+/g, " ")
@@ -1386,47 +2274,142 @@
 
 
         function houseLabel(house) {
-            return house || "UNASSIGNED";
+
+            return house ||
+                "UNASSIGNED";
         }
 
+
+        function getHouseShortName(house) {
+
+            return String(house || "")
+                .replace(
+                    "THE ",
+                    ""
+                );
+        }
+
+
+        function getAdjustment(house) {
+
+            return Number(
+                houseAdjustments[house] || 0
+            );
+        }
+
+
+        function calculateBaseHouseTotal(
+            house
+        ) {
+
+            return houseScores
+                .filter(
+                    score =>
+                        score.house === house
+                )
+                .reduce(
+                    (
+                        total,
+                        score
+                    ) =>
+                        total +
+                        Number(
+                            score.points || 0
+                        ),
+                    0
+                );
+        }
+
+
+        function calculateHouseTotal(
+            house
+        ) {
+
+            return (
+                calculateBaseHouseTotal(
+                    house
+                ) +
+                getAdjustment(house)
+            );
+        }
+
+
+        /*
+         * AUTH
+         */
 
         async function checkSession() {
 
             const {
                 data,
                 error
-            } = await supabaseClient.auth.getSession();
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
 
             if (error) {
+
                 console.error(error);
+
                 showLogin();
+
                 return;
             }
 
             if (data.session) {
-                showDashboard(data.session);
+
+                showDashboard(
+                    data.session
+                );
+
             } else {
+
                 showLogin();
             }
         }
 
 
         function showLogin() {
-            loginScreen.classList.remove("hidden");
-            adminApp.classList.add("hidden");
+
+            loginScreen
+                .classList
+                .remove("hidden");
+
+            adminApp
+                .classList
+                .add("hidden");
         }
 
 
-        async function showDashboard(session) {
+        async function showDashboard(
+            session
+        ) {
 
-            loginScreen.classList.add("hidden");
-            adminApp.classList.remove("hidden");
+            loginScreen
+                .classList
+                .add("hidden");
 
-            document.getElementById("adminEmail").textContent =
-                session?.user?.email || "ADMIN";
+            adminApp
+                .classList
+                .remove("hidden");
+
+            document
+                .getElementById("adminEmail")
+                .textContent =
+                session?.user?.email ||
+                "ADMIN";
+
+            renderGameControl();
+
+            renderMissions();
+
+            renderVault();
 
             await loadRequests();
+
             await loadMembers();
+
             await loadGameData();
         }
 
@@ -1441,23 +2424,30 @@
                     "Authenticating...";
 
                 const email =
-                    document.getElementById(
-                        "loginEmail"
-                    ).value.trim();
+                    document
+                        .getElementById(
+                            "loginEmail"
+                        )
+                        .value
+                        .trim();
 
                 const password =
-                    document.getElementById(
-                        "loginPassword"
-                    ).value;
+                    document
+                        .getElementById(
+                            "loginPassword"
+                        )
+                        .value;
 
                 const {
                     data,
                     error
                 } =
-                    await supabaseClient.auth.signInWithPassword({
-                        email,
-                        password
-                    });
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
+                            email,
+                            password
+                        });
 
                 if (error) {
 
@@ -1469,7 +2459,9 @@
 
                 loginStatus.textContent = "";
 
-                await showDashboard(data.session);
+                await showDashboard(
+                    data.session
+                );
             }
         );
 
@@ -1480,7 +2472,9 @@
                 "click",
                 async () => {
 
-                    await supabaseClient.auth.signOut();
+                    await supabaseClient
+                        .auth
+                        .signOut();
 
                     members = [];
                     requests = [];
@@ -1513,11 +2507,16 @@
                 error
             } =
                 await supabaseClient
-                    .from("access_requests")
+                    .from(
+                        "access_requests"
+                    )
                     .select("*")
-                    .order("created_at", {
-                        ascending: false
-                    });
+                    .order(
+                        "created_at",
+                        {
+                            ascending: false
+                        }
+                    );
 
             if (error) {
 
@@ -1536,20 +2535,27 @@
                 return;
             }
 
-            requests = data || [];
+            requests =
+                data || [];
 
             renderRequests();
         }
 
 
-        function requestHasMember(request) {
+        function requestHasMember(
+            request
+        ) {
 
             const requestName =
-                normalizeName(request.name);
+                normalizeName(
+                    request.name
+                );
 
             return members.some(
                 member =>
-                    normalizeName(member.name) ===
+                    normalizeName(
+                        member.name
+                    ) ===
                     requestName
             );
         }
@@ -1574,55 +2580,67 @@
 
             list.innerHTML =
                 requests
-                    .map(request => {
+                    .map(
+                        request => {
 
-                        const added =
-                            requestHasMember(request);
+                            const added =
+                                requestHasMember(
+                                    request
+                                );
 
-                        return `
-                            <div class="request-card">
+                            return `
+                                <div class="request-card">
 
-                                <div>
-                                    <div class="request-name">
-                                        ${escapeHtml(request.name)}
+                                    <div>
+
+                                        <div class="request-name">
+                                            ${escapeHtml(
+                                                request.name
+                                            )}
+                                        </div>
+
+                                        <div class="request-date">
+                                            ${formatDate(
+                                                request.created_at
+                                            )}
+                                        </div>
+
                                     </div>
 
-                                    <div class="request-date">
-                                        ${formatDate(request.created_at)}
+                                    <div class="request-actions">
+
+                                        ${
+                                            added
+                                            ?
+                                            `
+                                                <button
+                                                    class="ghost-btn request-added"
+                                                    type="button"
+                                                    disabled
+                                                >
+                                                    Added to House
+                                                </button>
+                                            `
+                                            :
+                                            `
+                                                <button
+                                                    class="primary-btn"
+                                                    type="button"
+                                                    onclick="openRequestHouseModal('${encodeURIComponent(
+                                                        request.name
+                                                    )}')"
+                                                >
+                                                    Add to House
+                                                </button>
+                                            `
+                                        }
+
                                     </div>
-                                </div>
-
-                                <div class="request-actions">
-
-                                    ${
-                                        added
-                                        ? `
-                                            <button
-                                                class="ghost-btn request-added"
-                                                type="button"
-                                                disabled
-                                            >
-                                                Added to House
-                                            </button>
-                                        `
-                                        : `
-                                            <button
-                                                class="primary-btn"
-                                                type="button"
-                                                onclick="openRequestHouseModal('${encodeURIComponent(
-                                                    request.name
-                                                )}')"
-                                            >
-                                                Add to House
-                                            </button>
-                                        `
-                                    }
 
                                 </div>
-
-                            </div>
-                        `;
-                    })
+                            `;
+                        }
+                    )
                     .join("");
         }
 
@@ -1631,38 +2649,51 @@
             function(encodedName) {
 
                 const name =
-                    decodeURIComponent(encodedName);
+                    decodeURIComponent(
+                        encodedName
+                    );
 
                 selectedRequest =
                     requests.find(
                         request =>
-                            normalizeName(request.name) ===
-                            normalizeName(name)
+                            normalizeName(
+                                request.name
+                            ) ===
+                            normalizeName(
+                                name
+                            )
                     );
 
                 if (!selectedRequest) {
+
                     showToast(
                         "Access request not found.",
                         "error"
                     );
+
                     return;
                 }
 
-                document.getElementById(
-                    "requestMemberName"
-                ).value =
+                document
+                    .getElementById(
+                        "requestMemberName"
+                    )
+                    .value =
                     selectedRequest.name;
 
-                document.getElementById(
-                    "requestHouseSelect"
-                ).value =
+                document
+                    .getElementById(
+                        "requestHouseSelect"
+                    )
+                    .value =
                     "THE SOVEREIGNS";
 
                 document
                     .getElementById(
                         "requestHouseModal"
                     )
-                    .classList.remove("hidden");
+                    .classList
+                    .remove("hidden");
             };
 
 
@@ -1674,12 +2705,15 @@
                 .getElementById(
                     "requestHouseModal"
                 )
-                .classList.add("hidden");
+                .classList
+                .add("hidden");
         }
 
 
         document
-            .getElementById("closeRequestHouseModal")
+            .getElementById(
+                "closeRequestHouseModal"
+            )
             .addEventListener(
                 "click",
                 closeRequestHouseModal
@@ -1687,7 +2721,9 @@
 
 
         document
-            .getElementById("cancelRequestHouseBtn")
+            .getElementById(
+                "cancelRequestHouseBtn"
+            )
             .addEventListener(
                 "click",
                 closeRequestHouseModal
@@ -1695,7 +2731,9 @@
 
 
         document
-            .getElementById("approveRequestBtn")
+            .getElementById(
+                "approveRequestBtn"
+            )
             .addEventListener(
                 "click",
                 async () => {
@@ -1708,35 +2746,44 @@
                         selectedRequest.name.trim();
 
                     const house =
-                        document.getElementById(
-                            "requestHouseSelect"
-                        ).value;
+                        document
+                            .getElementById(
+                                "requestHouseSelect"
+                            )
+                            .value;
 
                     if (!name || !house) {
+
                         showToast(
                             "Name and House are required.",
                             "error"
                         );
+
                         return;
                     }
 
 
-                    /*
-                     * Duplicate protection
-                     */
-
                     const {
-                        data: existingMembers,
-                        error: existingError
+                        data:
+                            existingMembers,
+                        error:
+                            existingError
                     } =
                         await supabaseClient
                             .from("members")
-                            .select("id,name,house,status")
-                            .ilike("name", name);
+                            .select(
+                                "id,name,house,status"
+                            )
+                            .ilike(
+                                "name",
+                                name
+                            );
 
                     if (existingError) {
 
-                        console.error(existingError);
+                        console.error(
+                            existingError
+                        );
 
                         showToast(
                             "Could not check existing members.",
@@ -1766,12 +2813,15 @@
 
 
                     const button =
-                        document.getElementById(
-                            "approveRequestBtn"
-                        );
+                        document
+                            .getElementById(
+                                "approveRequestBtn"
+                            );
 
                     button.disabled = true;
-                    button.textContent = "Adding...";
+
+                    button.textContent =
+                        "Adding...";
 
 
                     const {
@@ -1784,7 +2834,8 @@
                                 {
                                     name,
                                     house,
-                                    status: "ACTIVE"
+                                    status:
+                                        "ACTIVE"
                                 }
                             ])
                             .select()
@@ -1792,6 +2843,7 @@
 
 
                     button.disabled = false;
+
                     button.textContent =
                         "Add to House";
 
@@ -1815,7 +2867,9 @@
                     closeRequestHouseModal();
 
                     renderRequests();
+
                     renderMembers();
+
                     updateHouseOverview();
 
                     showToast(
@@ -1826,7 +2880,9 @@
 
 
         document
-            .getElementById("refreshRequestsBtn")
+            .getElementById(
+                "refreshRequestsBtn"
+            )
             .addEventListener(
                 "click",
                 async () => {
@@ -1853,9 +2909,12 @@
                 await supabaseClient
                     .from("members")
                     .select("*")
-                    .order("created_at", {
-                        ascending: false
-                    });
+                    .order(
+                        "created_at",
+                        {
+                            ascending: false
+                        }
+                    );
 
             if (error) {
 
@@ -1869,9 +2928,11 @@
                 return;
             }
 
-            members = data || [];
+            members =
+                data || [];
 
             renderMembers();
+
             updateHouseOverview();
         }
 
@@ -1884,58 +2945,74 @@
                 );
 
             const search =
-                document.getElementById(
-                    "memberSearch"
-                ).value
+                document
+                    .getElementById(
+                        "memberSearch"
+                    )
+                    .value
                     .trim()
                     .toLowerCase();
 
             const house =
-                document.getElementById(
-                    "houseFilter"
-                ).value;
+                document
+                    .getElementById(
+                        "houseFilter"
+                    )
+                    .value;
 
             const status =
-                document.getElementById(
-                    "statusFilter"
-                ).value;
+                document
+                    .getElementById(
+                        "statusFilter"
+                    )
+                    .value;
 
 
             const filtered =
-                members.filter(member => {
+                members.filter(
+                    member => {
 
-                    const matchesSearch =
-                        !search ||
-                        String(member.name || "")
-                            .toLowerCase()
-                            .includes(search);
+                        const matchesSearch =
+                            !search ||
+                            String(
+                                member.name || ""
+                            )
+                                .toLowerCase()
+                                .includes(
+                                    search
+                                );
 
-                    const matchesHouse =
-                        !house ||
-                        member.house === house;
+                        const matchesHouse =
+                            !house ||
+                            member.house ===
+                            house;
 
-                    const matchesStatus =
-                        !status ||
-                        member.status === status;
+                        const matchesStatus =
+                            !status ||
+                            member.status ===
+                            status;
 
-                    return (
-                        matchesSearch &&
-                        matchesHouse &&
-                        matchesStatus
-                    );
-                });
+                        return (
+                            matchesSearch &&
+                            matchesHouse &&
+                            matchesStatus
+                        );
+                    }
+                );
 
 
             if (!filtered.length) {
 
                 tbody.innerHTML =
                     `<tr>
+
                         <td
                             colspan="5"
                             class="empty"
                         >
                             No members found.
                         </td>
+
                     </tr>`;
 
                 return;
@@ -1944,93 +3021,115 @@
 
             tbody.innerHTML =
                 filtered
-                    .map(member => {
+                    .map(
+                        member => {
 
-                        const active =
-                            member.status === "ACTIVE";
+                            const active =
+                                member.status ===
+                                "ACTIVE";
 
-                        return `
-                            <tr>
+                            return `
+                                <tr>
 
-                                <td class="name-cell">
-                                    ${escapeHtml(member.name)}
-                                </td>
-
-                                <td>
-                                    <span class="house-badge">
+                                    <td class="name-cell">
                                         ${escapeHtml(
-                                            houseLabel(member.house)
+                                            member.name
                                         )}
-                                    </span>
-                                </td>
+                                    </td>
 
-                                <td>
-                                    <span
-                                        class="status-badge ${
-                                            active
-                                            ? "status-active"
-                                            : "status-inactive"
-                                        }"
-                                    >
-                                        ${escapeHtml(
-                                            member.status || "ACTIVE"
-                                        )}
-                                    </span>
-                                </td>
+                                    <td>
 
-                                <td class="muted">
-                                    ${formatDate(member.created_at)}
-                                </td>
+                                        <span class="house-badge">
+                                            ${escapeHtml(
+                                                houseLabel(
+                                                    member.house
+                                                )
+                                            )}
+                                        </span>
 
-                                <td>
+                                    </td>
 
-                                    <div class="actions">
+                                    <td>
 
-                                        <button
-                                            class="ghost-btn"
-                                            type="button"
-                                            onclick="openHouseModalById('${member.id}')"
-                                        >
-                                            Change House
-                                        </button>
-
-                                        <button
-                                            class="${
+                                        <span
+                                            class="status-badge ${
                                                 active
-                                                ? "danger-btn"
-                                                : "secondary-btn"
+                                                ?
+                                                "status-active"
+                                                :
+                                                "status-inactive"
                                             }"
-                                            type="button"
-                                            onclick="toggleMemberStatusById('${member.id}')"
                                         >
-                                            ${
-                                                active
-                                                ? "Deactivate"
-                                                : "Activate"
-                                            }
-                                        </button>
+                                            ${escapeHtml(
+                                                member.status ||
+                                                "ACTIVE"
+                                            )}
+                                        </span>
 
-                                        <button
-                                            class="danger-btn"
-                                            type="button"
-                                            onclick="removeMemberById('${member.id}')"
-                                        >
-                                            Remove
-                                        </button>
+                                    </td>
 
-                                    </div>
+                                    <td class="muted">
+                                        ${formatDate(
+                                            member.created_at
+                                        )}
+                                    </td>
 
-                                </td>
+                                    <td>
 
-                            </tr>
-                        `;
-                    })
+                                        <div class="actions">
+
+                                            <button
+                                                class="ghost-btn"
+                                                type="button"
+                                                onclick="openHouseModalById('${member.id}')"
+                                            >
+                                                Change House
+                                            </button>
+
+                                            <button
+                                                class="${
+                                                    active
+                                                    ?
+                                                    "danger-btn"
+                                                    :
+                                                    "secondary-btn"
+                                                }"
+                                                type="button"
+                                                onclick="toggleMemberStatusById('${member.id}')"
+                                            >
+                                                ${
+                                                    active
+                                                    ?
+                                                    "Deactivate"
+                                                    :
+                                                    "Activate"
+                                                }
+                                            </button>
+
+                                            <button
+                                                class="danger-btn"
+                                                type="button"
+                                                onclick="removeMemberById('${member.id}')"
+                                            >
+                                                Remove
+                                            </button>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            `;
+                        }
+                    )
                     .join("");
         }
 
 
         document
-            .getElementById("memberSearch")
+            .getElementById(
+                "memberSearch"
+            )
             .addEventListener(
                 "input",
                 renderMembers
@@ -2038,7 +3137,9 @@
 
 
         document
-            .getElementById("houseFilter")
+            .getElementById(
+                "houseFilter"
+            )
             .addEventListener(
                 "change",
                 renderMembers
@@ -2046,7 +3147,9 @@
 
 
         document
-            .getElementById("statusFilter")
+            .getElementById(
+                "statusFilter"
+            )
             .addEventListener(
                 "change",
                 renderMembers
@@ -2054,22 +3157,30 @@
 
 
         document
-            .getElementById("clearFiltersBtn")
+            .getElementById(
+                "clearFiltersBtn"
+            )
             .addEventListener(
                 "click",
                 () => {
 
-                    document.getElementById(
-                        "memberSearch"
-                    ).value = "";
+                    document
+                        .getElementById(
+                            "memberSearch"
+                        )
+                        .value = "";
 
-                    document.getElementById(
-                        "houseFilter"
-                    ).value = "";
+                    document
+                        .getElementById(
+                            "houseFilter"
+                        )
+                        .value = "";
 
-                    document.getElementById(
-                        "statusFilter"
-                    ).value = "";
+                    document
+                        .getElementById(
+                            "statusFilter"
+                        )
+                        .value = "";
 
                     renderMembers();
                 }
@@ -2081,7 +3192,8 @@
             const activeMembers =
                 members.filter(
                     member =>
-                        member.status === "ACTIVE"
+                        member.status ===
+                        "ACTIVE"
                 );
 
 
@@ -2089,52 +3201,80 @@
                 house =>
                     activeMembers.filter(
                         member =>
-                            member.house === house
+                            member.house ===
+                            house
                     ).length;
 
 
-            document.getElementById(
-                "sovereignsCount"
-            ).textContent =
-                count("THE SOVEREIGNS");
+            document
+                .getElementById(
+                    "sovereignsCount"
+                )
+                .textContent =
+                count(
+                    "THE SOVEREIGNS"
+                );
 
 
-            document.getElementById(
-                "vanguardCount"
-            ).textContent =
-                count("THE VANGUARD");
+            document
+                .getElementById(
+                    "vanguardCount"
+                )
+                .textContent =
+                count(
+                    "THE VANGUARD"
+                );
 
 
-            document.getElementById(
-                "covenantCount"
-            ).textContent =
-                count("THE COVENANT");
+            document
+                .getElementById(
+                    "covenantCount"
+                )
+                .textContent =
+                count(
+                    "THE COVENANT"
+                );
 
 
-            document.getElementById(
-                "roguesCount"
-            ).textContent =
-                count("THE ROGUES");
+            document
+                .getElementById(
+                    "roguesCount"
+                )
+                .textContent =
+                count(
+                    "THE ROGUES"
+                );
         }
 
 
-        function openHouseModal(member) {
+        function openHouseModal(
+            member
+        ) {
 
-            selectedMember = member;
-
-            document.getElementById(
-                "houseMemberName"
-            ).value =
-                member.name;
-
-            document.getElementById(
-                "houseSelect"
-            ).value =
-                member.house || "THE SOVEREIGNS";
+            selectedMember =
+                member;
 
             document
-                .getElementById("houseModal")
-                .classList.remove("hidden");
+                .getElementById(
+                    "houseMemberName"
+                )
+                .value =
+                member.name;
+
+            document
+                .getElementById(
+                    "houseSelect"
+                )
+                .value =
+                member.house ||
+                "THE SOVEREIGNS";
+
+            document
+                .getElementById(
+                    "houseModal"
+                )
+                .classList
+                .remove("hidden");
         }
 
 
@@ -2144,28 +3284,40 @@
                 const member =
                     members.find(
                         item =>
-                            String(item.id) ===
+                            String(
+                                item.id
+                            ) ===
                             String(id)
                     );
 
-                if (!member) return;
+                if (!member) {
+                    return;
+                }
 
-                openHouseModal(member);
+                openHouseModal(
+                    member
+                );
             };
 
 
         function closeHouseModal() {
 
-            selectedMember = null;
+            selectedMember =
+                null;
 
             document
-                .getElementById("houseModal")
-                .classList.add("hidden");
+                .getElementById(
+                    "houseModal"
+                )
+                .classList
+                .add("hidden");
         }
 
 
         document
-            .getElementById("closeHouseModal")
+            .getElementById(
+                "closeHouseModal"
+            )
             .addEventListener(
                 "click",
                 closeHouseModal
@@ -2173,7 +3325,9 @@
 
 
         document
-            .getElementById("cancelHouseBtn")
+            .getElementById(
+                "cancelHouseBtn"
+            )
             .addEventListener(
                 "click",
                 closeHouseModal
@@ -2181,17 +3335,23 @@
 
 
         document
-            .getElementById("saveHouseBtn")
+            .getElementById(
+                "saveHouseBtn"
+            )
             .addEventListener(
                 "click",
                 async () => {
 
-                    if (!selectedMember) return;
+                    if (!selectedMember) {
+                        return;
+                    }
 
                     const house =
-                        document.getElementById(
-                            "houseSelect"
-                        ).value;
+                        document
+                            .getElementById(
+                                "houseSelect"
+                            )
+                            .value;
 
                     const {
                         error
@@ -2228,13 +3388,15 @@
                         );
 
                     if (member) {
-                        member.house = house;
+                        member.house =
+                            house;
                     }
 
 
                     closeHouseModal();
 
                     renderMembers();
+
                     updateHouseOverview();
 
                     showToast(
@@ -2250,22 +3412,33 @@
                 const member =
                     members.find(
                         item =>
-                            String(item.id) ===
+                            String(
+                                item.id
+                            ) ===
                             String(id)
                     );
 
-                if (!member) return;
+                if (!member) {
+                    return;
+                }
 
-                await toggleMemberStatus(member);
+                await toggleMemberStatus(
+                    member
+                );
             };
 
 
-        async function toggleMemberStatus(member) {
+        async function toggleMemberStatus(
+            member
+        ) {
 
             const newStatus =
-                member.status === "ACTIVE"
-                ? "INACTIVE"
-                : "ACTIVE";
+                member.status ===
+                "ACTIVE"
+                ?
+                "INACTIVE"
+                :
+                "ACTIVE";
 
 
             const {
@@ -2274,7 +3447,8 @@
                 await supabaseClient
                     .from("members")
                     .update({
-                        status: newStatus
+                        status:
+                            newStatus
                     })
                     .eq(
                         "id",
@@ -2295,9 +3469,11 @@
             }
 
 
-            member.status = newStatus;
+            member.status =
+                newStatus;
 
             renderMembers();
+
             updateHouseOverview();
 
             showToast(
@@ -2312,24 +3488,34 @@
                 const member =
                     members.find(
                         item =>
-                            String(item.id) ===
+                            String(
+                                item.id
+                            ) ===
                             String(id)
                     );
 
-                if (!member) return;
+                if (!member) {
+                    return;
+                }
 
-                await removeMember(member);
+                await removeMember(
+                    member
+                );
             };
 
 
-        async function removeMember(member) {
+        async function removeMember(
+            member
+        ) {
 
             const confirmed =
                 confirm(
                     `Remove ${member.name} from the Consortium?`
                 );
 
-            if (!confirmed) return;
+            if (!confirmed) {
+                return;
+            }
 
 
             const {
@@ -2366,13 +3552,236 @@
 
 
             renderMembers();
+
             updateHouseOverview();
+
             renderRequests();
 
             showToast(
                 `${member.name} has been removed.`
             );
         }
+
+
+        /*
+         * GAME CONTROL
+         */
+
+        function renderGameControl() {
+
+            document
+                .querySelectorAll(
+                    ".stage-btn"
+                )
+                .forEach(
+                    button => {
+
+                        button.classList.toggle(
+                            "active",
+                            button.dataset.stage ===
+                            currentStage
+                        );
+                    }
+                );
+
+
+            const stage =
+                GAME_STAGES[
+                    currentStage
+                ] ||
+                GAME_STAGES.OPENING;
+
+
+            document
+                .getElementById(
+                    "gameStatus"
+                )
+                .innerHTML = `
+
+                    <div class="game-pill">
+                        CURRENT STAGE:
+                        <strong>
+                            ${escapeHtml(
+                                stage.name
+                            )}
+                        </strong>
+                    </div>
+
+                    <div class="game-pill">
+                        STAGE:
+                        <strong>
+                            ${escapeHtml(
+                                stage.number
+                            )}
+                        </strong>
+                    </div>
+
+                    <div class="game-pill">
+                        MODE:
+                        <strong>
+                            ${escapeHtml(
+                                stage.description
+                            )}
+                        </strong>
+                    </div>
+                `;
+        }
+
+
+        document
+            .querySelectorAll(
+                ".stage-btn"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const stage =
+                                button.dataset.stage;
+
+                            currentStage =
+                                stage;
+
+                            localStorage.setItem(
+                                "consortium_current_stage",
+                                stage
+                            );
+
+                            renderGameControl();
+
+                            showToast(
+                                `${GAME_STAGES[stage].name} is now active.`
+                            );
+                        }
+                    );
+                }
+            );
+
+
+        /*
+         * HOUSE ADJUSTMENTS
+         */
+
+        function loadAdjustmentInputs() {
+
+            HOUSES.forEach(
+                house => {
+
+                    const short =
+                        getHouseShortName(
+                            house
+                        );
+
+                    const input =
+                        document.getElementById(
+                            `adjustment-${short}`
+                        );
+
+                    if (input) {
+
+                        input.value =
+                            getAdjustment(
+                                house
+                            );
+                    }
+                }
+            );
+        }
+
+
+        function saveAdjustments() {
+
+            const next =
+                {};
+
+            HOUSES.forEach(
+                house => {
+
+                    const short =
+                        getHouseShortName(
+                            house
+                        );
+
+                    const input =
+                        document.getElementById(
+                            `adjustment-${short}`
+                        );
+
+                    next[house] =
+                        Number(
+                            input?.value || 0
+                        );
+                }
+            );
+
+
+            houseAdjustments =
+                next;
+
+            saveLocalData(
+                "consortium_house_adjustments",
+                houseAdjustments
+            );
+
+            renderLeaderboard();
+
+            showToast(
+                "House adjustments saved."
+            );
+        }
+
+
+        function resetAdjustments() {
+
+            const confirmed =
+                confirm(
+                    "Reset all House adjustments to zero?"
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            houseAdjustments =
+                {};
+
+            saveLocalData(
+                "consortium_house_adjustments",
+                houseAdjustments
+            );
+
+            loadAdjustmentInputs();
+
+            renderLeaderboard();
+
+            showToast(
+                "House adjustments reset."
+            );
+        }
+
+
+        document
+            .getElementById(
+                "saveAdjustmentsBtn"
+            )
+            .addEventListener(
+                "click",
+                saveAdjustments
+            );
+
+
+        document
+            .getElementById(
+                "resetAdjustmentsBtn"
+            )
+            .addEventListener(
+                "click",
+                resetAdjustments
+            );
 
 
         /*
@@ -2386,8 +3795,15 @@
                 loadHouseScores()
             ]);
 
+            loadAdjustmentInputs();
+
             renderLeaderboard();
+
             renderChallenges();
+
+            renderMissions();
+
+            renderVault();
         }
 
 
@@ -2400,9 +3816,12 @@
                 await supabaseClient
                     .from("challenges")
                     .select("*")
-                    .order("created_at", {
-                        ascending: true
-                    });
+                    .order(
+                        "created_at",
+                        {
+                            ascending: true
+                        }
+                    );
 
 
             if (error) {
@@ -2417,7 +3836,8 @@
                 return;
             }
 
-            challenges = data || [];
+            challenges =
+                data || [];
         }
 
 
@@ -2444,23 +3864,8 @@
                 return;
             }
 
-            houseScores = data || [];
-        }
-
-
-        function calculateHouseTotal(house) {
-
-            return houseScores
-                .filter(
-                    score =>
-                        score.house === house
-                )
-                .reduce(
-                    (total, score) =>
-                        total +
-                        Number(score.points || 0),
-                    0
-                );
+            houseScores =
+                data || [];
         }
 
 
@@ -2474,13 +3879,20 @@
 
             const rankings =
                 HOUSES
-                    .map(house => ({
-                        house,
-                        score:
-                            calculateHouseTotal(house)
-                    }))
+                    .map(
+                        house => ({
+                            house,
+                            score:
+                                calculateHouseTotal(
+                                    house
+                                )
+                        })
+                    )
                     .sort(
-                        (a, b) =>
+                        (
+                            a,
+                            b
+                        ) =>
                             b.score -
                             a.score
                     );
@@ -2489,14 +3901,10 @@
             leaderboard.innerHTML =
                 rankings
                     .map(
-                        (item, index) => {
-
-                            const label =
-                                item.house
-                                    .replace(
-                                        "THE ",
-                                        "THE "
-                                    );
+                        (
+                            item,
+                            index
+                        ) => {
 
                             return `
                                 <div class="leader-card">
@@ -2506,7 +3914,9 @@
                                     </div>
 
                                     <h3>
-                                        ${escapeHtml(label)}
+                                        ${escapeHtml(
+                                            item.house
+                                        )}
                                     </h3>
 
                                     <div class="leader-score">
@@ -2520,6 +3930,10 @@
                     .join("");
         }
 
+
+        /*
+         * CHALLENGES
+         */
 
         function renderChallenges() {
 
@@ -2552,32 +3966,42 @@
         }
 
 
-        function renderChallenge(challenge) {
+        function renderChallenge(
+            challenge
+        ) {
 
             const scores =
                 HOUSES
-                    .map(house => {
+                    .map(
+                        house => {
 
-                        const existing =
-                            houseScores.find(
-                                score =>
-                                    score.house === house &&
-                                    String(
-                                        score.challenge_id
-                                    ) ===
-                                    String(
-                                        challenge.id
+                            const existing =
+                                houseScores.find(
+                                    score =>
+                                        score.house ===
+                                        house &&
+                                        String(
+                                            score.challenge_id
+                                        ) ===
+                                        String(
+                                            challenge.id
+                                        )
+                                );
+
+                            return {
+                                house,
+                                points:
+                                    existing
+                                    ?
+                                    Number(
+                                        existing.points ||
+                                        0
                                     )
-                            );
-
-                        return {
-                            house,
-                            points:
-                                existing
-                                ? Number(existing.points || 0)
-                                : 0
-                        };
-                    });
+                                    :
+                                    0
+                            };
+                        }
+                    );
 
 
             return `
@@ -2601,10 +4025,27 @@
                                     )}
                                 </span>
 
+                                <span class="round-badge">
+                                    ${
+                                        challenge.category ===
+                                        "MIND"
+                                        ?
+                                        "MIND ROUND"
+                                        :
+                                        challenge.category ===
+                                        "SOCIAL"
+                                        ?
+                                        "SOCIAL ROUND"
+                                        :
+                                        "PRESSURE ROUND"
+                                    }
+                                </span>
+
                                 <span class="category-badge">
                                     MAX ${
                                         Number(
-                                            challenge.max_points || 0
+                                            challenge.max_points ||
+                                            0
                                         )
                                     } PTS
                                 </span>
@@ -2621,14 +4062,18 @@
 
                     </div>
 
+
                     <div class="challenge-description">
+
                         ${
                             escapeHtml(
                                 challenge.description ||
                                 "No description provided."
                             )
                         }
+
                     </div>
+
 
                     <div class="score-grid">
 
@@ -2649,7 +4094,8 @@
                                                     type="number"
                                                     min="0"
                                                     max="${Number(
-                                                        challenge.max_points || 0
+                                                        challenge.max_points ||
+                                                        0
                                                     )}"
                                                     value="${score.points}"
                                                     data-score-challenge="${challenge.id}"
@@ -2665,6 +4111,7 @@
                         }
 
                     </div>
+
 
                     <div class="challenge-actions">
 
@@ -2705,11 +4152,15 @@
                 const challenge =
                     challenges.find(
                         item =>
-                            String(item.id) ===
+                            String(
+                                item.id
+                            ) ===
                             String(id)
                     );
 
-                if (!challenge) return;
+                if (!challenge) {
+                    return;
+                }
 
                 await saveChallengeScores(
                     challenge
@@ -2727,13 +4178,19 @@
                 );
 
 
-            for (const input of inputs) {
+            for (
+                const input
+                of inputs
+            ) {
 
                 const house =
-                    input.dataset.scoreHouse;
+                    input.dataset
+                        .scoreHouse;
 
                 let points =
-                    Number(input.value || 0);
+                    Number(
+                        input.value || 0
+                    );
 
                 if (points < 0) {
                     points = 0;
@@ -2741,23 +4198,29 @@
 
                 const maxPoints =
                     Number(
-                        challenge.max_points || 0
+                        challenge.max_points ||
+                        0
                     );
 
                 if (
                     maxPoints > 0 &&
                     points > maxPoints
                 ) {
-                    points = maxPoints;
+                    points =
+                        maxPoints;
                 }
 
 
                 const {
-                    data: existing,
-                    error: existingError
+                    data:
+                        existing,
+                    error:
+                        existingError
                 } =
                     await supabaseClient
-                        .from("house_scores")
+                        .from(
+                            "house_scores"
+                        )
                         .select("id")
                         .eq(
                             "challenge_id",
@@ -2772,7 +4235,9 @@
 
                 if (existingError) {
 
-                    console.error(existingError);
+                    console.error(
+                        existingError
+                    );
 
                     showToast(
                         "Could not check existing score.",
@@ -2790,7 +4255,9 @@
 
                     result =
                         await supabaseClient
-                            .from("house_scores")
+                            .from(
+                                "house_scores"
+                            )
                             .update({
                                 points
                             })
@@ -2803,7 +4270,9 @@
 
                     result =
                         await supabaseClient
-                            .from("house_scores")
+                            .from(
+                                "house_scores"
+                            )
                             .insert([
                                 {
                                     house,
@@ -2834,6 +4303,7 @@
             await loadHouseScores();
 
             renderLeaderboard();
+
             renderChallenges();
 
             showToast(
@@ -2853,49 +4323,69 @@
             editingChallenge =
                 challenge;
 
-            document.getElementById(
-                "challengeModalTitle"
-            ).textContent =
+            document
+                .getElementById(
+                    "challengeModalTitle"
+                )
+                .textContent =
                 challenge
-                ? "Edit Challenge"
-                : "New Challenge";
+                ?
+                "Edit Challenge"
+                :
+                "New Challenge";
 
 
-            document.getElementById(
-                "challengeName"
-            ).value =
-                challenge?.name || "";
+            document
+                .getElementById(
+                    "challengeName"
+                )
+                .value =
+                challenge?.name ||
+                "";
 
 
-            document.getElementById(
-                "challengeCategory"
-            ).value =
-                challenge?.category || "MIND";
+            document
+                .getElementById(
+                    "challengeCategory"
+                )
+                .value =
+                challenge?.category ||
+                "MIND";
 
 
-            document.getElementById(
-                "challengeDescription"
-            ).value =
-                challenge?.description || "";
+            document
+                .getElementById(
+                    "challengeDescription"
+                )
+                .value =
+                challenge?.description ||
+                "";
 
 
-            document.getElementById(
-                "challengePoints"
-            ).value =
-                challenge?.max_points ?? 100;
+            document
+                .getElementById(
+                    "challengePoints"
+                )
+                .value =
+                challenge?.max_points ??
+                100;
 
 
-            document.getElementById(
-                "challengeStatus"
-            ).value =
-                challenge?.status || "UPCOMING";
+            document
+                .getElementById(
+                    "challengeStatus"
+                )
+                .value =
+                challenge?.status ||
+                "UPCOMING";
 
 
             document
                 .getElementById(
                     "challengeModal"
                 )
-                .classList.remove("hidden");
+                .classList
+                .remove("hidden");
         }
 
 
@@ -2905,11 +4395,15 @@
                 const challenge =
                     challenges.find(
                         item =>
-                            String(item.id) ===
+                            String(
+                                item.id
+                            ) ===
                             String(id)
                     );
 
-                if (!challenge) return;
+                if (!challenge) {
+                    return;
+                }
 
                 openChallengeModal(
                     challenge
@@ -2918,7 +4412,9 @@
 
 
         document
-            .getElementById("newChallengeBtn")
+            .getElementById(
+                "newChallengeBtn"
+            )
             .addEventListener(
                 "click",
                 () => {
@@ -2928,7 +4424,9 @@
 
 
         document
-            .getElementById("closeChallengeModal")
+            .getElementById(
+                "closeChallengeModal"
+            )
             .addEventListener(
                 "click",
                 closeChallengeModal
@@ -2936,7 +4434,9 @@
 
 
         document
-            .getElementById("cancelChallengeBtn")
+            .getElementById(
+                "cancelChallengeBtn"
+            )
             .addEventListener(
                 "click",
                 closeChallengeModal
@@ -2945,18 +4445,22 @@
 
         function closeChallengeModal() {
 
-            editingChallenge = null;
+            editingChallenge =
+                null;
 
             document
                 .getElementById(
                     "challengeModal"
                 )
-                .classList.add("hidden");
+                .classList
+                .add("hidden");
         }
 
 
         document
-            .getElementById("saveChallengeBtn")
+            .getElementById(
+                "saveChallengeBtn"
+            )
             .addEventListener(
                 "click",
                 saveChallenge
@@ -2966,31 +4470,44 @@
         async function saveChallenge() {
 
             const name =
-                document.getElementById(
-                    "challengeName"
-                ).value.trim();
+                document
+                    .getElementById(
+                        "challengeName"
+                    )
+                    .value
+                    .trim();
 
             const category =
-                document.getElementById(
-                    "challengeCategory"
-                ).value;
+                document
+                    .getElementById(
+                        "challengeCategory"
+                    )
+                    .value;
 
             const description =
-                document.getElementById(
-                    "challengeDescription"
-                ).value.trim();
+                document
+                    .getElementById(
+                        "challengeDescription"
+                    )
+                    .value
+                    .trim();
 
             const max_points =
                 Number(
-                    document.getElementById(
-                        "challengePoints"
-                    ).value || 0
+                    document
+                        .getElementById(
+                            "challengePoints"
+                        )
+                        .value ||
+                    0
                 );
 
             const status =
-                document.getElementById(
-                    "challengeStatus"
-                ).value;
+                document
+                    .getElementById(
+                        "challengeStatus"
+                    )
+                    .value;
 
 
             if (!name) {
@@ -3032,7 +4549,9 @@
                 result =
                     await supabaseClient
                         .from("challenges")
-                        .update(payload)
+                        .update(
+                            payload
+                        )
                         .eq(
                             "id",
                             editingChallenge.id
@@ -3065,6 +4584,11 @@
             }
 
 
+            const wasEditing =
+                Boolean(
+                    editingChallenge
+                );
+
             closeChallengeModal();
 
             await loadChallenges();
@@ -3072,9 +4596,11 @@
             renderChallenges();
 
             showToast(
-                editingChallenge
-                ? "Challenge updated."
-                : "Challenge created."
+                wasEditing
+                ?
+                "Challenge updated."
+                :
+                "Challenge created."
             );
         }
 
@@ -3085,11 +4611,15 @@
                 const challenge =
                     challenges.find(
                         item =>
-                            String(item.id) ===
+                            String(
+                                item.id
+                            ) ===
                             String(id)
                     );
 
-                if (!challenge) return;
+                if (!challenge) {
+                    return;
+                }
 
                 await deleteChallenge(
                     challenge
@@ -3106,14 +4636,18 @@
                     `Delete "${challenge.name}"?`
                 );
 
-            if (!confirmed) return;
+            if (!confirmed) {
+                return;
+            }
 
 
             const {
                 error
             } =
                 await supabaseClient
-                    .from("challenges")
+                    .from(
+                        "challenges"
+                    )
                     .delete()
                     .eq(
                         "id",
@@ -3156,6 +4690,7 @@
 
 
             renderChallenges();
+
             renderLeaderboard();
 
             showToast(
@@ -3165,11 +4700,688 @@
 
 
         /*
-         * CLOSE MODALS WHEN CLICKING OUTSIDE
+         * SECRET MISSIONS
+         */
+
+        function renderMissions() {
+
+            const list =
+                document.getElementById(
+                    "missionsList"
+                );
+
+
+            if (!missions.length) {
+
+                list.innerHTML =
+                    `<div class="empty">
+                        No secret missions created yet.
+                    </div>`;
+
+                return;
+            }
+
+
+            list.innerHTML =
+                missions
+                    .map(
+                        mission =>
+                            `
+                                <div class="mission-card">
+
+                                    <div class="mission-top">
+
+                                        <div>
+
+                                            <h3>
+                                                ${escapeHtml(
+                                                    mission.name
+                                                )}
+                                            </h3>
+
+                                            <p>
+                                                ${escapeHtml(
+                                                    mission.description
+                                                )}
+                                            </p>
+
+                                        </div>
+
+                                        <span class="category-badge">
+                                            ${
+                                                Number(
+                                                    mission.points ||
+                                                    0
+                                                )
+                                            } PTS
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="mission-actions">
+
+                                        <button
+                                            class="primary-btn"
+                                            type="button"
+                                            onclick="openMissionById('${mission.id}')"
+                                        >
+                                            Edit
+                                        </button>
+
+                                        <button
+                                            class="danger-btn"
+                                            type="button"
+                                            onclick="deleteMissionById('${mission.id}')"
+                                        >
+                                            Delete
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                            `
+                    )
+                    .join("");
+        }
+
+
+        function openMissionModal(
+            mission = null
+        ) {
+
+            editingMission =
+                mission;
+
+            document
+                .getElementById(
+                    "missionModalTitle"
+                )
+                .textContent =
+                mission
+                ?
+                "Edit Secret Mission"
+                :
+                "New Secret Mission";
+
+
+            document
+                .getElementById(
+                    "missionName"
+                )
+                .value =
+                mission?.name ||
+                "";
+
+
+            document
+                .getElementById(
+                    "missionDescription"
+                )
+                .value =
+                mission?.description ||
+                "";
+
+
+            document
+                .getElementById(
+                    "missionPoints"
+                )
+                .value =
+                mission?.points ??
+                50;
+
+
+            document
+                .getElementById(
+                    "missionModal"
+                )
+                .classList
+                .remove("hidden");
+        }
+
+
+        window.openMissionById =
+            function(id) {
+
+                const mission =
+                    missions.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+                if (!mission) {
+                    return;
+                }
+
+                openMissionModal(
+                    mission
+                );
+            };
+
+
+        document
+            .getElementById(
+                "newMissionBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+                    openMissionModal();
+                }
+            );
+
+
+        document
+            .getElementById(
+                "closeMissionModal"
+            )
+            .addEventListener(
+                "click",
+                closeMissionModal
+            );
+
+
+        document
+            .getElementById(
+                "cancelMissionBtn"
+            )
+            .addEventListener(
+                "click",
+                closeMissionModal
+            );
+
+
+        function closeMissionModal() {
+
+            editingMission =
+                null;
+
+            document
+                .getElementById(
+                    "missionModal"
+                )
+                .classList
+                .add("hidden");
+        }
+
+
+        document
+            .getElementById(
+                "saveMissionBtn"
+            )
+            .addEventListener(
+                "click",
+                saveMission
+            );
+
+
+        function saveMission() {
+
+            const name =
+                document
+                    .getElementById(
+                        "missionName"
+                    )
+                    .value
+                    .trim();
+
+            const description =
+                document
+                    .getElementById(
+                        "missionDescription"
+                    )
+                    .value
+                    .trim();
+
+            const points =
+                Number(
+                    document
+                        .getElementById(
+                            "missionPoints"
+                        )
+                        .value ||
+                    0
+                );
+
+
+            if (!name) {
+
+                showToast(
+                    "Mission name is required.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (points < 0) {
+
+                showToast(
+                    "Mission points cannot be negative.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (editingMission) {
+
+                editingMission.name =
+                    name;
+
+                editingMission.description =
+                    description;
+
+                editingMission.points =
+                    points;
+
+            } else {
+
+                missions.push({
+                    id:
+                        `mission-${Date.now()}-${Math.random()
+                            .toString(36)
+                            .slice(2, 8)}`,
+                    name,
+                    description,
+                    points,
+                    created_at:
+                        new Date().toISOString()
+                });
+            }
+
+
+            saveLocalData(
+                "consortium_missions",
+                missions
+            );
+
+            const wasEditing =
+                Boolean(
+                    editingMission
+                );
+
+            closeMissionModal();
+
+            renderMissions();
+
+            showToast(
+                wasEditing
+                ?
+                "Secret mission updated."
+                :
+                "Secret mission created."
+            );
+        }
+
+
+        window.deleteMissionById =
+            function(id) {
+
+                const mission =
+                    missions.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+                if (!mission) {
+                    return;
+                }
+
+
+                const confirmed =
+                    confirm(
+                        `Delete "${mission.name}"?`
+                    );
+
+                if (!confirmed) {
+                    return;
+                }
+
+
+                missions =
+                    missions.filter(
+                        item =>
+                            String(
+                                item.id
+                            ) !==
+                            String(id)
+                    );
+
+
+                saveLocalData(
+                    "consortium_missions",
+                    missions
+                );
+
+                renderMissions();
+
+                showToast(
+                    "Secret mission deleted."
+                );
+            };
+
+
+        /*
+         * VAULT
+         */
+
+        function getVaultEntry(
+            house
+        ) {
+
+            return vaultState[house] ||
+                {
+                    decision: "UNDECIDED",
+                    amount: 0,
+                    resolved: false
+                };
+        }
+
+
+        function renderVault() {
+
+            const list =
+                document.getElementById(
+                    "vaultList"
+                );
+
+
+            list.innerHTML =
+                HOUSES
+                    .map(
+                        house => {
+
+                            const entry =
+                                getVaultEntry(
+                                    house
+                                );
+
+                            return `
+                                <div class="vault-card">
+
+                                    <div class="vault-top">
+
+                                        <div>
+
+                                            <h3>
+                                                ${escapeHtml(
+                                                    house
+                                                )}
+                                            </h3>
+
+                                            <p>
+                                                ${
+                                                    entry.decision ===
+                                                    "PROTECT"
+                                                    ?
+                                                    "House is protecting its current position."
+                                                    :
+                                                    entry.decision ===
+                                                    "RISK"
+                                                    ?
+                                                    "House has chosen to risk points."
+                                                    :
+                                                    "No Vault decision recorded."
+                                                }
+                                            </p>
+
+                                        </div>
+
+                                        <span class="category-badge">
+                                            ${
+                                                entry.resolved
+                                                ?
+                                                "RESOLVED"
+                                                :
+                                                "OPEN"
+                                            }
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="game-status">
+
+                                        <div class="game-pill">
+                                            DECISION:
+                                            <strong>
+                                                ${escapeHtml(
+                                                    entry.decision
+                                                )}
+                                            </strong>
+                                        </div>
+
+                                        <div class="game-pill">
+                                            VALUE:
+                                            <strong>
+                                                ${Number(
+                                                    entry.amount ||
+                                                    0
+                                                )} PTS
+                                            </strong>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="house-select-grid">
+
+                                        <button
+                                            class="house-point-btn"
+                                            type="button"
+                                            onclick="setVaultDecision('${house}', 'PROTECT')"
+                                        >
+                                            PROTECT
+                                        </button>
+
+                                        <button
+                                            class="house-point-btn"
+                                            type="button"
+                                            onclick="setVaultDecision('${house}', 'RISK')"
+                                        >
+                                            RISK
+                                        </button>
+
+                                        <button
+                                            class="house-point-btn"
+                                            type="button"
+                                            onclick="resolveVault('${house}')"
+                                        >
+                                            RESOLVE
+                                        </button>
+
+                                        <button
+                                            class="house-point-btn"
+                                            type="button"
+                                            onclick="clearVault('${house}')"
+                                        >
+                                            CLEAR
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                            `;
+                        }
+                    )
+                    .join("");
+        }
+
+
+        window.setVaultDecision =
+            function(
+                house,
+                decision
+            ) {
+
+                const existing =
+                    getVaultEntry(
+                        house
+                    );
+
+                const amount =
+                    decision ===
+                    "RISK"
+                    ?
+                    Number(
+                        prompt(
+                            `How many points is ${house} risking?`,
+                            "100"
+                        ) ||
+                        0
+                    )
+                    :
+                    0;
+
+
+                if (
+                    decision ===
+                    "RISK" &&
+                    amount < 0
+                ) {
+
+                    showToast(
+                        "Vault value cannot be negative.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                vaultState[house] = {
+                    ...existing,
+                    decision,
+                    amount,
+                    resolved: false
+                };
+
+
+                saveLocalData(
+                    "consortium_vault",
+                    vaultState
+                );
+
+                renderVault();
+
+                showToast(
+                    `${house}: ${decision} recorded.`
+                );
+            };
+
+
+        window.resolveVault =
+            function(house) {
+
+                const entry =
+                    getVaultEntry(
+                        house
+                    );
+
+
+                if (
+                    entry.decision ===
+                    "UNDECIDED"
+                ) {
+
+                    showToast(
+                        "Choose Protect or Risk first.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                vaultState[house] = {
+                    ...entry,
+                    resolved: true
+                };
+
+
+                if (
+                    entry.decision ===
+                    "RISK" &&
+                    Number(
+                        entry.amount || 0
+                    ) > 0
+                ) {
+
+                    const current =
+                        getAdjustment(
+                            house
+                        );
+
+                    houseAdjustments[
+                        house
+                    ] =
+                        current +
+                        Number(
+                            entry.amount
+                        );
+
+                    saveLocalData(
+                        "consortium_house_adjustments",
+                        houseAdjustments
+                    );
+                }
+
+
+                saveLocalData(
+                    "consortium_vault",
+                    vaultState
+                );
+
+                loadAdjustmentInputs();
+
+                renderVault();
+
+                renderLeaderboard();
+
+                showToast(
+                    `${house} Vault resolved.`
+                );
+            };
+
+
+        window.clearVault =
+            function(house) {
+
+                delete vaultState[
+                    house
+                ];
+
+                saveLocalData(
+                    "consortium_vault",
+                    vaultState
+                );
+
+                renderVault();
+
+                showToast(
+                    `${house} Vault cleared.`
+                );
+            };
+
+
+        /*
+         * MODAL CLOSE HANDLERS
          */
 
         document
-            .getElementById("houseModal")
+            .getElementById(
+                "houseModal"
+            )
             .addEventListener(
                 "click",
                 event => {
@@ -3178,6 +5390,7 @@
                         event.target.id ===
                         "houseModal"
                     ) {
+
                         closeHouseModal();
                     }
                 }
@@ -3185,7 +5398,9 @@
 
 
         document
-            .getElementById("challengeModal")
+            .getElementById(
+                "challengeModal"
+            )
             .addEventListener(
                 "click",
                 event => {
@@ -3194,6 +5409,7 @@
                         event.target.id ===
                         "challengeModal"
                     ) {
+
                         closeChallengeModal();
                     }
                 }
@@ -3201,7 +5417,28 @@
 
 
         document
-            .getElementById("requestHouseModal")
+            .getElementById(
+                "missionModal"
+            )
+            .addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target.id ===
+                        "missionModal"
+                    ) {
+
+                        closeMissionModal();
+                    }
+                }
+            );
+
+
+        document
+            .getElementById(
+                "requestHouseModal"
+            )
             .addEventListener(
                 "click",
                 event => {
@@ -3210,6 +5447,7 @@
                         event.target.id ===
                         "requestHouseModal"
                     ) {
+
                         closeRequestHouseModal();
                     }
                 }
@@ -3220,30 +5458,49 @@
          * AUTH STATE
          */
 
-        supabaseClient.auth.onAuthStateChange(
-            async (event, session) => {
-
-                if (
-                    event === "SIGNED_IN" &&
+        supabaseClient
+            .auth
+            .onAuthStateChange(
+                async (
+                    event,
                     session
-                ) {
-                    await showDashboard(
-                        session
-                    );
-                }
+                ) => {
 
-                if (
-                    event === "SIGNED_OUT"
-                ) {
-                    showLogin();
+                    if (
+                        event ===
+                        "SIGNED_IN" &&
+                        session
+                    ) {
+
+                        await showDashboard(
+                            session
+                        );
+                    }
+
+
+                    if (
+                        event ===
+                        "SIGNED_OUT"
+                    ) {
+
+                        showLogin();
+                    }
+
                 }
-            }
-        );
+            );
 
 
         /*
          * INITIAL LOAD
          */
+
+        loadAdjustmentInputs();
+
+        renderGameControl();
+
+        renderMissions();
+
+        renderVault();
 
         checkSession();
 
