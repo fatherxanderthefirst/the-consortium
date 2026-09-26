@@ -750,6 +750,20 @@
             cursor: pointer;
         }
 
+        .access-form button:disabled {
+            opacity: .65;
+            cursor: default;
+        }
+
+        .access-status {
+            margin-top: 18px;
+            color: var(--gold-soft);
+            font-size: 10px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            min-height: 16px;
+        }
+
         /* FOOTER */
 
         footer {
@@ -1373,20 +1387,33 @@
                         Leave your details and wait for the House.
                     </p>
 
-                    <form class="access-form" id="accessForm">
+                    <form
+                        class="access-form"
+                        id="accessForm"
+                        action="https://formspree.io/f/moevkyao"
+                        method="POST"
+                    >
 
                         <input
                             type="text"
                             id="accessName"
+                            name="name"
                             placeholder="Your name"
+                            autocomplete="name"
                             required
                         >
 
-                        <button type="submit">
+                        <button type="submit" id="accessSubmit">
                             Request Access
                         </button>
 
                     </form>
+
+                    <div
+                        class="access-status"
+                        id="accessStatus"
+                        aria-live="polite"
+                    ></div>
 
                 </div>
 
@@ -1542,29 +1569,77 @@
         });
 
 
-        /* ACCESS FORM */
+        /* ACCESS REQUEST */
 
         const accessForm =
             document.getElementById("accessForm");
 
-        accessForm.addEventListener("submit", function (event) {
+        const accessName =
+            document.getElementById("accessName");
+
+        const accessSubmit =
+            document.getElementById("accessSubmit");
+
+        const accessStatus =
+            document.getElementById("accessStatus");
+
+        accessForm.addEventListener("submit", async function (event) {
 
             event.preventDefault();
 
-            const input =
-                document.getElementById("accessName");
+            if (!accessName.value.trim()) return;
 
-            const button =
-                accessForm.querySelector("button");
+            accessSubmit.disabled = true;
+            accessSubmit.textContent = "SENDING...";
+            accessStatus.textContent = "";
 
-            if (!input.value.trim()) return;
+            const formData =
+                new FormData(accessForm);
 
-            button.textContent =
-                "REQUEST RECEIVED";
+            try {
 
-            input.value = "";
-            input.disabled = true;
-            button.disabled = true;
+                const response = await fetch(
+                    accessForm.action,
+                    {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    }
+                );
+
+                if (response.ok) {
+
+                    accessStatus.textContent =
+                        "REQUEST RECEIVED. THE HOUSE WILL BE IN TOUCH.";
+
+                    accessName.value = "";
+
+                    accessSubmit.textContent =
+                        "REQUEST RECEIVED";
+
+                } else {
+
+                    accessStatus.textContent =
+                        "Something went wrong. Please try again.";
+
+                    accessSubmit.disabled = false;
+                    accessSubmit.textContent =
+                        "REQUEST ACCESS";
+
+                }
+
+            } catch (error) {
+
+                accessStatus.textContent =
+                    "Connection error. Please try again.";
+
+                accessSubmit.disabled = false;
+                accessSubmit.textContent =
+                    "REQUEST ACCESS";
+
+            }
 
         });
 
