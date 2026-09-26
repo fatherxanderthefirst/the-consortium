@@ -7,10 +7,6 @@
 <title>The Consortium | House of Xander</title>
 
 <style>
-/* =========================
-   ROOT
-========================= */
-
 :root {
     --black: #080808;
     --deep: #120708;
@@ -19,14 +15,10 @@
     --gold-soft: #d8bd7a;
     --white: #f4f0e8;
     --muted: #9a948a;
-    --line: rgba(197, 161, 90, .22);
+    --line: rgba(197,161,90,.22);
     --serif: Georgia, "Times New Roman", serif;
     --sans: Arial, Helvetica, sans-serif;
 }
-
-/* =========================
-   RESET
-========================= */
 
 * {
     margin: 0;
@@ -39,9 +31,7 @@ html {
 }
 
 body {
-    background:
-        radial-gradient(circle at 50% 0%, rgba(72, 16, 25, .28), transparent 35%),
-        var(--black);
+    background: var(--black);
     color: var(--white);
     font-family: var(--sans);
     line-height: 1.6;
@@ -58,10 +48,6 @@ input,
 textarea {
     font: inherit;
 }
-
-/* =========================
-   GLOBAL
-========================= */
 
 .container {
     width: min(1180px, 90%);
@@ -96,10 +82,6 @@ textarea {
     font-size: .95rem;
 }
 
-.gold {
-    color: var(--gold);
-}
-
 /* =========================
    NAVIGATION
 ========================= */
@@ -114,11 +96,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(
-        to bottom,
-        rgba(8,8,8,.92),
-        rgba(8,8,8,0)
-    );
+    background: linear-gradient(to bottom, rgba(8,8,8,.92), rgba(8,8,8,0));
 }
 
 .logo {
@@ -150,6 +128,7 @@ nav {
 .menu {
     position: fixed;
     inset: 0;
+    z-index: 999;
     background: rgba(8,8,8,.98);
     display: flex;
     justify-content: center;
@@ -171,7 +150,7 @@ nav {
 .menu a {
     display: block;
     font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2rem,5vw,4rem);
     margin: 12px 0;
     color: var(--white);
     transition: .25s;
@@ -202,15 +181,10 @@ nav {
     width: 700px;
     height: 700px;
     border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(85, 12, 24, .38),
-        transparent 70%
-    );
+    background: radial-gradient(circle, rgba(85,12,24,.38), transparent 70%);
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    transform: translate(-50%,-50%);
 }
 
 .hero-content {
@@ -227,7 +201,7 @@ nav {
 
 .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(4rem, 13vw, 10rem);
+    font-size: clamp(4rem,13vw,10rem);
     line-height: .8;
     font-weight: 400;
     letter-spacing: -.04em;
@@ -250,7 +224,7 @@ nav {
 
 .hero-tagline {
     font-family: var(--serif);
-    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-size: clamp(1.2rem,3vw,2rem);
     font-style: italic;
     color: var(--gold-soft);
 }
@@ -267,12 +241,7 @@ nav {
 ========================= */
 
 .intro {
-    background:
-        linear-gradient(
-            180deg,
-            var(--black),
-            var(--deep)
-        );
+    background: linear-gradient(180deg,var(--black),var(--deep));
 }
 
 .intro-grid {
@@ -284,7 +253,7 @@ nav {
 
 .intro-statement {
     font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-size: clamp(2rem,4vw,3.8rem);
     line-height: 1.05;
 }
 
@@ -304,7 +273,7 @@ nav {
 
 .experience-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 1px;
     background: var(--line);
     margin-top: 70px;
@@ -368,7 +337,7 @@ nav {
 
 .dossier-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 55px;
 }
 
@@ -398,17 +367,12 @@ nav {
 ========================= */
 
 .houses {
-    background:
-        linear-gradient(
-            180deg,
-            var(--black),
-            var(--deep)
-        );
+    background: linear-gradient(180deg,var(--black),var(--deep));
 }
 
 .houses-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 1px;
     background: var(--line);
     margin-top: 70px;
@@ -437,8 +401,6 @@ nav {
     font-family: var(--serif);
     font-size: 1.15rem;
     line-height: 1;
-    background: rgba(197,161,90,.03);
-    transition: .3s ease;
 }
 
 .house-card:hover .house-icon {
@@ -519,7 +481,7 @@ nav {
 }
 
 /* =========================
-   CODE
+   THE CODE
 ========================= */
 
 .code {
@@ -547,6 +509,7 @@ nav {
     color: var(--gold);
     font-size: .62rem;
     letter-spacing: .18em;
+    padding-top: 7px;
 }
 
 .code-item h3 {
@@ -567,17 +530,12 @@ nav {
     padding: 65px 40px;
     border: 1px solid var(--line);
     text-align: center;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(75,12,22,.25),
-            transparent 65%
-        );
+    background: radial-gradient(circle at center,rgba(75,12,22,.25),transparent 65%);
 }
 
 .code-closing p {
     font-family: var(--serif);
-    font-size: clamp(1.7rem, 4vw, 3rem);
+    font-size: clamp(1.7rem,4vw,3rem);
     font-style: italic;
     color: var(--gold-soft);
 }
@@ -722,12 +680,7 @@ nav {
 ========================= */
 
 .house-xander {
-    background:
-        linear-gradient(
-            180deg,
-            var(--deep),
-            var(--burgundy)
-        );
+    background: linear-gradient(180deg,var(--deep),var(--burgundy));
     text-align: center;
 }
 
@@ -825,7 +778,7 @@ footer {
     }
 
     .hero h1 {
-        font-size: clamp(3.7rem, 18vw, 7rem);
+        font-size: clamp(3.7rem,18vw,7rem);
     }
 }
 
@@ -852,6 +805,15 @@ footer {
         gap: 15px;
     }
 
+    .code-item {
+        grid-template-columns: 42px 1fr;
+        gap: 15px;
+    }
+
+    .code-item h3 {
+        font-size: 1.25rem;
+    }
+
     .vault-options {
         flex-direction: column;
     }
@@ -865,14 +827,10 @@ footer {
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================= -->
-
 <nav>
     <a href="#home" class="logo">HOUSE OF XANDER</a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+    <button class="menu-toggle" id="menuToggle">
         <span></span>
         <span></span>
         <span></span>
@@ -891,11 +849,6 @@ footer {
         <a href="#access">Access</a>
     </div>
 </div>
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero" id="home">
 
@@ -928,11 +881,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     INTRO
-========================= -->
-
 <section class="section intro">
 
     <div class="container">
@@ -940,6 +888,7 @@ footer {
         <div class="intro-grid">
 
             <div>
+
                 <div class="section-label">
                     The House
                 </div>
@@ -949,9 +898,11 @@ footer {
                     One house.<br>
                     One night.
                 </div>
+
             </div>
 
             <div class="intro-copy">
+
                 The Consortium is a private-house experience built around
                 conversation, competition, strategy, instinct and the
                 unexpected.
@@ -963,6 +914,7 @@ footer {
                 <br><br>
 
                 For one night, the house becomes its own world.
+
             </div>
 
         </div>
@@ -970,11 +922,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- =========================
-     EXPERIENCE
-========================= -->
 
 <section class="section experience" id="experience">
 
@@ -992,6 +939,7 @@ footer {
         <div class="experience-grid">
 
             <div class="experience-card">
+
                 <div class="experience-number">01</div>
 
                 <h3>The House</h3>
@@ -1001,9 +949,11 @@ footer {
                     conversation, food and an experience that feels
                     completely removed from the ordinary.
                 </p>
+
             </div>
 
             <div class="experience-card">
+
                 <div class="experience-number">02</div>
 
                 <h3>The Game</h3>
@@ -1012,9 +962,11 @@ footer {
                     Houses compete through challenges involving
                     strategy, skill, social instincts and pressure.
                 </p>
+
             </div>
 
             <div class="experience-card">
+
                 <div class="experience-number">03</div>
 
                 <h3>The Night</h3>
@@ -1024,6 +976,7 @@ footer {
                     Music, food, conversations, photos and after-hours
                     energy take over.
                 </p>
+
             </div>
 
         </div>
@@ -1031,11 +984,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- =========================
-     DOSSIER
-========================= -->
 
 <section class="section dossier" id="dossier">
 
@@ -1115,11 +1063,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     HOUSES
-========================= -->
-
 <section class="section houses" id="houses">
 
     <div class="container">
@@ -1137,7 +1080,7 @@ footer {
 
             <div class="house-card">
 
-                <div class="house-icon" aria-hidden="true">♛</div>
+                <div class="house-icon">♛</div>
 
                 <div class="house-number">
                     HOUSE 01
@@ -1159,10 +1102,9 @@ footer {
 
             </div>
 
-
             <div class="house-card">
 
-                <div class="house-icon" aria-hidden="true">⚔</div>
+                <div class="house-icon">⚔</div>
 
                 <div class="house-number">
                     HOUSE 02
@@ -1184,10 +1126,9 @@ footer {
 
             </div>
 
-
             <div class="house-card">
 
-                <div class="house-icon" aria-hidden="true">∞</div>
+                <div class="house-icon">∞</div>
 
                 <div class="house-number">
                     HOUSE 03
@@ -1209,10 +1150,9 @@ footer {
 
             </div>
 
-
             <div class="house-card">
 
-                <div class="house-icon" aria-hidden="true">♠</div>
+                <div class="house-icon">♠</div>
 
                 <div class="house-number">
                     HOUSE 04
@@ -1239,11 +1179,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     GAME
-========================= -->
-
 <section class="section game" id="game">
 
     <div class="container">
@@ -1260,6 +1195,7 @@ footer {
         <div class="game-layout">
 
             <div>
+
                 <p class="section-intro">
                     The Consortium is not built around one kind
                     of competition.
@@ -1268,16 +1204,15 @@ footer {
 
                     The house will test different parts of you.
                 </p>
+
             </div>
 
             <div class="game-list">
 
                 <div class="game-row">
                     <span>01</span>
-
                     <div>
                         <h3>Mind</h3>
-
                         <p>
                             Puzzles, knowledge, observation and
                             decisions under pressure.
@@ -1287,10 +1222,8 @@ footer {
 
                 <div class="game-row">
                     <span>02</span>
-
                     <div>
                         <h3>Social</h3>
-
                         <p>
                             Communication, negotiation,
                             alliances and influence.
@@ -1300,10 +1233,8 @@ footer {
 
                 <div class="game-row">
                     <span>03</span>
-
                     <div>
                         <h3>Pressure</h3>
-
                         <p>
                             Challenges designed to test how
                             you perform when the stakes rise.
@@ -1313,10 +1244,8 @@ footer {
 
                 <div class="game-row">
                     <span>04</span>
-
                     <div>
                         <h3>The Final</h3>
-
                         <p>
                             The remaining houses face one final
                             test before the competition closes.
@@ -1332,9 +1261,8 @@ footer {
 
 </section>
 
-
 <!-- =========================
-     CODE
+     THE CODE
 ========================= -->
 
 <section class="section code" id="code">
@@ -1356,223 +1284,145 @@ footer {
             knowing where the line is.
         </p>
 
-
         <div class="code-list">
 
             <div class="code-item">
-
-                <div class="code-number">
-                    01
-                </div>
-
+                <div class="code-number">01</div>
                 <div>
                     <h3>Enter With Intent</h3>
-
                     <p>
                         You were not invited to simply observe.
                         Participate. Connect. Compete. Make your
                         presence count.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    02
-                </div>
-
+                <div class="code-number">02</div>
                 <div>
                     <h3>Respect The House</h3>
-
                     <p>
                         Respect the house, its property, its people
                         and the experience. Leave nothing damaged
                         and leave no one diminished.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    03
-                </div>
-
+                <div class="code-number">03</div>
                 <div>
                     <h3>What Happens Here Stays Here</h3>
-
                     <p>
                         The Consortium is a private experience.
                         Stories may leave the house. Private moments,
                         conversations and confidential information do not.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    04
-                </div>
-
+                <div class="code-number">04</div>
                 <div>
                     <h3>Play The Game</h3>
-
                     <p>
                         Every challenge matters. Play fairly,
                         think strategically and accept the outcome.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    05
-                </div>
-
+                <div class="code-number">05</div>
                 <div>
                     <h3>Alliances Are Part Of The Game</h3>
-
                     <p>
                         Talk. Negotiate. Trade information.
                         Build alliances. Trust is valuable.
                         So is knowing when not to.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    06
-                </div>
-
+                <div class="code-number">06</div>
                 <div>
                     <h3>Expect The Unexpected</h3>
-
                     <p>
                         The house may test your mind, your social
                         instincts, your strategy and your ability
                         to perform under pressure.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    07
-                </div>
-
+                <div class="code-number">07</div>
                 <div>
                     <h3>Know The Line</h3>
-
                     <p>
                         Competition is encouraged. Harassment,
                         intimidation, deliberate harm, serious
                         disrespect or destruction of property are not.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    08
-                </div>
-
+                <div class="code-number">08</div>
                 <div>
                     <h3>No Outside Play</h3>
-
                     <p>
                         Once the house opens, the Consortium becomes
                         its own world. Outside interference does not
                         decide what happens inside.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    09
-                </div>
-
+                <div class="code-number">09</div>
                 <div>
                     <h3>The House Decides</h3>
-
                     <p>
                         The Game Master and designated Consortium
                         officials have final authority over challenges,
                         scoring, disputes and house decisions.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    10
-                </div>
-
+                <div class="code-number">10</div>
                 <div>
                     <h3>When The Game Ends</h3>
-
                     <p>
                         When the final is called, the competition is over.
                         No houses. No alliances. No scores.
                         Just the night.
                     </p>
                 </div>
-
             </div>
 
-
             <div class="code-item">
-
-                <div class="code-number">
-                    11
-                </div>
-
+                <div class="code-number">11</div>
                 <div>
                     <h3>Leave Your Mark</h3>
-
                     <p>
                         Thirty people will enter the house.
                         Make your experience worth remembering.
                     </p>
                 </div>
-
             </div>
 
         </div>
 
-
         <div class="code-closing">
 
             <p>
-                "Know the rules.<br>
-                Then make them work for you."
+                Know the rules.<br>
+                Then make them work for you.
             </p>
 
         </div>
@@ -1580,11 +1430,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- =========================
-     VAULT
-========================= -->
 
 <section class="section vault" id="vault">
 
@@ -1635,11 +1480,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     ACCESS
-========================= -->
-
 <section class="section access" id="access">
 
     <div class="container">
@@ -1682,7 +1522,6 @@ footer {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label for="contact">
@@ -1697,7 +1536,6 @@ footer {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label for="reason">
@@ -1710,7 +1548,6 @@ footer {
                     ></textarea>
 
                 </div>
-
 
                 <button
                     type="submit"
@@ -1731,11 +1568,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- =========================
-     HOUSE OF XANDER
-========================= -->
 
 <section class="section house-xander">
 
@@ -1762,11 +1594,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
     <div class="footer-brand">
@@ -1782,11 +1609,6 @@ footer {
     </div>
 
 </footer>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
 
 <script>
 
@@ -1805,25 +1627,19 @@ document.querySelectorAll(".menu a").forEach(link => {
 
 });
 
-
 function vaultChoice(choice) {
 
     const result = document.getElementById("vaultResult");
 
     if (choice === "protect") {
-
         result.textContent =
             "THE HOUSE REMEMBERS YOUR CHOICE.";
-
     } else {
-
         result.textContent =
             "THE RISK HAS BEEN ACCEPTED.";
-
     }
 
 }
-
 
 document.getElementById("accessForm").addEventListener("submit", function(event) {
 
