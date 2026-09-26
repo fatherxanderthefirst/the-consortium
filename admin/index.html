@@ -6,6 +6,8 @@
 
     <title>Admin | The Consortium</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -362,8 +364,8 @@
                     </h3>
 
                     <p>
-                        Access requests will appear here once the
-                        secure request system is connected.
+                        Access requests will appear here once
+                        the request management system is connected.
                     </p>
 
                 </div>
@@ -415,19 +417,18 @@
 
     <script>
 
-        /*
-         * IMPORTANT
-         *
-         * This page intentionally does NOT contain a password.
-         *
-         * GitHub Pages is public, so putting an admin password
-         * inside this file would NOT be secure.
-         *
-         * The login below is prepared for a real authentication
-         * provider such as Supabase Auth.
-         *
-         * DO NOT put a Supabase service-role key here.
-         */
+        const SUPABASE_URL =
+            "https://gtdznirtmbjoydlbwutp.supabase.co";
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
 
 
         const loginCard =
@@ -455,38 +456,125 @@
             document.getElementById("logoutButton");
 
 
-        /*
-         * TEMPORARY AUTH PLACEHOLDER
-         *
-         * Authentication will be connected here.
-         *
-         * No fake password is being added because that would
-         * create the appearance of security without actually
-         * protecting the admin area.
-         */
+        function showDashboard() {
+
+            loginCard.style.display = "none";
+
+            dashboard.classList.add("active");
+
+        }
 
 
-        loginForm.addEventListener("submit", function (event) {
-
-            event.preventDefault();
-
-            loginStatus.textContent =
-                "SECURE AUTHENTICATION HAS NOT BEEN CONNECTED YET.";
-
-        });
-
-
-        logoutButton.addEventListener("click", function () {
+        function showLogin() {
 
             dashboard.classList.remove("active");
+
             loginCard.style.display = "block";
 
             email.value = "";
+
             password.value = "";
 
             loginStatus.textContent = "";
 
-        });
+        }
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                const emailValue =
+                    email.value.trim();
+
+                const passwordValue =
+                    password.value;
+
+                if (!emailValue || !passwordValue) {
+                    return;
+                }
+
+                loginButton.disabled = true;
+
+                loginButton.textContent =
+                    "AUTHENTICATING...";
+
+                loginStatus.textContent = "";
+
+
+                const {
+                    data,
+                    error
+                } = await supabaseClient.auth.signInWithPassword({
+                    email: emailValue,
+                    password: passwordValue
+                });
+
+
+                if (error) {
+
+                    loginStatus.textContent =
+                        "ACCESS DENIED. CHECK YOUR EMAIL OR PASSWORD.";
+
+                    loginButton.disabled = false;
+
+                    loginButton.textContent =
+                        "ENTER ADMINISTRATION";
+
+                    return;
+                }
+
+
+                if (data.session) {
+
+                    loginStatus.textContent = "";
+
+                    loginButton.textContent =
+                        "ACCESS GRANTED";
+
+                    showDashboard();
+
+                }
+
+            }
+        );
+
+
+        logoutButton.addEventListener(
+            "click",
+            async function () {
+
+                await supabaseClient.auth.signOut();
+
+                showLogin();
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "ENTER ADMINISTRATION";
+
+            }
+        );
+
+
+        async function checkExistingSession() {
+
+            const {
+                data
+            } = await supabaseClient.auth.getSession();
+
+            if (data.session) {
+
+                showDashboard();
+
+            }
+
+        }
+
+
+        checkExistingSession();
 
     </script>
 
