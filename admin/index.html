@@ -200,6 +200,10 @@
             cursor: pointer;
         }
 
+        .logout:hover {
+            border-color: var(--gold);
+        }
+
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -234,7 +238,103 @@
             line-height: 1.8;
         }
 
+        .requests-section {
+            margin-top: 30px;
+            border: 1px solid var(--line);
+            background: var(--black-soft);
+        }
+
+        .requests-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .requests-header h3 {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 500;
+        }
+
+        .refresh-button {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--gold);
+            padding: 10px 15px;
+            font-size: 8px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .refresh-button:hover {
+            border-color: var(--gold);
+        }
+
+        .request-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .request-row {
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 20px;
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(197,161,90,.1);
+        }
+
+        .request-row:last-child {
+            border-bottom: none;
+        }
+
+        .request-name {
+            color: var(--cream);
+            font-size: 12px;
+            letter-spacing: .04em;
+        }
+
+        .request-date {
+            color: var(--muted);
+            font-size: 10px;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .empty-state {
+            padding: 45px 30px;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .error-state {
+            color: #c98989;
+        }
+
+        @media (max-width: 800px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .request-row {
+                grid-template-columns: 1fr;
+            }
+
+            .request-date {
+                text-align: left;
+            }
+        }
+
         @media (max-width: 700px) {
+            .admin-shell {
+                padding: 20px;
+            }
 
             .login-card {
                 padding: 45px 25px;
@@ -248,8 +348,12 @@
                 flex-direction: column;
             }
 
-            .dashboard-grid {
-                grid-template-columns: 1fr;
+            .requests-header {
+                padding: 22px;
+            }
+
+            .request-row {
+                padding: 20px 22px;
             }
         }
     </style>
@@ -258,8 +362,6 @@
 <body>
 
     <div class="admin-shell">
-
-        <!-- LOGIN -->
 
         <div class="login-card" id="loginCard">
 
@@ -295,7 +397,10 @@
                     required
                 >
 
-                <button type="submit" id="loginButton">
+                <button
+                    type="submit"
+                    id="loginButton"
+                >
                     Enter Administration
                 </button>
 
@@ -317,9 +422,10 @@
         </div>
 
 
-        <!-- DASHBOARD -->
-
-        <main class="dashboard" id="dashboard">
+        <main
+            class="dashboard"
+            id="dashboard"
+        >
 
             <div class="dashboard-header">
 
@@ -359,13 +465,13 @@
                         01 // ACCESS
                     </span>
 
-                    <h3>
-                        Requests
+                    <h3 id="requestCount">
+                        0
                     </h3>
 
                     <p>
-                        Access requests will appear here once
-                        the request management system is connected.
+                        Access requests received from
+                        the public Consortium website.
                     </p>
 
                 </div>
@@ -382,9 +488,8 @@
                     </h3>
 
                     <p>
-                        House administration will be available
-                        here without exposing private information
-                        on the public website.
+                        House administration will be
+                        available here as the system grows.
                     </p>
 
                 </div>
@@ -401,14 +506,45 @@
                     </h3>
 
                     <p>
-                        Administrative controls will live here.
-                        Nothing in this panel changes the public
-                        Consortium design.
+                        Administrative controls remain
+                        separate from the public House.
                     </p>
 
                 </div>
 
             </div>
+
+
+            <section class="requests-section">
+
+                <div class="requests-header">
+
+                    <h3>
+                        Access Requests
+                    </h3>
+
+                    <button
+                        class="refresh-button"
+                        id="refreshButton"
+                        type="button"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+                <div
+                    class="request-list"
+                    id="requestList"
+                >
+
+                    <div class="empty-state">
+                        Loading requests...
+                    </div>
+
+                </div>
+
+            </section>
 
         </main>
 
@@ -420,14 +556,13 @@
         const SUPABASE_URL =
             "https://gtdznirtmbjoydlbwutp.supabase.co";
 
-        const SUPABASE_PUBLISHABLE_KEY =
+        const SUPABASE_PUBLIC_KEY =
             "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
-
 
         const supabaseClient =
             window.supabase.createClient(
                 SUPABASE_URL,
-                SUPABASE_PUBLISHABLE_KEY
+                SUPABASE_PUBLIC_KEY
             );
 
 
@@ -455,27 +590,163 @@
         const logoutButton =
             document.getElementById("logoutButton");
 
+        const requestList =
+            document.getElementById("requestList");
 
-        function showDashboard() {
+        const requestCount =
+            document.getElementById("requestCount");
 
-            loginCard.style.display = "none";
+        const refreshButton =
+            document.getElementById("refreshButton");
 
-            dashboard.classList.add("active");
+
+        async function loadRequests() {
+
+            requestList.innerHTML = `
+                <div class="empty-state">
+                    Loading requests...
+                </div>
+            `;
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("access_requests")
+                .select("*")
+                .order("created_at", {
+                    ascending: false
+                });
+
+            if (error) {
+
+                console.error(
+                    "Supabase request error:",
+                    error
+                );
+
+                requestList.innerHTML = `
+                    <div class="empty-state error-state">
+                        Unable to load access requests.
+                    </div>
+                `;
+
+                requestCount.textContent = "0";
+
+                return;
+            }
+
+
+            requestCount.textContent =
+                data.length;
+
+
+            if (!data.length) {
+
+                requestList.innerHTML = `
+                    <div class="empty-state">
+                        No access requests yet.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            requestList.innerHTML = "";
+
+
+            data.forEach(function (request) {
+
+                const row =
+                    document.createElement("div");
+
+                row.className =
+                    "request-row";
+
+
+                const name =
+                    document.createElement("div");
+
+                name.className =
+                    "request-name";
+
+                name.textContent =
+                    request.name || "Unnamed";
+
+
+                const date =
+                    document.createElement("div");
+
+                date.className =
+                    "request-date";
+
+
+                if (request.created_at) {
+
+                    const requestDate =
+                        new Date(
+                            request.created_at
+                        );
+
+                    date.textContent =
+                        requestDate.toLocaleString(
+                            "en-NG",
+                            {
+                                dateStyle: "medium",
+                                timeStyle: "short"
+                            }
+                        );
+
+                } else {
+
+                    date.textContent =
+                        "Date unavailable";
+
+                }
+
+
+                row.appendChild(name);
+                row.appendChild(date);
+
+                requestList.appendChild(row);
+
+            });
 
         }
 
 
-        function showLogin() {
+        async function showDashboard() {
 
-            dashboard.classList.remove("active");
+            loginCard.style.display =
+                "none";
 
-            loginCard.style.display = "block";
+            dashboard.classList.add(
+                "active"
+            );
 
-            email.value = "";
+            await loadRequests();
 
-            password.value = "";
+        }
 
-            loginStatus.textContent = "";
+
+        async function checkSession() {
+
+            const {
+                data
+            } = await supabaseClient
+                .auth
+                .getSession();
+
+
+            if (
+                data &&
+                data.session
+            ) {
+
+                showDashboard();
+
+            }
 
         }
 
@@ -486,57 +757,73 @@
 
                 event.preventDefault();
 
+
                 const emailValue =
                     email.value.trim();
 
                 const passwordValue =
                     password.value;
 
-                if (!emailValue || !passwordValue) {
+
+                if (
+                    !emailValue ||
+                    !passwordValue
+                ) {
+
                     return;
+
                 }
 
-                loginButton.disabled = true;
+
+                loginButton.disabled =
+                    true;
 
                 loginButton.textContent =
                     "AUTHENTICATING...";
 
-                loginStatus.textContent = "";
+                loginStatus.textContent =
+                    "";
 
 
                 const {
-                    data,
                     error
-                } = await supabaseClient.auth.signInWithPassword({
-                    email: emailValue,
-                    password: passwordValue
-                });
+                } = await supabaseClient
+                    .auth
+                    .signInWithPassword({
+                        email: emailValue,
+                        password: passwordValue
+                    });
 
 
                 if (error) {
 
-                    loginStatus.textContent =
-                        "ACCESS DENIED. CHECK YOUR EMAIL OR PASSWORD.";
+                    console.error(
+                        "Authentication error:",
+                        error
+                    );
 
-                    loginButton.disabled = false;
+                    loginStatus.textContent =
+                        "INVALID ADMIN CREDENTIALS.";
+
+                    loginButton.disabled =
+                        false;
 
                     loginButton.textContent =
                         "ENTER ADMINISTRATION";
 
                     return;
-                }
-
-
-                if (data.session) {
-
-                    loginStatus.textContent = "";
-
-                    loginButton.textContent =
-                        "ACCESS GRANTED";
-
-                    showDashboard();
 
                 }
+
+
+                loginStatus.textContent =
+                    "";
+
+                loginButton.textContent =
+                    "ACCESS GRANTED";
+
+
+                await showDashboard();
 
             }
         );
@@ -546,11 +833,25 @@
             "click",
             async function () {
 
-                await supabaseClient.auth.signOut();
+                await supabaseClient
+                    .auth
+                    .signOut();
 
-                showLogin();
+                dashboard.classList.remove(
+                    "active"
+                );
 
-                loginButton.disabled = false;
+                loginCard.style.display =
+                    "block";
+
+                email.value = "";
+                password.value = "";
+
+                loginStatus.textContent =
+                    "";
+
+                loginButton.disabled =
+                    false;
 
                 loginButton.textContent =
                     "ENTER ADMINISTRATION";
@@ -559,22 +860,55 @@
         );
 
 
-        async function checkExistingSession() {
+        refreshButton.addEventListener(
+            "click",
+            async function () {
 
-            const {
-                data
-            } = await supabaseClient.auth.getSession();
+                refreshButton.disabled =
+                    true;
 
-            if (data.session) {
+                refreshButton.textContent =
+                    "LOADING...";
 
-                showDashboard();
+                await loadRequests();
+
+                refreshButton.disabled =
+                    false;
+
+                refreshButton.textContent =
+                    "REFRESH";
 
             }
+        );
 
-        }
+
+        supabaseClient
+            .auth
+            .onAuthStateChange(
+                function (
+                    event,
+                    session
+                ) {
+
+                    if (
+                        event === "SIGNED_OUT" ||
+                        !session
+                    ) {
+
+                        dashboard.classList.remove(
+                            "active"
+                        );
+
+                        loginCard.style.display =
+                            "block";
+
+                    }
+
+                }
+            );
 
 
-        checkExistingSession();
+        checkSession();
 
     </script>
 
