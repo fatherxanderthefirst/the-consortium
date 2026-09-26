@@ -64,61 +64,125 @@ button {
 }
 
 /* =========================
-   INTRO
+   OPENING ANIMATION
 ========================= */
 
 .intro {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: var(--black);
+    background:
+        radial-gradient(circle at 50% 45%, rgba(80,15,25,.18), transparent 35%),
+        var(--black);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     opacity: 1;
     visibility: visible;
-    transition: opacity .8s ease, visibility .8s ease;
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
 }
 
 .intro.hide {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 }
 
 .intro-inner {
-    width: min(90%, 600px);
+    width: min(90%, 650px);
 }
 
 .intro-mark {
     color: var(--gold);
     font-family: var(--sans);
-    font-size: .68rem;
-    letter-spacing: .32em;
+    font-size: .62rem;
+    letter-spacing: .34em;
     text-transform: uppercase;
-    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: introFadeUp .8s ease forwards;
 }
 
 .intro-title {
+    margin-top: 30px;
     font-family: var(--serif);
-    font-size: clamp(3.5rem, 13vw, 8rem);
-    line-height: .78;
+    font-size: clamp(4rem, 14vw, 9rem);
+    line-height: .76;
     font-weight: 500;
+    letter-spacing: -.04em;
+    opacity: 0;
+    transform: scale(.94);
+    animation: introTitle 1.2s cubic-bezier(.16,1,.3,1) .35s forwards;
 }
 
 .intro-line {
-    width: 80px;
+    width: 0;
     height: 1px;
     background: var(--gold);
-    margin: 34px auto;
+    margin: 34px auto 25px;
+    animation: introLine .9s ease 1.1s forwards;
 }
 
 .intro-sub {
     color: var(--muted);
     font-family: var(--sans);
-    font-size: .65rem;
-    letter-spacing: .25em;
+    font-size: .62rem;
+    letter-spacing: .27em;
     text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: introFadeUp .8s ease 1.35s forwards;
+}
+
+.intro-enter {
+    margin-top: 42px;
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: .58rem;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: introFadeUp .8s ease 1.7s forwards;
+}
+
+.intro-enter span {
+    display: inline-block;
+    margin-left: 8px;
+    animation: enterArrow 1.3s ease-in-out 2.2s infinite;
+}
+
+@keyframes introFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes introTitle {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes introLine {
+    to {
+        width: 80px;
+    }
+}
+
+@keyframes enterArrow {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(7px);
+    }
 }
 
 /* =========================
@@ -1291,6 +1355,14 @@ footer {
         text-align: left;
         margin-top: 25px;
     }
+
+    .intro-title {
+        font-size: clamp(3.8rem, 18vw, 7rem);
+    }
+
+    .intro-enter {
+        margin-top: 35px;
+    }
 }
 </style>
 </head>
@@ -1298,16 +1370,33 @@ footer {
 <body>
 
 <!-- =========================
-     INTRO
+     OPENING
 ========================= -->
 
 <div class="intro" id="intro">
+
     <div class="intro-inner">
-        <div class="intro-mark">House of Xander presents</div>
-        <div class="intro-title">THE<br>CONSORTIUM</div>
+
+        <div class="intro-mark">
+            House of Xander presents
+        </div>
+
+        <div class="intro-title">
+            THE<br>CONSORTIUM
+        </div>
+
         <div class="intro-line"></div>
-        <div class="intro-sub">Private House Experience</div>
+
+        <div class="intro-sub">
+            Private House Experience
+        </div>
+
+        <div class="intro-enter">
+            ENTER THE HOUSE <span>→</span>
+        </div>
+
     </div>
+
 </div>
 
 <!-- =========================
@@ -1315,12 +1404,16 @@ footer {
 ========================= -->
 
 <header>
-    <a href="#top" class="brand">The Consortium</a>
+
+    <a href="#top" class="brand">
+        The Consortium
+    </a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
         <span></span>
         <span></span>
     </button>
+
 </header>
 
 <!-- =========================
@@ -1328,6 +1421,7 @@ footer {
 ========================= -->
 
 <div class="nav-overlay" id="navOverlay">
+
     <nav class="nav-inner">
 
         <div class="nav-kicker">
@@ -1344,6 +1438,7 @@ footer {
         <a href="#access">Access</a>
 
     </nav>
+
 </div>
 
 <main id="top">
@@ -1423,9 +1518,7 @@ footer {
 
             <div class="experience-card">
                 <div class="experience-number">01</div>
-
                 <h3>The House</h3>
-
                 <p>
                     A private environment designed for conversation,
                     connection, discovery and unforgettable moments.
@@ -1434,9 +1527,7 @@ footer {
 
             <div class="experience-card">
                 <div class="experience-number">02</div>
-
                 <h3>The Game</h3>
-
                 <p>
                     Challenges, strategy, alliances and pressure determine
                     which House controls the night.
@@ -1445,9 +1536,7 @@ footer {
 
             <div class="experience-card">
                 <div class="experience-number">03</div>
-
                 <h3>The Night</h3>
-
                 <p>
                     When the competition ends, the House opens fully.
                     Music, food, photographs, conversations and after-hours.
@@ -1481,44 +1570,32 @@ footer {
 
             <div class="dossier-item">
                 <div class="dossier-label">Format</div>
-                <div class="dossier-value">
-                    Private House Experience
-                </div>
+                <div class="dossier-value">Private House Experience</div>
             </div>
 
             <div class="dossier-item">
                 <div class="dossier-label">Members</div>
-                <div class="dossier-value">
-                    30
-                </div>
+                <div class="dossier-value">30</div>
             </div>
 
             <div class="dossier-item">
                 <div class="dossier-label">Houses</div>
-                <div class="dossier-value">
-                    04
-                </div>
+                <div class="dossier-value">04</div>
             </div>
 
             <div class="dossier-item">
                 <div class="dossier-label">Duration</div>
-                <div class="dossier-value">
-                    12 Hours
-                </div>
+                <div class="dossier-value">12 Hours</div>
             </div>
 
             <div class="dossier-item">
                 <div class="dossier-label">Competition</div>
-                <div class="dossier-value">
-                    House vs House
-                </div>
+                <div class="dossier-value">House vs House</div>
             </div>
 
             <div class="dossier-item">
                 <div class="dossier-label">Location</div>
-                <div class="dossier-value">
-                    Private House
-                </div>
+                <div class="dossier-value">Private House</div>
             </div>
 
         </div>
@@ -1559,159 +1636,92 @@ footer {
 
             <div class="member-step">
                 <div class="member-number">01</div>
-
                 <div class="member-content">
                     <h3>The Invitation</h3>
-                    <p>
-                        Discover the Consortium through private invitation
-                        or an approved route.
-                    </p>
+                    <p>Discover the Consortium through private invitation or an approved route.</p>
                 </div>
-
-                <div class="member-status">
-                    Discovery
-                </div>
+                <div class="member-status">Discovery</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">02</div>
-
                 <div class="member-content">
                     <h3>The Request</h3>
-                    <p>
-                        Submit your details and tell the House why you
-                        should experience it.
-                    </p>
+                    <p>Submit your details and tell the House why you should experience it.</p>
                 </div>
-
-                <div class="member-status">
-                    Request
-                </div>
+                <div class="member-status">Request</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">03</div>
-
                 <div class="member-content">
                     <h3>The Clearance</h3>
-                    <p>
-                        Requests are reviewed. Entry is limited.
-                    </p>
+                    <p>Requests are reviewed. Entry is limited.</p>
                 </div>
-
-                <div class="member-status">
-                    Review
-                </div>
+                <div class="member-status">Review</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">04</div>
-
                 <div class="member-content">
                     <h3>Access Granted</h3>
-                    <p>
-                        Approved members receive confirmation and the
-                        information required for entry.
-                    </p>
+                    <p>Approved members receive confirmation and the information required for entry.</p>
                 </div>
-
-                <div class="member-status">
-                    Confirmation
-                </div>
+                <div class="member-status">Confirmation</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">05</div>
-
                 <div class="member-content">
                     <h3>Enter The House</h3>
-                    <p>
-                        Check in. Verify access. Step inside.
-                    </p>
+                    <p>Check in. Verify access. Step inside.</p>
                 </div>
-
-                <div class="member-status">
-                    Arrival
-                </div>
+                <div class="member-status">Arrival</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">06</div>
-
                 <div class="member-content">
                     <h3>Find Your House</h3>
-                    <p>
-                        Your faction is revealed. The game begins.
-                    </p>
+                    <p>Your faction is revealed. The game begins.</p>
                 </div>
-
-                <div class="member-status">
-                    Assignment
-                </div>
+                <div class="member-status">Assignment</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">07</div>
-
                 <div class="member-content">
                     <h3>Play The Game</h3>
-                    <p>
-                        Challenges, alliances, decisions and pressure
-                        shape the night.
-                    </p>
+                    <p>Challenges, alliances, decisions and pressure shape the night.</p>
                 </div>
-
-                <div class="member-status">
-                    Participation
-                </div>
+                <div class="member-status">Participation</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">08</div>
-
                 <div class="member-content">
                     <h3>The Final</h3>
-                    <p>
-                        The board closes. The remaining Houses fight
-                        for the final outcome.
-                    </p>
+                    <p>The board closes. The remaining Houses fight for the final outcome.</p>
                 </div>
-
-                <div class="member-status">
-                    Conclusion
-                </div>
+                <div class="member-status">Conclusion</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">09</div>
-
                 <div class="member-content">
                     <h3>The Game Ends</h3>
-                    <p>
-                        Music, conversation, food, photographs and the
-                        real House experience begin.
-                    </p>
+                    <p>Music, conversation, food, photographs and the real House experience begin.</p>
                 </div>
-
-                <div class="member-status">
-                    After Hours
-                </div>
+                <div class="member-status">After Hours</div>
             </div>
 
             <div class="member-step">
                 <div class="member-number">10</div>
-
                 <div class="member-content">
                     <h3>Leave The House</h3>
-                    <p>
-                        Take the memories. Take the stories. Leave the
-                        House changed by the experience.
-                    </p>
+                    <p>Take the memories. Take the stories. Leave the House changed by the experience.</p>
                 </div>
-
-                <div class="member-status">
-                    Departure
-                </div>
+                <div class="member-status">Departure</div>
             </div>
 
         </div>
@@ -1738,7 +1748,7 @@ footer {
 </section>
 
 <!-- =========================
-     THE GAME
+     GAME
 ========================= -->
 
 <section class="game" id="game">
@@ -1771,81 +1781,39 @@ footer {
         <div class="game-phases">
 
             <div class="phase">
-                <div class="phase-number">
-                    01 // ARRIVAL
-                </div>
-
+                <div class="phase-number">01 // ARRIVAL</div>
                 <h3>The Board Opens</h3>
-
-                <p>
-                    Members enter, Houses are revealed and the night
-                    officially begins.
-                </p>
+                <p>Members enter, Houses are revealed and the night officially begins.</p>
             </div>
 
             <div class="phase">
-                <div class="phase-number">
-                    02 // TRIALS
-                </div>
-
+                <div class="phase-number">02 // TRIALS</div>
                 <h3>The Challenges</h3>
-
-                <p>
-                    Mind, Social and Pressure challenges begin putting
-                    each House to the test.
-                </p>
+                <p>Mind, Social and Pressure challenges begin putting each House to the test.</p>
             </div>
 
             <div class="phase">
-                <div class="phase-number">
-                    03 // ALLIANCE
-                </div>
-
+                <div class="phase-number">03 // ALLIANCE</div>
                 <h3>The Window</h3>
-
-                <p>
-                    Houses negotiate, exchange information, form alliances
-                    and decide who they trust.
-                </p>
+                <p>Houses negotiate, exchange information, form alliances and decide who they trust.</p>
             </div>
 
             <div class="phase">
-                <div class="phase-number">
-                    04 // VAULT
-                </div>
-
+                <div class="phase-number">04 // VAULT</div>
                 <h3>The Decision</h3>
-
-                <p>
-                    Protect your position or risk it for the possibility
-                    of greater reward.
-                </p>
+                <p>Protect your position or risk it for the possibility of greater reward.</p>
             </div>
 
             <div class="phase">
-                <div class="phase-number">
-                    05 // FINAL
-                </div>
-
+                <div class="phase-number">05 // FINAL</div>
                 <h3>The Board Closes</h3>
-
-                <p>
-                    The top Houses enter the final. Everyone else gets
-                    one last opportunity to influence the outcome.
-                </p>
+                <p>The top Houses enter the final. Everyone else gets one last opportunity to influence the outcome.</p>
             </div>
 
             <div class="phase">
-                <div class="phase-number">
-                    06 // AFTER HOURS
-                </div>
-
+                <div class="phase-number">06 // AFTER HOURS</div>
                 <h3>The House Opens</h3>
-
-                <p>
-                    Competition ends. Music, food, conversation and
-                    celebration take over.
-                </p>
+                <p>Competition ends. Music, food, conversation and celebration take over.</p>
             </div>
 
         </div>
@@ -1860,70 +1828,38 @@ footer {
 
                 <div class="mechanic">
                     <div class="mechanic-number">01</div>
-
                     <h4>Mind</h4>
-
-                    <p>
-                        Logic, memory, observation, knowledge and
-                        problem-solving. Think before you move.
-                    </p>
+                    <p>Logic, memory, observation, knowledge and problem-solving. Think before you move.</p>
                 </div>
 
                 <div class="mechanic">
                     <div class="mechanic-number">02</div>
-
                     <h4>Social</h4>
-
-                    <p>
-                        Communication, negotiation, influence and reading
-                        the room. Sometimes the strongest move is knowing
-                        what to say.
-                    </p>
+                    <p>Communication, negotiation, influence and reading the room. Sometimes the strongest move is knowing what to say.</p>
                 </div>
 
                 <div class="mechanic">
                     <div class="mechanic-number">03</div>
-
                     <h4>Pressure</h4>
-
-                    <p>
-                        Speed, composure, decision-making and performance
-                        when the clock is working against you.
-                    </p>
+                    <p>Speed, composure, decision-making and performance when the clock is working against you.</p>
                 </div>
 
                 <div class="mechanic">
                     <div class="mechanic-number">04</div>
-
                     <h4>House Points</h4>
-
-                    <p>
-                        Every challenge can affect the scoreboard. Winning
-                        matters, but strategic decisions can matter just as much.
-                    </p>
+                    <p>Every challenge can affect the scoreboard. Winning matters, but strategic decisions can matter just as much.</p>
                 </div>
 
                 <div class="mechanic">
                     <div class="mechanic-number">05</div>
-
                     <h4>Secret Missions</h4>
-
-                    <p>
-                        Selected members may receive private objectives.
-                        Complete them without exposing the mission.
-                    </p>
+                    <p>Selected members may receive private objectives. Complete them without exposing the mission.</p>
                 </div>
 
                 <div class="mechanic">
                     <div class="mechanic-number">06</div>
-
                     <h4>Kingmakers</h4>
-
-                    <p>
-                        Not every House reaches the final. Those that don't
-                        may still hold information, influence or decisions
-                        that affect the ending.
-                    </p>
+                    <p>Not every House reaches the final. Those that don't may still hold information, influence or decisions that affect the ending.</p>
                 </div>
 
             </div>
@@ -2215,7 +2151,7 @@ footer {
 </section>
 
 <!-- =========================
-     THE CODE
+     CODE
 ========================= -->
 
 <section class="code" id="code">
@@ -2237,10 +2173,7 @@ footer {
                 <div class="code-number">01</div>
                 <div>
                     <h3>Enter With Intent</h3>
-                    <p>
-                        You were invited for a reason. Come ready to participate,
-                        connect and experience the House.
-                    </p>
+                    <p>You were invited for a reason. Come ready to participate, connect and experience the House.</p>
                 </div>
             </div>
 
@@ -2248,9 +2181,7 @@ footer {
                 <div class="code-number">02</div>
                 <div>
                     <h3>Respect The House</h3>
-                    <p>
-                        Respect the space, the people and the experience.
-                    </p>
+                    <p>Respect the space, the people and the experience.</p>
                 </div>
             </div>
 
@@ -2258,10 +2189,7 @@ footer {
                 <div class="code-number">03</div>
                 <div>
                     <h3>What Happens Here Stays Here</h3>
-                    <p>
-                        The House is built on trust. Respect the privacy of
-                        the people and moments inside it.
-                    </p>
+                    <p>The House is built on trust. Respect the privacy of the people and moments inside it.</p>
                 </div>
             </div>
 
@@ -2269,10 +2197,7 @@ footer {
                 <div class="code-number">04</div>
                 <div>
                     <h3>Play The Game</h3>
-                    <p>
-                        Competition is part of the experience. Think, compete,
-                        adapt and play with intention.
-                    </p>
+                    <p>Competition is part of the experience. Think, compete, adapt and play with intention.</p>
                 </div>
             </div>
 
@@ -2280,10 +2205,7 @@ footer {
                 <div class="code-number">05</div>
                 <div>
                     <h3>Alliances Are Part Of The Game</h3>
-                    <p>
-                        Negotiate. Collaborate. Bluff. Trust is a currency
-                        inside the House.
-                    </p>
+                    <p>Negotiate. Collaborate. Bluff. Trust is a currency inside the House.</p>
                 </div>
             </div>
 
@@ -2291,10 +2213,7 @@ footer {
                 <div class="code-number">06</div>
                 <div>
                     <h3>Expect The Unexpected</h3>
-                    <p>
-                        Plans change. Challenges shift. The House rewards
-                        those who can adapt.
-                    </p>
+                    <p>Plans change. Challenges shift. The House rewards those who can adapt.</p>
                 </div>
             </div>
 
@@ -2302,10 +2221,7 @@ footer {
                 <div class="code-number">07</div>
                 <div>
                     <h3>Know The Line</h3>
-                    <p>
-                        Strategy belongs in the game. Respect belongs everywhere.
-                        Know the difference.
-                    </p>
+                    <p>Strategy belongs in the game. Respect belongs everywhere. Know the difference.</p>
                 </div>
             </div>
 
@@ -2313,10 +2229,7 @@ footer {
                 <div class="code-number">08</div>
                 <div>
                     <h3>No Outside Play</h3>
-                    <p>
-                        What happens inside the Consortium should not be
-                        manipulated from outside the House.
-                    </p>
+                    <p>What happens inside the Consortium should not be manipulated from outside the House.</p>
                 </div>
             </div>
 
@@ -2324,10 +2237,7 @@ footer {
                 <div class="code-number">09</div>
                 <div>
                     <h3>The House Decides</h3>
-                    <p>
-                        Challenges, decisions and outcomes are part of the
-                        experience. Respect the process.
-                    </p>
+                    <p>Challenges, decisions and outcomes are part of the experience. Respect the process.</p>
                 </div>
             </div>
 
@@ -2335,10 +2245,7 @@ footer {
                 <div class="code-number">10</div>
                 <div>
                     <h3>When The Game Ends</h3>
-                    <p>
-                        Leave the competition on the board. After Hours is
-                        for the House, not another round of the game.
-                    </p>
+                    <p>Leave the competition on the board. After Hours is for the House, not another round of the game.</p>
                 </div>
             </div>
 
@@ -2346,10 +2253,7 @@ footer {
                 <div class="code-number">11</div>
                 <div>
                     <h3>Leave Your Mark</h3>
-                    <p>
-                        Enjoy the House. Make your move. Give people a night
-                        worth remembering.
-                    </p>
+                    <p>Enjoy the House. Make your move. Give people a night worth remembering.</p>
                 </div>
             </div>
 
@@ -2478,7 +2382,7 @@ footer {
 <script>
 
 /* =========================
-   INTRO
+   OPENING ANIMATION
 ========================= */
 
 window.addEventListener("load", () => {
@@ -2487,7 +2391,7 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
         intro.classList.add("hide");
-    }, 1800);
+    }, 4300);
 
 });
 
