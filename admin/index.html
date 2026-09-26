@@ -45,7 +45,8 @@
         }
 
         button,
-        input {
+        input,
+        select {
             font: inherit;
         }
 
@@ -119,7 +120,6 @@
             letter-spacing: .25em;
             text-transform: uppercase;
             cursor: pointer;
-            transition: .3s ease;
         }
 
         .login-form button:hover {
@@ -149,7 +149,6 @@
             font-size: 9px;
             letter-spacing: .18em;
             text-transform: uppercase;
-            transition: color .3s ease;
         }
 
         .back-link:hover {
@@ -241,13 +240,21 @@
             line-height: 1.8;
         }
 
-        .requests-section {
-            margin-top: 30px;
+        .section-label {
+            margin-top: 45px;
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+        }
+
+        .panel {
+            margin-top: 15px;
             border: 1px solid var(--line);
             background: var(--black-soft);
         }
 
-        .requests-header {
+        .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -256,13 +263,13 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .requests-header h3 {
+        .panel-header h3 {
             font-family: var(--serif);
             font-size: 36px;
             font-weight: 500;
         }
 
-        .refresh-button {
+        .secondary-button {
             border: 1px solid var(--line);
             background: transparent;
             color: var(--gold);
@@ -273,47 +280,58 @@
             cursor: pointer;
         }
 
-        .refresh-button:hover {
+        .secondary-button:hover {
             border-color: var(--gold);
         }
 
-        .request-list {
+        .request-list,
+        .member-list {
             display: flex;
             flex-direction: column;
         }
 
-        .request-row {
+        .request-row,
+        .member-row {
             display: grid;
-            grid-template-columns: 1fr 180px 150px;
+            grid-template-columns: 1fr 190px 150px;
             gap: 20px;
             align-items: center;
             padding: 20px 30px;
             border-bottom: 1px solid rgba(197,161,90,.1);
         }
 
-        .request-row:last-child {
+        .request-row:last-child,
+        .member-row:last-child {
             border-bottom: none;
         }
 
-        .request-name {
+        .request-name,
+        .member-name {
             color: var(--cream);
             font-size: 12px;
-            letter-spacing: .04em;
         }
 
-        .request-date {
+        .request-date,
+        .member-date {
             color: var(--muted);
             font-size: 10px;
-            line-height: 1.6;
         }
 
-        .request-status {
+        .request-status,
+        .member-status {
             justify-self: end;
             border: 1px solid rgba(197,161,90,.18);
             padding: 7px 10px;
             color: var(--gold);
             font-size: 8px;
             letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .member-house {
+            color: var(--gold-soft);
+            font-size: 9px;
+            letter-spacing: .1em;
             text-transform: uppercase;
         }
 
@@ -330,12 +348,48 @@
             color: #c98989;
         }
 
-        .section-label {
-            margin-top: 45px;
-            color: var(--gold);
-            font-size: 9px;
-            letter-spacing: .35em;
+        .add-member-form {
+            display: grid;
+            grid-template-columns: 1fr 220px auto;
+            gap: 10px;
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .add-member-form input,
+        .add-member-form select {
+            width: 100%;
+            padding: 13px;
+            background: transparent;
+            border: 1px solid var(--line);
+            color: var(--cream);
+            outline: none;
+            font-size: 11px;
+        }
+
+        .add-member-form select option {
+            background: var(--black-soft);
+            color: var(--cream);
+        }
+
+        .add-member-form input:focus,
+        .add-member-form select:focus {
+            border-color: var(--gold);
+        }
+
+        .add-member-button {
+            border: 1px solid var(--gold);
+            background: var(--gold);
+            color: var(--black);
+            padding: 13px 18px;
+            font-size: 8px;
+            letter-spacing: .18em;
             text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .add-member-button:hover {
+            background: var(--gold-soft);
         }
 
         @media (max-width: 850px) {
@@ -343,13 +397,19 @@
                 grid-template-columns: 1fr;
             }
 
-            .request-row {
+            .request-row,
+            .member-row {
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
 
-            .request-status {
+            .request-status,
+            .member-status {
                 justify-self: start;
+            }
+
+            .add-member-form {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -370,12 +430,17 @@
                 flex-direction: column;
             }
 
-            .requests-header {
+            .panel-header {
                 padding: 22px;
             }
 
-            .request-row {
+            .request-row,
+            .member-row {
                 padding: 20px 22px;
+            }
+
+            .add-member-form {
+                padding: 22px;
             }
         }
     </style>
@@ -383,512 +448,665 @@
 
 <body>
 
-    <div class="admin-shell">
+<div class="admin-shell">
 
-        <div class="login-card" id="loginCard">
+    <div class="login-card" id="loginCard">
 
-            <div class="label">
-                CONFIDENTIAL // HOUSE OF XANDER
-            </div>
-
-            <h1>
-                THE<br>
-                CONSORTIUM
-            </h1>
-
-            <p class="description">
-                Administrative access only.
-                This area is separate from the public House.
-            </p>
-
-            <form class="login-form" id="loginForm">
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Admin email"
-                    autocomplete="username"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    required
-                >
-
-                <button
-                    type="submit"
-                    id="loginButton"
-                >
-                    Enter Administration
-                </button>
-
-            </form>
-
-            <div
-                class="status"
-                id="loginStatus"
-                aria-live="polite"
-            ></div>
-
-            <a
-                class="back-link"
-                href="../"
-            >
-                ← Return to The Consortium
-            </a>
-
+        <div class="label">
+            CONFIDENTIAL // HOUSE OF XANDER
         </div>
 
+        <h1>
+            THE<br>
+            CONSORTIUM
+        </h1>
 
-        <main
-            class="dashboard"
-            id="dashboard"
+        <p class="description">
+            Administrative access only.
+            This area is separate from the public House.
+        </p>
+
+        <form class="login-form" id="loginForm">
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Admin email"
+                autocomplete="username"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button
+                type="submit"
+                id="loginButton"
+            >
+                Enter Administration
+            </button>
+
+        </form>
+
+        <div
+            class="status"
+            id="loginStatus"
+            aria-live="polite"
+        ></div>
+
+        <a
+            class="back-link"
+            href="../"
         >
-
-            <div class="dashboard-header">
-
-                <div>
-
-                    <div class="label">
-                        HOUSE OF XANDER // ADMINISTRATION
-                    </div>
-
-                    <h2>
-                        The<br>
-                        House.
-                    </h2>
-
-                    <p>
-                        Administrative control panel
-                    </p>
-
-                </div>
-
-                <button
-                    class="logout"
-                    id="logoutButton"
-                    type="button"
-                >
-                    Sign Out
-                </button>
-
-            </div>
-
-
-            <div class="dashboard-grid">
-
-                <div class="admin-card">
-
-                    <span>
-                        01 // ACCESS
-                    </span>
-
-                    <h3 id="requestCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Access requests received from
-                        the public Consortium website.
-                    </p>
-
-                </div>
-
-
-                <div class="admin-card">
-
-                    <span>
-                        02 // HOUSE
-                    </span>
-
-                    <h3>
-                        04
-                    </h3>
-
-                    <p>
-                        The Consortium currently operates
-                        across four Houses.
-                    </p>
-
-                </div>
-
-
-                <div class="admin-card">
-
-                    <span>
-                        03 // CONTROL
-                    </span>
-
-                    <h3>
-                        LIVE
-                    </h3>
-
-                    <p>
-                        Administrative controls are connected
-                        to the House database.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="section-label">
-                HOUSE OF XANDER // ACCESS CONTROL
-            </div>
-
-
-            <section class="requests-section">
-
-                <div class="requests-header">
-
-                    <h3>
-                        Access Requests
-                    </h3>
-
-                    <button
-                        class="refresh-button"
-                        id="refreshButton"
-                        type="button"
-                    >
-                        Refresh
-                    </button>
-
-                </div>
-
-                <div
-                    class="request-list"
-                    id="requestList"
-                >
-
-                    <div class="empty-state">
-                        Loading requests...
-                    </div>
-
-                </div>
-
-            </section>
-
-        </main>
+            ← Return to The Consortium
+        </a>
 
     </div>
 
 
-    <script>
+    <main
+        class="dashboard"
+        id="dashboard"
+    >
 
-        const SUPABASE_URL =
-            "https://gtdznirtmbjoydlbwutp.supabase.co";
+        <div class="dashboard-header">
 
-        const SUPABASE_PUBLIC_KEY =
-            "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
+            <div>
 
-        const supabaseClient =
-            window.supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_PUBLIC_KEY
-            );
+                <div class="label">
+                    HOUSE OF XANDER // ADMINISTRATION
+                </div>
 
+                <h2>
+                    The<br>
+                    House.
+                </h2>
 
-        const loginCard =
-            document.getElementById("loginCard");
+                <p>
+                    Administrative control panel
+                </p>
 
-        const dashboard =
-            document.getElementById("dashboard");
+            </div>
 
-        const loginForm =
-            document.getElementById("loginForm");
+            <button
+                class="logout"
+                id="logoutButton"
+                type="button"
+            >
+                Sign Out
+            </button>
 
-        const email =
-            document.getElementById("email");
-
-        const password =
-            document.getElementById("password");
-
-        const loginButton =
-            document.getElementById("loginButton");
-
-        const loginStatus =
-            document.getElementById("loginStatus");
-
-        const logoutButton =
-            document.getElementById("logoutButton");
-
-        const requestList =
-            document.getElementById("requestList");
-
-        const requestCount =
-            document.getElementById("requestCount");
-
-        const refreshButton =
-            document.getElementById("refreshButton");
+        </div>
 
 
-        async function loadRequests() {
+        <div class="dashboard-grid">
 
-            requestList.innerHTML = `
+            <div class="admin-card">
+
+                <span>
+                    01 // ACCESS
+                </span>
+
+                <h3 id="requestCount">
+                    0
+                </h3>
+
+                <p>
+                    Access requests received from
+                    the public Consortium website.
+                </p>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <span>
+                    02 // MEMBERS
+                </span>
+
+                <h3 id="memberCount">
+                    0
+                </h3>
+
+                <p>
+                    Current members inside the private
+                    Consortium House.
+                </p>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <span>
+                    03 // HOUSES
+                </span>
+
+                <h3>
+                    04
+                </h3>
+
+                <p>
+                    Sovereigns, Vanguard, Covenant
+                    and Rogues.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-label">
+            HOUSE OF XANDER // ACCESS CONTROL
+        </div>
+
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    Access Requests
+                </h3>
+
+                <button
+                    class="secondary-button"
+                    id="refreshRequests"
+                    type="button"
+                >
+                    Refresh
+                </button>
+
+            </div>
+
+            <div
+                class="request-list"
+                id="requestList"
+            >
+
                 <div class="empty-state">
                     Loading requests...
                 </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="section-label">
+            HOUSE OF XANDER // MEMBERS
+        </div>
+
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    House Members
+                </h3>
+
+                <button
+                    class="secondary-button"
+                    id="refreshMembers"
+                    type="button"
+                >
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <form
+                class="add-member-form"
+                id="addMemberForm"
+            >
+
+                <input
+                    type="text"
+                    id="memberName"
+                    placeholder="Member name"
+                    required
+                >
+
+                <select
+                    id="memberHouse"
+                    required
+                >
+                    <option value="">
+                        Assign House
+                    </option>
+
+                    <option value="THE SOVEREIGNS">
+                        ♛ THE SOVEREIGNS
+                    </option>
+
+                    <option value="THE VANGUARD">
+                        ⚔ THE VANGUARD
+                    </option>
+
+                    <option value="THE COVENANT">
+                        ◈ THE COVENANT
+                    </option>
+
+                    <option value="THE ROGUES">
+                        ◇ THE ROGUES
+                    </option>
+                </select>
+
+                <button
+                    class="add-member-button"
+                    type="submit"
+                    id="addMemberButton"
+                >
+                    Add Member
+                </button>
+
+            </form>
+
+
+            <div
+                class="member-list"
+                id="memberList"
+            >
+
+                <div class="empty-state">
+                    Loading members...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    const SUPABASE_URL =
+        "https://gtdznirtmbjoydlbwutp.supabase.co";
+
+    const SUPABASE_PUBLIC_KEY =
+        "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLIC_KEY
+        );
+
+
+    const loginCard =
+        document.getElementById("loginCard");
+
+    const dashboard =
+        document.getElementById("dashboard");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const email =
+        document.getElementById("email");
+
+    const password =
+        document.getElementById("password");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const loginStatus =
+        document.getElementById("loginStatus");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    const requestList =
+        document.getElementById("requestList");
+
+    const memberList =
+        document.getElementById("memberList");
+
+    const requestCount =
+        document.getElementById("requestCount");
+
+    const memberCount =
+        document.getElementById("memberCount");
+
+    const refreshRequests =
+        document.getElementById("refreshRequests");
+
+    const refreshMembers =
+        document.getElementById("refreshMembers");
+
+    const addMemberForm =
+        document.getElementById("addMemberForm");
+
+    const memberName =
+        document.getElementById("memberName");
+
+    const memberHouse =
+        document.getElementById("memberHouse");
+
+    const addMemberButton =
+        document.getElementById("addMemberButton");
+
+
+    async function loadRequests() {
+
+        requestList.innerHTML = `
+            <div class="empty-state">
+                Loading requests...
+            </div>
+        `;
+
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("access_requests")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
+
+
+        if (error) {
+
+            console.error(
+                "Request error:",
+                error
+            );
+
+            requestList.innerHTML = `
+                <div class="empty-state error-state">
+                    Unable to load access requests.
+                </div>
             `;
+
+            return;
+        }
+
+
+        requestCount.textContent =
+            data.length;
+
+
+        if (!data.length) {
+
+            requestList.innerHTML = `
+                <div class="empty-state">
+                    No access requests yet.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        requestList.innerHTML = "";
+
+
+        data.forEach(function (request) {
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "request-row";
+
+
+            const name =
+                document.createElement("div");
+
+            name.className =
+                "request-name";
+
+            name.textContent =
+                request.name || "Unnamed";
+
+
+            const date =
+                document.createElement("div");
+
+            date.className =
+                "request-date";
+
+
+            if (request.created_at) {
+
+                date.textContent =
+                    new Date(
+                        request.created_at
+                    ).toLocaleString(
+                        "en-NG",
+                        {
+                            dateStyle: "medium",
+                            timeStyle: "short"
+                        }
+                    );
+
+            } else {
+
+                date.textContent =
+                    "Date unavailable";
+
+            }
+
+
+            const status =
+                document.createElement("div");
+
+            status.className =
+                "request-status";
+
+            status.textContent =
+                "RECEIVED";
+
+
+            row.appendChild(name);
+            row.appendChild(date);
+            row.appendChild(status);
+
+            requestList.appendChild(row);
+
+        });
+
+    }
+
+
+    async function loadMembers() {
+
+        memberList.innerHTML = `
+            <div class="empty-state">
+                Loading members...
+            </div>
+        `;
+
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("members")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
+
+
+        if (error) {
+
+            console.error(
+                "Member error:",
+                error
+            );
+
+            memberList.innerHTML = `
+                <div class="empty-state error-state">
+                    Unable to load members.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        memberCount.textContent =
+            data.length;
+
+
+        if (!data.length) {
+
+            memberList.innerHTML = `
+                <div class="empty-state">
+                    No members have been added yet.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        memberList.innerHTML = "";
+
+
+        data.forEach(function (member) {
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "member-row";
+
+
+            const name =
+                document.createElement("div");
+
+            name.className =
+                "member-name";
+
+            name.textContent =
+                member.name;
+
+
+            const house =
+                document.createElement("div");
+
+            house.className =
+                "member-house";
+
+            house.textContent =
+                member.house ||
+                "HOUSE UNASSIGNED";
+
+
+            const status =
+                document.createElement("div");
+
+            status.className =
+                "member-status";
+
+            status.textContent =
+                member.status ||
+                "ACTIVE";
+
+
+            row.appendChild(name);
+            row.appendChild(house);
+            row.appendChild(status);
+
+            memberList.appendChild(row);
+
+        });
+
+    }
+
+
+    async function showDashboard() {
+
+        loginCard.style.display =
+            "none";
+
+        dashboard.classList.add(
+            "active"
+        );
+
+
+        await Promise.all([
+            loadRequests(),
+            loadMembers()
+        ]);
+
+    }
+
+
+    async function checkSession() {
+
+        const {
+            data
+        } = await supabaseClient
+            .auth
+            .getSession();
+
+
+        if (
+            data &&
+            data.session
+        ) {
+
+            await showDashboard();
+
+        }
+
+    }
+
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            loginButton.disabled =
+                true;
+
+            loginButton.textContent =
+                "AUTHENTICATING...";
+
+            loginStatus.textContent =
+                "";
 
 
             const {
-                data,
                 error
             } = await supabaseClient
-                .from("access_requests")
-                .select("*")
-                .order("created_at", {
-                    ascending: false
+                .auth
+                .signInWithPassword({
+                    email: email.value.trim(),
+                    password: password.value
                 });
 
 
             if (error) {
 
                 console.error(
-                    "Supabase request error:",
+                    "Authentication error:",
                     error
                 );
 
 
-                requestList.innerHTML = `
-                    <div class="empty-state error-state">
-                        Unable to load access requests.
-                    </div>
-                `;
-
-
-                requestCount.textContent =
-                    "0";
-
-
-                return;
-            }
-
-
-            requestCount.textContent =
-                data.length;
-
-
-            if (!data.length) {
-
-                requestList.innerHTML = `
-                    <div class="empty-state">
-                        No access requests yet.
-                    </div>
-                `;
-
-                return;
-            }
-
-
-            requestList.innerHTML = "";
-
-
-            data.forEach(function (request) {
-
-                const row =
-                    document.createElement("div");
-
-                row.className =
-                    "request-row";
-
-
-                const name =
-                    document.createElement("div");
-
-                name.className =
-                    "request-name";
-
-                name.textContent =
-                    request.name || "Unnamed";
-
-
-                const date =
-                    document.createElement("div");
-
-                date.className =
-                    "request-date";
-
-
-                if (request.created_at) {
-
-                    const requestDate =
-                        new Date(
-                            request.created_at
-                        );
-
-
-                    date.textContent =
-                        requestDate.toLocaleString(
-                            "en-NG",
-                            {
-                                dateStyle: "medium",
-                                timeStyle: "short"
-                            }
-                        );
-
-                } else {
-
-                    date.textContent =
-                        "Date unavailable";
-
-                }
-
-
-                const status =
-                    document.createElement("div");
-
-                status.className =
-                    "request-status";
-
-                status.textContent =
-                    "RECEIVED";
-
-
-                row.appendChild(name);
-                row.appendChild(date);
-                row.appendChild(status);
-
-                requestList.appendChild(row);
-
-            });
-
-        }
-
-
-        async function showDashboard() {
-
-            loginCard.style.display =
-                "none";
-
-            dashboard.classList.add(
-                "active"
-            );
-
-
-            await loadRequests();
-
-        }
-
-
-        async function checkSession() {
-
-            const {
-                data
-            } = await supabaseClient
-                .auth
-                .getSession();
-
-
-            if (
-                data &&
-                data.session
-            ) {
-
-                await showDashboard();
-
-            }
-
-        }
-
-
-        loginForm.addEventListener(
-            "submit",
-            async function (event) {
-
-                event.preventDefault();
-
-
-                const emailValue =
-                    email.value.trim();
-
-                const passwordValue =
-                    password.value;
-
-
-                loginButton.disabled =
-                    true;
-
-                loginButton.textContent =
-                    "AUTHENTICATING...";
-
                 loginStatus.textContent =
-                    "";
-
-
-                const {
-                    error
-                } = await supabaseClient
-                    .auth
-                    .signInWithPassword({
-                        email: emailValue,
-                        password: passwordValue
-                    });
-
-
-                if (error) {
-
-                    console.error(
-                        "Authentication error:",
-                        error
-                    );
-
-
-                    loginStatus.textContent =
-                        "INVALID ADMIN CREDENTIALS.";
-
-
-                    loginButton.disabled =
-                        false;
-
-                    loginButton.textContent =
-                        "ENTER ADMINISTRATION";
-
-
-                    return;
-
-                }
-
-
-                loginButton.textContent =
-                    "ACCESS GRANTED";
-
-
-                await showDashboard();
-
-            }
-        );
-
-
-        logoutButton.addEventListener(
-            "click",
-            async function () {
-
-                await supabaseClient
-                    .auth
-                    .signOut();
-
-
-                dashboard.classList.remove(
-                    "active"
-                );
-
-
-                loginCard.style.display =
-                    "block";
-
-
-                email.value = "";
-                password.value = "";
-
-
-                loginStatus.textContent =
-                    "";
+                    "INVALID ADMIN CREDENTIALS.";
 
 
                 loginButton.disabled =
@@ -897,63 +1115,208 @@
                 loginButton.textContent =
                     "ENTER ADMINISTRATION";
 
-            }
-        );
 
-
-        refreshButton.addEventListener(
-            "click",
-            async function () {
-
-                refreshButton.disabled =
-                    true;
-
-                refreshButton.textContent =
-                    "LOADING...";
-
-
-                await loadRequests();
-
-
-                refreshButton.disabled =
-                    false;
-
-                refreshButton.textContent =
-                    "REFRESH";
+                return;
 
             }
-        );
 
 
-        supabaseClient
-            .auth
-            .onAuthStateChange(
-                function (
-                    event,
-                    session
-                ) {
+            loginButton.textContent =
+                "ACCESS GRANTED";
 
-                    if (
-                        event === "SIGNED_OUT" ||
-                        !session
-                    ) {
 
-                        dashboard.classList.remove(
-                            "active"
-                        );
+            await showDashboard();
 
-                        loginCard.style.display =
-                            "block";
+        }
+    );
 
+
+    addMemberForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const name =
+                memberName.value.trim();
+
+            const house =
+                memberHouse.value;
+
+
+            if (!name || !house) {
+                return;
+            }
+
+
+            addMemberButton.disabled =
+                true;
+
+            addMemberButton.textContent =
+                "ADDING...";
+
+
+            const {
+                error
+            } = await supabaseClient
+                .from("members")
+                .insert([
+                    {
+                        name: name,
+                        house: house,
+                        status: "ACTIVE"
                     }
+                ]);
 
-                }
+
+            if (error) {
+
+                console.error(
+                    "Member creation error:",
+                    error
+                );
+
+                alert(
+                    "Unable to add member. Please try again."
+                );
+
+            } else {
+
+                memberName.value =
+                    "";
+
+                memberHouse.value =
+                    "";
+
+                await loadMembers();
+
+            }
+
+
+            addMemberButton.disabled =
+                false;
+
+            addMemberButton.textContent =
+                "ADD MEMBER";
+
+        }
+    );
+
+
+    logoutButton.addEventListener(
+        "click",
+        async function () {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+
+            dashboard.classList.remove(
+                "active"
             );
 
+            loginCard.style.display =
+                "block";
 
-        checkSession();
 
-    </script>
+            email.value =
+                "";
+
+            password.value =
+                "";
+
+            loginStatus.textContent =
+                "";
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "ENTER ADMINISTRATION";
+
+        }
+    );
+
+
+    refreshRequests.addEventListener(
+        "click",
+        async function () {
+
+            refreshRequests.disabled =
+                true;
+
+            refreshRequests.textContent =
+                "LOADING...";
+
+
+            await loadRequests();
+
+
+            refreshRequests.disabled =
+                false;
+
+            refreshRequests.textContent =
+                "REFRESH";
+
+        }
+    );
+
+
+    refreshMembers.addEventListener(
+        "click",
+        async function () {
+
+            refreshMembers.disabled =
+                true;
+
+            refreshMembers.textContent =
+                "LOADING...";
+
+
+            await loadMembers();
+
+
+            refreshMembers.disabled =
+                false;
+
+            refreshMembers.textContent =
+                "REFRESH";
+
+        }
+    );
+
+
+    supabaseClient
+        .auth
+        .onAuthStateChange(
+            function (
+                event,
+                session
+            ) {
+
+                if (
+                    event === "SIGNED_OUT" ||
+                    !session
+                ) {
+
+                    dashboard.classList.remove(
+                        "active"
+                    );
+
+                    loginCard.style.display =
+                        "block";
+
+                }
+
+            }
+        );
+
+
+    checkSession();
+
+</script>
 
 </body>
 </html>
