@@ -775,177 +775,6 @@ section {
     </div>
 
 </section>
-<!-- =====================================================
-     PART 2: THE EXPERIENCE + THE GAME
-===================================================== -->
-
-<main>
-
-    <!-- =========================
-     THE DOSSIER
-========================= -->
-
-<section class="dossier-section reveal" id="dossier">
-    <div class="dossier-wrap">
-
-        <div class="dossier-heading">
-            <div class="dossier-kicker">CLASSIFIED // MEMBER FILE</div>
-
-            <h2>THE DOSSIER.</h2>
-
-            <p>
-                Every member enters the Consortium with an identity.
-                Some information is public. The rest belongs to the House.
-            </p>
-        </div>
-
-        <div class="dossier-card">
-
-            <div class="dossier-top">
-
-                <div class="dossier-mark">
-                    CX
-                </div>
-
-                <div class="dossier-status">
-                    <span>ACCESS STATUS</span>
-                    <strong>● PENDING REVIEW</strong>
-                </div>
-
-            </div>
-
-            <div class="dossier-name">
-                <small>MEMBER NAME</small>
-                <h3>CLASSIFIED MEMBER</h3>
-            </div>
-
-            <div class="dossier-grid">
-
-                <div class="dossier-field">
-                    <span>Consortium ID</span>
-                    <strong>CX-000</strong>
-                </div>
-
-                <div class="dossier-field">
-                    <span>House</span>
-                    <strong>UNASSIGNED</strong>
-                </div>
-
-                <div class="dossier-field">
-                    <span>Access Level</span>
-                    <strong>RESTRICTED</strong>
-                </div>
-
-                <div class="dossier-field">
-                    <span>Player Status</span>
-                    <strong>AWAITING ENTRY</strong>
-                </div>
-
-                <div class="dossier-field">
-                    <span>Mission Status</span>
-                    <strong>CLASSIFIED</strong>
-                </div>
-
-                <div class="dossier-field">
-                    <span>House Status</span>
-                    <strong>CLASSIFIED</strong>
-                </div>
-
-            </div>
-
-            <div class="dossier-footer">
-                <span>CONFIDENTIAL // HOUSE OF XANDER</span>
-                <span class="dossier-lock">FILE LOCKED</span>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-<section class="experience" id="experience">
-<style>
-.experience {
-    padding: 130px 0;
-    background:
-        linear-gradient(to bottom, var(--black), var(--black-soft));
-}
-
-.experience-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
-    margin-bottom: 70px;
-}
-
-.experience-intro {
-    max-width: 430px;
-    color: var(--muted);
-    line-height: 1.8;
-    font-size: 13px;
-}
-
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-}
-
-.experience-card {
-    min-height: 280px;
-    padding: 35px;
-    background: var(--black-card);
-    position: relative;
-    transition: .35s ease;
-}
-
-.experience-card:hover {
-    background: var(--burgundy-deep);
-}
-
-.experience-number {
-    font-size: 9px;
-    color: var(--gold);
-    letter-spacing: 3px;
-}
-
-.experience-card h3 {
-    font-family: var(--serif);
-    font-size: 34px;
-    font-weight: 500;
-    margin-top: 70px;
-}
-
-.experience-card p {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.7;
-}
-
-.game {
-    padding: 130px 0;
-    background: var(--black-deep);
-    border-top: 1px solid var(--soft-line);
-}
-
-.game-header {
-    max-width: 800px;
-    margin-bottom: 70px;
-}
-
-.game-header p {
-    max-width: 550px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-top: 25px;
-}
-
-.game-phases {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     border-top: 1px solid var(--line);
 }
 
@@ -1111,85 +940,344 @@ section {
 <section class="game" id="game">
 
 <div class="section-inner">
+<!-- =========================
+     PART 2
+     EXPERIENCE + DOSSIER + GAME
+========================= -->
 
-    <div class="game-header reveal">
-        <div class="section-label">THE GAME</div>
+<main>
 
-        <h2 class="section-title">
-            PLAY SMART.<br>
-            <span>PLAY TO WIN.</span>
-        </h2>
+<!-- =========================
+     THE EXPERIENCE
+========================= -->
+
+<section class="section experience-section reveal" id="experience">
+
+    <div class="section-head">
+        <div>
+            <div class="section-kicker">THE HOUSE // 01</div>
+            <h2>THE EXPERIENCE.</h2>
+        </div>
 
         <p>
-            The Consortium is built around strategy, social intelligence,
-            pressure and controlled unpredictability. Your House is only
-            as strong as the decisions its members make.
+            One house. One night. Thirty people.
+            What happens inside is entirely up to the people who enter.
         </p>
     </div>
 
-    <div class="game-phases">
+    <div class="experience-grid">
 
-        <div class="game-phase reveal">
-            <div class="phase-number">01 // ARRIVAL</div>
-            <h3>The House</h3>
+        <article class="experience-card">
+            <span class="card-number">01</span>
+            <div class="card-line"></div>
+            <h3>ARRIVE</h3>
+            <strong>ENTER THE HOUSE.</strong>
+            <p>Leave the ordinary outside.</p>
+        </article>
+
+        <article class="experience-card">
+            <span class="card-number">02</span>
+            <div class="card-line"></div>
+            <h3>CHOOSE YOUR SIDE</h3>
+            <strong>FOUR HOUSES. ONE CHOICE.</strong>
+            <p>Your House becomes your alliance.</p>
+        </article>
+
+        <article class="experience-card">
+            <span class="card-number">03</span>
+            <div class="card-line"></div>
+            <h3>PLAY THE GAME</h3>
+            <strong>THINK. MOVE.</strong>
+            <p>Every challenge changes the board.</p>
+        </article>
+
+        <article class="experience-card">
+            <span class="card-number">04</span>
+            <div class="card-line"></div>
+            <h3>MAKE YOUR MOVE</h3>
+            <strong>TRUST CAREFULLY.</strong>
+            <p>Everyone has an agenda.</p>
+        </article>
+
+        <article class="experience-card">
+            <span class="card-number">05</span>
+            <div class="card-line"></div>
+            <h3>ENTER THE VAULT</h3>
+            <strong>PROTECT. OR RISK.</strong>
+            <p>Some decisions are better kept private.</p>
+        </article>
+
+        <article class="experience-card">
+            <span class="card-number">06</span>
+            <div class="card-line"></div>
+            <h3>AFTER DARK</h3>
+            <strong>THE GAME ENDS.</strong>
+            <p>The night doesn't.</p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     THE DOSSIER
+========================= -->
+
+<section class="dossier-section reveal" id="dossier">
+
+    <div class="dossier-wrap">
+
+        <div class="dossier-heading">
+
+            <div class="dossier-kicker">
+                CLASSIFIED // MEMBER FILE
+            </div>
+
+            <h2>THE DOSSIER.</h2>
+
             <p>
-                Meet your House. Read the room. Understand the people
-                you're about to compete with.
+                Every member enters the Consortium with an identity.
+                Some information is public. The rest belongs to the House.
             </p>
+
         </div>
 
-        <div class="game-phase reveal">
-            <div class="phase-number">02 // THE TRIALS</div>
-            <h3>The Challenges</h3>
-            <p>
-                Mind. Social. Pressure.
-                Every challenge contributes to your House's position.
-            </p>
-        </div>
 
-        <div class="game-phase reveal">
-            <div class="phase-number">03 // THE ALLIANCE</div>
-            <h3>Make Your Move</h3>
-            <p>
-                Negotiate. Trade information. Form alliances.
-                Bluff if you have to.
-            </p>
-        </div>
+        <div class="dossier-card">
 
-        <div class="game-phase reveal">
-            <div class="phase-number">04 // THE VAULT</div>
-            <h3>Protect Or Risk</h3>
-            <p>
-                A decision with consequences.
-                Sometimes protecting what you have is the smartest move.
-            </p>
-        </div>
+            <div class="dossier-top">
 
-        <div class="game-phase reveal">
-            <div class="phase-number">05 // THE FINAL</div>
-            <h3>Kingmakers</h3>
-            <p>
-                The final Houses emerge.
-                Those eliminated may still hold the power to influence the outcome.
-            </p>
-        </div>
+                <div class="dossier-mark">
+                    CX
+                </div>
 
-        <div class="game-phase reveal">
-            <div class="phase-number">06 // AFTER HOURS</div>
-            <h3>The Game Ends</h3>
-            <p>
-                Music. Food. Conversations. Photos.
-                No more competition. Just the night.
-            </p>
+                <div class="dossier-status">
+                    <span>ACCESS STATUS</span>
+                    <strong>● PENDING REVIEW</strong>
+                </div>
+
+            </div>
+
+
+            <div class="dossier-name">
+
+                <small>MEMBER NAME</small>
+
+                <h3>CLASSIFIED MEMBER</h3>
+
+            </div>
+
+
+            <div class="dossier-grid">
+
+                <div class="dossier-field">
+                    <span>Consortium ID</span>
+                    <strong>CX-000</strong>
+                </div>
+
+                <div class="dossier-field">
+                    <span>House</span>
+                    <strong>UNASSIGNED</strong>
+                </div>
+
+                <div class="dossier-field">
+                    <span>Access Level</span>
+                    <strong>RESTRICTED</strong>
+                </div>
+
+                <div class="dossier-field">
+                    <span>Player Status</span>
+                    <strong>AWAITING ENTRY</strong>
+                </div>
+
+                <div class="dossier-field">
+                    <span>Mission Status</span>
+                    <strong>CLASSIFIED</strong>
+                </div>
+
+                <div class="dossier-field">
+                    <span>House Status</span>
+                    <strong>CLASSIFIED</strong>
+                </div>
+
+            </div>
+
+
+            <div class="dossier-footer">
+
+                <span>
+                    CONFIDENTIAL // HOUSE OF XANDER
+                </span>
+
+                <span class="dossier-lock">
+                    FILE LOCKED
+                </span>
+
+            </div>
+
         </div>
 
     </div>
 
-    <div class="game-quote reveal">
-        <p>The game ends. The house doesn't.</p>
+</section>
+
+
+<!-- =========================
+     THE GAME
+========================= -->
+
+<section class="section game-section reveal" id="game">
+
+    <div class="section-head">
+
+        <div>
+            <div class="section-kicker">THE HOUSE // 02</div>
+            <h2>THE GAME.</h2>
+        </div>
+
+        <p>
+            Strategy, pressure, alliances and decisions.
+            Every move changes what happens next.
+        </p>
+
     </div>
 
-</div>
+
+    <div class="game-timeline">
+
+        <article class="game-step">
+
+            <div class="game-step-number">01</div>
+
+            <div class="game-step-content">
+
+                <span>THE HOUSE</span>
+
+                <h3>ARRIVAL</h3>
+
+                <p>
+                    Enter the house. Meet the players.
+                    Discover where you stand.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="game-step">
+
+            <div class="game-step-number">02</div>
+
+            <div class="game-step-content">
+
+                <span>THE CHALLENGES</span>
+
+                <h3>THE TRIALS</h3>
+
+                <p>
+                    Mind, social and pressure challenges
+                    determine who gains the advantage.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="game-step">
+
+            <div class="game-step-number">03</div>
+
+            <div class="game-step-content">
+
+                <span>MAKE YOUR MOVE</span>
+
+                <h3>THE ALLIANCE</h3>
+
+                <p>
+                    Negotiate. Trade. Bluff.
+                    Trust is a currency inside the house.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="game-step">
+
+            <div class="game-step-number">04</div>
+
+            <div class="game-step-content">
+
+                <span>PROTECT OR RISK</span>
+
+                <h3>THE VAULT</h3>
+
+                <p>
+                    Your House has something to lose.
+                    The Vault gives you a choice.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="game-step">
+
+            <div class="game-step-number">05</div>
+
+            <div class="game-step-content">
+
+                <span>KINGMAKERS</span>
+
+                <h3>THE FINAL</h3>
+
+                <p>
+                    Two Houses remain.
+                    The others decide how the night ends.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="game-step">
+
+            <div class="game-step-number">06</div>
+
+            <div class="game-step-content">
+
+                <span>THE GAME ENDS</span>
+
+                <h3>AFTER HOURS</h3>
+
+                <p>
+                    Competition is over.
+                    The house finally becomes what it was meant to be.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="game-quote">
+
+        <span>THE CONSORTIUM</span>
+
+        <blockquote>
+            “The game ends. The house doesn't.”
+        </blockquote>
+
+    </div>
+
 </section>
 <!-- =====================================================
      PART 3: THE HOUSES + SCOREBOARD + VAULT
