@@ -44,6 +44,11 @@
             font-family: var(--sans);
         }
 
+        button,
+        input {
+            font: inherit;
+        }
+
         .admin-shell {
             min-height: 100vh;
             display: flex;
@@ -97,7 +102,6 @@
             border: 1px solid var(--line);
             color: var(--cream);
             outline: none;
-            font-family: var(--sans);
             font-size: 12px;
         }
 
@@ -111,7 +115,6 @@
             border: 1px solid var(--gold);
             background: var(--gold);
             color: var(--black);
-            font-family: var(--sans);
             font-size: 9px;
             letter-spacing: .25em;
             text-transform: uppercase;
@@ -156,7 +159,7 @@
         .dashboard {
             display: none;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1250px;
             margin: auto;
             padding: 50px 30px;
         }
@@ -227,7 +230,7 @@
         .admin-card h3 {
             margin-top: 15px;
             font-family: var(--serif);
-            font-size: 34px;
+            font-size: 38px;
             font-weight: 500;
         }
 
@@ -255,7 +258,7 @@
 
         .requests-header h3 {
             font-family: var(--serif);
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 500;
         }
 
@@ -281,8 +284,9 @@
 
         .request-row {
             display: grid;
-            grid-template-columns: 1fr 220px;
+            grid-template-columns: 1fr 180px 150px;
             gap: 20px;
+            align-items: center;
             padding: 20px 30px;
             border-bottom: 1px solid rgba(197,161,90,.1);
         }
@@ -300,8 +304,17 @@
         .request-date {
             color: var(--muted);
             font-size: 10px;
-            text-align: right;
             line-height: 1.6;
+        }
+
+        .request-status {
+            justify-self: end;
+            border: 1px solid rgba(197,161,90,.18);
+            padding: 7px 10px;
+            color: var(--gold);
+            font-size: 8px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
         }
 
         .empty-state {
@@ -317,17 +330,26 @@
             color: #c98989;
         }
 
-        @media (max-width: 800px) {
+        .section-label {
+            margin-top: 45px;
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 850px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
 
             .request-row {
                 grid-template-columns: 1fr;
+                gap: 10px;
             }
 
-            .request-date {
-                text-align: left;
+            .request-status {
+                justify-self: start;
             }
         }
 
@@ -484,12 +506,12 @@
                     </span>
 
                     <h3>
-                        Members
+                        04
                     </h3>
 
                     <p>
-                        House administration will be
-                        available here as the system grows.
+                        The Consortium currently operates
+                        across four Houses.
                     </p>
 
                 </div>
@@ -502,16 +524,21 @@
                     </span>
 
                     <h3>
-                        Settings
+                        LIVE
                     </h3>
 
                     <p>
-                        Administrative controls remain
-                        separate from the public House.
+                        Administrative controls are connected
+                        to the House database.
                     </p>
 
                 </div>
 
+            </div>
+
+
+            <div class="section-label">
+                HOUSE OF XANDER // ACCESS CONTROL
             </div>
 
 
@@ -608,6 +635,7 @@
                 </div>
             `;
 
+
             const {
                 data,
                 error
@@ -618,6 +646,7 @@
                     ascending: false
                 });
 
+
             if (error) {
 
                 console.error(
@@ -625,13 +654,17 @@
                     error
                 );
 
+
                 requestList.innerHTML = `
                     <div class="empty-state error-state">
                         Unable to load access requests.
                     </div>
                 `;
 
-                requestCount.textContent = "0";
+
+                requestCount.textContent =
+                    "0";
+
 
                 return;
             }
@@ -689,6 +722,7 @@
                             request.created_at
                         );
 
+
                     date.textContent =
                         requestDate.toLocaleString(
                             "en-NG",
@@ -706,8 +740,19 @@
                 }
 
 
+                const status =
+                    document.createElement("div");
+
+                status.className =
+                    "request-status";
+
+                status.textContent =
+                    "RECEIVED";
+
+
                 row.appendChild(name);
                 row.appendChild(date);
+                row.appendChild(status);
 
                 requestList.appendChild(row);
 
@@ -724,6 +769,7 @@
             dashboard.classList.add(
                 "active"
             );
+
 
             await loadRequests();
 
@@ -744,7 +790,7 @@
                 data.session
             ) {
 
-                showDashboard();
+                await showDashboard();
 
             }
 
@@ -763,16 +809,6 @@
 
                 const passwordValue =
                     password.value;
-
-
-                if (
-                    !emailValue ||
-                    !passwordValue
-                ) {
-
-                    return;
-
-                }
 
 
                 loginButton.disabled =
@@ -802,8 +838,10 @@
                         error
                     );
 
+
                     loginStatus.textContent =
                         "INVALID ADMIN CREDENTIALS.";
+
 
                     loginButton.disabled =
                         false;
@@ -811,13 +849,11 @@
                     loginButton.textContent =
                         "ENTER ADMINISTRATION";
 
+
                     return;
 
                 }
 
-
-                loginStatus.textContent =
-                    "";
 
                 loginButton.textContent =
                     "ACCESS GRANTED";
@@ -837,18 +873,23 @@
                     .auth
                     .signOut();
 
+
                 dashboard.classList.remove(
                     "active"
                 );
 
+
                 loginCard.style.display =
                     "block";
+
 
                 email.value = "";
                 password.value = "";
 
+
                 loginStatus.textContent =
                     "";
+
 
                 loginButton.disabled =
                     false;
@@ -870,7 +911,9 @@
                 refreshButton.textContent =
                     "LOADING...";
 
+
                 await loadRequests();
+
 
                 refreshButton.disabled =
                     false;
