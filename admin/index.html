@@ -50,6 +50,10 @@
             font: inherit;
         }
 
+        button {
+            cursor: pointer;
+        }
+
         .admin-shell {
             min-height: 100vh;
             display: flex;
@@ -119,7 +123,6 @@
             font-size: 9px;
             letter-spacing: .25em;
             text-transform: uppercase;
-            cursor: pointer;
         }
 
         .login-form button:hover {
@@ -199,7 +202,6 @@
             font-size: 9px;
             letter-spacing: .18em;
             text-transform: uppercase;
-            cursor: pointer;
         }
 
         .logout:hover {
@@ -277,7 +279,6 @@
             font-size: 8px;
             letter-spacing: .18em;
             text-transform: uppercase;
-            cursor: pointer;
         }
 
         .secondary-button:hover {
@@ -290,8 +291,7 @@
             flex-direction: column;
         }
 
-        .request-row,
-        .member-row {
+        .request-row {
             display: grid;
             grid-template-columns: 1fr 190px 150px;
             gap: 20px;
@@ -300,25 +300,21 @@
             border-bottom: 1px solid rgba(197,161,90,.1);
         }
 
-        .request-row:last-child,
-        .member-row:last-child {
+        .request-row:last-child {
             border-bottom: none;
         }
 
-        .request-name,
-        .member-name {
+        .request-name {
             color: var(--cream);
             font-size: 12px;
         }
 
-        .request-date,
-        .member-date {
+        .request-date {
             color: var(--muted);
             font-size: 10px;
         }
 
-        .request-status,
-        .member-status {
+        .request-status {
             justify-self: end;
             border: 1px solid rgba(197,161,90,.18);
             padding: 7px 10px;
@@ -328,11 +324,92 @@
             text-transform: uppercase;
         }
 
+        .member-tools {
+            display: grid;
+            grid-template-columns: 1fr 180px 180px auto;
+            gap: 10px;
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .member-tools input,
+        .member-tools select {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--line);
+            color: var(--cream);
+            outline: none;
+            font-size: 10px;
+        }
+
+        .member-tools input:focus,
+        .member-tools select:focus {
+            border-color: var(--gold);
+        }
+
+        .member-tools select option {
+            background: var(--black-soft);
+            color: var(--cream);
+        }
+
+        .member-row {
+            display: grid;
+            grid-template-columns: 1fr 190px 130px 190px;
+            gap: 15px;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(197,161,90,.1);
+        }
+
+        .member-row:last-child {
+            border-bottom: none;
+        }
+
+        .member-name {
+            color: var(--cream);
+            font-size: 12px;
+        }
+
         .member-house {
             color: var(--gold-soft);
             font-size: 9px;
-            letter-spacing: .1em;
+            letter-spacing: .08em;
             text-transform: uppercase;
+        }
+
+        .member-date {
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .member-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 7px;
+        }
+
+        .action-button {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--gold);
+            padding: 8px 10px;
+            font-size: 7px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .action-button:hover {
+            border-color: var(--gold);
+        }
+
+        .action-button.danger {
+            color: #c98989;
+            border-color: rgba(201,137,137,.25);
+        }
+
+        .action-button.danger:hover {
+            border-color: #c98989;
         }
 
         .empty-state {
@@ -348,48 +425,94 @@
             color: #c98989;
         }
 
-        .add-member-form {
-            display: grid;
-            grid-template-columns: 1fr 220px auto;
-            gap: 10px;
-            padding: 25px 30px;
-            border-bottom: 1px solid var(--line);
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0,0,0,.78);
         }
 
-        .add-member-form input,
-        .add-member-form select {
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-card {
             width: 100%;
+            max-width: 430px;
+            padding: 35px;
+            border: 1px solid var(--line);
+            background: var(--black-soft);
+        }
+
+        .modal-card h3 {
+            font-family: var(--serif);
+            font-size: 38px;
+            font-weight: 500;
+        }
+
+        .modal-card p {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        .modal-card select {
+            width: 100%;
+            margin-top: 25px;
             padding: 13px;
             background: transparent;
             border: 1px solid var(--line);
             color: var(--cream);
             outline: none;
-            font-size: 11px;
+            font-size: 10px;
         }
 
-        .add-member-form select option {
+        .modal-card select option {
             background: var(--black-soft);
             color: var(--cream);
         }
 
-        .add-member-form input:focus,
-        .add-member-form select:focus {
-            border-color: var(--gold);
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .add-member-button {
-            border: 1px solid var(--gold);
+        .modal-button {
+            padding: 11px 16px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--gold);
+            font-size: 8px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        .modal-button.primary {
+            border-color: var(--gold);
             background: var(--gold);
             color: var(--black);
-            padding: 13px 18px;
-            font-size: 8px;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            cursor: pointer;
         }
 
-        .add-member-button:hover {
-            background: var(--gold-soft);
+        @media (max-width: 1000px) {
+            .member-row {
+                grid-template-columns: 1fr 170px 120px;
+            }
+
+            .member-actions {
+                grid-column: 1 / -1;
+                justify-content: flex-start;
+            }
+
+            .member-tools {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 850px) {
@@ -397,19 +520,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .request-row,
-            .member-row {
+            .request-row {
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
 
-            .request-status,
-            .member-status {
+            .request-status {
                 justify-self: start;
-            }
-
-            .add-member-form {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -434,13 +551,19 @@
                 padding: 22px;
             }
 
-            .request-row,
+            .member-tools {
+                grid-template-columns: 1fr;
+                padding: 22px;
+            }
+
             .member-row {
+                grid-template-columns: 1fr;
                 padding: 20px 22px;
             }
 
-            .add-member-form {
-                padding: 22px;
+            .member-actions {
+                grid-column: auto;
+                justify-content: flex-start;
             }
         }
     </style>
@@ -499,20 +622,14 @@
             aria-live="polite"
         ></div>
 
-        <a
-            class="back-link"
-            href="../"
-        >
+        <a class="back-link" href="../">
             ← Return to The Consortium
         </a>
 
     </div>
 
 
-    <main
-        class="dashboard"
-        id="dashboard"
-    >
+    <main class="dashboard" id="dashboard">
 
         <div class="dashboard-header">
 
@@ -547,56 +664,30 @@
         <div class="dashboard-grid">
 
             <div class="admin-card">
-
-                <span>
-                    01 // ACCESS
-                </span>
-
-                <h3 id="requestCount">
-                    0
-                </h3>
-
+                <span>01 // ACCESS</span>
+                <h3 id="requestCount">0</h3>
                 <p>
                     Access requests received from
                     the public Consortium website.
                 </p>
-
             </div>
 
-
             <div class="admin-card">
-
-                <span>
-                    02 // MEMBERS
-                </span>
-
-                <h3 id="memberCount">
-                    0
-                </h3>
-
+                <span>02 // MEMBERS</span>
+                <h3 id="memberCount">0</h3>
                 <p>
                     Current members inside the private
                     Consortium House.
                 </p>
-
             </div>
 
-
             <div class="admin-card">
-
-                <span>
-                    03 // HOUSES
-                </span>
-
-                <h3>
-                    04
-                </h3>
-
+                <span>03 // HOUSES</span>
+                <h3>04</h3>
                 <p>
                     Sovereigns, Vanguard, Covenant
                     and Rogues.
                 </p>
-
             </div>
 
         </div>
@@ -629,18 +720,16 @@
                 class="request-list"
                 id="requestList"
             >
-
                 <div class="empty-state">
                     Loading requests...
                 </div>
-
             </div>
 
         </section>
 
 
         <div class="section-label">
-            HOUSE OF XANDER // MEMBERS
+            HOUSE OF XANDER // MEMBER MANAGEMENT
         </div>
 
 
@@ -663,68 +752,148 @@
             </div>
 
 
-            <form
-                class="add-member-form"
-                id="addMemberForm"
-            >
+            <div class="member-tools">
 
                 <input
-                    type="text"
-                    id="memberName"
-                    placeholder="Member name"
-                    required
+                    type="search"
+                    id="memberSearch"
+                    placeholder="Search members..."
+                    autocomplete="off"
                 >
 
-                <select
-                    id="memberHouse"
-                    required
-                >
+                <select id="houseFilter">
+
                     <option value="">
-                        Assign House
+                        All Houses
                     </option>
 
                     <option value="THE SOVEREIGNS">
-                        ♛ THE SOVEREIGNS
+                        THE SOVEREIGNS
                     </option>
 
                     <option value="THE VANGUARD">
-                        ⚔ THE VANGUARD
+                        THE VANGUARD
                     </option>
 
                     <option value="THE COVENANT">
-                        ◈ THE COVENANT
+                        THE COVENANT
                     </option>
 
                     <option value="THE ROGUES">
-                        ◇ THE ROGUES
+                        THE ROGUES
                     </option>
+
                 </select>
 
+
+                <select id="statusFilter">
+
+                    <option value="">
+                        All Statuses
+                    </option>
+
+                    <option value="ACTIVE">
+                        ACTIVE
+                    </option>
+
+                    <option value="INACTIVE">
+                        INACTIVE
+                    </option>
+
+                </select>
+
+
                 <button
-                    class="add-member-button"
-                    type="submit"
-                    id="addMemberButton"
+                    class="secondary-button"
+                    id="clearFilters"
+                    type="button"
                 >
-                    Add Member
+                    Clear
                 </button>
 
-            </form>
+            </div>
 
 
             <div
                 class="member-list"
                 id="memberList"
             >
-
                 <div class="empty-state">
                     Loading members...
                 </div>
-
             </div>
 
         </section>
 
     </main>
+
+</div>
+
+
+<div
+    class="modal"
+    id="houseModal"
+>
+
+    <div class="modal-card">
+
+        <div class="label">
+            HOUSE OF XANDER // REASSIGN
+        </div>
+
+        <h3>
+            Change House
+        </h3>
+
+        <p id="modalMemberName">
+            Select a new House for this member.
+        </p>
+
+        <select id="newHouse">
+
+            <option value="">
+                Select House
+            </option>
+
+            <option value="THE SOVEREIGNS">
+                ♛ THE SOVEREIGNS
+            </option>
+
+            <option value="THE VANGUARD">
+                ⚔ THE VANGUARD
+            </option>
+
+            <option value="THE COVENANT">
+                ◈ THE COVENANT
+            </option>
+
+            <option value="THE ROGUES">
+                ◇ THE ROGUES
+            </option>
+
+        </select>
+
+        <div class="modal-actions">
+
+            <button
+                class="modal-button"
+                id="cancelHouseChange"
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-button primary"
+                id="saveHouseChange"
+                type="button"
+            >
+                Save
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -786,17 +955,36 @@
     const refreshMembers =
         document.getElementById("refreshMembers");
 
-    const addMemberForm =
-        document.getElementById("addMemberForm");
+    const memberSearch =
+        document.getElementById("memberSearch");
 
-    const memberName =
-        document.getElementById("memberName");
+    const houseFilter =
+        document.getElementById("houseFilter");
 
-    const memberHouse =
-        document.getElementById("memberHouse");
+    const statusFilter =
+        document.getElementById("statusFilter");
 
-    const addMemberButton =
-        document.getElementById("addMemberButton");
+    const clearFilters =
+        document.getElementById("clearFilters");
+
+    const houseModal =
+        document.getElementById("houseModal");
+
+    const modalMemberName =
+        document.getElementById("modalMemberName");
+
+    const newHouse =
+        document.getElementById("newHouse");
+
+    const cancelHouseChange =
+        document.getElementById("cancelHouseChange");
+
+    const saveHouseChange =
+        document.getElementById("saveHouseChange");
+
+
+    let members = [];
+    let selectedMember = null;
 
 
     async function loadRequests() {
@@ -880,11 +1068,9 @@
             date.className =
                 "request-date";
 
-
-            if (request.created_at) {
-
-                date.textContent =
-                    new Date(
+            date.textContent =
+                request.created_at
+                    ? new Date(
                         request.created_at
                     ).toLocaleString(
                         "en-NG",
@@ -892,14 +1078,8 @@
                             dateStyle: "medium",
                             timeStyle: "short"
                         }
-                    );
-
-            } else {
-
-                date.textContent =
-                    "Date unavailable";
-
-            }
+                    )
+                    : "Date unavailable";
 
 
             const status =
@@ -960,15 +1140,68 @@
         }
 
 
+        members =
+            data || [];
+
         memberCount.textContent =
-            data.length;
+            members.length;
+
+        renderMembers();
+
+    }
 
 
-        if (!data.length) {
+    function renderMembers() {
+
+        const search =
+            memberSearch.value
+                .trim()
+                .toLowerCase();
+
+        const selectedHouse =
+            houseFilter.value;
+
+        const selectedStatus =
+            statusFilter.value;
+
+
+        const filtered =
+            members.filter(function (member) {
+
+                const matchesSearch =
+                    !search ||
+                    (
+                        member.name &&
+                        member.name
+                            .toLowerCase()
+                            .includes(search)
+                    );
+
+
+                const matchesHouse =
+                    !selectedHouse ||
+                    member.house === selectedHouse;
+
+
+                const matchesStatus =
+                    !selectedStatus ||
+                    member.status === selectedStatus;
+
+
+                return (
+                    matchesSearch &&
+                    matchesHouse &&
+                    matchesStatus
+                );
+
+            });
+
+
+        if (!filtered.length) {
 
             memberList.innerHTML = `
                 <div class="empty-state">
-                    No members have been added yet.
+                    No members match the current filters.
                 </div>
             `;
 
@@ -979,7 +1212,7 @@
         memberList.innerHTML = "";
 
 
-        data.forEach(function (member) {
+        filtered.forEach(function (member) {
 
             const row =
                 document.createElement("div");
@@ -1009,24 +1242,307 @@
                 "HOUSE UNASSIGNED";
 
 
-            const status =
+            const date =
                 document.createElement("div");
 
-            status.className =
-                "member-status";
+            date.className =
+                "member-date";
 
-            status.textContent =
-                member.status ||
-                "ACTIVE";
+            date.textContent =
+                member.created_at
+                    ? new Date(
+                        member.created_at
+                    ).toLocaleDateString(
+                        "en-NG",
+                        {
+                            dateStyle: "medium"
+                        }
+                    )
+                    : "Date unavailable";
+
+
+            const actions =
+                document.createElement("div");
+
+            actions.className =
+                "member-actions";
+
+
+            const houseButton =
+                document.createElement("button");
+
+            houseButton.className =
+                "action-button";
+
+            houseButton.type =
+                "button";
+
+            houseButton.textContent =
+                "Change House";
+
+
+            houseButton.addEventListener(
+                "click",
+                function () {
+
+                    openHouseModal(
+                        member
+                    );
+
+                }
+            );
+
+
+            const statusButton =
+                document.createElement("button");
+
+            statusButton.className =
+                "action-button";
+
+            statusButton.type =
+                "button";
+
+            statusButton.textContent =
+                member.status === "ACTIVE"
+                    ? "Deactivate"
+                    : "Activate";
+
+
+            statusButton.addEventListener(
+                "click",
+                function () {
+
+                    toggleMemberStatus(
+                        member
+                    );
+
+                }
+            );
+
+
+            const deleteButton =
+                document.createElement("button");
+
+            deleteButton.className =
+                "action-button danger";
+
+            deleteButton.type =
+                "button";
+
+            deleteButton.textContent =
+                "Remove";
+
+
+            deleteButton.addEventListener(
+                "click",
+                function () {
+
+                    removeMember(
+                        member
+                    );
+
+                }
+            );
+
+
+            actions.appendChild(
+                houseButton
+            );
+
+            actions.appendChild(
+                statusButton
+            );
+
+            actions.appendChild(
+                deleteButton
+            );
 
 
             row.appendChild(name);
             row.appendChild(house);
-            row.appendChild(status);
+            row.appendChild(date);
+            row.appendChild(actions);
 
             memberList.appendChild(row);
 
         });
+
+    }
+
+
+    function openHouseModal(member) {
+
+        selectedMember =
+            member;
+
+        modalMemberName.textContent =
+            `Assign ${member.name} to a new House.`;
+
+        newHouse.value =
+            member.house || "";
+
+        houseModal.classList.add(
+            "active"
+        );
+
+    }
+
+
+    function closeHouseModal() {
+
+        selectedMember =
+            null;
+
+        newHouse.value =
+            "";
+
+        houseModal.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    async function saveHouseAssignment() {
+
+        if (
+            !selectedMember ||
+            !newHouse.value
+        ) {
+            return;
+        }
+
+
+        saveHouseChange.disabled =
+            true;
+
+        saveHouseChange.textContent =
+            "SAVING...";
+
+
+        const {
+            error
+        } = await supabaseClient
+            .from("members")
+            .update({
+                house: newHouse.value
+            })
+            .eq(
+                "id",
+                selectedMember.id
+            );
+
+
+        if (error) {
+
+            console.error(
+                "House update error:",
+                error
+            );
+
+            alert(
+                "Unable to change House."
+            );
+
+        } else {
+
+            closeHouseModal();
+
+            await loadMembers();
+
+        }
+
+
+        saveHouseChange.disabled =
+            false;
+
+        saveHouseChange.textContent =
+            "SAVE";
+
+    }
+
+
+    async function toggleMemberStatus(member) {
+
+        const nextStatus =
+            member.status === "ACTIVE"
+                ? "INACTIVE"
+                : "ACTIVE";
+
+
+        const {
+            error
+        } = await supabaseClient
+            .from("members")
+            .update({
+                status: nextStatus
+            })
+            .eq(
+                "id",
+                member.id
+            );
+
+
+        if (error) {
+
+            console.error(
+                "Status update error:",
+                error
+            );
+
+            alert(
+                "Unable to update member status."
+            );
+
+            return;
+        }
+
+
+        await loadMembers();
+
+    }
+
+
+    async function removeMember(member) {
+
+        const confirmed =
+            confirm(
+                `Remove ${member.name} from the Consortium members?`
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        const {
+            error
+        } = await supabaseClient
+            .from("members")
+            .delete()
+            .eq(
+                "id",
+                member.id
+            );
+
+
+        if (error) {
+
+            console.error(
+                "Member deletion error:",
+                error
+            );
+
+            alert(
+                "Unable to remove member."
+            );
+
+            return;
+        }
+
+
+        await loadMembers();
 
     }
 
@@ -1092,8 +1608,10 @@
             } = await supabaseClient
                 .auth
                 .signInWithPassword({
-                    email: email.value.trim(),
-                    password: password.value
+                    email:
+                        email.value.trim(),
+                    password:
+                        password.value
                 });
 
 
@@ -1131,79 +1649,6 @@
     );
 
 
-    addMemberForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-
-            const name =
-                memberName.value.trim();
-
-            const house =
-                memberHouse.value;
-
-
-            if (!name || !house) {
-                return;
-            }
-
-
-            addMemberButton.disabled =
-                true;
-
-            addMemberButton.textContent =
-                "ADDING...";
-
-
-            const {
-                error
-            } = await supabaseClient
-                .from("members")
-                .insert([
-                    {
-                        name: name,
-                        house: house,
-                        status: "ACTIVE"
-                    }
-                ]);
-
-
-            if (error) {
-
-                console.error(
-                    "Member creation error:",
-                    error
-                );
-
-                alert(
-                    "Unable to add member. Please try again."
-                );
-
-            } else {
-
-                memberName.value =
-                    "";
-
-                memberHouse.value =
-                    "";
-
-                await loadMembers();
-
-            }
-
-
-            addMemberButton.disabled =
-                false;
-
-            addMemberButton.textContent =
-                "ADD MEMBER";
-
-        }
-    );
-
-
     logoutButton.addEventListener(
         "click",
         async function () {
@@ -1219,7 +1664,6 @@
 
             loginCard.style.display =
                 "block";
-
 
             email.value =
                 "";
@@ -1283,6 +1727,72 @@
 
             refreshMembers.textContent =
                 "REFRESH";
+
+        }
+    );
+
+
+    memberSearch.addEventListener(
+        "input",
+        renderMembers
+    );
+
+
+    houseFilter.addEventListener(
+        "change",
+        renderMembers
+    );
+
+
+    statusFilter.addEventListener(
+        "change",
+        renderMembers
+    );
+
+
+    clearFilters.addEventListener(
+        "click",
+        function () {
+
+            memberSearch.value =
+                "";
+
+            houseFilter.value =
+                "";
+
+            statusFilter.value =
+                "";
+
+            renderMembers();
+
+        }
+    );
+
+
+    cancelHouseChange.addEventListener(
+        "click",
+        closeHouseModal
+    );
+
+
+    saveHouseChange.addEventListener(
+        "click",
+        saveHouseAssignment
+    );
+
+
+    houseModal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                houseModal
+            ) {
+
+                closeHouseModal();
+
+            }
 
         }
     );
