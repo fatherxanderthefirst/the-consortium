@@ -458,6 +458,16 @@
             padding: 38px 30px;
             border: 1px solid var(--line);
             background: rgba(8,7,7,.35);
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                background .3s ease;
+        }
+
+        .challenge:hover {
+            transform: translateY(-4px);
+            border-color: rgba(197,161,90,.45);
+            background: rgba(50,17,22,.28);
         }
 
         .challenge span {
@@ -477,6 +487,17 @@
             color: var(--muted);
             font-size: 11px;
             line-height: 1.8;
+        }
+
+        .game-note {
+            max-width: 1150px;
+            margin-top: 55px;
+            padding-top: 30px;
+            border-top: 1px solid var(--line);
+            color: var(--gold-soft);
+            font-family: var(--serif);
+            font-size: 24px;
+            font-style: italic;
         }
 
         /* HOUSES */
@@ -828,6 +849,10 @@
             footer {
                 flex-direction: column;
             }
+
+            .game-note {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -1107,6 +1132,7 @@
                     <p>
                         Your House will be tested across different dimensions.
                         Some challenges will be obvious. Others will not.
+                        Think, read the room, make decisions and know when to act.
                     </p>
 
                 </div>
@@ -1121,6 +1147,7 @@
 
                         <p>
                             Puzzles, decisions, memory and strategic thinking.
+                            The House that sees the pattern first gains the advantage.
                         </p>
 
                     </div>
@@ -1133,6 +1160,7 @@
 
                         <p>
                             Influence, communication, negotiation and alliances.
+                            Sometimes the right conversation is worth more than a point.
                         </p>
 
                     </div>
@@ -1144,11 +1172,16 @@
                         <h3>Perform.</h3>
 
                         <p>
-                            When the clock is running and everyone is watching.
+                            When the clock is running and everyone is watching,
+                            your House has to stay composed and deliver.
                         </p>
 
                     </div>
 
+                </div>
+
+                <div class="game-note reveal">
+                    Not every rule is revealed before the game begins.
                 </div>
 
             </section>
@@ -1460,8 +1493,11 @@
 
         /* INTRO */
 
-        const intro = document.getElementById("intro");
-        const enterHouse = document.getElementById("enterHouse");
+        const intro =
+            document.getElementById("intro");
+
+        const enterHouse =
+            document.getElementById("enterHouse");
 
         let houseEntered = false;
 
