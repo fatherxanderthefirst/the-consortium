@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Consortium | House of Xander</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -1441,6 +1443,21 @@
 
     <script>
 
+        /* SUPABASE */
+
+        const SUPABASE_URL =
+            "https://gtdznirtmbjoydlbwutp.supabase.co";
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
+
+
         /* INTRO */
 
         const intro = document.getElementById("intro");
@@ -1583,59 +1600,88 @@
         const accessStatus =
             document.getElementById("accessStatus");
 
+
         accessForm.addEventListener("submit", async function (event) {
 
             event.preventDefault();
 
-            if (!accessName.value.trim()) return;
+            const name =
+                accessName.value.trim();
+
+            if (!name) return;
 
             accessSubmit.disabled = true;
             accessSubmit.textContent = "SENDING...";
             accessStatus.textContent = "";
 
-            const formData =
-                new FormData(accessForm);
 
             try {
 
-                const response = await fetch(
-                    accessForm.action,
-                    {
-                        method: "POST",
-                        body: formData,
-                        headers: {
-                            "Accept": "application/json"
+                const {
+                    error
+                } = await supabaseClient
+                    .from("access_requests")
+                    .insert([
+                        {
+                            name: name
                         }
-                    }
-                );
+                    ]);
 
-                if (response.ok) {
 
-                    accessStatus.textContent =
-                        "REQUEST RECEIVED. THE HOUSE WILL BE IN TOUCH.";
+                if (error) {
+                    throw error;
+                }
 
-                    accessName.value = "";
 
-                    accessSubmit.textContent =
-                        "REQUEST RECEIVED";
+                const formData =
+                    new FormData(accessForm);
 
-                } else {
 
-                    accessStatus.textContent =
-                        "Something went wrong. Please try again.";
+                try {
 
-                    accessSubmit.disabled = false;
-                    accessSubmit.textContent =
-                        "REQUEST ACCESS";
+                    await fetch(
+                        accessForm.action,
+                        {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        }
+                    );
+
+                } catch (formspreeError) {
+
+                    /*
+                     * The Supabase request has already been saved.
+                     * Formspree is kept as a secondary notification
+                     * channel and does not determine success.
+                     */
 
                 }
 
-            } catch (error) {
 
                 accessStatus.textContent =
-                    "Connection error. Please try again.";
+                    "REQUEST RECEIVED. THE HOUSE WILL BE IN TOUCH.";
+
+                accessName.value = "";
+
+                accessSubmit.textContent =
+                    "REQUEST RECEIVED";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Access request error:",
+                    error
+                );
+
+                accessStatus.textContent =
+                    "Something went wrong. Please try again.";
 
                 accessSubmit.disabled = false;
+
                 accessSubmit.textContent =
                     "REQUEST ACCESS";
 
