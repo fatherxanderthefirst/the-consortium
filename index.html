@@ -1,1296 +1,741 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<meta name="theme-color" content="#070606">
+<meta name="description" content="The Consortium. A private-house experience by House of Xander.">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<title>The Consortium | House of Xander</title>
 
-    <meta
-        name="theme-color"
-        content="#070606"
-    >
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <meta
-        name="description"
-        content="The Consortium. A private-house experience by House of Xander."
-    >
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <title>
-        THE CONSORTIUM | House of Xander
-    </title>
+<style>
 
+/* =========================================================
+   FOUNDATION
+========================================================= */
+
+:root {
+    --black: #070606;
+    --black-soft: #0d0a0a;
+    --black-card: #130e0f;
+    --black-deep: #040303;
+
+    --burgundy: #3b0d17;
+    --burgundy-deep: #21070d;
+    --burgundy-light: #591522;
+
+    --gold: #c5a15a;
+    --gold-light: #e1c27b;
+
+    --cream: #eee8dc;
+    --white: #f8f5ef;
+
+    --muted: #968d83;
+
+    --line: rgba(197,161,90,.18);
+    --soft-line: rgba(255,255,255,.08);
+
+    --serif: "Cormorant Garamond", serif;
+    --sans: "DM Sans", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
-    <!-- =========================
-         FONTS
-    ========================= -->
+body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--sans);
+    overflow-x: hidden;
+}
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+body.no-scroll {
+    overflow: hidden;
+}
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+button,
+input,
+textarea {
+    font: inherit;
+}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+button {
+    cursor: pointer;
+}
 
+a {
+    color: inherit;
+}
 
-    <style>
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
 
-        /* =========================
-           VARIABLES
-        ========================= */
+    opacity: .035;
 
-        :root {
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
 
-            --black: #070606;
-            --black-soft: #0d0a0a;
-            --black-card: #130e0f;
-            --black-deep: #040303;
 
-            --burgundy: #3b0d17;
-            --burgundy-deep: #21070d;
-            --burgundy-light: #591522;
+/* =========================================================
+   INTRO SCREEN
+========================================================= */
 
-            --gold: #c5a15a;
-            --gold-light: #e1c27b;
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
 
-            --cream: #eee8dc;
-            --white: #f8f5ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            --muted: #968d83;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(59,13,23,.28),
+            transparent 55%
+        ),
+        var(--black-deep);
 
-            --line: rgba(197,161,90,.18);
-            --soft-line: rgba(255,255,255,.08);
+    transition:
+        opacity .8s ease,
+        visibility .8s ease,
+        transform .8s ease;
+}
 
-            --serif: "Cormorant Garamond", serif;
-            --sans: "DM Sans", sans-serif;
+.intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-100%);
+}
 
-        }
+.intro-inner {
+    width: min(600px, 90%);
+    text-align: center;
+}
 
+.intro-classified {
+    color: var(--gold);
 
-        /* =========================
-           RESET
-        ========================= */
+    font-size: .58rem;
+    letter-spacing: .28em;
 
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    margin-bottom: 2rem;
+}
 
+.intro-mark {
+    width: 70px;
+    height: 70px;
 
-        html {
-            scroll-behavior: smooth;
-        }
+    margin: 0 auto 2rem;
 
+    display: grid;
+    place-items: center;
 
-        body {
+    border: 1px solid var(--gold);
 
-            min-height: 100vh;
+    color: var(--gold);
 
-            color: var(--white);
+    font-family: var(--serif);
+    font-size: 1.5rem;
+}
 
-            background: var(--black);
+.intro h1 {
+    font-family: var(--serif);
 
-            font-family: var(--sans);
+    font-size: clamp(4rem, 12vw, 7rem);
 
-            overflow-x: hidden;
+    font-weight: 400;
 
-        }
+    line-height: .75;
 
+    letter-spacing: -.04em;
+}
 
-        body.no-scroll {
-            overflow: hidden;
-        }
+.intro-subtitle {
+    margin-top: 1.5rem;
 
+    color: var(--muted);
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    font-size: .6rem;
 
+    letter-spacing: .25em;
+}
 
-        button,
-        input,
-        textarea {
-            font: inherit;
-        }
+.enter-house {
+    margin-top: 3rem;
 
+    padding: 1.1rem 2rem;
 
-        button {
-            cursor: pointer;
-        }
+    border: 1px solid var(--gold);
 
+    background: transparent;
 
-        /* =========================
-           GRAIN
-        ========================= */
+    color: var(--gold);
 
-        body::before {
+    font-size: .65rem;
 
-            content: "";
+    letter-spacing: .2em;
 
-            position: fixed;
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
 
-            inset: 0;
+.enter-house:hover {
+    background: var(--gold);
 
-            z-index: 9998;
+    color: var(--black);
 
-            pointer-events: none;
+    transform: translateY(-3px);
+}
 
-            opacity: .035;
+.intro-note {
+    margin-top: 1rem;
 
-            background-image:
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    color: #5e5752;
 
-        }
+    font-size: .5rem;
 
+    letter-spacing: .15em;
+}
 
-        /* =========================
-           INTRO / ENTRANCE
-        ========================= */
 
-        .intro {
+/* =========================================================
+   HEADER
+========================================================= */
 
-            position: fixed;
+.header {
+    position: fixed;
 
-            inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
 
-            z-index: 9999;
+    z-index: 900;
 
-            display: flex;
+    display: flex;
 
-            align-items: center;
+    justify-content: space-between;
+    align-items: center;
 
-            justify-content: center;
+    padding: 1.4rem 5vw;
 
-            padding: 25px;
+    background:
+        linear-gradient(
+            rgba(7,6,6,.9),
+            transparent
+        );
+}
 
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(59,13,23,.38),
-                    transparent 55%
-                ),
-                var(--black-deep);
+.brand {
+    text-decoration: none;
 
-            transition:
-                opacity .8s ease,
-                visibility .8s ease,
-                transform .8s ease;
+    color: var(--gold);
 
-        }
+    font-family: var(--serif);
 
+    font-size: 1.2rem;
+}
 
-        .intro.hidden {
+.menu-toggle {
+    position: relative;
 
-            opacity: 0;
+    z-index: 1002;
 
-            visibility: hidden;
+    width: 42px;
+    height: 42px;
 
-            pointer-events: none;
+    border: 1px solid var(--line);
 
-            transform: translateY(-100%);
+    background: rgba(7,6,6,.7);
 
-        }
+    display: flex;
 
+    flex-direction: column;
 
-        .intro-inner {
+    justify-content: center;
+    align-items: center;
 
-            width: 100%;
+    gap: 5px;
+}
 
-            max-width: 600px;
+.menu-toggle span {
+    display: block;
 
-            text-align: center;
+    width: 17px;
+    height: 1px;
 
-        }
+    background: var(--gold);
 
+    transition:
+        transform .3s ease,
+        opacity .3s ease;
+}
 
-        .intro-classified {
+.menu-toggle.menu-active span:first-child {
+    transform:
+        translateY(3px)
+        rotate(45deg);
+}
 
-            display: block;
+.menu-toggle.menu-active span:last-child {
+    transform:
+        translateY(-3px)
+        rotate(-45deg);
+}
 
-            margin-bottom: 30px;
+.main-nav {
+    position: fixed;
 
-            color: var(--gold);
+    inset: 0;
 
-            font-size: .58rem;
+    z-index: 1000;
 
-            font-weight: 600;
+    display: flex;
 
-            letter-spacing: .28em;
+    justify-content: center;
+    align-items: center;
 
-        }
+    flex-direction: column;
 
+    gap: 2rem;
 
-        .intro-monogram {
+    background: rgba(7,6,6,.98);
 
-            width: 75px;
+    opacity: 0;
 
-            height: 75px;
+    visibility: hidden;
 
-            margin: 0 auto 35px;
+    pointer-events: none;
 
-            display: flex;
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
 
-            align-items: center;
+.main-nav.nav-open {
+    opacity: 1;
 
-            justify-content: center;
+    visibility: visible;
 
-            border: 1px solid var(--gold);
+    pointer-events: auto;
+}
 
-            color: var(--gold);
+.main-nav a {
+    text-decoration: none;
 
-            font-family: var(--serif);
+    font-family: var(--serif);
 
-            font-size: 1.8rem;
+    font-size: 2.2rem;
 
-            font-style: italic;
+    color: var(--cream);
 
-        }
+    transition: color .3s ease;
+}
 
+.main-nav a:hover {
+    color: var(--gold);
+}
 
-        .intro h1 {
 
-            color: var(--white);
+/* =========================================================
+   GENERAL SECTION STYLES
+========================================================= */
 
-            font-family: var(--serif);
+.section {
+    position: relative;
 
-            font-size: clamp(4rem, 16vw, 8rem);
+    padding: 9rem 5vw;
 
-            font-weight: 500;
+    overflow: hidden;
+}
 
-            line-height: .75;
+.section-inner {
+    width: min(1400px, 100%);
 
-            letter-spacing: -.04em;
+    margin: auto;
+}
 
-        }
+.eyebrow {
+    display: inline-block;
 
+    color: var(--gold);
 
-        .intro-subtitle {
+    font-size: .6rem;
 
-            margin-top: 28px;
+    letter-spacing: .22em;
 
-            color: var(--muted);
+    text-transform: uppercase;
+}
 
-            font-size: .62rem;
+.section-heading h2 {
+    margin-top: 1rem;
 
-            letter-spacing: .24em;
+    font-family: var(--serif);
 
-        }
+    font-size: clamp(3.5rem, 8vw, 7rem);
 
+    font-weight: 400;
 
-        .enter-house {
+    line-height: .82;
 
-            margin-top: 55px;
+    letter-spacing: -.04em;
+}
 
-            padding: 17px 32px;
+.section-heading h2 em {
+    color: var(--gold);
+}
 
-            color: var(--black);
+.section-heading > p {
+    max-width: 650px;
 
-            background: var(--gold);
+    margin-top: 2rem;
 
-            border: 1px solid var(--gold);
+    color: var(--muted);
 
-            font-family: var(--sans);
+    line-height: 1.8;
+}
 
-            font-size: .62rem;
 
-            font-weight: 700;
+/* =========================================================
+   HERO
+========================================================= */
 
-            letter-spacing: .18em;
+.hero {
+    position: relative;
 
-            transition:
-                background .3s ease,
-                color .3s ease,
-                transform .3s ease;
+    min-height: 100vh;
+    min-height: 100svh;
 
-        }
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
 
-        .enter-house:hover {
+    overflow: hidden;
 
-            color: var(--white);
+    background: var(--black);
+}
 
-            background: transparent;
+.hero-background {
+    position: absolute;
 
-            transform: translateY(-3px);
+    inset: 0;
 
-        }
+    pointer-events: none;
+}
 
+.hero-orb {
+    position: absolute;
 
-        .intro-note {
+    width: 70vw;
+    height: 70vw;
 
-            margin-top: 22px;
+    max-width: 900px;
+    max-height: 900px;
 
-            color: #5e5750;
+    left: 50%;
+    top: 45%;
 
-            font-size: .55rem;
+    transform:
+        translate(-50%, -50%);
 
-            letter-spacing: .12em;
+    border-radius: 50%;
 
-        }
+    background:
+        radial-gradient(
+            circle,
+            rgba(89,21,34,.34),
+            rgba(59,13,23,.12) 40%,
+            transparent 70%
+        );
 
+    filter: blur(20px);
+}
 
-        /* =========================
-           HEADER
-        ========================= */
+.hero-grid {
+    position: absolute;
 
-        .site-header {
+    inset: 0;
 
-            position: fixed;
+    opacity: .2;
 
-            top: 0;
+    background-image:
+        linear-gradient(
+            rgba(197,161,90,.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(197,161,90,.08) 1px,
+            transparent 1px
+        );
 
-            left: 0;
+    background-size: 80px 80px;
 
-            right: 0;
+    mask-image:
+        radial-gradient(
+            circle at center,
+            black,
+            transparent 75%
+        );
+}
 
-            z-index: 1000;
+.hero::after {
+    content: "";
 
-            padding: 22px 28px;
+    position: absolute;
 
-            display: flex;
+    inset: 0;
 
-            align-items: center;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(4,3,3,.1),
+            rgba(4,3,3,.85)
+        );
 
-            justify-content: space-between;
+    pointer-events: none;
+}
 
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(7,6,6,.92),
-                    transparent
-                );
+.hero-content {
+    position: relative;
 
-        }
+    z-index: 2;
 
+    width: min(1100px, 90%);
 
-        .header-brand {
+    padding: 8rem 0 6rem;
 
-            color: var(--gold);
+    text-align: center;
+}
 
-            font-family: var(--serif);
+.hero-kicker {
+    display: flex;
 
-            font-size: 1.25rem;
+    justify-content: center;
+    align-items: center;
 
-            font-style: italic;
+    gap: 1rem;
 
-        }
+    color: var(--gold);
 
+    font-size: .58rem;
 
-        .menu-toggle {
+    letter-spacing: .28em;
 
-            width: 44px;
+    margin-bottom: 1.5rem;
+}
 
-            height: 44px;
+.hero-kicker span {
+    width: 45px;
+    height: 1px;
 
-            display: flex;
+    background: var(--gold);
 
-            flex-direction: column;
+    opacity: .45;
+}
 
-            align-items: center;
+.hero-classified {
+    margin-bottom: 1.5rem;
 
-            justify-content: center;
+    color: var(--muted);
 
-            gap: 6px;
+    font-size: .55rem;
 
-            background: transparent;
+    letter-spacing: .25em;
+}
 
-            border: 1px solid rgba(197,161,90,.3);
+.hero-title {
+    margin: 0;
 
-        }
+    font-family: var(--serif);
 
+    font-size: clamp(5rem, 14vw, 11rem);
 
-        .menu-toggle span {
+    font-weight: 400;
 
-            width: 18px;
+    line-height: .72;
 
-            height: 1px;
+    letter-spacing: -.05em;
+}
 
-            background: var(--gold);
+.hero-title span {
+    display: block;
 
-            transition:
-                transform .3s ease,
-                opacity .3s ease;
+    color: var(--gold);
 
-        }
+    font-style: italic;
 
+    letter-spacing: -.06em;
+}
 
-        .menu-toggle.menu-active span:first-child {
+.hero-line {
+    margin: 3rem auto 1.5rem;
 
-            transform: translateY(3.5px) rotate(45deg);
+    font-family: var(--serif);
 
-        }
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
 
+    line-height: 1;
+}
 
-        .menu-toggle.menu-active span:last-child {
+.hero-line em {
+    color: var(--gold);
+}
 
-            transform: translateY(-3.5px) rotate(-45deg);
+.hero-description {
+    max-width: 600px;
 
-        }
+    margin: auto;
 
+    color: var(--muted);
 
-        .main-nav {
+    font-size: .85rem;
 
-            position: fixed;
+    line-height: 1.8;
+}
 
-            top: 0;
+.hero-meta {
+    display: flex;
 
-            right: 0;
+    max-width: 700px;
 
-            width: min(360px, 88vw);
+    margin: 3rem auto;
 
-            height: 100vh;
+    border-top: 1px solid var(--line);
 
-            padding: 110px 40px 40px;
+    border-bottom: 1px solid var(--line);
+}
 
-            background: rgba(7,6,6,.98);
+.hero-meta div {
+    flex: 1;
 
-            border-left: 1px solid var(--line);
+    padding: 1.2rem .8rem;
 
-            transform: translateX(100%);
+    border-right: 1px solid var(--line);
+}
 
-            transition: transform .45s ease;
+.hero-meta div:last-child {
+    border-right: none;
+}
 
-        }
+.hero-meta strong {
+    display: block;
 
+    color: var(--gold);
 
-        .main-nav.nav-open {
+    font-family: var(--serif);
 
-            transform: translateX(0);
+    font-size: 1.8rem;
 
-        }
+    font-weight: 400;
+}
 
+.hero-meta span {
+    display: block;
 
-        .main-nav a {
+    margin-top: .2rem;
 
-            display: block;
+    color: var(--muted);
 
-            padding: 18px 0;
+    font-size: .52rem;
 
-            color: var(--muted);
+    letter-spacing: .15em;
+}
 
-            border-bottom: 1px solid var(--soft-line);
+.hero-cta {
+    display: inline-flex;
 
-            font-family: var(--serif);
+    align-items: center;
 
-            font-size: 1.7rem;
+    gap: 2rem;
 
-            transition: color .25s ease;
+    padding: 1rem 1.4rem;
 
-        }
+    border: 1px solid var(--gold);
 
+    color: var(--gold);
 
-        .main-nav a:hover {
+    text-decoration: none;
 
-            color: var(--gold);
+    font-size: .62rem;
 
-        }
+    letter-spacing: .18em;
 
+    transition: all .3s ease;
+}
 
-        /* =========================
-           HERO
-        ========================= */
+.hero-cta:hover {
+    background: var(--gold);
 
-        .hero {
+    color: var(--black);
 
-            position: relative;
+    transform: translateY(-3px);
+}
 
-            min-height: 100vh;
+.hero-cta b {
+    font-size: 1rem;
 
-            display: flex;
+    font-weight: 400;
+}
 
-            align-items: center;
+.hero-bottom {
+    position: absolute;
 
-            overflow: hidden;
+    z-index: 3;
 
-            background:
-                radial-gradient(
-                    circle at 70% 40%,
-                    rgba(59,13,23,.35),
-                    transparent 40%
-                ),
-                var(--black);
+    left: 5vw;
+    right: 5vw;
 
-        }
+    bottom: 1.5rem;
 
+    display: flex;
 
-        .hero::after {
+    justify-content: space-between;
 
-            content: "";
+    color: #625b56;
 
-            position: absolute;
+    font-size: .5rem;
 
-            inset: 0;
+    letter-spacing: .16em;
+}
+    <!-- =====================================================
+     PART 2: THE EXPERIENCE + THE GAME
+===================================================== -->
 
-            pointer-events: none;
+<main>
 
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(7,6,6,.9),
-                    transparent 70%
-                );
+<!-- =====================================================
+     THE EXPERIENCE
+===================================================== -->
 
-        }
-
-
-        .hero-inner {
-
-            position: relative;
-
-            z-index: 2;
-
-            width: 100%;
-
-            max-width: 1200px;
-
-            margin: 0 auto;
-
-            padding: 140px 28px 100px;
-
-        }
-
-
-        .hero-kicker {
-
-            display: block;
-
-            margin-bottom: 25px;
-
-            color: var(--gold);
-
-            font-size: .62rem;
-
-            font-weight: 600;
-
-            letter-spacing: .25em;
-
-        }
-
-
-        .hero h2 {
-
-            max-width: 950px;
-
-            color: var(--white);
-
-            font-family: var(--serif);
-
-            font-size: clamp(4.5rem, 15vw, 11rem);
-
-            font-weight: 500;
-
-            line-height: .76;
-
-            letter-spacing: -.05em;
-
-        }
-
-
-        .hero h2 em {
-
-            color: var(--gold);
-
-            font-weight: 400;
-
-        }
-
-
-        .hero-description {
-
-            max-width: 540px;
-
-            margin-top: 42px;
-
-            color: var(--muted);
-
-            font-size: .9rem;
-
-            line-height: 1.8;
-
-        }
-
-
-        .hero-meta {
-
-            margin-top: 45px;
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 12px;
-
-        }
-
-
-        .hero-meta span {
-
-            padding: 9px 13px;
-
-            color: var(--gold);
-
-            border: 1px solid var(--line);
-
-            font-size: .55rem;
-
-            letter-spacing: .14em;
-
-        }
-
-
-        .hero-cta {
-
-            display: inline-flex;
-
-            margin-top: 45px;
-
-            padding: 17px 25px;
-
-            color: var(--black);
-
-            background: var(--gold);
-
-            font-size: .62rem;
-
-            font-weight: 700;
-
-            letter-spacing: .16em;
-
-        }
-
-
-        /* =========================
-           GLOBAL SECTIONS
-        ========================= */
-
-        .section {
-
-            position: relative;
-
-            padding: 120px 24px;
-
-        }
-
-
-        .section-inner {
-
-            max-width: 1100px;
-
-            margin: 0 auto;
-
-        }
-
-
-        .section-heading {
-
-            margin-bottom: 55px;
-
-        }
-
-
-        .eyebrow {
-
-            display: block;
-
-            margin-bottom: 18px;
-
-            color: var(--gold);
-
-            font-size: .58rem;
-
-            font-weight: 600;
-
-            letter-spacing: .22em;
-
-        }
-
-
-        .section-heading h2 {
-
-            color: var(--white);
-
-            font-family: var(--serif);
-
-            font-size: clamp(3.5rem, 9vw, 7rem);
-
-            font-weight: 500;
-
-            line-height: .8;
-
-            letter-spacing: -.04em;
-
-        }
-
-
-        .section-heading h2 em {
-
-            color: var(--gold);
-
-            font-weight: 400;
-
-        }
-
-
-        /* =========================
-           EXPERIENCE
-        ========================= */
-
-        .experience {
-
-            background: var(--black-soft);
-
-        }
-
-
-        .experience-intro {
-
-            max-width: 720px;
-
-            margin-bottom: 70px;
-
-            color: var(--muted);
-
-            font-size: 1rem;
-
-            line-height: 1.9;
-
-        }
-
-
-        .experience-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 1px;
-
-            background: var(--line);
-
-        }
-
-
-        .experience-card {
-
-            min-height: 260px;
-
-            padding: 32px;
-
-            background: var(--black-card);
-
-        }
-
-
-        .experience-number {
-
-            display: block;
-
-            margin-bottom: 70px;
-
-            color: var(--gold);
-
-            font-family: var(--serif);
-
-            font-size: 1.2rem;
-
-        }
-
-
-        .experience-card h3 {
-
-            margin-bottom: 13px;
-
-            color: var(--white);
-
-            font-family: var(--serif);
-
-            font-size: 2rem;
-
-            font-weight: 500;
-
-        }
-
-
-        .experience-card p {
-
-            max-width: 360px;
-
-            color: var(--muted);
-
-            font-size: .8rem;
-
-            line-height: 1.7;
-
-        }
-
-
-        /* =========================
-           THE GAME
-        ========================= */
-
-        .game {
-
-            background:
-                radial-gradient(
-                    circle at 50% 50%,
-                    rgba(59,13,23,.2),
-                    transparent 50%
-                ),
-                var(--black);
-
-        }
-
-
-        .game-intro {
-
-            max-width: 650px;
-
-            margin-bottom: 65px;
-
-            color: var(--muted);
-
-            line-height: 1.9;
-
-        }
-
-
-        .game-phases {
-
-            border-top: 1px solid var(--line);
-
-        }
-
-
-        .game-phase {
-
-            display: grid;
-
-            grid-template-columns: 90px 1fr;
-
-            gap: 30px;
-
-            padding: 32px 0;
-
-            border-bottom: 1px solid var(--line);
-
-        }
-
-
-        .game-phase-number {
-
-            color: var(--gold);
-
-            font-family: var(--serif);
-
-            font-size: 1.2rem;
-
-        }
-
-
-        .game-phase h3 {
-
-            margin-bottom: 9px;
-
-            color: var(--white);
-
-            font-family: var(--serif);
-
-            font-size: 1.9rem;
-
-            font-weight: 500;
-
-        }
-
-
-        .game-phase p {
-
-            max-width: 620px;
-
-            color: var(--muted);
-
-            font-size: .82rem;
-
-            line-height: 1.75;
-
-        }
-
-
-        .game-quote {
-
-            margin-top: 65px;
-
-            color: var(--gold);
-
-            font-family: var(--serif);
-
-            font-size: clamp(2rem, 5vw, 4rem);
-
-            font-style: italic;
-
-            text-align: center;
-
-        }
-
-
-        /* =========================
-           REVEAL
-        ========================= */
-
-        .reveal {
-
-            opacity: 0;
-
-            transform: translateY(25px);
-
-            transition:
-                opacity .8s ease,
-                transform .8s ease;
-
-        }
-
-
-        .reveal.visible {
-
-            opacity: 1;
-
-            transform: translateY(0);
-
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 700px) {
-
-            .site-header {
-
-                padding: 18px 18px;
-
-            }
-
-
-            .hero-inner {
-
-                padding-left: 20px;
-
-                padding-right: 20px;
-
-            }
-
-
-            .section {
-
-                padding: 90px 18px;
-
-            }
-
-
-            .experience-grid {
-
-                grid-template-columns: 1fr;
-
-            }
-
-
-            .experience-card {
-
-                min-height: 220px;
-
-            }
-
-
-            .game-phase {
-
-                grid-template-columns: 55px 1fr;
-
-                gap: 15px;
-
-            }
-
-
-            .main-nav {
-
-                width: 100%;
-
-            }
-
-        }
-
-
-        @media (max-width: 450px) {
-
-            .intro h1 {
-
-                font-size: 4.2rem;
-
-            }
-
-
-            .hero h2 {
-
-                font-size: 4.4rem;
-
-            }
-
-
-            .hero-description {
-
-                font-size: .82rem;
-
-            }
-
-
-            .section-heading h2 {
-
-                font-size: 3.6rem;
-
-            }
-
-        }
-
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-
-                transition-duration: .01ms !important;
-
-                animation-duration: .01ms !important;
-
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-
-<body>
-
-
-    <!-- =========================
-         ENTRANCE
-    ========================= -->
-
-    <div
-        class="intro"
-        id="intro"
-    >
-
-        <div class="intro-inner">
-
-            <span class="intro-classified">
-                CONFIDENTIAL // HOUSE OF XANDER
-            </span>
-
-
-            <div class="intro-monogram">
-                CX
-            </div>
-
-
-            <h1>
-                THE<br>
-                CONSORTIUM
-            </h1>
-
-
-            <p class="intro-subtitle">
-                A PRIVATE-HOUSE EXPERIENCE
-            </p>
-
-
-            <button
-                type="button"
-                class="enter-house"
-                id="enterHouse"
-            >
-                ENTER THE HOUSE
-            </button>
-
-
-            <p class="intro-note">
-                ACCESS IS PRIVATE
-            </p>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =========================
-         HEADER
-    ========================= -->
-
-    <header class="site-header">
-
-
-        <a
-            href="#home"
-            class="header-brand"
-        >
-            CX
-        </a>
-
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open navigation"
-            aria-expanded="false"
-        >
-
-            <span></span>
-            <span></span>
-
-        </button>
-
-
-        <nav
-            class="main-nav"
-            id="mainNav"
-        >
-
-            <a href="#experience">
-                Experience
-            </a>
-
-            <a href="#game">
-                The Game
-            </a>
-
-            <a href="#houses">
-                Houses
-            </a>
-
-            <a href="#code">
-                The Code
-            </a>
-
-            <a href="#access">
-                Access
-            </a>
-
-        </nav>
-
-    </header>
-
-
-
-    <!-- =========================
-         MAIN
-    ========================= -->
-
-    <main id="home">
-
-
-        <!-- =========================
-             HERO
-        ========================= -->
-
-        <section class="hero">
-
-            <div class="hero-inner">
-
-
-                <span class="hero-kicker">
-                    HOUSE OF XANDER PRESENTS
-                </span>
-
-
-                <h2>
-                    THE<br>
-                    <em>CONSORTIUM.</em>
-                </h2>
-
-
-                <p class="hero-description">
-
-                    A private-house experience built
-                    around strategy, social games,
-                    challenges, alliances and
-                    after-hours energy.
-
-                </p>
-
-
-                <div class="hero-meta">
-
-                    <span>
-                        30 GUESTS
-                    </span>
-
-                    <span>
-                        ONE HOUSE
-                    </span>
-
-                    <span>
-                        FOUR HOUSES
-                    </span>
-
-                    <span>
-                        ONE NIGHT
-                    </span>
-
-                </div>
-
-
-                <a
-                    href="#experience"
-                    class="hero-cta"
-                >
-                    ENTER THE EXPERIENCE
-                </a>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             EXPERIENCE
-        ========================= -->
-
-        <section
-            class="section experience"
-    id="experience"
->
-
+<section class="section experience" id="experience">
     <div class="section-inner">
 
         <div class="section-heading reveal">
-
-            <span class="eyebrow">
-                The Experience
-            </span>
+            <span class="eyebrow">The Experience</span>
 
             <h2>
                 ONE NIGHT.<br>
@@ -1298,176 +743,146 @@
             </h2>
 
             <p>
-                The Consortium is more than a game.
-                It is an experience designed to unfold
-                from the moment you arrive until the
-                house finally goes quiet.
+                The Consortium is designed as more than a party.
+                From the moment you arrive, every decision, conversation
+                and challenge becomes part of the experience.
             </p>
-
         </div>
 
 
         <div class="experience-grid">
 
-
             <article class="experience-card reveal">
+                <span class="card-number">01</span>
 
-                <span class="card-number">
-                    01
-                </span>
+                <div>
+                    <span class="card-label">ARRIVE</span>
 
-                <div class="card-icon">
-                    ◇
+                    <h3>
+                        ENTER<br>
+                        THE HOUSE.
+                    </h3>
+
+                    <p>
+                        Leave the ordinary outside.
+                        Once you enter, the Consortium begins.
+                    </p>
                 </div>
-
-                <h3>
-                    ARRIVE
-                </h3>
-
-                <p>
-                    Step into the house.
-                    Leave the outside world at the door.
-                </p>
-
             </article>
 
 
             <article class="experience-card reveal">
+                <span class="card-number">02</span>
 
-                <span class="card-number">
-                    02
-                </span>
+                <div>
+                    <span class="card-label">CHOOSE YOUR SIDE</span>
 
-                <div class="card-icon">
-                    ◇
+                    <h3>
+                        FOUR HOUSES.<br>
+                        ONE CHOICE.
+                    </h3>
+
+                    <p>
+                        Find your House.
+                        Your people become your power.
+                    </p>
                 </div>
-
-                <h3>
-                    CHOOSE YOUR SIDE
-                </h3>
-
-                <p>
-                    Four Houses.
-                    One night.
-                    Your allegiance matters.
-                </p>
-
             </article>
 
 
             <article class="experience-card reveal">
+                <span class="card-number">03</span>
 
-                <span class="card-number">
-                    03
-                </span>
+                <div>
+                    <span class="card-label">PLAY THE GAME</span>
 
-                <div class="card-icon">
-                    ◇
+                    <h3>
+                        THINK.<br>
+                        MOVE.
+                    </h3>
+
+                    <p>
+                        Challenges test your mind,
+                        your nerve and your ability to work the room.
+                    </p>
                 </div>
-
-                <h3>
-                    PLAY THE GAME
-                </h3>
-
-                <p>
-                    Challenges will test your mind,
-                    your nerve and your ability to adapt.
-                </p>
-
             </article>
 
 
             <article class="experience-card reveal">
+                <span class="card-number">04</span>
 
-                <span class="card-number">
-                    04
-                </span>
+                <div>
+                    <span class="card-label">MAKE YOUR MOVE</span>
 
-                <div class="card-icon">
-                    ◇
+                    <h3>
+                        TRUST<br>
+                        CAREFULLY.
+                    </h3>
+
+                    <p>
+                        Alliances can be formed.
+                        Information can be traded.
+                        Nothing stays simple for long.
+                    </p>
                 </div>
-
-                <h3>
-                    MAKE YOUR MOVE
-                </h3>
-
-                <p>
-                    Alliances form.
-                    Information moves.
-                    Trust becomes a weapon.
-                </p>
-
             </article>
 
 
             <article class="experience-card reveal">
+                <span class="card-number">05</span>
 
-                <span class="card-number">
-                    05
-                </span>
+                <div>
+                    <span class="card-label">ENTER THE VAULT</span>
 
-                <div class="card-icon">
-                    ◇
+                    <h3>
+                        PROTECT.<br>
+                        OR RISK.
+                    </h3>
+
+                    <p>
+                        When the stakes rise,
+                        playing safe may not be enough.
+                    </p>
                 </div>
-
-                <h3>
-                    ENTER THE VAULT
-                </h3>
-
-                <p>
-                    Protect what you've earned,
-                    or risk everything for more.
-                </p>
-
             </article>
 
 
             <article class="experience-card reveal">
+                <span class="card-number">06</span>
 
-                <span class="card-number">
-                    06
-                </span>
+                <div>
+                    <span class="card-label">AFTER DARK</span>
 
-                <div class="card-icon">
-                    ◇
+                    <h3>
+                        THE GAME<br>
+                        ENDS.
+                    </h3>
+
+                    <p>
+                        Music. Food. Conversations.
+                        The house finally becomes yours.
+                    </p>
                 </div>
-
-                <h3>
-                    AFTER DARK
-                </h3>
-
-                <p>
-                    The game ends.
-                    The music starts.
-                    The house becomes something else.
-                </p>
-
             </article>
-
 
         </div>
 
     </div>
-
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      THE GAME
-========================= -->
+===================================================== -->
 
-<section
-    class="section game"
-    id="game"
->
+<section class="section game-section" id="game">
 
     <div class="section-inner">
 
-        <div class="section-heading reveal">
+        <div class="game-intro reveal">
 
-            <span class="eyebrow">
-                The Game
-            </span>
+            <span class="eyebrow">The Game</span>
 
             <h2>
                 PLAY SMART.<br>
@@ -1475,8 +890,9 @@
             </h2>
 
             <p>
-                The Consortium is built around strategy,
-                social intelligence, pressure and choice.
+                The Consortium is built around strategy, social
+                intelligence, competition and controlled chaos.
+                Your House is only as strong as the people inside it.
             </p>
 
         </div>
@@ -1484,171 +900,515 @@
 
         <div class="game-phases">
 
-
             <div class="game-phase reveal">
-
-                <span>
-                    01
-                </span>
+                <span>01</span>
 
                 <div>
+                    <small>ARRIVAL</small>
 
-                    <h3>
-                        ARRIVAL
-                    </h3>
+                    <h3>The First Impression</h3>
 
                     <p>
-                        Meet your House.
-                        Understand the room.
-                        Watch before you move.
+                        Enter the house, meet your people and
+                        discover where you stand.
                     </p>
-
                 </div>
-
             </div>
 
 
             <div class="game-phase reveal">
-
-                <span>
-                    02
-                </span>
+                <span>02</span>
 
                 <div>
+                    <small>THE TRIALS</small>
 
-                    <h3>
-                        THE TRIALS
-                    </h3>
+                    <h3>Test Your House</h3>
 
                     <p>
-                        Challenges designed to test
-                        your mind, social instincts
-                        and ability to perform under pressure.
+                        Mind games, social challenges and pressure
+                        tests begin to separate the Houses.
                     </p>
-
                 </div>
-
             </div>
 
 
             <div class="game-phase reveal">
-
-                <span>
-                    03
-                </span>
+                <span>03</span>
 
                 <div>
+                    <small>THE ALLIANCE</small>
 
-                    <h3>
-                        THE ALLIANCE
-                    </h3>
+                    <h3>Choose Your Allies</h3>
 
                     <p>
-                        Negotiate.
-                        Trade information.
-                        Build alliances.
-                        Bluff when necessary.
+                        Negotiate. Trade information.
+                        Build alliances. Or don't.
                     </p>
-
                 </div>
-
             </div>
 
 
             <div class="game-phase reveal">
-
-                <span>
-                    04
-                </span>
+                <span>04</span>
 
                 <div>
+                    <small>THE VAULT</small>
 
-                    <h3>
-                        THE VAULT
-                    </h3>
+                    <h3>Risk Everything</h3>
 
                     <p>
-                        Your House will face a choice:
-                        protect what you have or risk it
-                        for something greater.
+                        Protect your points or gamble them
+                        for a chance to change the game.
                     </p>
-
                 </div>
-
             </div>
 
 
             <div class="game-phase reveal">
-
-                <span>
-                    05
-                </span>
+                <span>05</span>
 
                 <div>
+                    <small>THE FINAL</small>
 
-                    <h3>
-                        THE FINAL
-                    </h3>
+                    <h3>One Last Move</h3>
 
                     <p>
                         The strongest Houses advance.
-                        Everyone else becomes a kingmaker.
+                        Everyone else gets a say in what happens next.
                     </p>
-
                 </div>
-
             </div>
 
 
             <div class="game-phase reveal">
-
-                <span>
-                    06
-                </span>
+                <span>06</span>
 
                 <div>
+                    <small>AFTER HOURS</small>
 
-                    <h3>
-                        AFTER HOURS
-                    </h3>
+                    <h3>Welcome to the Night</h3>
 
                     <p>
                         The competition ends.
-                        The night doesn't.
+                        The music starts.
                     </p>
-
                 </div>
-
             </div>
-
 
         </div>
 
 
         <div class="game-quote reveal">
-
-            <span>
-                “
-            </span>
+            <span>“</span>
 
             <p>
-                The game ends.
-                The house doesn't.
+                The game ends.<br>
+                <em>The house doesn't.</em>
             </p>
-
         </div>
 
     </div>
 
 </section>
-<!-- =========================
-     HOUSES
-========================= -->
 
-<section
-    class="section houses"
-    id="houses"
->
+
+<!-- =====================================================
+     PART 2 STYLING
+===================================================== -->
+
+<style>
+
+.experience {
+    background:
+        linear-gradient(
+            180deg,
+            var(--black) 0%,
+            var(--black-soft) 100%
+        );
+}
+
+.experience-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 1px;
+
+    margin-top: 5rem;
+
+    background: var(--line);
+}
+
+.experience-card {
+    position: relative;
+
+    min-height: 350px;
+
+    padding: 2rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    background: var(--black-card);
+
+    overflow: hidden;
+
+    transition:
+        transform .35s ease,
+        background .35s ease;
+}
+
+.experience-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    right: -50px;
+    bottom: -50px;
+
+    border-radius: 50%;
+
+    background: var(--burgundy);
+
+    opacity: .18;
+
+    transition: transform .5s ease;
+}
+
+.experience-card:hover {
+    background: #180f11;
+
+    transform: translateY(-6px);
+}
+
+.experience-card:hover::before {
+    transform: scale(2);
+}
+
+.card-number {
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 1.2rem;
+}
+
+.card-label {
+    color: var(--muted);
+
+    font-size: .55rem;
+
+    letter-spacing: .18em;
+}
+
+.experience-card h3 {
+    position: relative;
+
+    margin-top: 1rem;
+
+    font-family: var(--serif);
+
+    font-size: clamp(2rem, 3vw, 3rem);
+
+    font-weight: 400;
+
+    line-height: .9;
+}
+
+.experience-card p {
+    position: relative;
+
+    max-width: 270px;
+
+    margin-top: 1.5rem;
+
+    color: var(--muted);
+
+    font-size: .75rem;
+
+    line-height: 1.7;
+}
+
+
+/* GAME */
+
+.game-section {
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(59,13,23,.2),
+            transparent 35%
+        ),
+        var(--black-deep);
+}
+
+.game-intro {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 5rem;
+
+    align-items: end;
+}
+
+.game-intro h2 {
+    margin-top: 1rem;
+
+    font-family: var(--serif);
+
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+
+    font-weight: 400;
+
+    line-height: .82;
+
+    letter-spacing: -.04em;
+}
+
+.game-intro h2 em {
+    color: var(--gold);
+}
+
+.game-intro p {
+    max-width: 500px;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+}
+
+
+.game-phases {
+    margin-top: 6rem;
+
+    border-top: 1px solid var(--line);
+}
+
+.game-phase {
+    display: grid;
+
+    grid-template-columns: 100px 1fr;
+
+    gap: 2rem;
+
+    padding: 2rem 0;
+
+    border-bottom: 1px solid var(--soft-line);
+
+    transition:
+        padding .3s ease,
+        background .3s ease;
+}
+
+.game-phase:hover {
+    padding-left: 1rem;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(59,13,23,.12),
+            transparent
+        );
+}
+
+.game-phase > span {
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 1.3rem;
+}
+
+.game-phase small {
+    color: var(--muted);
+
+    font-size: .52rem;
+
+    letter-spacing: .18em;
+}
+
+.game-phase h3 {
+    margin-top: .35rem;
+
+    font-family: var(--serif);
+
+    font-size: 2rem;
+
+    font-weight: 400;
+}
+
+.game-phase p {
+    max-width: 600px;
+
+    margin-top: .5rem;
+
+    color: var(--muted);
+
+    font-size: .75rem;
+
+    line-height: 1.7;
+}
+
+
+.game-quote {
+    margin-top: 6rem;
+
+    padding: 4rem 2rem;
+
+    text-align: center;
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.game-quote > span {
+    display: block;
+
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 4rem;
+
+    line-height: .5;
+}
+
+.game-quote p {
+    margin-top: 1rem;
+
+    font-family: var(--serif);
+
+    font-size: clamp(2rem, 5vw, 4rem);
+
+    line-height: .9;
+}
+
+.game-quote em {
+    color: var(--gold);
+}
+
+
+/* REVEAL ANIMATION */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+    .section {
+        padding: 7rem 6vw;
+    }
+
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-card {
+        min-height: 300px;
+    }
+
+    .game-intro {
+        grid-template-columns: 1fr;
+
+        gap: 2rem;
+    }
+
+    .game-phase {
+        grid-template-columns: 55px 1fr;
+
+        gap: 1rem;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .hero-content {
+        width: 88%;
+
+        padding-top: 7rem;
+    }
+
+    .hero-title {
+        font-size: clamp(4.5rem, 20vw, 7rem);
+    }
+
+    .hero-line {
+        margin-top: 2.5rem;
+    }
+
+    .hero-meta {
+        margin-top: 2rem;
+    }
+
+    .hero-meta div {
+        padding: 1rem .3rem;
+    }
+
+    .hero-meta strong {
+        font-size: 1.35rem;
+    }
+
+    .hero-meta span {
+        font-size: .43rem;
+        letter-spacing: .08em;
+    }
+
+    .hero-bottom {
+        display: none;
+    }
+
+    .section-heading h2,
+    .game-intro h2 {
+        font-size: clamp(3.2rem, 15vw, 5rem);
+    }
+
+    .experience-card {
+        min-height: 280px;
+    }
+
+    .game-phase h3 {
+        font-size: 1.6rem;
+    }
+
+}
+
+</style>
+<!-- =====================================================
+     PART 3: THE HOUSES + SCOREBOARD + THE VAULT
+===================================================== -->
+
+
+<!-- =====================================================
+     THE HOUSES
+===================================================== -->
+
+<section class="section houses-section" id="houses">
 
     <div class="section-inner">
 
@@ -1664,9 +1424,9 @@
             </h2>
 
             <p>
-                Every player enters a House.
-                Every House enters the game with
-                its own identity, strengths and strategy.
+                Four identities. Four different ways to play.
+                Which House you belong to may determine how
+                you approach everything that follows.
             </p>
 
         </div>
@@ -1675,7 +1435,9 @@
         <div class="houses-grid">
 
 
-            <article class="house-card sovereigns reveal">
+            <!-- HOUSE 01 -->
+
+            <article class="house-card reveal">
 
                 <div class="house-top">
 
@@ -1684,33 +1446,38 @@
                     </span>
 
                     <span class="house-symbol">
-                        ♜
+                        ♛
                     </span>
 
                 </div>
 
-                <span class="house-label">
-                    HOUSE I
-                </span>
+                <div class="house-content">
 
-                <h3>
-                    THE SOVEREIGNS
-                </h3>
+                    <span class="house-label">
+                        THE SOVEREIGNS
+                    </span>
 
-                <div class="house-traits">
-                    AUTHORITY · STRATEGY · COMPOSURE
+                    <h3>
+                        AUTHORITY
+                        <br>
+                        STRATEGY
+                        <br>
+                        COMPOSURE
+                    </h3>
+
+                    <p>
+                        They don't need to be the loudest in the room.
+                        They just need to know when to move.
+                    </p>
+
                 </div>
-
-                <p>
-                    They don't need to be the loudest
-                    in the room. They just need to know
-                    when to move.
-                </p>
 
             </article>
 
 
-            <article class="house-card vanguard reveal">
+            <!-- HOUSE 02 -->
+
+            <article class="house-card reveal">
 
                 <div class="house-top">
 
@@ -1724,28 +1491,33 @@
 
                 </div>
 
-                <span class="house-label">
-                    HOUSE II
-                </span>
+                <div class="house-content">
 
-                <h3>
-                    THE VANGUARD
-                </h3>
+                    <span class="house-label">
+                        THE VANGUARD
+                    </span>
 
-                <div class="house-traits">
-                    BOLDNESS · COMPETITION · PRESSURE
+                    <h3>
+                        BOLDNESS
+                        <br>
+                        COMPETITION
+                        <br>
+                        PRESSURE
+                    </h3>
+
+                    <p>
+                        They came prepared to compete.
+                        Backing down was never part of the plan.
+                    </p>
+
                 </div>
-
-                <p>
-                    They came prepared to compete.
-                    Backing down was never part
-                    of the plan.
-                </p>
 
             </article>
 
 
-            <article class="house-card covenant reveal">
+            <!-- HOUSE 03 -->
+
+            <article class="house-card reveal">
 
                 <div class="house-top">
 
@@ -1759,28 +1531,34 @@
 
                 </div>
 
-                <span class="house-label">
-                    HOUSE III
-                </span>
+                <div class="house-content">
 
-                <h3>
-                    THE COVENANT
-                </h3>
+                    <span class="house-label">
+                        THE COVENANT
+                    </span>
 
-                <div class="house-traits">
-                    LOYALTY · INTELLIGENCE · NEGOTIATION
+                    <h3>
+                        LOYALTY
+                        <br>
+                        INTELLIGENCE
+                        <br>
+                        NEGOTIATION
+                    </h3>
+
+                    <p>
+                        Information is currency.
+                        Trust is leverage.
+                        Every conversation matters.
+                    </p>
+
                 </div>
-
-                <p>
-                    Information is currency.
-                    Trust is leverage.
-                    Every conversation matters.
-                </p>
 
             </article>
 
 
-            <article class="house-card rogues reveal">
+            <!-- HOUSE 04 -->
+
+            <article class="house-card reveal">
 
                 <div class="house-top">
 
@@ -1789,189 +1567,858 @@
                     </span>
 
                     <span class="house-symbol">
-                        ☾
+                        ☽
                     </span>
 
                 </div>
 
-                <span class="house-label">
-                    HOUSE IV
-                </span>
+                <div class="house-content">
 
-                <h3>
-                    THE ROGUES
-                </h3>
+                    <span class="house-label">
+                        THE ROGUES
+                    </span>
 
-                <div class="house-traits">
-                    CHAOS · CREATIVITY · UNPREDICTABILITY
+                    <h3>
+                        CHAOS
+                        <br>
+                        CREATIVITY
+                        <br>
+                        UNPREDICTABILITY
+                    </h3>
+
+                    <p>
+                        There is always one House nobody can
+                        completely figure out. This is that House.
+                    </p>
+
                 </div>
-
-                <p>
-                    There is always one House nobody
-                    can completely figure out.
-                    This is that House.
-                </p>
 
             </article>
 
 
         </div>
 
+    </div>
 
-        <!-- =========================
-             SCOREBOARD
-        ========================= -->
-
-        <div class="scoreboard reveal">
-
-            <div class="scoreboard-header">
-
-                <span>
-                    LIVE HOUSE STATUS
-                </span>
-
-                <small>
-                    // CLASSIFIED
-                </small>
-
-            </div>
+</section>
 
 
-            <div class="scoreboard-grid">
 
+<!-- =====================================================
+     SCOREBOARD
+===================================================== -->
 
-                <div class="score-card">
+<section class="section scoreboard-section">
 
-                    <span>
-                        SOVEREIGNS
-                    </span>
+    <div class="section-inner">
 
-                    <strong>
-                        SCORE
-                    </strong>
+        <div class="classified-heading reveal">
 
-                    <em>
-                        CLASSIFIED
-                    </em>
+            <span class="classified-line"></span>
 
-                </div>
+            <span>
+                LIVE HOUSE STATUS // CLASSIFIED
+            </span>
 
-
-                <div class="score-card">
-
-                    <span>
-                        VANGUARD
-                    </span>
-
-                    <strong>
-                        SCORE
-                    </strong>
-
-                    <em>
-                        CLASSIFIED
-                    </em>
-
-                </div>
-
-
-                <div class="score-card">
-
-                    <span>
-                        COVENANT
-                    </span>
-
-                    <strong>
-                        SCORE
-                    </strong>
-
-                    <em>
-                        CLASSIFIED
-                    </em>
-
-                </div>
-
-
-                <div class="score-card">
-
-                    <span>
-                        ROGUES
-                    </span>
-
-                    <strong>
-                        SCORE
-                    </strong>
-
-                    <em>
-                        CLASSIFIED
-                    </em>
-
-                </div>
-
-
-            </div>
-
-
-            <p class="scoreboard-note">
-                SCOREBOARD ACTIVE DURING THE CONSORTIUM.
-            </p>
+            <span class="classified-line"></span>
 
         </div>
 
 
-        <!-- =========================
-             VAULT
-        ========================= -->
-
-        <div class="vault reveal">
-
-            <div class="vault-inner">
+        <div class="scoreboard-grid">
 
 
-                <div class="vault-copy">
+            <div class="score-card reveal">
 
-                    <span class="eyebrow">
-                        CLASSIFIED // VAULT
-                    </span>
+                <span class="score-house">
+                    THE SOVEREIGNS
+                </span>
 
-                    <h3>
-                        PROTECT.<br>
-                        <em>OR RISK.</em>
-                    </h3>
+                <strong>
+                    SCORE
+                </strong>
 
-                    <p>
-                        Every House will eventually face
-                        a decision. Keep what you've earned,
-                        or put it on the line for the chance
-                        to gain more.
-                    </p>
+                <span class="score-value">
+                    //
+                    CLASSIFIED
+                </span>
 
-                    <button
-                        type="button"
-                        class="vault-button"
-                    >
-                        PROTECT OR RISK
-                    </button>
-
-                </div>
+            </div>
 
 
-                <div class="vault-card">
+            <div class="score-card reveal">
+
+                <span class="score-house">
+                    THE VANGUARD
+                </span>
+
+                <strong>
+                    SCORE
+                </strong>
+
+                <span class="score-value">
+                    //
+                    CLASSIFIED
+                </span>
+
+            </div>
+
+
+            <div class="score-card reveal">
+
+                <span class="score-house">
+                    THE COVENANT
+                </span>
+
+                <strong>
+                    SCORE
+                </strong>
+
+                <span class="score-value">
+                    //
+                    CLASSIFIED
+                </span>
+
+            </div>
+
+
+            <div class="score-card reveal">
+
+                <span class="score-house">
+                    THE ROGUES
+                </span>
+
+                <strong>
+                    SCORE
+                </strong>
+
+                <span class="score-value">
+                    //
+                    CLASSIFIED
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <p class="scoreboard-note">
+            SCOREBOARD ACTIVE DURING THE CONSORTIUM.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     THE VAULT
+===================================================== -->
+
+<section class="section vault-section">
+
+    <div class="section-inner">
+
+        <div class="vault-wrapper reveal">
+
+
+            <div class="vault-copy">
+
+                <span class="eyebrow">
+                    Classified // Vault
+                </span>
+
+                <h2>
+                    PROTECT.<br>
+                    <em>OR RISK.</em>
+                </h2>
+
+                <p>
+                    Every House will eventually face a decision.
+                    Protect what you've earned or risk it for the
+                    possibility of changing everything.
+                </p>
+
+                <button
+                    type="button"
+                    class="vault-button"
+                    id="vaultButton"
+                >
+                    PROTECT OR RISK
+                </button>
+
+            </div>
+
+
+            <div class="vault-card">
+
+                <div class="vault-card-top">
 
                     <span>
                         ACCESS LEVEL
                     </span>
 
-                    <strong>
+                    <span>
                         CLASSIFIED
+                    </span>
+
+                </div>
+
+
+                <div class="vault-symbol">
+                    ✦
+                </div>
+
+
+                <div class="vault-card-middle">
+
+                    <span>
+                        INFORMATION
+                    </span>
+
+                    <strong>
+                        WITHHELD
                     </strong>
 
-                    <small>
-                        INFORMATION WITHHELD
-                    </small>
+                </div>
 
-                    <div class="vault-stamp">
-                        ENTER AT<br>
-                        YOUR OWN RISK
+
+                <div class="vault-card-bottom">
+
+                    ENTER AT YOUR OWN RISK.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PART 3 STYLING
+===================================================== -->
+
+<style>
+
+.houses-section {
+    background:
+        linear-gradient(
+            180deg,
+            var(--black-soft),
+            var(--black)
+        );
+}
+
+.houses-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 1px;
+
+    margin-top: 5rem;
+
+    background: var(--line);
+}
+
+.house-card {
+    position: relative;
+
+    min-height: 500px;
+
+    padding: 2.5rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(59,13,23,.2),
+            transparent 35%
+        ),
+        var(--black-card);
+
+    overflow: hidden;
+
+    transition:
+        transform .4s ease,
+        background .4s ease;
+}
+
+.house-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -100px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(197,161,90,.12);
+
+    transition:
+        transform .6s ease;
+}
+
+.house-card:hover {
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(89,21,34,.3),
+            transparent 40%
+        ),
+        #180f11;
+
+    transform: translateY(-5px);
+}
+
+.house-card:hover::after {
+    transform: scale(1.5);
+}
+
+.house-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.house-number {
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 1.1rem;
+}
+
+.house-symbol {
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 2rem;
+
+    opacity: .8;
+}
+
+.house-label {
+    color: var(--gold);
+
+    font-size: .58rem;
+
+    letter-spacing: .22em;
+}
+
+.house-content h3 {
+    margin-top: 1rem;
+
+    font-family: var(--serif);
+
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+
+    font-weight: 400;
+
+    line-height: .78;
+
+    letter-spacing: -.04em;
+}
+
+.house-content p {
+    max-width: 400px;
+
+    margin-top: 2rem;
+
+    color: var(--muted);
+
+    font-size: .78rem;
+
+    line-height: 1.8;
+}
+
+
+/* SCOREBOARD */
+
+.scoreboard-section {
+    padding-top: 5rem;
+
+    padding-bottom: 5rem;
+
+    background: var(--black-deep);
+}
+
+.classified-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    color: var(--muted);
+
+    font-size: .52rem;
+
+    letter-spacing: .2em;
+
+    text-align: center;
+}
+
+.classified-line {
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--line);
+}
+
+.scoreboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 1px;
+
+    margin-top: 2rem;
+
+    background: var(--line);
+}
+
+.score-card {
+    min-height: 190px;
+
+    padding: 1.5rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    background: var(--black-card);
+}
+
+.score-house {
+    color: var(--muted);
+
+    font-size: .5rem;
+
+    letter-spacing: .13em;
+}
+
+.score-card strong {
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 2rem;
+
+    font-weight: 400;
+}
+
+.score-value {
+    color: #5f5751;
+
+    font-size: .55rem;
+
+    letter-spacing: .12em;
+}
+
+.scoreboard-note {
+    margin-top: 1.2rem;
+
+    color: #5f5751;
+
+    font-size: .5rem;
+
+    letter-spacing: .15em;
+
+    text-align: right;
+}
+
+
+/* VAULT */
+
+.vault-section {
+    background:
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(59,13,23,.22),
+            transparent 40%
+        ),
+        var(--black);
+}
+
+.vault-wrapper {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 6rem;
+
+    align-items: center;
+}
+
+.vault-copy h2 {
+    margin-top: 1rem;
+
+    font-family: var(--serif);
+
+    font-size: clamp(4rem, 8vw, 7rem);
+
+    font-weight: 400;
+
+    line-height: .78;
+
+    letter-spacing: -.04em;
+}
+
+.vault-copy h2 em {
+    color: var(--gold);
+}
+
+.vault-copy p {
+    max-width: 500px;
+
+    margin-top: 2rem;
+
+    color: var(--muted);
+
+    font-size: .8rem;
+
+    line-height: 1.8;
+}
+
+.vault-button {
+    margin-top: 2rem;
+
+    padding: 1rem 1.5rem;
+
+    border: 1px solid var(--gold);
+
+    background: transparent;
+
+    color: var(--gold);
+
+    font-size: .58rem;
+
+    letter-spacing: .18em;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+}
+
+.vault-button:hover {
+    background: var(--gold);
+
+    color: var(--black);
+}
+
+.vault-card {
+    min-height: 430px;
+
+    padding: 2rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(59,13,23,.35),
+            rgba(7,6,6,.8)
+        );
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.4);
+}
+
+.vault-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: .5rem;
+
+    letter-spacing: .15em;
+}
+
+.vault-card-top span:last-child {
+    color: var(--gold);
+}
+
+.vault-symbol {
+    align-self: center;
+
+    width: 100px;
+    height: 100px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--gold);
+
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 2.5rem;
+
+    transform: rotate(45deg);
+}
+
+.vault-symbol::first-letter {
+    display: block;
+}
+
+.vault-card-middle {
+    text-align: center;
+}
+
+.vault-card-middle span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: .5rem;
+
+    letter-spacing: .2em;
+}
+
+.vault-card-middle strong {
+    display: block;
+
+    margin-top: .5rem;
+
+    color: var(--cream);
+
+    font-family: var(--serif);
+
+    font-size: 2rem;
+
+    font-weight: 400;
+}
+
+.vault-card-bottom {
+    padding-top: 1rem;
+
+    border-top: 1px solid var(--soft-line);
+
+    color: #625b56;
+
+    font-size: .48rem;
+
+    letter-spacing: .18em;
+
+    text-align: center;
+}
+
+
+/* PART 3 MOBILE */
+
+@media (max-width: 850px) {
+
+    .houses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .house-card {
+        min-height: 420px;
+    }
+
+    .scoreboard-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .vault-wrapper {
+        grid-template-columns: 1fr;
+
+        gap: 4rem;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .house-card {
+        min-height: 390px;
+
+        padding: 2rem;
+    }
+
+    .house-content h3 {
+        font-size: 3rem;
+    }
+
+    .scoreboard-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .score-card {
+        min-height: 160px;
+
+        padding: 1rem;
+    }
+
+    .score-card strong {
+        font-size: 1.6rem;
+    }
+
+    .vault-card {
+        min-height: 350px;
+    }
+
+}
+
+</style>
+<!-- =====================================================
+     PART 4: THE CODE + ACCESS + FOOTER
+===================================================== -->
+
+
+<!-- =====================================================
+     THE CODE
+===================================================== -->
+
+<section class="section code-section" id="code">
+
+    <div class="section-inner">
+
+        <div class="code-layout">
+
+            <div class="code-heading reveal">
+
+                <span class="eyebrow">
+                    The Code
+                </span>
+
+                <h2>
+                    THE HOUSE<br>
+                    <em>HAS RULES.</em>
+                </h2>
+
+                <span class="code-classified">
+                    CONFIDENTIAL // HOUSE OF XANDER
+                </span>
+
+            </div>
+
+
+            <div class="rules-list">
+
+
+                <div class="rule reveal">
+
+                    <span>01</span>
+
+                    <div>
+                        <h3>
+                            RESPECT THE HOUSE
+                        </h3>
+
+                        <p>
+                            Respect the space, the people
+                            and the experience.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="rule reveal">
+
+                    <span>02</span>
+
+                    <div>
+                        <h3>
+                            PLAY FAIR
+                        </h3>
+
+                        <p>
+                            Strategy is encouraged.
+                            Ruining the experience is not.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="rule reveal">
+
+                    <span>03</span>
+
+                    <div>
+                        <h3>
+                            KNOW THE DIFFERENCE
+                        </h3>
+
+                        <p>
+                            Know when it is a game
+                            and when it is real life.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="rule reveal">
+
+                    <span>04</span>
+
+                    <div>
+                        <h3>
+                            PROTECT THE EXPERIENCE
+                        </h3>
+
+                        <p>
+                            What happens inside the House
+                            stays with the House.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="rule reveal">
+
+                    <span>05</span>
+
+                    <div>
+                        <h3>
+                            KEEP THE HOUSE
+                        </h3>
+
+                        <p>
+                            Some things are meant to remain
+                            inside the Consortium.
+                        </p>
                     </div>
 
                 </div>
@@ -1984,173 +2431,18 @@
     </div>
 
 </section>
-<!-- =========================
-     THE CODE
-========================= -->
-
-<section
-    class="section code"
-    id="code"
->
-
-    <div class="section-inner">
-
-        <div class="section-heading reveal">
-
-            <span class="eyebrow">
-                The Code
-            </span>
-
-            <h2>
-                THE HOUSE<br>
-                <em>HAS RULES.</em>
-            </h2>
-
-        </div>
 
 
-        <div class="code-list">
 
+<!-- =====================================================
+     PRIVATE ACCESS
+===================================================== -->
 
-            <div class="code-item reveal">
-
-                <span class="code-number">
-                    01
-                </span>
-
-                <div>
-
-                    <h3>
-                        RESPECT THE HOUSE
-                    </h3>
-
-                    <p>
-                        Respect the space, the people
-                        and the experience.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="code-item reveal">
-
-                <span class="code-number">
-                    02
-                </span>
-
-                <div>
-
-                    <h3>
-                        PLAY FAIR
-                    </h3>
-
-                    <p>
-                        Compete hard. Keep it respectful.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="code-item reveal">
-
-                <span class="code-number">
-                    03
-                </span>
-
-                <div>
-
-                    <h3>
-                        KNOW THE DIFFERENCE
-                    </h3>
-
-                    <p>
-                        The game is part of the night.
-                        It is not the whole night.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="code-item reveal">
-
-                <span class="code-number">
-                    04
-                </span>
-
-                <div>
-
-                    <h3>
-                        PROTECT THE EXPERIENCE
-                    </h3>
-
-                    <p>
-                        Don't ruin the atmosphere
-                        for everyone else.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="code-item reveal">
-
-                <span class="code-number">
-                    05
-                </span>
-
-                <div>
-
-                    <h3>
-                        KEEP THE HOUSE
-                    </h3>
-
-                    <p>
-                        Some stories are better
-                        left inside.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="code-signature reveal">
-
-            CONFIDENTIAL // HOUSE OF XANDER
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     ACCESS
-========================= -->
-
-<section
-    class="section access"
-    id="access"
->
-
-    <div class="access-glow"></div>
-
+<section class="section access-section" id="access">
 
     <div class="section-inner">
 
-
-        <div class="section-heading reveal">
+        <div class="access-header reveal">
 
             <span class="eyebrow">
                 Private Access
@@ -2162,10 +2454,8 @@
             </h2>
 
             <p>
-                The Consortium is private.
-                Attendance is limited.
-                Access is requested,
-                reviewed and confirmed.
+                The Consortium is private and limited.
+                Access is requested, reviewed and confirmed.
             </p>
 
         </div>
@@ -2173,85 +2463,41 @@
 
         <div class="access-meta reveal">
 
-
             <div>
-
-                <span>
-                    DATE
-                </span>
-
-                <strong>
-                    TO BE REVEALED
-                </strong>
-
+                <span>DATE</span>
+                <strong>TO BE REVEALED</strong>
             </div>
 
-
             <div>
-
-                <span>
-                    LOCATION
-                </span>
-
-                <strong>
-                    CONFIDENTIAL
-                </strong>
-
+                <span>LOCATION</span>
+                <strong>CONFIDENTIAL</strong>
             </div>
 
-
             <div>
-
-                <span>
-                    CAPACITY
-                </span>
-
-                <strong>
-                    LIMITED
-                </strong>
-
+                <span>CAPACITY</span>
+                <strong>LIMITED</strong>
             </div>
-
 
         </div>
 
 
-        <div class="access-form-wrap reveal">
+        <div class="access-form-wrapper reveal">
 
-
-            <div class="form-heading">
-
-                <span>
-                    ACCESS REQUEST
-                </span>
-
-                <p>
-                    Tell the House why you belong here.
-                </p>
-
-            </div>
-
-
-            <form
-                id="accessForm"
-                class="access-form"
-            >
-
+            <form id="accessForm">
 
                 <div class="form-row">
-
 
                     <div class="form-field">
 
                         <label for="name">
-                            NAME
+                            YOUR NAME
                         </label>
 
                         <input
                             type="text"
                             id="name"
                             name="name"
-                            placeholder="Your name"
+                            placeholder="Enter your name"
                             required
                         >
 
@@ -2268,18 +2514,16 @@
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="Your email"
+                            placeholder="Enter your email"
                             required
                         >
 
                     </div>
 
-
                 </div>
 
 
                 <div class="form-row">
-
 
                     <div class="form-field">
 
@@ -2291,7 +2535,7 @@
                             type="tel"
                             id="phone"
                             name="phone"
-                            placeholder="Your phone number"
+                            placeholder="Enter your phone number"
                             required
                         >
 
@@ -2301,18 +2545,17 @@
                     <div class="form-field">
 
                         <label for="social">
-                            INSTAGRAM / SOCIAL
+                            SOCIAL HANDLE
                         </label>
 
                         <input
                             type="text"
                             id="social"
                             name="social"
-                            placeholder="@username"
+                            placeholder="@yourhandle"
                         >
 
                     </div>
-
 
                 </div>
 
@@ -2320,14 +2563,14 @@
                 <div class="form-field">
 
                     <label for="reason">
-                        WHY SHOULD YOU BE IN THE CONSORTIUM?
+                        WHY SHOULD THE HOUSE KNOW YOU?
                     </label>
 
                     <textarea
                         id="reason"
                         name="reason"
-                        rows="6"
-                        placeholder="Make your case..."
+                        rows="5"
+                        placeholder="Tell us a little about yourself..."
                         required
                     ></textarea>
 
@@ -2338,17 +2581,9 @@
                     type="submit"
                     class="access-submit"
                 >
-
-                    <span>
-                        REQUEST ACCESS
-                    </span>
-
-                    <b>
-                        →
-                    </b>
-
+                    REQUEST ACCESS
+                    <span>↗</span>
                 </button>
-
 
             </form>
 
@@ -2358,7 +2593,11 @@
                 id="formSuccess"
             >
 
-                <span>
+                <span class="success-mark">
+                    ✓
+                </span>
+
+                <span class="success-label">
                     ACCESS REQUEST RECEIVED
                 </span>
 
@@ -2368,37 +2607,35 @@
 
             </div>
 
-
         </div>
 
 
-        <div class="access-warning reveal">
+        <div class="access-warning">
 
             <span>
                 CONFIDENTIAL
             </span>
 
             <p>
-                Location details will only be disclosed
-                to confirmed guests.
+                Location details and additional information
+                will only be provided to confirmed guests.
             </p>
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer class="footer">
 
-    <div class="footer-inner">
-
+    <div class="footer-top">
 
         <div class="footer-brand">
 
@@ -2412,679 +2649,559 @@
                     THE CONSORTIUM
                 </strong>
 
-                <small>
+                <span>
                     A PRIVATE-HOUSE EXPERIENCE
-                </small>
+                </span>
 
             </div>
 
         </div>
 
 
-        <div class="footer-confidential">
+        <div class="footer-classified">
 
             CONFIDENTIAL // HOUSE OF XANDER
 
         </div>
 
+    </div>
 
-        <div class="footer-bottom">
 
-            <span>
-                © 2026 HOUSE OF XANDER
-            </span>
+    <div class="footer-bottom">
 
-            <span>
-                THE HOUSE IS WAITING.
-            </span>
+        <span>
+            © 2026 HOUSE OF XANDER
+        </span>
 
-        </div>
-
+        <span>
+            THE HOUSE IS WAITING.
+        </span>
 
     </div>
 
 </footer>
+
+
+
+<!-- =====================================================
+     PART 4 STYLING
+===================================================== -->
+
 <style>
 
-/* =========================
-   HOUSES
-========================= */
+/* =====================================================
+   THE CODE
+===================================================== */
 
-.houses {
+.code-section {
     background:
-        radial-gradient(circle at 50% 20%, rgba(59,13,23,.25), transparent 45%),
-        var(--black-soft);
-}
-
-.houses-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    margin-top: 4rem;
-}
-
-.house-card {
-    position: relative;
-    min-height: 380px;
-    padding: 2.5rem;
-    background: var(--black-card);
-    overflow: hidden;
-    transition: transform .4s ease, background .4s ease;
-}
-
-.house-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(197,161,90,.07),
-        transparent 50%
-    );
-    opacity: 0;
-    transition: opacity .4s ease;
-    pointer-events: none;
-}
-
-.house-card:hover {
-    background: #181112;
-    transform: translateY(-4px);
-}
-
-.house-card:hover::after {
-    opacity: 1;
-}
-
-.house-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-
-.house-number {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    color: var(--gold);
-}
-
-.house-symbol {
-    font-size: 2rem;
-    color: var(--gold);
-    opacity: .8;
-}
-
-.house-label {
-    display: block;
-    font-size: .65rem;
-    letter-spacing: .2em;
-    color: var(--muted);
-    margin-bottom: .8rem;
-}
-
-.house-card h3 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 500;
-    letter-spacing: .02em;
-    margin-bottom: 1rem;
-}
-
-.house-traits {
-    font-size: .62rem;
-    letter-spacing: .15em;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-}
-
-.house-card p {
-    max-width: 400px;
-    color: var(--muted);
-    line-height: 1.8;
-}
-
-
-/* =========================
-   SCOREBOARD
-========================= */
-
-.scoreboard {
-    margin-top: 5rem;
-    border: 1px solid var(--line);
-    background: var(--black-card);
-}
-
-.scoreboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 1.5rem;
-    border-bottom: 1px solid var(--line);
-    font-size: .65rem;
-    letter-spacing: .16em;
-}
-
-.scoreboard-header span {
-    color: var(--gold);
-}
-
-.scoreboard-header small {
-    color: var(--muted);
-}
-
-.scoreboard-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.score-card {
-    min-height: 180px;
-    padding: 1.5rem;
-    border-right: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.score-card:last-child {
-    border-right: none;
-}
-
-.score-card span {
-    font-size: .65rem;
-    letter-spacing: .15em;
-    color: var(--muted);
-}
-
-.score-card strong {
-    font-family: var(--serif);
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.score-card em {
-    font-size: .6rem;
-    letter-spacing: .15em;
-    color: var(--gold);
-    font-style: normal;
-}
-
-.scoreboard-note {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--line);
-    font-size: .6rem;
-    letter-spacing: .15em;
-    color: var(--muted);
-}
-
-
-/* =========================
-   VAULT
-========================= */
-
-.vault {
-    margin-top: 6rem;
-}
-
-.vault-inner {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    min-height: 430px;
-    border: 1px solid var(--line);
-    background:
-        radial-gradient(circle at 20% 50%, rgba(89,21,34,.35), transparent 45%),
-        var(--black-deep);
-}
-
-.vault-copy {
-    padding: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.vault-copy h3 {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: .9;
-    font-weight: 500;
-    margin: 1rem 0 1.5rem;
-}
-
-.vault-copy p {
-    max-width: 500px;
-    color: var(--muted);
-    line-height: 1.8;
-}
-
-.vault-button {
-    align-self: flex-start;
-    margin-top: 2rem;
-    padding: 1rem 1.5rem;
-    border: 1px solid var(--gold);
-    background: transparent;
-    color: var(--gold);
-    font-family: var(--sans);
-    font-size: .65rem;
-    letter-spacing: .15em;
-    cursor: pointer;
-    transition: all .3s ease;
-}
-
-.vault-button:hover {
-    background: var(--gold);
-    color: var(--black);
-}
-
-.vault-card {
-    margin: 2rem;
-    border: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    background:
-        repeating-linear-gradient(
-            135deg,
-            rgba(197,161,90,.025) 0,
-            rgba(197,161,90,.025) 1px,
-            transparent 1px,
-            transparent 8px
+        linear-gradient(
+            180deg,
+            var(--black),
+            var(--black-soft)
         );
 }
 
-.vault-card span {
-    font-size: .6rem;
-    letter-spacing: .2em;
-    color: var(--muted);
+.code-layout {
+    display: grid;
+
+    grid-template-columns: .8fr 1.2fr;
+
+    gap: 7rem;
+
+    align-items: start;
 }
 
-.vault-card strong {
+.code-heading {
+    position: sticky;
+
+    top: 8rem;
+}
+
+.code-heading h2 {
+    margin-top: 1rem;
+
     font-family: var(--serif);
-    font-size: 2.3rem;
+
+    font-size: clamp(4rem, 8vw, 7rem);
+
+    font-weight: 400;
+
+    line-height: .78;
+
+    letter-spacing: -.04em;
+}
+
+.code-heading h2 em {
     color: var(--gold);
-    font-weight: 500;
-    margin: 1rem 0;
 }
 
-.vault-card small {
-    font-size: .55rem;
-    letter-spacing: .15em;
-    color: var(--muted);
+.code-classified {
+    display: block;
+
+    margin-top: 3rem;
+
+    color: #625b56;
+
+    font-size: .5rem;
+
+    letter-spacing: .16em;
 }
 
-.vault-stamp {
-    margin-top: 2rem;
-    padding: .8rem 1.2rem;
-    border: 1px solid rgba(197,161,90,.35);
-    color: var(--gold);
-    font-size: .55rem;
-    letter-spacing: .15em;
-    line-height: 1.5;
-}
-
-
-/* =========================
-   CODE
-========================= */
-
-.code {
-    background: var(--black);
-}
-
-.code-list {
-    margin-top: 4rem;
+.rules-list {
     border-top: 1px solid var(--line);
 }
 
-.code-item {
+.rule {
     display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 2rem;
+
+    grid-template-columns: 60px 1fr;
+
+    gap: 1.5rem;
+
     padding: 2rem 0;
-    border-bottom: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--soft-line);
+
+    transition:
+        padding .3s ease,
+        background .3s ease;
 }
 
-.code-number {
-    font-family: var(--serif);
-    font-size: 1.3rem;
+.rule:hover {
+    padding-left: 1rem;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(59,13,23,.15),
+            transparent
+        );
+}
+
+.rule > span {
     color: var(--gold);
-}
 
-.code-item h3 {
     font-family: var(--serif);
-    font-size: 1.7rem;
-    font-weight: 500;
-    margin-bottom: .5rem;
+
+    font-size: 1.2rem;
 }
 
-.code-item p {
+.rule h3 {
+    font-family: var(--serif);
+
+    font-size: 1.8rem;
+
+    font-weight: 400;
+}
+
+.rule p {
+    max-width: 500px;
+
+    margin-top: .5rem;
+
     color: var(--muted);
+
+    font-size: .75rem;
+
     line-height: 1.7;
 }
 
-.code-signature {
-    margin-top: 3rem;
-    font-size: .6rem;
-    letter-spacing: .2em;
-    color: var(--gold);
-}
 
-
-/* =========================
+/* =====================================================
    ACCESS
-========================= */
+===================================================== */
 
-.access {
-    position: relative;
-    overflow: hidden;
+.access-section {
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(59,13,23,.45),
-            transparent 55%
+            rgba(59,13,23,.25),
+            transparent 45%
         ),
         var(--black-deep);
 }
 
-.access-glow {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    left: 50%;
-    top: 20%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: rgba(89,21,34,.12);
-    filter: blur(100px);
-    pointer-events: none;
+.access-header {
+    max-width: 850px;
+}
+
+.access-header h2 {
+    margin-top: 1rem;
+
+    font-family: var(--serif);
+
+    font-size: clamp(4rem, 9vw, 8rem);
+
+    font-weight: 400;
+
+    line-height: .78;
+
+    letter-spacing: -.05em;
+}
+
+.access-header h2 em {
+    color: var(--gold);
+}
+
+.access-header p {
+    max-width: 550px;
+
+    margin-top: 2rem;
+
+    color: var(--muted);
+
+    line-height: 1.8;
 }
 
 .access-meta {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid var(--line);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     margin-top: 4rem;
+
+    border-top: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--line);
 }
 
-.access-meta > div {
+.access-meta div {
     padding: 1.5rem;
+
     border-right: 1px solid var(--line);
 }
 
-.access-meta > div:last-child {
+.access-meta div:last-child {
     border-right: none;
 }
 
 .access-meta span {
     display: block;
-    font-size: .6rem;
-    letter-spacing: .18em;
+
     color: var(--muted);
-    margin-bottom: .7rem;
+
+    font-size: .5rem;
+
+    letter-spacing: .18em;
 }
 
 .access-meta strong {
-    font-size: .75rem;
-    letter-spacing: .08em;
-    font-weight: 500;
-    color: var(--gold);
-}
-
-.access-form-wrap {
-    max-width: 900px;
-    margin: 5rem auto 0;
-    padding: 2.5rem;
-    border: 1px solid var(--line);
-    background: rgba(19,14,15,.8);
-}
-
-.form-heading {
-    margin-bottom: 2.5rem;
-}
-
-.form-heading span {
     display: block;
+
+    margin-top: .5rem;
+
     color: var(--gold);
-    font-size: .65rem;
-    letter-spacing: .2em;
-    margin-bottom: .7rem;
+
+    font-family: var(--serif);
+
+    font-size: 1.2rem;
+
+    font-weight: 400;
 }
 
-.form-heading p {
-    color: var(--muted);
+.access-form-wrapper {
+    max-width: 900px;
+
+    margin-top: 5rem;
+}
+
+#accessForm {
+    padding: 2.5rem;
+
+    border: 1px solid var(--line);
+
+    background: rgba(19,14,15,.55);
 }
 
 .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 1.5rem;
 }
 
 .form-field {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-field label {
     display: block;
+
     margin-bottom: .6rem;
-    font-size: .6rem;
-    letter-spacing: .15em;
-    color: var(--muted);
+
+    color: var(--gold);
+
+    font-size: .5rem;
+
+    letter-spacing: .16em;
 }
 
 .form-field input,
 .form-field textarea {
     width: 100%;
-    border: 1px solid var(--soft-line);
-    outline: none;
-    background: rgba(255,255,255,.025);
-    color: var(--white);
-    padding: 1rem;
-    font-family: var(--sans);
-    font-size: .85rem;
-    transition: border-color .3s ease;
-}
 
-.form-field textarea {
+    padding: 1rem;
+
+    border: 1px solid var(--soft-line);
+
+    outline: none;
+
     resize: vertical;
-    min-height: 140px;
+
+    background: rgba(7,6,6,.7);
+
+    color: var(--cream);
+
+    font-size: .75rem;
+
+    transition:
+        border-color .3s ease,
+        background .3s ease;
 }
 
 .form-field input:focus,
 .form-field textarea:focus {
     border-color: var(--gold);
+
+    background: rgba(7,6,6,.9);
 }
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-    color: #625b56;
+    color: #514b47;
 }
 
 .access-submit {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 1.4rem;
+
+    padding: 1.2rem;
+
     border: 1px solid var(--gold);
+
     background: var(--gold);
+
     color: var(--black);
-    font-family: var(--sans);
-    font-size: .65rem;
-    letter-spacing: .15em;
-    cursor: pointer;
-    transition: all .3s ease;
+
+    font-size: .6rem;
+
+    letter-spacing: .2em;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
 }
 
 .access-submit:hover {
     background: transparent;
+
     color: var(--gold);
 }
 
-.access-submit b {
-    font-size: 1.2rem;
-    font-weight: 400;
+.access-submit span {
+    margin-left: 1rem;
+
+    font-size: 1rem;
 }
 
 .form-success {
     display: none;
+
+    padding: 5rem 2rem;
+
+    border: 1px solid var(--line);
+
     text-align: center;
-    padding: 3rem 1rem;
 }
 
 .form-success.show {
     display: block;
 }
 
-.form-success span {
-    display: block;
+.success-mark {
+    display: grid;
+
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 2rem;
+
+    place-items: center;
+
+    border: 1px solid var(--gold);
+
     color: var(--gold);
-    font-size: .7rem;
+
+    font-family: var(--serif);
+
+    font-size: 1.5rem;
+}
+
+.success-label {
+    display: block;
+
+    color: var(--gold);
+
+    font-size: .6rem;
+
     letter-spacing: .2em;
-    margin-bottom: 1rem;
 }
 
 .form-success p {
+    margin-top: 1rem;
+
     color: var(--muted);
+
+    font-family: var(--serif);
+
+    font-size: 1.5rem;
 }
 
 .access-warning {
     display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    margin: 2rem auto 0;
-    max-width: 900px;
-    padding: 1rem 0;
-    border-top: 1px solid var(--line);
+
+    gap: 1.5rem;
+
+    margin-top: 2rem;
+
+    padding-top: 1.5rem;
+
+    border-top: 1px solid var(--soft-line);
 }
 
 .access-warning span {
     color: var(--gold);
-    font-size: .6rem;
+
+    font-size: .5rem;
+
     letter-spacing: .15em;
 }
 
 .access-warning p {
-    color: var(--muted);
-    font-size: .7rem;
+    max-width: 500px;
+
+    color: #625b56;
+
+    font-size: .6rem;
+
+    line-height: 1.6;
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 .footer {
-    background: #030303;
+    padding: 4rem 5vw 2rem;
+
+    background: var(--black-deep);
+
     border-top: 1px solid var(--line);
 }
 
-.footer-inner {
-    max-width: 1400px;
-    margin: auto;
-    padding: 4rem 5vw 2rem;
+.footer-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 2rem;
 }
 
 .footer-brand {
     display: flex;
+
     align-items: center;
+
     gap: 1rem;
 }
 
 .footer-mark {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
+
     display: grid;
+
     place-items: center;
+
     border: 1px solid var(--gold);
+
     color: var(--gold);
+
     font-family: var(--serif);
-    font-size: 1.1rem;
+
+    font-size: 1rem;
 }
 
 .footer-brand strong {
     display: block;
+
+    color: var(--cream);
+
     font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 500;
+
+    font-size: 1.3rem;
+
+    font-weight: 400;
 }
 
-.footer-brand small {
+.footer-brand span:not(.footer-mark) {
     display: block;
+
     margin-top: .2rem;
-    font-size: .5rem;
-    letter-spacing: .15em;
+
     color: var(--muted);
+
+    font-size: .45rem;
+
+    letter-spacing: .15em;
 }
 
-.footer-confidential {
-    margin: 4rem 0;
-    font-size: .6rem;
-    letter-spacing: .2em;
-    color: var(--gold);
+.footer-classified {
+    color: #625b56;
+
+    font-size: .5rem;
+
+    letter-spacing: .16em;
 }
 
 .footer-bottom {
     display: flex;
+
     justify-content: space-between;
-    padding-top: 1rem;
+
+    margin-top: 5rem;
+
+    padding-top: 1.5rem;
+
     border-top: 1px solid var(--soft-line);
-    color: var(--muted);
-    font-size: .6rem;
-    letter-spacing: .1em;
+
+    color: #514b47;
+
+    font-size: .48rem;
+
+    letter-spacing: .15em;
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =====================================================
+   PART 4 MOBILE
+===================================================== */
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
 
-    .houses-grid {
+    .code-layout {
         grid-template-columns: 1fr;
+
+        gap: 4rem;
     }
 
-    .scoreboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .score-card:nth-child(2) {
-        border-right: none;
-    }
-
-    .score-card:nth-child(-n+2) {
-        border-bottom: 1px solid var(--line);
-    }
-
-    .vault-inner {
-        grid-template-columns: 1fr;
-    }
-
-    .vault-copy {
-        padding: 2.5rem;
-    }
-
-    .vault-card {
-        min-height: 300px;
-    }
-
-    .access-meta {
-        grid-template-columns: 1fr;
-    }
-
-    .access-meta > div {
-        border-right: none;
-        border-bottom: 1px solid var(--line);
-    }
-
-    .access-meta > div:last-child {
-        border-bottom: none;
+    .code-heading {
+        position: static;
     }
 
 }
@@ -3092,155 +3209,65 @@
 
 @media (max-width: 600px) {
 
-    .house-card {
-        min-height: 340px;
-        padding: 2rem;
+    .access-meta {
+        grid-template-columns: 1fr;
     }
 
-    .scoreboard-grid {
-        grid-template-columns: 1fr 1fr;
+    .access-meta div {
+        border-right: none;
+
+        border-bottom: 1px solid var(--line);
     }
 
-    .score-card {
-        min-height: 150px;
-        padding: 1rem;
-    }
-
-    .score-card strong {
-        font-size: 1.5rem;
-    }
-
-    .vault-copy {
-        padding: 2rem;
-    }
-
-    .vault-card {
-        margin: 1rem;
-    }
-
-    .code-item {
-        grid-template-columns: 45px 1fr;
-        gap: 1rem;
-    }
-
-    .access-form-wrap {
-        padding: 1.5rem;
+    .access-meta div:last-child {
+        border-bottom: none;
     }
 
     .form-row {
         grid-template-columns: 1fr;
+
         gap: 0;
+    }
+
+    #accessForm {
+        padding: 1.5rem;
     }
 
     .access-warning {
         flex-direction: column;
-        gap: .7rem;
+
+        gap: .5rem;
+    }
+
+    .footer-top,
+    .footer-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
     }
 
     .footer-bottom {
-        flex-direction: column;
-        gap: .8rem;
+        gap: 1rem;
     }
 
-}
-
-
-/* =========================
-   EXTRA REVEAL STATES
-========================= */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-@media (max-width: 800px) {
-
-    .menu-toggle {
-        position: relative;
-        z-index: 1001;
-    }
-
-    .main-nav {
-        position: fixed;
-        inset: 0;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        background: rgba(7,6,6,.98);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition:
-            opacity .35s ease,
-            visibility .35s ease;
-    }
-
-    .main-nav.nav-open {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-
-    .main-nav a {
-        font-family: var(--serif);
-        font-size: 2rem;
-        letter-spacing: .05em;
-    }
-
-}
-
-
-/* =========================
-   NO SCROLL
-========================= */
-
-body.no-scroll {
-    overflow: hidden;
 }
 
 </style>
-
+<!-- =====================================================
+     PART 5: JAVASCRIPT + DOCUMENT CLOSING
+===================================================== -->
 
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
 
-
-    /* =========================
-       ELEMENTS
-    ========================= */
+    /* =================================================
+       INTRO / ENTER THE HOUSE
+    ================================================= */
 
     const intro = document.getElementById("intro");
     const enterHouse = document.getElementById("enterHouse");
     const body = document.body;
-
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
-
-    const accessForm = document.getElementById("accessForm");
-    const formSuccess = document.getElementById("formSuccess");
-
-
-    /* =========================
-       INTRO / ENTER THE HOUSE
-    ========================= */
 
     if (intro && enterHouse) {
 
@@ -3253,9 +3280,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body.classList.remove("no-scroll");
 
             setTimeout(function () {
-
                 intro.style.display = "none";
-
             }, 900);
 
         });
@@ -3263,9 +3288,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================
+    /* =================================================
        MOBILE MENU
-    ========================= */
+    ================================================= */
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
 
     if (menuToggle && mainNav) {
 
@@ -3295,7 +3327,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             link.addEventListener("click", function () {
 
-                mainNav.classList.remove("nav-open");
+                mainNav.classList.remove(
+                    "nav-open"
+                );
 
                 menuToggle.classList.remove(
                     "menu-active"
@@ -3313,9 +3347,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================
-       REVEAL ANIMATIONS
-    ========================= */
+    /* =================================================
+       SCROLL REVEAL
+    ================================================= */
 
     const revealElements =
         document.querySelectorAll(".reveal");
@@ -3327,21 +3361,25 @@ document.addEventListener("DOMContentLoaded", function () {
             new IntersectionObserver(
                 function (entries) {
 
-                    entries.forEach(function (entry) {
+                    entries.forEach(
+                        function (entry) {
 
-                        if (entry.isIntersecting) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                            entry.target.classList.add(
-                                "visible"
-                            );
+                                entry.target.classList.add(
+                                    "visible"
+                                );
 
-                            observer.unobserve(
-                                entry.target
-                            );
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
                 {
@@ -3350,27 +3388,39 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        revealElements.forEach(function (element) {
+        revealElements.forEach(
+            function (element) {
 
-            observer.observe(element);
+                observer.observe(element);
 
-        });
+            }
+        );
 
     } else {
 
-        revealElements.forEach(function (element) {
+        revealElements.forEach(
+            function (element) {
 
-            element.classList.add("visible");
+                element.classList.add(
+                    "visible"
+                );
 
-        });
+            }
+        );
 
     }
 
 
-    /* =========================
-       ACCESS FORM
-       DEMO ONLY
-    ========================= */
+    /* =================================================
+       ACCESS REQUEST FORM
+    ================================================= */
+
+    const accessForm =
+        document.getElementById("accessForm");
+
+    const formSuccess =
+        document.getElementById("formSuccess");
+
 
     if (accessForm && formSuccess) {
 
@@ -3380,9 +3430,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 event.preventDefault();
 
-                accessForm.style.display = "none";
+                accessForm.style.display =
+                    "none";
 
-                formSuccess.classList.add("show");
+                formSuccess.classList.add(
+                    "show"
+                );
 
             }
         );
@@ -3390,9 +3443,42 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================
-       SMOOTH SCROLL
-    ========================= */
+    /* =================================================
+       VAULT BUTTON
+    ================================================= */
+
+    const vaultButton =
+        document.getElementById("vaultButton");
+
+
+    if (vaultButton) {
+
+        vaultButton.addEventListener(
+            "click",
+            function () {
+
+                const vaultCard =
+                    document.querySelector(
+                        ".vault-card"
+                    );
+
+                if (vaultCard) {
+
+                    vaultCard.classList.toggle(
+                        "vault-unlocked"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       SMOOTH ANCHOR SCROLLING
+    ================================================= */
 
     document.querySelectorAll(
         'a[href^="#"]'
@@ -3406,7 +3492,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.getAttribute("href");
 
                 const target =
-                    document.querySelector(targetId);
+                    document.querySelector(
+                        targetId
+                    );
 
                 if (target) {
 
@@ -3423,6 +3511,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+
+    /* =================================================
+       VAULT UNLOCK VISUAL
+    ================================================= */
+
+    const vaultStyle =
+        document.createElement("style");
+
+    vaultStyle.textContent = `
+
+        .vault-card {
+            transition:
+                border-color .5s ease,
+                box-shadow .5s ease,
+                transform .5s ease;
+        }
+
+        .vault-card.vault-unlocked {
+            border-color: var(--gold);
+
+            box-shadow:
+                0 0 45px rgba(197,161,90,.12);
+
+            transform:
+                translateY(-5px);
+        }
+
+        .vault-card.vault-unlocked
+        .vault-card-middle strong {
+            color: var(--gold);
+        }
+
+    `;
+
+    document.head.appendChild(vaultStyle);
 
 });
 
