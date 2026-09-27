@@ -63,13 +63,13 @@
                 radial-gradient(circle at 0% 100%, rgba(50,17,22,.08), transparent 40%);
         }
 
-        body.intro-active {
+        body.locked {
             overflow: hidden;
         }
 
-        /* INTRO */
+        /* PUBLIC ENTRANCE */
 
-        .intro {
+        .entrance {
             position: fixed;
             inset: 0;
             z-index: 9999;
@@ -80,15 +80,18 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            opacity: 1;
-            visibility: visible;
             transition:
                 opacity .8s ease,
-                visibility .8s ease,
-                background .8s ease;
+                visibility .8s ease;
         }
 
-        .intro::before {
+        .entrance.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .entrance::before {
             content: "CONFIDENTIAL";
             position: absolute;
             top: 30px;
@@ -98,7 +101,7 @@
             letter-spacing: .45em;
         }
 
-        .intro::after {
+        .entrance::after {
             content: "HOUSE OF XANDER";
             position: absolute;
             bottom: 30px;
@@ -108,105 +111,247 @@
             letter-spacing: .35em;
         }
 
-        .intro.opening {
-            background: var(--burgundy);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .intro-inner {
-            position: relative;
-            z-index: 2;
+        .entrance-inner {
+            max-width: 700px;
             padding: 30px;
-            transition:
-                transform .75s ease,
-                opacity .55s ease;
         }
 
-        .intro.opening .intro-inner {
-            transform: scale(.96);
-            opacity: 0;
-        }
-
-        .intro-label {
+        .entrance-label {
+            color: var(--gold);
             font-size: 9px;
             letter-spacing: .38em;
-            color: var(--gold);
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
-        .intro h1 {
+        .entrance h1 {
             font-family: var(--serif);
-            font-size: clamp(54px, 10vw, 120px);
+            font-size: clamp(58px, 10vw, 125px);
             font-weight: 500;
             letter-spacing: .04em;
             line-height: .8;
             margin-bottom: 30px;
         }
 
-        .intro p {
+        .entrance p {
             color: var(--muted);
             font-size: 11px;
-            letter-spacing: .22em;
+            letter-spacing: .2em;
+            line-height: 1.8;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            max-width: 480px;
+            margin: 0 auto 42px;
         }
 
-        .enter-house {
+        .entrance-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .entrance-button {
             position: relative;
             overflow: hidden;
+            min-width: 190px;
             border: 1px solid var(--gold);
             background: transparent;
             color: var(--gold-soft);
-            padding: 16px 34px;
+            padding: 16px 28px;
             font-family: var(--sans);
-            font-size: 10px;
-            letter-spacing: .28em;
+            font-size: 9px;
+            letter-spacing: .25em;
             text-transform: uppercase;
             cursor: pointer;
             transition:
                 color .3s ease,
                 transform .3s ease,
-                box-shadow .3s ease;
+                background .3s ease;
         }
 
-        .enter-house::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: var(--burgundy);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .4s ease;
-            z-index: -1;
+        .entrance-button.primary {
+            background: var(--gold);
+            color: var(--black);
         }
 
-        .enter-house:hover {
-            color: var(--gold-soft);
+        .entrance-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(197,161,90,.08);
         }
 
-        .enter-house:hover::before {
-            transform: scaleX(1);
+        .entrance-button.secondary:hover {
+            background: var(--burgundy);
+            color: var(--gold-soft);
         }
 
-        .enter-house:active {
-            transform: scale(.98);
+        .entrance-button.primary:hover {
+            background: var(--gold-soft);
         }
+
+        /* MODALS */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(8,7,7,.94);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: .4s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            width: min(500px, 100%);
+            background: var(--black-soft);
+            border: 1px solid var(--line);
+            padding: 45px;
+            position: relative;
+        }
+
+        .modal-card::before {
+            content: "HOUSE OF XANDER";
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            color: rgba(197,161,90,.18);
+            font-size: 6px;
+            letter-spacing: .3em;
+        }
+
+        .modal-label {
+            color: var(--gold);
+            font-size: 8px;
+            letter-spacing: .3em;
+            margin-bottom: 20px;
+        }
+
+        .modal-card h2 {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .modal-card > p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-form input {
+            width: 100%;
+            background: rgba(50,17,22,.12);
+            border: 1px solid var(--line);
+            color: var(--cream);
+            padding: 15px;
+            outline: none;
+            font-family: var(--sans);
+            font-size: 12px;
+        }
+
+        .modal-form input:focus {
+            border-color: rgba(197,161,90,.6);
+        }
+
+        .modal-form button {
+            border: 1px solid var(--gold);
+            background: var(--gold);
+            color: var(--black);
+            padding: 15px;
+            font-family: var(--sans);
+            font-size: 9px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .modal-form button:hover {
+            background: var(--gold-soft);
+        }
+
+        .modal-form button:disabled {
+            opacity: .6;
+            cursor: default;
+        }
+
+        .modal-status {
+            min-height: 17px;
+            margin-top: 16px;
+            color: var(--gold-soft);
+            font-size: 9px;
+            line-height: 1.6;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 17px;
+            left: 18px;
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .modal-close:hover {
+            color: var(--gold);
+        }
+
+        .request-link {
+            margin-top: 18px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: .08em;
+        }
+
+        .request-link button {
+            border: 0;
+            background: none;
+            color: var(--gold);
+            cursor: pointer;
+            font-family: var(--sans);
+            font-size: 9px;
+            letter-spacing: .08em;
+        }
+
+        /* PROTECTED SITE */
 
         .site-content {
-            visibility: hidden;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .8s ease;
+            display: none;
         }
 
-        body.site-entered .site-content {
-            visibility: visible;
-            opacity: 1;
-            pointer-events: auto;
+        body.member-authenticated .entrance {
+            display: none;
+        }
+
+        body.member-authenticated .site-content {
+            display: block;
+        }
+
+        body.member-authenticated {
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         /* HEADER */
@@ -221,7 +366,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            mix-blend-mode: normal;
         }
 
         .logo {
@@ -230,6 +374,22 @@
             font-size: 20px;
             letter-spacing: .16em;
             text-shadow: 0 0 20px rgba(197,161,90,.08);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .member-status {
+            color: var(--gold);
+            font-size: 7px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            background: rgba(8,7,7,.7);
         }
 
         .menu-button {
@@ -256,7 +416,6 @@
             width: 15px;
             height: 1px;
             background: var(--gold);
-            transition: transform .3s ease;
         }
 
         nav {
@@ -297,6 +456,22 @@
         }
 
         nav a:hover {
+            color: var(--gold);
+        }
+
+        .logout-link {
+            border: 0;
+            background: none;
+            color: var(--muted);
+            font-family: var(--sans);
+            font-size: 8px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .logout-link:hover {
             color: var(--gold);
         }
 
@@ -909,132 +1084,30 @@
             font-size: 24px;
         }
 
-        /* ACCESS */
-
-        .access {
-            padding: 140px 8vw;
-            background: var(--black);
-            text-align: center;
-        }
-
-        .access::before {
-            content: "";
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border: 1px solid rgba(197,161,90,.035);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .access > div {
-            position: relative;
-            z-index: 2;
-        }
-
-        .access h2 {
-            font-family: var(--serif);
-            font-size: clamp(50px, 8vw, 90px);
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        .access p {
-            color: var(--muted);
-            max-width: 520px;
-            margin: 0 auto 40px;
-            font-size: 12px;
-            line-height: 1.9;
-        }
-
-        .access-form {
-            max-width: 500px;
-            margin: auto;
-            display: flex;
-            gap: 10px;
-        }
-
-        .access-form input {
-            flex: 1;
-            background: rgba(50,17,22,.08);
-            border: 1px solid var(--line);
-            padding: 15px;
-            color: var(--cream);
-            outline: none;
-            font-family: var(--sans);
-            transition: border-color .3s ease;
-        }
-
-        .access-form input:focus {
-            border-color: rgba(197,161,90,.55);
-        }
-
-        .access-form button {
-            border: 1px solid var(--gold);
-            background: var(--gold);
-            color: var(--black);
-            padding: 15px 25px;
-            font-size: 9px;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: .3s ease;
-        }
-
-        .access-form button:hover {
-            background: var(--gold-soft);
-        }
-
-        .access-form button:disabled {
-            opacity: .65;
-            cursor: default;
-        }
-
-        .access-status {
-            margin-top: 18px;
-            color: var(--gold-soft);
-            font-size: 10px;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            min-height: 16px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            padding: 35px 7vw;
-            border-top: 1px solid var(--line);
-            background: var(--black-soft);
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            color: var(--muted);
-            font-size: 9px;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-        }
-
-        /* REVEAL */
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px);
-            transition:
-                opacity .8s ease,
-                transform .8s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* RESPONSIVE */
 
         @media (max-width: 800px) {
+
+            .entrance-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .entrance-button {
+                width: min(300px, 100%);
+            }
+
+            .modal-card {
+                padding: 40px 25px 30px;
+            }
+
+            .header-actions {
+                gap: 5px;
+            }
+
+            .member-status {
+                display: none;
+            }
 
             section::after {
                 right: 5vw;
@@ -1072,14 +1145,6 @@
                 display: none;
             }
 
-            .access-form {
-                flex-direction: column;
-            }
-
-            footer {
-                flex-direction: column;
-            }
-
             .game-note {
                 font-size: 20px;
             }
@@ -1087,11 +1152,6 @@
             .hero::before {
                 width: 330px;
                 height: 330px;
-            }
-
-            .access::before {
-                width: 400px;
-                height: 400px;
             }
         }
 
@@ -1111,13 +1171,15 @@
     </style>
 </head>
 
-<body class="intro-active">
+<body class="locked">
 
-    <div class="intro" id="intro">
+    <!-- PUBLIC ENTRANCE -->
 
-        <div class="intro-inner">
+    <div class="entrance" id="entrance">
 
-            <div class="intro-label">
+        <div class="entrance-inner">
+
+            <div class="entrance-label">
                 CONFIDENTIAL // HOUSE OF XANDER
             </div>
 
@@ -1127,19 +1189,179 @@
 
             <p>
                 A private-house experience by House of Xander.
+                Access is not automatic.
             </p>
 
-            <button
-                class="enter-house"
-                id="enterHouse"
-                type="button"
-            >
-                Enter The House
-            </button>
+            <div class="entrance-actions">
+
+                <button
+                    class="entrance-button primary"
+                    id="memberAccessButton"
+                    type="button"
+                >
+                    Member Access
+                </button>
+
+                <button
+                    class="entrance-button secondary"
+                    id="requestAccessButton"
+                    type="button"
+                >
+                    Request Access
+                </button>
+
+            </div>
 
         </div>
 
     </div>
+
+
+    <!-- MEMBER LOGIN -->
+
+    <div class="modal" id="memberModal">
+
+        <div class="modal-card">
+
+            <button
+                class="modal-close"
+                id="closeMemberModal"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <div class="modal-label">
+                MEMBER ACCESS // 01
+            </div>
+
+            <h2>
+                Enter the House.
+            </h2>
+
+            <p>
+                This entrance is reserved for confirmed members of
+                The Consortium.
+            </p>
+
+            <form class="modal-form" id="memberLoginForm">
+
+                <input
+                    type="email"
+                    id="memberEmail"
+                    placeholder="Member email"
+                    autocomplete="email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="memberPassword"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    id="memberLoginSubmit"
+                >
+                    Enter The House
+                </button>
+
+            </form>
+
+            <div
+                class="modal-status"
+                id="memberLoginStatus"
+                aria-live="polite"
+            ></div>
+
+            <div class="request-link">
+                Not a member?
+                <button type="button" id="switchToRequest">
+                    Request access
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- REQUEST ACCESS -->
+
+    <div class="modal" id="requestModal">
+
+        <div class="modal-card">
+
+            <button
+                class="modal-close"
+                id="closeRequestModal"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <div class="modal-label">
+                REQUEST ACCESS // 02
+            </div>
+
+            <h2>
+                Leave your name.
+            </h2>
+
+            <p>
+                The House will review your request.
+                Access is granted separately.
+            </p>
+
+            <form
+                class="modal-form"
+                id="accessForm"
+                action="https://formspree.io/f/moevkyao"
+                method="POST"
+            >
+
+                <input
+                    type="text"
+                    id="accessName"
+                    name="name"
+                    placeholder="Your name"
+                    autocomplete="name"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    id="accessSubmit"
+                >
+                    Request Access
+                </button>
+
+            </form>
+
+            <div
+                class="modal-status"
+                id="accessStatus"
+                aria-live="polite"
+            ></div>
+
+            <div class="request-link">
+                Already confirmed?
+                <button type="button" id="switchToMember">
+                    Member access
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROTECTED CONSORTIUM -->
 
     <div class="site-content">
 
@@ -1149,22 +1371,35 @@
                 HX
             </div>
 
-            <button
-                class="menu-button"
-                id="menuButton"
-                type="button"
-                aria-label="Open menu"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="header-actions">
+
+                <div
+                    class="member-status"
+                    id="memberStatus"
+                >
+                    CONFIRMED MEMBER
+                </div>
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Open menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
 
         </header>
+
 
         <nav id="menu">
 
             <ul>
+
                 <li><a href="#experience">The Experience</a></li>
                 <li><a href="#dossier">The Dossier</a></li>
                 <li><a href="#journey">The Journey</a></li>
@@ -1172,10 +1407,21 @@
                 <li><a href="#houses">The Houses</a></li>
                 <li><a href="#vault">The Vault</a></li>
                 <li><a href="#code">The Code</a></li>
-                <li><a href="#access">Request Access</a></li>
+
+                <li>
+                    <button
+                        class="logout-link"
+                        id="logoutButton"
+                        type="button"
+                    >
+                        Leave The House
+                    </button>
+                </li>
+
             </ul>
 
         </nav>
+
 
         <main>
 
@@ -1201,6 +1447,7 @@
                 </div>
 
             </section>
+
 
             <section class="experience" id="experience">
 
@@ -1230,6 +1477,7 @@
                 </div>
 
             </section>
+
 
             <section class="dossier" id="dossier">
 
@@ -1305,13 +1553,16 @@
 
             </section>
 
+
             <section class="journey" id="journey">
 
                 <div class="section-grid reveal">
 
                     <div>
+
                         <div class="section-number">03</div>
                         <div class="eyebrow">THE JOURNEY</div>
+
                     </div>
 
                     <div>
@@ -1369,6 +1620,7 @@
                 </div>
 
             </section>
+
 
             <section class="game" id="game">
 
@@ -1439,6 +1691,7 @@
                 </div>
 
             </section>
+
 
             <section class="houses" id="houses">
 
@@ -1538,6 +1791,7 @@
 
             </section>
 
+
             <section class="scoreboard">
 
                 <div class="reveal">
@@ -1559,6 +1813,7 @@
                 </div>
 
             </section>
+
 
             <section class="vault" id="vault">
 
@@ -1618,6 +1873,7 @@
 
             </section>
 
+
             <section class="code" id="code">
 
                 <div class="code-inner reveal">
@@ -1659,56 +1915,8 @@
 
             </section>
 
-            <section class="access" id="access">
-
-                <div class="reveal">
-
-                    <div class="eyebrow">
-                        09 // REQUEST ACCESS
-                    </div>
-
-                    <h2>
-                        TO BE REVEALED.
-                    </h2>
-
-                    <p>
-                        The doors are not open to everyone.
-                        Leave your details and wait for the House.
-                    </p>
-
-                    <form
-                        class="access-form"
-                        id="accessForm"
-                        action="https://formspree.io/f/moevkyao"
-                        method="POST"
-                    >
-
-                        <input
-                            type="text"
-                            id="accessName"
-                            name="name"
-                            placeholder="Your name"
-                            autocomplete="name"
-                            required
-                        >
-
-                        <button type="submit" id="accessSubmit">
-                            Request Access
-                        </button>
-
-                    </form>
-
-                    <div
-                        class="access-status"
-                        id="accessStatus"
-                        aria-live="polite"
-                    ></div>
-
-                </div>
-
-            </section>
-
         </main>
+
 
         <footer>
 
@@ -1728,6 +1936,7 @@
 
     </div>
 
+
     <script>
 
         /* SUPABASE */
@@ -1745,136 +1954,270 @@
             );
 
 
-        /* INTRO */
+        /* ELEMENTS */
 
-        const intro =
-            document.getElementById("intro");
+        const entrance =
+            document.getElementById("entrance");
 
-        const enterHouse =
-            document.getElementById("enterHouse");
+        const memberModal =
+            document.getElementById("memberModal");
 
-        let houseEntered = false;
+        const requestModal =
+            document.getElementById("requestModal");
 
-        enterHouse.addEventListener("click", function () {
+        const memberAccessButton =
+            document.getElementById("memberAccessButton");
 
-            if (houseEntered) return;
+        const requestAccessButton =
+            document.getElementById("requestAccessButton");
 
-            houseEntered = true;
+        const closeMemberModal =
+            document.getElementById("closeMemberModal");
 
-            enterHouse.disabled = true;
+        const closeRequestModal =
+            document.getElementById("closeRequestModal");
 
-            intro.classList.add("opening");
+        const switchToRequest =
+            document.getElementById("switchToRequest");
 
-            document.body.classList.remove("intro-active");
-            document.body.classList.add("site-entered");
-
-            setTimeout(function () {
-                intro.style.display = "none";
-            }, 800);
-
-        });
-
-
-        /* MENU */
-
-        const menuButton =
-            document.getElementById("menuButton");
-
-        const menu =
-            document.getElementById("menu");
-
-        menuButton.addEventListener("click", function () {
-            menu.classList.toggle("open");
-        });
+        const switchToMember =
+            document.getElementById("switchToMember");
 
 
-        document.querySelectorAll("nav a").forEach(function (link) {
+        /* MODALS */
 
-            link.addEventListener("click", function () {
-                menu.classList.remove("open");
-            });
+        function openModal(modal) {
 
-        });
+            modal.classList.add("open");
+            document.body.classList.add("locked");
+
+        }
 
 
-        /* REVEAL */
+        function closeModal(modal) {
 
-        const revealItems =
-            document.querySelectorAll(".reveal");
+            modal.classList.remove("open");
 
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
+        }
 
-                    entries.forEach(function (entry) {
 
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("visible");
-                            observer.unobserve(entry.target);
-                        }
+        memberAccessButton.addEventListener(
+            "click",
+            function () {
+                openModal(memberModal);
+            }
+        );
 
-                    });
 
-                },
-                {
-                    threshold: 0.12
+        requestAccessButton.addEventListener(
+            "click",
+            function () {
+                openModal(requestModal);
+            }
+        );
+
+
+        closeMemberModal.addEventListener(
+            "click",
+            function () {
+                closeModal(memberModal);
+            }
+        );
+
+
+        closeRequestModal.addEventListener(
+            "click",
+            function () {
+                closeModal(requestModal);
+            }
+        );
+
+
+        switchToRequest.addEventListener(
+            "click",
+            function () {
+
+                closeModal(memberModal);
+                openModal(requestModal);
+
+            }
+        );
+
+
+        switchToMember.addEventListener(
+            "click",
+            function () {
+
+                closeModal(requestModal);
+                openModal(memberModal);
+
+            }
+        );
+
+
+        [memberModal, requestModal].forEach(function (modal) {
+
+            modal.addEventListener(
+                "click",
+                function (event) {
+
+                    if (event.target === modal) {
+                        closeModal(modal);
+                    }
+
                 }
             );
 
-        revealItems.forEach(function (item) {
-            observer.observe(item);
         });
 
 
-        /* VAULT */
+        /* MEMBER LOGIN */
 
-        const vaultDecision =
-            document.getElementById("vaultDecision");
+        const memberLoginForm =
+            document.getElementById("memberLoginForm");
 
-        const vaultDecide =
-            document.getElementById("vaultDecide");
+        const memberEmail =
+            document.getElementById("memberEmail");
 
-        const vaultChoices =
-            document.querySelectorAll(".vault-choice");
+        const memberPassword =
+            document.getElementById("memberPassword");
 
-        vaultDecide.addEventListener("click", function () {
+        const memberLoginSubmit =
+            document.getElementById("memberLoginSubmit");
 
-            const isOpen =
-                vaultDecision.classList.toggle("open");
-
-            vaultDecide.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
-            );
-
-            vaultDecide.textContent =
-                isOpen ? "Choose..." : "Decide...";
-
-        });
+        const memberLoginStatus =
+            document.getElementById("memberLoginStatus");
 
 
-        vaultChoices.forEach(function (choice) {
+        memberLoginForm.addEventListener(
+            "submit",
+            async function (event) {
 
-            choice.addEventListener("click", function () {
+                event.preventDefault();
 
-                const selected =
-                    this.dataset.choice;
+                const email =
+                    memberEmail.value.trim();
 
-                vaultDecide.textContent =
-                    selected === "protect"
-                        ? "PROTECT"
-                        : "RISK";
+                const password =
+                    memberPassword.value;
 
-                vaultDecision.classList.remove("open");
+                if (!email || !password) {
+                    return;
+                }
 
-                vaultDecide.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+                memberLoginSubmit.disabled = true;
+                memberLoginSubmit.textContent = "AUTHENTICATING...";
+                memberLoginStatus.textContent = "";
 
-            });
 
-        });
+                try {
+
+                    const {
+                        data,
+                        error
+                    } = await supabaseClient.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+
+
+                    if (error) {
+                        throw error;
+                    }
+
+
+                    if (!data.user) {
+                        throw new Error(
+                            "No authenticated member account was returned."
+                        );
+                    }
+
+
+                    const {
+                        data: member,
+                        error: memberError
+                    } = await supabaseClient
+                        .from("members")
+                        .select("id,name,house,status")
+                        .eq("email", email.toLowerCase())
+                        .maybeSingle();
+
+
+                    if (memberError) {
+                        throw memberError;
+                    }
+
+
+                    if (!member) {
+
+                        await supabaseClient.auth.signOut();
+
+                        throw new Error(
+                            "This account is not connected to a Consortium membership."
+                        );
+
+                    }
+
+
+                    if (
+                        String(member.status || "")
+                            .toUpperCase() !== "ACTIVE"
+                    ) {
+
+                        await supabaseClient.auth.signOut();
+
+                        throw new Error(
+                            "This membership is not currently active."
+                        );
+
+                    }
+
+
+                    sessionStorage.setItem(
+                        "consortium_member_name",
+                        member.name
+                    );
+
+                    sessionStorage.setItem(
+                        "consortium_member_house",
+                        member.house || ""
+                    );
+
+
+                    document.body.classList.remove("locked");
+                    document.body.classList.add("member-authenticated");
+
+                    entrance.classList.add("hidden");
+
+                    closeModal(memberModal);
+
+                    memberLoginForm.reset();
+
+                    memberLoginSubmit.disabled = false;
+                    memberLoginSubmit.textContent = "ENTER THE HOUSE";
+
+                    memberLoginStatus.textContent = "";
+
+                    initializeProtectedSite();
+
+                } catch (error) {
+
+                    console.error(
+                        "Member login error:",
+                        error
+                    );
+
+                    memberLoginStatus.textContent =
+                        error.message ||
+                        "ACCESS DENIED. CHECK YOUR DETAILS.";
+
+                    memberLoginSubmit.disabled = false;
+                    memberLoginSubmit.textContent = "ENTER THE HOUSE";
+
+                }
+
+            }
+        );
 
 
         /* ACCESS REQUEST */
@@ -1892,119 +2235,403 @@
             document.getElementById("accessStatus");
 
 
-        accessForm.addEventListener("submit", async function (event) {
+        accessForm.addEventListener(
+            "submit",
+            async function (event) {
 
-            event.preventDefault();
+                event.preventDefault();
 
-            const name =
-                accessName.value.trim();
+                const name =
+                    accessName.value.trim();
 
-            if (!name) return;
+                if (!name) return;
 
-            accessSubmit.disabled = true;
-            accessSubmit.textContent = "SENDING...";
-            accessStatus.textContent = "";
-
-
-            try {
-
-                const {
-                    error
-                } = await supabaseClient
-                    .from("access_requests")
-                    .insert([
-                        {
-                            name: name
-                        }
-                    ]);
-
-
-                if (error) {
-                    throw error;
-                }
-
-
-                const formData =
-                    new FormData(accessForm);
+                accessSubmit.disabled = true;
+                accessSubmit.textContent = "SENDING...";
+                accessStatus.textContent = "";
 
 
                 try {
 
-                    await fetch(
-                        accessForm.action,
-                        {
-                            method: "POST",
-                            body: formData,
-                            headers: {
-                                "Accept": "application/json"
+                    const {
+                        error
+                    } = await supabaseClient
+                        .from("access_requests")
+                        .insert([
+                            {
+                                name: name
                             }
-                        }
+                        ]);
+
+
+                    if (error) {
+                        throw error;
+                    }
+
+
+                    const formData =
+                        new FormData(accessForm);
+
+
+                    try {
+
+                        await fetch(
+                            accessForm.action,
+                            {
+                                method: "POST",
+                                body: formData,
+                                headers: {
+                                    "Accept": "application/json"
+                                }
+                            }
+                        );
+
+                    } catch (formspreeError) {
+
+                        /*
+                         * Supabase remains the primary request record.
+                         * Formspree remains the secondary notification channel.
+                         */
+
+                    }
+
+
+                    accessStatus.textContent =
+                        "REQUEST RECEIVED. THE HOUSE WILL BE IN TOUCH.";
+
+                    accessName.value = "";
+
+                    accessSubmit.textContent =
+                        "REQUEST RECEIVED";
+
+                } catch (error) {
+
+                    console.error(
+                        "Access request error:",
+                        error
                     );
 
-                } catch (formspreeError) {
+                    accessStatus.textContent =
+                        "Something went wrong. Please try again.";
 
-                    /*
-                     * Supabase is the primary request record.
-                     * Formspree remains a secondary notification channel.
-                     */
+                    accessSubmit.disabled = false;
+
+                    accessSubmit.textContent =
+                        "REQUEST ACCESS";
+
+                }
+
+            }
+        );
+
+
+        /* SESSION CHECK */
+
+        async function checkMemberSession() {
+
+            try {
+
+                const {
+                    data
+                } = await supabaseClient.auth.getSession();
+
+                const session =
+                    data.session;
+
+                if (!session || !session.user) {
+                    return false;
+                }
+
+
+                const email =
+                    session.user.email;
+
+
+                const {
+                    data: member,
+                    error
+                } = await supabaseClient
+                    .from("members")
+                    .select("id,name,house,status")
+                    .eq("email", email.toLowerCase())
+                    .maybeSingle();
+
+
+                if (
+                    error ||
+                    !member ||
+                    String(member.status || "")
+                        .toUpperCase() !== "ACTIVE"
+                ) {
+
+                    await supabaseClient.auth.signOut();
+
+                    return false;
 
                 }
 
 
-                accessStatus.textContent =
-                    "REQUEST RECEIVED. THE HOUSE WILL BE IN TOUCH.";
+                sessionStorage.setItem(
+                    "consortium_member_name",
+                    member.name
+                );
 
-                accessName.value = "";
+                sessionStorage.setItem(
+                    "consortium_member_house",
+                    member.house || ""
+                );
 
-                accessSubmit.textContent =
-                    "REQUEST RECEIVED";
 
+                document.body.classList.remove("locked");
+                document.body.classList.add("member-authenticated");
+
+                entrance.classList.add("hidden");
+
+                initializeProtectedSite();
+
+                return true;
 
             } catch (error) {
 
                 console.error(
-                    "Access request error:",
+                    "Session verification error:",
                     error
                 );
 
-                accessStatus.textContent =
-                    "Something went wrong. Please try again.";
-
-                accessSubmit.disabled = false;
-
-                accessSubmit.textContent =
-                    "REQUEST ACCESS";
+                return false;
 
             }
 
-        });
+        }
 
 
-        /* SMOOTH ANCHORS */
+        /* LOGOUT */
 
-        document.querySelectorAll('a[href^="#"]')
-            .forEach(function (anchor) {
+        const logoutButton =
+            document.getElementById("logoutButton");
 
-                anchor.addEventListener("click", function (event) {
 
-                    const target =
-                        document.querySelector(
-                            this.getAttribute("href")
-                        );
+        logoutButton.addEventListener(
+            "click",
+            async function () {
 
-                    if (target) {
+                await supabaseClient.auth.signOut();
 
-                        event.preventDefault();
+                sessionStorage.removeItem(
+                    "consortium_member_name"
+                );
 
-                        target.scrollIntoView({
-                            behavior: "smooth"
-                        });
+                sessionStorage.removeItem(
+                    "consortium_member_house"
+                );
 
-                    }
+                document.body.classList.remove(
+                    "member-authenticated"
+                );
 
+                document.body.classList.add(
+                    "locked"
+                );
+
+                entrance.classList.remove("hidden");
+
+                document.getElementById("menu")
+                    .classList.remove("open");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "auto"
                 });
 
+            }
+        );
+
+
+        /* MENU */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const menu =
+            document.getElementById("menu");
+
+
+        menuButton.addEventListener(
+            "click",
+            function () {
+                menu.classList.toggle("open");
+            }
+        );
+
+
+        document.querySelectorAll("nav a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+                        menu.classList.remove("open");
+                    }
+                );
+
             });
+
+
+        /* REVEAL */
+
+        let revealInitialized = false;
+
+
+        function initializeReveal() {
+
+            if (revealInitialized) return;
+
+            revealInitialized = true;
+
+
+            const revealItems =
+                document.querySelectorAll(".reveal");
+
+
+            if (!("IntersectionObserver" in window)) {
+
+                revealItems.forEach(function (item) {
+                    item.classList.add("visible");
+                });
+
+                return;
+
+            }
+
+
+            const observer =
+                new IntersectionObserver(
+                    function (entries) {
+
+                        entries.forEach(function (entry) {
+
+                            if (entry.isIntersecting) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        });
+
+                    },
+                    {
+                        threshold: 0.12
+                    }
+                );
+
+
+            revealItems.forEach(function (item) {
+                observer.observe(item);
+            });
+
+        }
+
+
+        /* VAULT */
+
+        let vaultInitialized = false;
+
+
+        function initializeVault() {
+
+            if (vaultInitialized) return;
+
+            vaultInitialized = true;
+
+
+            const vaultDecision =
+                document.getElementById("vaultDecision");
+
+            const vaultDecide =
+                document.getElementById("vaultDecide");
+
+            const vaultChoices =
+                document.querySelectorAll(".vault-choice");
+
+
+            vaultDecide.addEventListener(
+                "click",
+                function () {
+
+                    const isOpen =
+                        vaultDecision.classList.toggle("open");
+
+                    vaultDecide.setAttribute(
+                        "aria-expanded",
+                        isOpen ? "true" : "false"
+                    );
+
+                    vaultDecide.textContent =
+                        isOpen
+                            ? "Choose..."
+                            : "Decide...";
+
+                }
+            );
+
+
+            vaultChoices.forEach(function (choice) {
+
+                choice.addEventListener(
+                    "click",
+                    function () {
+
+                        const selected =
+                            this.dataset.choice;
+
+                        vaultDecide.textContent =
+                            selected === "protect"
+                                ? "PROTECT"
+                                : "RISK";
+
+                        vaultDecision.classList.remove(
+                            "open"
+                        );
+
+                        vaultDecide.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+            });
+
+        }
+
+
+        /* PROTECTED SITE INITIALIZATION */
+
+        let protectedSiteInitialized = false;
+
+
+        function initializeProtectedSite() {
+
+            if (protectedSiteInitialized) return;
+
+            protectedSiteInitialized = true;
+
+            initializeReveal();
+            initializeVault();
+
+        }
+
+
+        /* START */
+
+        checkMemberSession();
 
     </script>
 
