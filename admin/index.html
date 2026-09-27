@@ -403,6 +403,26 @@
             border-color: rgba(184,92,92,.3);
         }
 
+        .status-pending {
+            color: var(--gold-soft);
+            border-color: rgba(197,161,90,.3);
+        }
+
+        .status-approved {
+            color: #8bc494;
+            border-color: rgba(109,159,120,.3);
+        }
+
+        .status-declined {
+            color: #d88383;
+            border-color: rgba(184,92,92,.3);
+        }
+
+        .status-waitlisted {
+            color: #9aaac0;
+            border-color: rgba(112,139,168,.3);
+        }
+
         .actions {
             display: flex;
             flex-wrap: wrap;
@@ -628,151 +648,137 @@
         .bonus-card label {
             display: block;
             color: var(--muted);
-            font-size: 8px;
+            font-size: 9px;
             letter-spacing: .08em;
             text-transform: uppercase;
-            margin-bottom: 6px;
         }
 
         .bonus-card input {
             width: 100%;
-            background: transparent;
-            border: 0;
-            border-bottom: 1px solid var(--line);
+            margin-top: 8px;
+            border: 1px solid var(--line);
+            background: #111010;
             color: var(--cream);
-            padding: 8px 0;
+            padding: 10px;
             outline: none;
         }
 
-        .mission-card,
-        .vault-card {
-            border: 1px solid rgba(197,161,90,.16);
-            padding: 16px;
-            background: rgba(27,9,13,.25);
-        }
-
-        .mission-card + .mission-card,
-        .vault-card + .vault-card {
-            margin-top: 10px;
-        }
-
-        .mission-top,
-        .vault-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            align-items: flex-start;
-        }
-
-        .mission-card h3,
-        .vault-card h3 {
-            font-family: var(--serif);
-            font-size: 24px;
-            font-weight: 500;
-        }
-
-        .mission-card p,
-        .vault-card p {
-            color: var(--muted);
-            font-size: 11px;
-            line-height: 1.6;
-            margin-top: 7px;
-        }
-
-        .mission-actions,
-        .vault-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-            margin-top: 13px;
-        }
-
-        .house-select-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-top: 14px;
-        }
-
-        .house-point-btn {
-            border: 1px solid var(--line);
-            background: #0a0909;
-            color: var(--cream);
-            padding: 10px;
-            font-size: 10px;
-        }
-
-        .house-point-btn:hover {
+        .bonus-card input:focus {
             border-color: var(--gold);
-        }
-
-        .challenge {
-            border: 1px solid rgba(197,161,90,.16);
-            padding: 16px;
-            background: rgba(27,9,13,.25);
-        }
-
-        .challenge + .challenge {
-            margin-top: 10px;
-        }
-
-        .challenge-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            align-items: flex-start;
-        }
-
-        .challenge h3 {
-            font-family: var(--serif);
-            font-size: 25px;
-            font-weight: 500;
-        }
-
-        .challenge-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 7px;
-        }
-
-        .challenge-description {
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.6;
-            margin-top: 12px;
         }
 
         .score-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 9px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             margin-top: 15px;
         }
 
-        .score-box label {
-            display: block;
-            color: var(--muted);
-            font-size: 8px;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            margin-bottom: 5px;
+        .score-card {
+            border: 1px solid var(--line);
+            padding: 14px;
+            background: #0a0909;
         }
 
-        .score-box input {
+        .score-card h4 {
+            font-family: var(--serif);
+            font-size: 23px;
+            font-weight: 500;
+        }
+
+        .score-row {
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            gap: 10px;
+            align-items: center;
+            margin-top: 9px;
+        }
+
+        .score-row label {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .score-row input {
             width: 100%;
-            padding: 10px;
-            background: #080707;
-            color: var(--cream);
             border: 1px solid var(--line);
+            background: #111010;
+            color: var(--cream);
+            padding: 9px;
             outline: none;
         }
 
-        .challenge-actions {
+        .score-row input:focus {
+            border-color: var(--gold);
+        }
+
+        .score-actions {
             display: flex;
-            gap: 7px;
-            margin-top: 13px;
+            gap: 8px;
+            margin-top: 15px;
             flex-wrap: wrap;
+        }
+
+        .vault-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .vault-card {
+            border: 1px solid var(--line);
+            padding: 18px;
+            background: rgba(27,9,13,.35);
+        }
+
+        .vault-card h3 {
+            font-family: var(--serif);
+            font-size: 27px;
+            font-weight: 500;
+        }
+
+        .vault-card .vault-number {
+            color: var(--gold);
+            font-family: var(--serif);
+            font-size: 38px;
+            margin-top: 8px;
+        }
+
+        .vault-card p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+            margin-top: 3px;
+        }
+
+        .stage-card {
+            border: 1px solid var(--line);
+            padding: 18px;
+            background: rgba(27,9,13,.3);
+        }
+
+        .stage-card + .stage-card {
+            margin-top: 12px;
+        }
+
+        .stage-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stage-card h3 {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .stage-card p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+            margin-top: 3px;
         }
 
         .modal-overlay {
@@ -1109,560 +1115,1283 @@
                         </div>
 
 
-                        <div class="house-card">
-                            <div class="house-icon">⚔</div>
+        <div class="house-card">
+            <div class="house-icon">⚔</div>
 
-                            <h3>The Vanguard</h3>
+            <h3>The Vanguard</h3>
 
-                            <p>
-                                Boldness, Competition, Pressure.
-                            </p>
+            <p>
+                Boldness, Competition, Pressure.
+            </p>
 
-                            <div
-                                class="house-total"
-                                id="vanguardCount"
-                            >
-                                0
-                            </div>
-                        </div>
+            <div
+                class="house-total"
+                id="vanguardCount"
+            >
+                0
+            </div>
+        </div>
 
 
-                        <div class="house-card">
-                            <div class="house-icon">◈</div>
+        <div class="house-card">
+            <div class="house-icon">◈</div>
 
-                            <h3>The Covenant</h3>
+            <h3>The Covenant</h3>
 
-                            <p>
-                                Loyalty, Intelligence, Negotiation.
-                            </p>
+            <p>
+                Loyalty, Intelligence, Negotiation.
+            </p>
 
-                            <div
-                                class="house-total"
-                                id="covenantCount"
-                            >
-                                0
-                            </div>
-                        </div>
+            <div
+                class="house-total"
+                id="covenantCount"
+            >
+                0
+            </div>
+        </div>
 
 
-                        <div class="house-card">
-                            <div class="house-icon">◇</div>
+        <div class="house-card">
+            <div class="house-icon">◇</div>
 
-                            <h3>The Rogues</h3>
+            <h3>The Rogues</h3>
 
-                            <p>
-                                Chaos, Creativity, Unpredictability.
-                            </p>
+            <p>
+                Chaos, Creativity, Unpredictability.
+            </p>
 
-                            <div
-                                class="house-total"
-                                id="roguesCount"
-                            >
-                                0
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- MEMBERS -->
-            <section class="section">
-
-                <div class="section-head">
-
-                    <div>
-                        <h2>House Members</h2>
-
-                        <p>
-                            Manage current Consortium members.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="section-body">
-
-                    <div class="filters">
-
-                        <input
-                            type="search"
-                            id="memberSearch"
-                            placeholder="Search member..."
-                        >
-
-                        <select id="houseFilter">
-
-                            <option value="">
-                                All Houses
-                            </option>
-
-                            <option value="THE SOVEREIGNS">
-                                The Sovereigns
-                            </option>
-
-                            <option value="THE VANGUARD">
-                                The Vanguard
-                            </option>
-
-                            <option value="THE COVENANT">
-                                The Covenant
-                            </option>
-
-                            <option value="THE ROGUES">
-                                The Rogues
-                            </option>
-
-                        </select>
-
-
-                        <select id="statusFilter">
-
-                            <option value="">
-                                All Statuses
-                            </option>
-
-                            <option value="ACTIVE">
-                                Active
-                            </option>
-
-                            <option value="INACTIVE">
-                                Inactive
-                            </option>
-
-                        </select>
-
-
-                        <button
-                            class="ghost-btn"
-                            id="clearFiltersBtn"
-                            type="button"
-                        >
-                            Clear
-                        </button>
-
-                    </div>
-
-
-                    <div class="table-wrap">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-                                    <th>Name</th>
-                                    <th>House</th>
-                                    <th>Status</th>
-                                    <th>Added</th>
-                                    <th>Actions</th>
-                                </tr>
-
-                            </thead>
-
-                            <tbody id="membersTableBody"></tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- GAME ADMINISTRATION -->
-            <section class="section">
-
-                <div class="section-head">
-
-                    <div>
-                        <h2>Game Administration</h2>
-
-                        <p>
-                            Run the Consortium's rounds, missions,
-                            Vault decisions and House scoring.
-                        </p>
-                    </div>
-
-                    <button
-                        class="primary-btn"
-                        id="newChallengeBtn"
-                        type="button"
-                    >
-                        + New Challenge
-                    </button>
-
-                </div>
-
-
-                <div class="section-body">
-
-
-                    <!-- LIVE GAME CONTROL -->
-                    <div class="game-control">
-
-                        <h3>Live Game Control</h3>
-
-                        <p>
-                            Move the experience through its major stages.
-                            The current stage is stored on this administration
-                            device so the Game can be managed without changing
-                            the existing database structure.
-                        </p>
-
-
-                        <div
-                            class="stage-grid"
-                            id="stageGrid"
-                        >
-
-                            <button
-                                class="stage-btn"
-                                data-stage="OPENING"
-                                type="button"
-                            >
-                                <strong>01</strong>
-                                <span>Opening Round</span>
-                            </button>
-
-                            <button
-                                class="stage-btn"
-                                data-stage="MIND"
-                                type="button"
-                            >
-                                <strong>02</strong>
-                                <span>Mind Games</span>
-                            </button>
-
-                            <button
-                                class="stage-btn"
-                                data-stage="SOCIAL"
-                                type="button"
-                            >
-                                <strong>03</strong>
-                                <span>Social Games</span>
-                            </button>
-
-                            <button
-                                class="stage-btn"
-                                data-stage="PRESSURE"
-                                type="button"
-                            >
-                                <strong>04</strong>
-                                <span>Pressure Games</span>
-                            </button>
-
-                            <button
-                                class="stage-btn"
-                                data-stage="MISSIONS"
-                                type="button"
-                            >
-                                <strong>05</strong>
-                                <span>Secret Missions</span>
-                            </button>
-
-                            <button
-                                class="stage-btn"
-                                data-stage="VAULT"
-                                type="button"
-                            >
-                                <strong>06</strong>
-                                <span>The Vault</span>
-                            </button>
-
-                            <button
-                                class="stage-btn"
-                                data-stage="KINGMAKER"
-                                type="button"
-                            >
-                                <strong>07</strong>
-                                <span>Kingmaker</span>
-                            </button>
-
-                            <button
-                                class="stage-btn"
-                                data-stage="FINAL"
-                                type="button"
-                            >
-                                <strong>08</strong>
-                                <span>The Final</span>
-                            </button>
-
-                        </div>
-
-
-                        <div
-                            class="game-status"
-                            id="gameStatus"
-                        ></div>
-
-                    </div>
-
-
-                    <!-- HOUSE BONUS / PENALTY CONTROL -->
-                    <div class="game-control">
-
-                        <h3>House Adjustments</h3>
-
-                        <p>
-                            Apply one-off bonuses or penalties from alliances,
-                            exceptional decisions, completed objectives or
-                            game consequences.
-                        </p>
-
-
-                        <div class="bonus-grid">
-
-                            <div class="bonus-card">
-                                <label>The Sovereigns</label>
-
-                                <input
-                                    type="number"
-                                    id="adjustment-SOVEREIGNS"
-                                    value="0"
-                                >
-                            </div>
-
-                            <div class="bonus-card">
-                                <label>The Vanguard</label>
-
-                                <input
-                                    type="number"
-                                    id="adjustment-VANGUARD"
-                                    value="0"
-                                >
-                            </div>
-
-                            <div class="bonus-card">
-                                <label>The Covenant</label>
-
-                                <input
-                                    type="number"
-                                    id="adjustment-COVENANT"
-                                    value="0"
-                                >
-                            </div>
-
-                            <div class="bonus-card">
-                                <label>The Rogues</label>
-
-                                <input
-                                    type="number"
-                                    id="adjustment-ROGUES"
-                                    value="0"
-                                >
-                            </div>
-
-                        </div>
-
-
-                        <div class="challenge-actions">
-
-                            <button
-                                class="primary-btn"
-                                id="saveAdjustmentsBtn"
-                                type="button"
-                            >
-                                Save Adjustments
-                            </button>
-
-                            <button
-                                class="ghost-btn"
-                                id="resetAdjustmentsBtn"
-                                type="button"
-                            >
-                                Reset Adjustments
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- LEADERBOARD -->
-                    <div style="height: 18px;"></div>
-
-                    <div
-                        class="leaderboard"
-                        id="leaderboard"
-                    ></div>
-
-
-                    <!-- SECRET MISSIONS -->
-                    <div class="game-control">
-
-                        <div class="section-head" style="padding:0 0 15px 0;border-bottom:1px solid var(--line);">
-                            <div>
-                                <h3>Secret Missions</h3>
-
-                                <p>
-                                    Harmless private objectives that test
-                                    strategy, observation and social play.
-                                </p>
-                            </div>
-
-                            <button
-                                class="secondary-btn"
-                                id="newMissionBtn"
-                                type="button"
-                            >
-                                + New Mission
-                            </button>
-                        </div>
-
-
-                        <div
-                            id="missionsList"
-                            style="margin-top:15px;"
-                        ></div>
-
-                    </div>
-
-
-                    <!-- VAULT -->
-                    <div class="game-control">
-
-                        <div class="section-head" style="padding:0 0 15px 0;border-bottom:1px solid var(--line);">
-
-                            <div>
-                                <h3>The Vault</h3>
-
-                                <p>
-                                    Each House chooses whether to protect
-                                    its current position or risk points for
-                                    a larger reward.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            id="vaultList"
-                            style="margin-top:15px;"
-                        ></div>
-
-                    </div>
-
-
-                    <!-- CHALLENGES -->
-                    <div class="game-control">
-
-                        <div class="section-head" style="padding:0 0 15px 0;border-bottom:1px solid var(--line);">
-
-                            <div>
-                                <h3>Challenges</h3>
-
-                                <p>
-                                    Core Mind, Social and Pressure challenges.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            id="challengesList"
-                            style="margin-top:15px;"
-                        >
-                            <div class="empty">
-                                Loading challenges...
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </main>
+            <div
+                class="house-total"
+                id="roguesCount"
+            >
+                0
+            </div>
+        </div>
 
     </div>
 
+</div>
 
-    <!-- HOUSE MODAL -->
-    <div
-        class="modal-overlay hidden"
-        id="houseModal"
-    >
+</section>
 
-        <div class="modal">
 
-            <div class="modal-head">
+<!-- MEMBERS -->
+<section class="section">
 
-                <h2>Assign House</h2>
+    <div class="section-head">
+
+        <div>
+            <h2>House Members</h2>
+
+            <p>
+                Manage current Consortium members and House assignments.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="section-body">
+
+        <div class="filters">
+
+            <input
+                type="search"
+                id="memberSearch"
+                placeholder="Search member..."
+            >
+
+            <select id="houseFilter">
+
+                <option value="">
+                    All Houses
+                </option>
+
+                <option value="THE SOVEREIGNS">
+                    THE SOVEREIGNS
+                </option>
+
+                <option value="THE VANGUARD">
+                    THE VANGUARD
+                </option>
+
+                <option value="THE COVENANT">
+                    THE COVENANT
+                </option>
+
+                <option value="THE ROGUES">
+                    THE ROGUES
+                </option>
+
+            </select>
+
+            <select id="statusFilter">
+
+                <option value="">
+                    All Statuses
+                </option>
+
+                <option value="ACTIVE">
+                    Active
+                </option>
+
+                <option value="INACTIVE">
+                    Inactive
+                </option>
+
+                <option value="PENDING">
+                    Pending
+                </option>
+
+                <option value="APPROVED">
+                    Approved
+                </option>
+
+                <option value="DECLINED">
+                    Declined
+                </option>
+
+                <option value="WAITLISTED">
+                    Waitlisted
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Member
+                        </th>
+
+                        <th>
+                            House
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Joined
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="membersTableBody"
+                >
+
+                    <tr>
+                        <td
+                            colspan="5"
+                            class="empty"
+                        >
+                            Loading members...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GAME CONTROL -->
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Game Control</h2>
+
+            <p>
+                Control the current stage, House scores and game bonuses.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="section-body">
+
+        <div
+            class="game-control"
+            id="gameControlPanel"
+        >
+
+            <h3>
+                The Consortium Game
+            </h3>
+
+            <p>
+                Move the House through each stage and manage
+                the active scoring state.
+            </p>
+
+            <div
+                class="stage-grid"
+                id="stageGrid"
+            ></div>
+
+            <div
+                class="game-status"
+                id="gameStatus"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="game-control"
+            id="bonusControlPanel"
+        >
+
+            <h3>
+                House Bonuses
+            </h3>
+
+            <p>
+                Apply or remove bonus points from each House.
+            </p>
+
+            <div
+                class="bonus-grid"
+                id="bonusGrid"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="game-control"
+            id="scoreControlPanel"
+        >
+
+            <h3>
+                House Scores
+            </h3>
+
+            <p>
+                Record the current scores for each House.
+            </p>
+
+            <div
+                class="score-grid"
+                id="scoreGrid"
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LEADERBOARD -->
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Leaderboard</h2>
+
+            <p>
+                Current House standings.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="section-body">
+
+        <div
+            class="leaderboard"
+            id="leaderboard"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- VAULT -->
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+            <h2>The Vault</h2>
+
+            <p>
+                Rewards, points and game resources.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="section-body">
+
+        <div
+            class="vault-grid"
+            id="vaultGrid"
+        ></div>
+
+    </div>
+
+</section> 
+            <!-- MISSIONS -->
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Missions</h2>
+
+            <p>
+                Manage active challenges and assignments for the House.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="section-body">
+
+        <div
+            id="missionsList"
+        >
+            <div class="empty">
+                Loading missions...
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REQUEST HOUSE MODAL -->
+<div
+    class="modal-overlay hidden"
+    id="requestHouseModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-head">
+
+            <h2>
+                Review Access Request
+            </h2>
+
+            <button
+                class="close-btn"
+                id="closeRequestHouseModal"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="modal-note">
+                Approving this request will create a Consortium member
+                and immediately assign them to the selected House.
+                The original access request will remain in request history.
+            </div>
+
+            <div class="field">
+
+                <label>
+                    Access Request
+                </label>
+
+                <input
+                    type="text"
+                    id="requestMemberName"
+                    readonly
+                >
+
+            </div>
+
+            <div class="field">
+
+                <label for="requestHouseSelect">
+                    Assign House
+                </label>
+
+                <select id="requestHouseSelect">
+
+                    <option value="THE SOVEREIGNS">
+                        THE SOVEREIGNS
+                    </option>
+
+                    <option value="THE VANGUARD">
+                        THE VANGUARD
+                    </option>
+
+                    <option value="THE COVENANT">
+                        THE COVENANT
+                    </option>
+
+                    <option value="THE ROGUES">
+                        THE ROGUES
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-actions">
 
                 <button
-                    class="close-btn"
-                    id="closeHouseModal"
+                    class="danger-btn"
+                    id="rejectRequestBtn"
                     type="button"
                 >
-                    ×
+                    Reject Request
+                </button>
+
+                <button
+                    class="ghost-btn"
+                    id="cancelRequestHouseBtn"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-btn"
+                    id="approveRequestBtn"
+                    type="button"
+                >
+                    Add to House
                 </button>
 
             </div>
 
+        </div>
 
-            <div class="modal-body">
+    </div>
 
-                <div class="modal-note">
-                    Assign this member to one of the four Consortium Houses.
-                </div>
-
-
-                <div class="field">
-
-                    <label>Member</label>
-
-                    <input
-                        type="text"
-                        id="houseMemberName"
-                        readonly
-                    >
-
-                </div>
+</div>
 
 
-                <div class="field">
+<!-- HOUSE ASSIGNMENT MODAL -->
+<div
+    class="modal-overlay hidden"
+    id="houseModal"
+>
 
-                    <label for="houseSelect">
-                        House
-                    </label>
+    <div class="modal">
 
-                    <select id="houseSelect">
+        <div class="modal-head">
 
-                        <option value="THE SOVEREIGNS">
-                            THE SOVEREIGNS
-                        </option>
+            <h2>
+                Change House
+            </h2>
 
-                        <option value="THE VANGUARD">
-                            THE VANGUARD
-                        </option>
+            <button
+                class="close-btn"
+                id="closeHouseModal"
+                type="button"
+            >
+                ×
+            </button>
 
-                        <option value="THE COVENANT">
-                            THE COVENANT
-                        </option>
+        </div>
 
-                        <option value="THE ROGUES">
-                            THE ROGUES
-                        </option>
+        <div class="modal-body">
 
-                    </select>
+            <div class="modal-note">
+                Change the member's House assignment.
+                Their membership status will remain unchanged.
+            </div>
 
-                </div>
+            <div class="field">
+
+                <label>
+                    Member
+                </label>
+
+                <input
+                    type="text"
+                    id="houseMemberName"
+                    readonly
+                >
+
+            </div>
+
+            <div class="field">
+
+                <label for="memberHouseSelect">
+                    House
+                </label>
+
+                <select id="memberHouseSelect">
+
+                    <option value="THE SOVEREIGNS">
+                        THE SOVEREIGNS
+                    </option>
+
+                    <option value="THE VANGUARD">
+                        THE VANGUARD
+                    </option>
+
+                    <option value="THE COVENANT">
+                        THE COVENANT
+                    </option>
+
+                    <option value="THE ROGUES">
+                        THE ROGUES
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    class="ghost-btn"
+                    id="cancelHouseBtn"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-btn"
+                    id="saveHouseBtn"
+                    type="button"
+                >
+                    Save House
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
-                <div class="modal-actions">
+<!-- TOAST -->
+<div
+    class="toast hidden"
+    id="toast"
+></div>
 
-                    <button
-                        class="ghost-btn"
-                        id="cancelHouseBtn"
-                        type="button"
+
+<script>
+
+    /* ================================
+       SUPABASE
+    ================================= */
+
+    const SUPABASE_URL =
+        "https://gtdznirtmbjoydlbwutp.supabase.co";
+
+    const SUPABASE_PUBLIC_KEY =
+        "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLIC_KEY
+        );
+
+
+    /* ================================
+       HOUSE DATA
+    ================================= */
+
+    const HOUSES = [
+        "THE SOVEREIGNS",
+        "THE VANGUARD",
+        "THE COVENANT",
+        "THE ROGUES"
+    ];
+
+
+    /* ================================
+       GLOBAL STATE
+    ================================= */
+
+    let currentSession =
+        null;
+
+    let requests =
+        [];
+
+    let members =
+        [];
+
+    let missions =
+        [];
+
+    let gameData =
+        null;
+
+    let selectedRequest =
+        null;
+
+    let selectedMember =
+        null;
+
+
+    /* ================================
+       DOM REFERENCES
+    ================================= */
+
+    const loginScreen =
+        document.getElementById(
+            "loginScreen"
+        );
+
+    const adminApp =
+        document.getElementById(
+            "adminApp"
+        );
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+    const loginStatus =
+        document.getElementById(
+            "loginStatus"
+        );
+
+    const logoutBtn =
+        document.getElementById(
+            "logoutBtn"
+        );
+
+
+    /* ================================
+       HELPERS
+    ================================= */
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+    }
+
+
+    function normalizeName(
+        value
+    ) {
+
+        return String(
+            value || ""
+        )
+            .trim()
+            .replace(
+                /\s+/g,
+                " "
+            )
+            .toLowerCase();
+    }
+
+
+    function formatDate(
+        value
+    ) {
+
+        if (!value) {
+            return "—";
+        }
+
+        const date =
+            new Date(
+                value
+            );
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+            return "—";
+        }
+
+        return date.toLocaleDateString(
+            "en-NG",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+    }
+
+
+    function showToast(
+        message,
+        type = "success"
+    ) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+        toast.textContent =
+            message;
+
+        toast.className =
+            `toast ${type}`;
+
+        setTimeout(
+            () => {
+
+                toast.classList.add(
+                    "hidden"
+                );
+
+            },
+            3200
+        );
+    }
+
+
+    /* ================================
+       AUTHENTICATION
+    ================================= */
+
+    async function signIn(
+        email,
+        password
+    ) {
+
+        loginStatus.textContent =
+            "Signing in...";
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .auth
+                .signInWithPassword({
+                    email,
+                    password
+                });
+
+        if (error) {
+
+            console.error(
+                error
+            );
+
+            loginStatus.textContent =
+                error.message ||
+                "Could not sign in.";
+
+            return;
+        }
+
+        currentSession =
+            data.session;
+
+        loginStatus.textContent =
+            "";
+
+        await showDashboard(
+            currentSession
+        );
+    }
+
+
+    async function signOut() {
+
+        await supabaseClient
+            .auth
+            .signOut();
+
+        currentSession =
+            null;
+
+        adminApp.classList.add(
+            "hidden"
+        );
+
+        loginScreen.classList.remove(
+            "hidden"
+        );
+
+        loginForm.reset();
+    }
+
+
+    async function showDashboard(
+        session
+    ) {
+
+        loginScreen
+            .classList
+            .add("hidden");
+
+        adminApp
+            .classList
+            .remove("hidden");
+
+        document
+            .getElementById(
+                "adminEmail"
+            )
+            .textContent =
+            session?.user?.email ||
+            "ADMIN";
+
+        renderGameControl();
+
+        renderMissions();
+
+        renderVault();
+
+        await loadRequests();
+
+        await loadMembers();
+
+        await loadGameData();
+    }
+
+
+    /* ================================
+       ACCESS REQUESTS
+    ================================= */
+
+    async function loadRequests() {
+
+        const list =
+            document.getElementById(
+                "requestsList"
+            );
+
+        list.innerHTML =
+            `<div class="empty">
+                Loading access requests...
+            </div>`;
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from(
+                    "access_requests"
+                )
+                .select("*")
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+        if (error) {
+
+            console.error(
+                error
+            );
+
+            list.innerHTML =
+                `<div class="empty">
+                    Could not load access requests.
+                </div>`;
+
+            showToast(
+                "Could not load access requests.",
+                "error"
+            );
+
+            return;
+        }
+
+        requests =
+            data || [];
+
+        renderRequests();
+    }
+
+
+    function requestHasMember(
+        request
+    ) {
+
+        const requestName =
+            normalizeName(
+                request.name
+            );
+
+        return members.some(
+            member =>
+                normalizeName(
+                    member.name
+                ) ===
+                requestName
+        );
+    }
+
+
+    function getRequestStatus(
+        request
+    ) {
+
+        if (
+            request.status ===
+            "approved"
+        ) {
+            return "approved";
+        }
+
+        if (
+            request.status ===
+            "rejected"
+        ) {
+            return "rejected";
+        }
+
+        if (
+            requestHasMember(
+                request
+            )
+        ) {
+            return "approved";
+        }
+
+        return "pending";
+    }
+
+
+    function renderRequests() {
+
+        const list =
+            document.getElementById(
+                "requestsList"
+            );
+
+        if (
+            !requests.length
+        ) {
+
+            list.innerHTML =
+                `<div class="empty">
+                    No access requests yet.
+                </div>`;
+
+            return;
+        }
+
+        list.innerHTML =
+            requests
+                .map(
+                    request => {
+
+                        const status =
+                            getRequestStatus(
+                                request
+                            );
+
+                        return `
+                            <div class="request-card">
+
+                                <div>
+
+                                    <div class="request-name">
+                                        ${escapeHtml(
+                                            request.name
+                                        )}
+                                    </div>
+
+                                    <div class="request-date">
+                                        ${formatDate(
+                                            request.created_at
+                                        )}
+                                    </div>
+
+                                </div>
+
+                                <div class="request-actions">
+
+                                    ${
+                                        status ===
+                                        "approved"
+                                        ?
+                                        `
+                                            <button
+                                                class="ghost-btn request-added"
+                                                type="button"
+                                                disabled
+                                            >
+                                                Approved
+                                            </button>
+                                        `
+                                        :
+                                        status ===
+                                        "rejected"
+                                        ?
+                                        `
+                                            <button
+                                                class="ghost-btn request-rejected"
+                                                type="button"
+                                                disabled
+                                            >
+                                                Rejected
+                                            </button>
+                                        `
+                                        :
+                                        `
+                                            <button
+                                                class="primary-btn"
+                                                type="button"
+                                                onclick="openRequestHouseModal('${request.id}')"
+                                            >
+                                                Review Request
+                                            </button>
+                                        `
+                                    }
+
+                                </div>
+
+                            </div>
+                        `;
+                    }
+                )
+                .join("");
+    }
+
+
+    window.openRequestHouseModal =
+        function(id) {
+
+            const request =
+                requests.find(
+                    item =>
+                        String(
+                            item.id
+                        ) ===
+                        String(id)
+                );
+
+            if (!request) {
+
+                showToast(
+                    "Request could not be found.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (
+                getRequestStatus(
+                    request
+                ) !==
+                "pending"
+            ) {
+
+                showToast(
+                    "This request has already been reviewed.",
+                    "error"
+                );
+
+                return;
+            }
+
+            selectedRequest =
+                request;
+
+            document
+                .getElementById(
+                    "requestMemberName"
+                )
+                .value =
+                request.name || "";
+
+            document
+                .getElementById(
+                    "requestHouseSelect"
+                )
+                .value =
+                "THE SOVEREIGNS";
+
+            document
+                .getElementById(
+                    "requestHouseModal"
+                )
+                .classList
+                .remove("hidden");
+        };
+
+
+    function closeRequestHouseModal() {
+
+        selectedRequest =
+            null;
+
+        document
+            .getElementById(
+                "requestHouseModal"
+            )
+            .classList
+            .add("hidden");
+    }
+
+
+    document
+        .getElementById(
+            "closeRequestHouseModal"
+        )
+        .addEventListener(
+            "click",
+            closeRequestHouseModal
+        );
+
+
+    document
+        .getElementById(
+            "cancelRequestHouseBtn"
+        )
+        .addEventListener(
+            "click",
+            closeRequestHouseModal
+        );
+
+
+    document
+        .getElementById(
+            "approveRequestBtn"
+        )
+        .addEventListener(
+            "click",
+            async () => {
+
+                if (
+                    !selectedRequest
+                ) {
+                    return;
+                }
+
+                const name =
+                    selectedRequest.name
+                        .trim();
+
+                const house =
+                    document
+                        .getElementById(
+                            "requestHouseSelect"
+                        )
+                        .value;
+
+                const button =
+                    document
+                        .getElementById(
+                            "approveRequestBtn"
+                        );
+
+                button.disabled =
+                    true;
+
+                button.textContent =
+                    "Adding...";
+
+                const {
+                    data:
+                        existingMembers,
+                    error:
+                        existingMemberError
+                } =
+                    await supabaseClient
+                        .from(
+                            "members"
+                        )
+                        .select(
+                            "id,name,house,status"
+                        )
+                        .ilike(
+                            "name",
+                            name
+                        );
+
+                if (
+                    existingMemberError
+                ) {
+
+                    console.error(
+                        existingMemberError
+                    );
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "Add to House";
+
+                    showToast(
+                        "Could not check existing members.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                if (
+                    existingMembers &&
+                    existingMembers.length
+                ) {
+
+                    button.disabled =
+                        false;
+
+
+                                        type="button"
                     >
                         Cancel
                     </button>
@@ -1965,8 +2694,8 @@
             <div class="modal-body">
 
                 <div class="modal-note">
-                    Approving this request will create a Consortium member
-                    and immediately assign them to the selected House.
+                    Approving this request will add the applicant to the
+                    selected House as a pending member for final review.
                     The original access request will remain in request history.
                 </div>
 
@@ -2014,6 +2743,14 @@
 
 
                 <div class="modal-actions">
+
+                    <button
+                        class="danger-btn"
+                        id="rejectRequestBtn"
+                        type="button"
+                    >
+                        Reject Request
+                    </button>
 
                     <button
                         class="ghost-btn"
@@ -2254,9 +2991,9 @@
             return date.toLocaleString(
                 undefined,
                 {
-                    day: "2-digit",
-                    month: "short",
                     year: "numeric",
+                    month: "short",
+                    day: "numeric",
                     hour: "2-digit",
                     minute: "2-digit"
                 }
@@ -2264,1308 +3001,93 @@
         }
 
 
-        function normalizeName(value) {
+        function getHouseClass(
+            house
+        ) {
 
-            return String(value || "")
-                .trim()
-                .replace(/\s+/g, " ")
-                .toLowerCase();
-        }
+            if (!house) {
+                return "";
+            }
 
-
-        function houseLabel(house) {
-
-            return house ||
-                "UNASSIGNED";
-        }
-
-
-        function getHouseShortName(house) {
-
-            return String(house || "")
+            return house
+                .toLowerCase()
                 .replace(
-                    "THE ",
+                    /the\s+/,
+                    ""
+                )
+                .replace(
+                    /\s+/g,
+                    "-"
+                );
+        }
+
+
+        function getStatusClass(
+            status
+        ) {
+
+            return String(
+                status || ""
+            )
+                .toLowerCase()
+                .replace(
+                    /\s+/g,
+                    "-"
+                );
+        }
+
+
+        function getHouseShortName(
+            house
+        ) {
+
+            return String(
+                house || ""
+            )
+                .replace(
+                    /^THE\s+/i,
                     ""
                 );
         }
 
 
-        function getAdjustment(house) {
-
-            return Number(
-                houseAdjustments[house] || 0
-            );
-        }
-
-
-        function calculateBaseHouseTotal(
-            house
-        ) {
-
-            return houseScores
-                .filter(
-                    score =>
-                        score.house === house
-                )
-                .reduce(
-                    (
-                        total,
-                        score
-                    ) =>
-                        total +
-                        Number(
-                            score.points || 0
-                        ),
-                    0
-                );
-        }
-
-
-        function calculateHouseTotal(
-            house
-        ) {
-
-            return (
-                calculateBaseHouseTotal(
-                    house
-                ) +
-                getAdjustment(house)
-            );
-        }
-
-
-        /*
-         * AUTH
-         */
-
-        async function checkSession() {
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .auth
-                    .getSession();
-
-            if (error) {
-
-                console.error(error);
-
-                showLogin();
-
-                return;
-            }
-
-            if (data.session) {
-
-                showDashboard(
-                    data.session
-                );
-
-            } else {
-
-                showLogin();
-            }
-        }
-
-
-        function showLogin() {
-
-            loginScreen
-                .classList
-                .remove("hidden");
-
-            adminApp
-                .classList
-                .add("hidden");
-        }
-
-
-        async function showDashboard(
-            session
-        ) {
-
-            loginScreen
-                .classList
-                .add("hidden");
-
-            adminApp
-                .classList
-                .remove("hidden");
-
-            document
-                .getElementById("adminEmail")
-                .textContent =
-                session?.user?.email ||
-                "ADMIN";
-
-            renderGameControl();
-
-            renderMissions();
-
-            renderVault();
-
-            await loadRequests();
-
-            await loadMembers();
-
-            await loadGameData();
-        }
-
-
-        loginForm.addEventListener(
-            "submit",
-            async event => {
-
-                event.preventDefault();
-
-                loginStatus.textContent =
-                    "Authenticating...";
-
-                const email =
-                    document
-                        .getElementById(
-                            "loginEmail"
-                        )
-                        .value
-                        .trim();
-
-                const password =
-                    document
-                        .getElementById(
-                            "loginPassword"
-                        )
-                        .value;
-
-                const {
-                    data,
-                    error
-                } =
-                    await supabaseClient
-                        .auth
-                        .signInWithPassword({
-                            email,
-                            password
-                        });
-
-                if (error) {
-
-                    loginStatus.textContent =
-                        error.message;
-
-                    return;
-                }
-
-                loginStatus.textContent = "";
-
-                await showDashboard(
-                    data.session
-                );
-            }
-        );
-
-
-        document
-            .getElementById("logoutBtn")
-            .addEventListener(
-                "click",
-                async () => {
-
-                    await supabaseClient
-                        .auth
-                        .signOut();
-
-                    members = [];
-                    requests = [];
-                    challenges = [];
-                    houseScores = [];
-
-                    showLogin();
-                }
-            );
-
-
-        /*
-         * ACCESS REQUESTS
-         */
-
-        async function loadRequests() {
-
-            const list =
-                document.getElementById(
-                    "requestsList"
-                );
-
-            list.innerHTML =
-                `<div class="empty">
-                    Loading access requests...
-                </div>`;
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .from(
-                        "access_requests"
-                    )
-                    .select("*")
-                    .order(
-                        "created_at",
-                        {
-                            ascending: false
-                        }
-                    );
-
-            if (error) {
-
-                console.error(error);
-
-                list.innerHTML =
-                    `<div class="empty">
-                        Could not load access requests.
-                    </div>`;
-
-                showToast(
-                    "Could not load access requests.",
-                    "error"
-                );
-
-                return;
-            }
-
-            requests =
-                data || [];
-
-            renderRequests();
-        }
-
-
-        function requestHasMember(
-            request
-        ) {
-
-            const requestName =
-                normalizeName(
-                    request.name
-                );
-
-            return members.some(
-                member =>
-                    normalizeName(
-                        member.name
-                    ) ===
-                    requestName
-            );
-        }
-
-
-        function renderRequests() {
-
-            const list =
-                document.getElementById(
-                    "requestsList"
-                );
-
-            if (!requests.length) {
-
-                list.innerHTML =
-                    `<div class="empty">
-                        No access requests yet.
-                    </div>`;
-
-                return;
-            }
-
-            list.innerHTML =
-                requests
-                    .map(
-                        request => {
-
-                            const added =
-                                requestHasMember(
-                                    request
-                                );
-
-                            return `
-                                <div class="request-card">
-
-                                    <div>
-
-                                        <div class="request-name">
-                                            ${escapeHtml(
-                                                request.name
-                                            )}
-                                        </div>
-
-                                        <div class="request-date">
-                                            ${formatDate(
-                                                request.created_at
-                                            )}
-                                        </div>
-
-                                    </div>
-
-                                    <div class="request-actions">
-
-                                        ${
-                                            added
-                                            ?
-                                            `
-                                                <button
-                                                    class="ghost-btn request-added"
-                                                    type="button"
-                                                    disabled
-                                                >
-                                                    Added to House
-                                                </button>
-                                            `
-                                            :
-                                            `
-                                                <button
-                                                    class="primary-btn"
-                                                    type="button"
-                                                    onclick="openRequestHouseModal('${encodeURIComponent(
-                                                        request.name
-                                                    )}')"
-                                                >
-                                                    Add to House
-                                                </button>
-                                            `
-                                        }
-
-                                    </div>
-
-                                </div>
-                            `;
-                        }
-                    )
-                    .join("");
-        }
-
-
-        window.openRequestHouseModal =
-            function(encodedName) {
-
-                const name =
-                    decodeURIComponent(
-                        encodedName
-                    );
-
-                selectedRequest =
-                    requests.find(
-                        request =>
-                            normalizeName(
-                                request.name
-                            ) ===
-                            normalizeName(
-                                name
-                            )
-                    );
-
-                if (!selectedRequest) {
-
-                    showToast(
-                        "Access request not found.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                document
-                    .getElementById(
-                        "requestMemberName"
-                    )
-                    .value =
-                    selectedRequest.name;
-
-                document
-                    .getElementById(
-                        "requestHouseSelect"
-                    )
-                    .value =
-                    "THE SOVEREIGNS";
-
-                document
-                    .getElementById(
-                        "requestHouseModal"
-                    )
-                    .classList
-                    .remove("hidden");
-            };
-
-
-        function closeRequestHouseModal() {
-
-            selectedRequest = null;
-
-            document
-                .getElementById(
-                    "requestHouseModal"
-                )
-                .classList
-                .add("hidden");
-        }
-
-
-        document
-            .getElementById(
-                "closeRequestHouseModal"
-            )
-            .addEventListener(
-                "click",
-                closeRequestHouseModal
-            );
-
-
-        document
-            .getElementById(
-                "cancelRequestHouseBtn"
-            )
-            .addEventListener(
-                "click",
-                closeRequestHouseModal
-            );
-
-
-        document
-            .getElementById(
-                "approveRequestBtn"
-            )
-            .addEventListener(
-                "click",
-                async () => {
-
-                    if (!selectedRequest) {
-                        return;
-                    }
-
-                    const name =
-                        selectedRequest.name.trim();
-
-                    const house =
-                        document
-                            .getElementById(
-                                "requestHouseSelect"
-                            )
-                            .value;
-
-                    if (!name || !house) {
-
-                        showToast(
-                            "Name and House are required.",
-                            "error"
-                        );
-
-                        return;
-                    }
-
-
-                    const {
-                        data:
-                            existingMembers,
-                        error:
-                            existingError
-                    } =
-                        await supabaseClient
-                            .from("members")
-                            .select(
-                                "id,name,house,status"
-                            )
-                            .ilike(
-                                "name",
-                                name
-                            );
-
-                    if (existingError) {
-
-                        console.error(
-                            existingError
-                        );
-
-                        showToast(
-                            "Could not check existing members.",
-                            "error"
-                        );
-
-                        return;
-                    }
-
-
-                    if (
-                        existingMembers &&
-                        existingMembers.length > 0
-                    ) {
-
-                        closeRequestHouseModal();
-
-                        showToast(
-                            `${name} is already a member.`,
-                            "error"
-                        );
-
-                        renderRequests();
-
-                        return;
-                    }
-
-
-                    const button =
-                        document
-                            .getElementById(
-                                "approveRequestBtn"
-                            );
-
-                    button.disabled = true;
-
-                    button.textContent =
-                        "Adding...";
-
-
-                    const {
-                        data,
-                        error
-                    } =
-                        await supabaseClient
-                            .from("members")
-                            .insert([
-                                {
-                                    name,
-                                    house,
-                                    status:
-                                        "ACTIVE"
-                                }
-                            ])
-                            .select()
-                            .single();
-
-
-                    button.disabled = false;
-
-                    button.textContent =
-                        "Add to House";
-
-
-                    if (error) {
-
-                        console.error(error);
-
-                        showToast(
-                            error.message ||
-                            "Could not add member.",
-                            "error"
-                        );
-
-                        return;
-                    }
-
-
-                    members.push(data);
-
-                    closeRequestHouseModal();
-
-                    renderRequests();
-
-                    renderMembers();
-
-                    updateHouseOverview();
-
-                    showToast(
-                        `${name} has been added to ${house}.`
-                    );
-                }
-            );
-
-
-        document
-            .getElementById(
-                "refreshRequestsBtn"
-            )
-            .addEventListener(
-                "click",
-                async () => {
-
-                    await loadRequests();
-
-                    showToast(
-                        "Access requests refreshed."
-                    );
-                }
-            );
-
-
-        /*
-         * MEMBERS
-         */
-
-        async function loadMembers() {
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .from("members")
-                    .select("*")
-                    .order(
-                        "created_at",
-                        {
-                            ascending: false
-                        }
-                    );
-
-            if (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not load members.",
-                    "error"
-                );
-
-                return;
-            }
-
-            members =
-                data || [];
-
-            renderMembers();
-
-            updateHouseOverview();
-        }
-
-
-        function renderMembers() {
-
-            const tbody =
-                document.getElementById(
-                    "membersTableBody"
-                );
-
-            const search =
-                document
-                    .getElementById(
-                        "memberSearch"
-                    )
-                    .value
-                    .trim()
-                    .toLowerCase();
-
-            const house =
-                document
-                    .getElementById(
-                        "houseFilter"
-                    )
-                    .value;
+        function updateGameStatus() {
+
+            const stage =
+                GAME_STAGES[
+                    currentStage
+                ] ||
+                GAME_STAGES.OPENING;
 
             const status =
-                document
-                    .getElementById(
-                        "statusFilter"
-                    )
-                    .value;
-
-
-            const filtered =
-                members.filter(
-                    member => {
-
-                        const matchesSearch =
-                            !search ||
-                            String(
-                                member.name || ""
-                            )
-                                .toLowerCase()
-                                .includes(
-                                    search
-                                );
-
-                        const matchesHouse =
-                            !house ||
-                            member.house ===
-                            house;
-
-                        const matchesStatus =
-                            !status ||
-                            member.status ===
-                            status;
-
-                        return (
-                            matchesSearch &&
-                            matchesHouse &&
-                            matchesStatus
-                        );
-                    }
+                document.getElementById(
+                    "gameStatus"
                 );
 
-
-            if (!filtered.length) {
-
-                tbody.innerHTML =
-                    `<tr>
-
-                        <td
-                            colspan="5"
-                            class="empty"
-                        >
-                            No members found.
-                        </td>
-
-                    </tr>`;
-
+            if (!status) {
                 return;
             }
 
+            status.innerHTML =
+                `
+                    <div>
+                        <span class="status-label">
+                            CURRENT STAGE
+                        </span>
 
-            tbody.innerHTML =
-                filtered
-                    .map(
-                        member => {
+                        <strong>
+                            ${stage.number}
+                            ·
+                            ${escapeHtml(stage.name)}
+                        </strong>
 
-                            const active =
-                                member.status ===
-                                "ACTIVE";
-
-                            return `
-                                <tr>
-
-                                    <td class="name-cell">
-                                        ${escapeHtml(
-                                            member.name
-                                        )}
-                                    </td>
-
-                                    <td>
-
-                                        <span class="house-badge">
-                                            ${escapeHtml(
-                                                houseLabel(
-                                                    member.house
-                                                )
-                                            )}
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span
-                                            class="status-badge ${
-                                                active
-                                                ?
-                                                "status-active"
-                                                :
-                                                "status-inactive"
-                                            }"
-                                        >
-                                            ${escapeHtml(
-                                                member.status ||
-                                                "ACTIVE"
-                                            )}
-                                        </span>
-
-                                    </td>
-
-                                    <td class="muted">
-                                        ${formatDate(
-                                            member.created_at
-                                        )}
-                                    </td>
-
-                                    <td>
-
-                                        <div class="actions">
-
-                                            <button
-                                                class="ghost-btn"
-                                                type="button"
-                                                onclick="openHouseModalById('${member.id}')"
-                                            >
-                                                Change House
-                                            </button>
-
-                                            <button
-                                                class="${
-                                                    active
-                                                    ?
-                                                    "danger-btn"
-                                                    :
-                                                    "secondary-btn"
-                                                }"
-                                                type="button"
-                                                onclick="toggleMemberStatusById('${member.id}')"
-                                            >
-                                                ${
-                                                    active
-                                                    ?
-                                                    "Deactivate"
-                                                    :
-                                                    "Activate"
-                                                }
-                                            </button>
-
-                                            <button
-                                                class="danger-btn"
-                                                type="button"
-                                                onclick="removeMemberById('${member.id}')"
-                                            >
-                                                Remove
-                                            </button>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-                            `;
-                        }
-                    )
-                    .join("");
+                        <p>
+                            ${escapeHtml(stage.description)}
+                        </p>
+                    </div>
+                `;
         }
 
-
-        document
-            .getElementById(
-                "memberSearch"
-            )
-            .addEventListener(
-                "input",
-                renderMembers
-            );
-
-
-        document
-            .getElementById(
-                "houseFilter"
-            )
-            .addEventListener(
-                "change",
-                renderMembers
-            );
-
-
-        document
-            .getElementById(
-                "statusFilter"
-            )
-            .addEventListener(
-                "change",
-                renderMembers
-            );
-
-
-        document
-            .getElementById(
-                "clearFiltersBtn"
-            )
-            .addEventListener(
-                "click",
-                () => {
-
-                    document
-                        .getElementById(
-                            "memberSearch"
-                        )
-                        .value = "";
-
-                    document
-                        .getElementById(
-                            "houseFilter"
-                        )
-                        .value = "";
-
-                    document
-                        .getElementById(
-                            "statusFilter"
-                        )
-                        .value = "";
-
-                    renderMembers();
-                }
-            );
-
-
-        function updateHouseOverview() {
-
-            const activeMembers =
-                members.filter(
-                    member =>
-                        member.status ===
-                        "ACTIVE"
-                );
-
-
-            const count =
-                house =>
-                    activeMembers.filter(
-                        member =>
-                            member.house ===
-                            house
-                    ).length;
-
-
-            document
-                .getElementById(
-                    "sovereignsCount"
-                )
-                .textContent =
-                count(
-                    "THE SOVEREIGNS"
-                );
-
-
-            document
-                .getElementById(
-                    "vanguardCount"
-                )
-                .textContent =
-                count(
-                    "THE VANGUARD"
-                );
-
-
-            document
-                .getElementById(
-                    "covenantCount"
-                )
-                .textContent =
-                count(
-                    "THE COVENANT"
-                );
-
-
-            document
-                .getElementById(
-                    "roguesCount"
-                )
-                .textContent =
-                count(
-                    "THE ROGUES"
-                );
-        }
-
-
-        function openHouseModal(
-            member
-        ) {
-
-            selectedMember =
-                member;
-
-            document
-                .getElementById(
-                    "houseMemberName"
-                )
-                .value =
-                member.name;
-
-            document
-                .getElementById(
-                    "houseSelect"
-                )
-                .value =
-                member.house ||
-                "THE SOVEREIGNS";
-
-            document
-                .getElementById(
-                    "houseModal"
-                )
-                .classList
-                .remove("hidden");
-        }
-
-
-        window.openHouseModalById =
-            function(id) {
-
-                const member =
-                    members.find(
-                        item =>
-                            String(
-                                item.id
-                            ) ===
-                            String(id)
-                    );
-
-                if (!member) {
-                    return;
-                }
-
-                openHouseModal(
-                    member
-                );
-            };
-
-
-        function closeHouseModal() {
-
-            selectedMember =
-                null;
-
-            document
-                .getElementById(
-                    "houseModal"
-                )
-                .classList
-                .add("hidden");
-        }
-
-
-        document
-            .getElementById(
-                "closeHouseModal"
-            )
-            .addEventListener(
-                "click",
-                closeHouseModal
-            );
-
-
-        document
-            .getElementById(
-                "cancelHouseBtn"
-            )
-            .addEventListener(
-                "click",
-                closeHouseModal
-            );
-
-
-        document
-            .getElementById(
-                "saveHouseBtn"
-            )
-            .addEventListener(
-                "click",
-                async () => {
-
-                    if (!selectedMember) {
-                        return;
-                    }
-
-                    const house =
-                        document
-                            .getElementById(
-                                "houseSelect"
-                            )
-                            .value;
-
-                    const {
-                        error
-                    } =
-                        await supabaseClient
-                            .from("members")
-                            .update({
-                                house
-                            })
-                            .eq(
-                                "id",
-                                selectedMember.id
-                            );
-
-
-                    if (error) {
-
-                        console.error(error);
-
-                        showToast(
-                            "Could not update House.",
-                            "error"
-                        );
-
-                        return;
-                    }
-
-
-                    const member =
-                        members.find(
-                            item =>
-                                item.id ===
-                                selectedMember.id
-                        );
-
-                    if (member) {
-                        member.house =
-                            house;
-                    }
-
-
-                    closeHouseModal();
-
-                    renderMembers();
-
-                    updateHouseOverview();
-
-                    showToast(
-                        "House assignment updated."
-                    );
-                }
-            );
-
-
-        window.toggleMemberStatusById =
-            async function(id) {
-
-                const member =
-                    members.find(
-                        item =>
-                            String(
-                                item.id
-                            ) ===
-                            String(id)
-                    );
-
-                if (!member) {
-                    return;
-                }
-
-                await toggleMemberStatus(
-                    member
-                );
-            };
-
-
-        async function toggleMemberStatus(
-            member
-        ) {
-
-            const newStatus =
-                member.status ===
-                "ACTIVE"
-                ?
-                "INACTIVE"
-                :
-                "ACTIVE";
-
-
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from("members")
-                    .update({
-                        status:
-                            newStatus
-                    })
-                    .eq(
-                        "id",
-                        member.id
-                    );
-
-
-            if (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not update member status.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            member.status =
-                newStatus;
-
-            renderMembers();
-
-            updateHouseOverview();
-
-            showToast(
-                `${member.name} is now ${newStatus}.`
-            );
-        }
-
-
-        window.removeMemberById =
-            async function(id) {
-
-                const member =
-                    members.find(
-                        item =>
-                            String(
-                                item.id
-                            ) ===
-                            String(id)
-                    );
-
-                if (!member) {
-                    return;
-                }
-
-                await removeMember(
-                    member
-                );
-            };
-
-
-        async function removeMember(
-            member
-        ) {
-
-            const confirmed =
-                confirm(
-                    `Remove ${member.name} from the Consortium?`
-                );
-
-            if (!confirmed) {
-                return;
-            }
-
-
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from("members")
-                    .delete()
-                    .eq(
-                        "id",
-                        member.id
-                    );
-
-
-            if (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not remove member.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            members =
-                members.filter(
-                    item =>
-                        item.id !==
-                        member.id
-                );
-
-
-            renderMembers();
-
-            updateHouseOverview();
-
-            renderRequests();
-
-            showToast(
-                `${member.name} has been removed.`
-            );
-        }
-
-
-        /*
-         * GAME CONTROL
-         */
 
         function renderGameControl() {
 
@@ -3581,297 +3103,142 @@
                             button.dataset.stage ===
                             currentStage
                         );
+
                     }
                 );
 
+            updateGameStatus();
 
-            const stage =
-                GAME_STAGES[
-                    currentStage
-                ] ||
-                GAME_STAGES.OPENING;
+            renderHouseAdjustments();
 
-
-            document
-                .getElementById(
-                    "gameStatus"
-                )
-                .innerHTML = `
-
-                    <div class="game-pill">
-                        CURRENT STAGE:
-                        <strong>
-                            ${escapeHtml(
-                                stage.name
-                            )}
-                        </strong>
-                    </div>
-
-                    <div class="game-pill">
-                        STAGE:
-                        <strong>
-                            ${escapeHtml(
-                                stage.number
-                            )}
-                        </strong>
-                    </div>
-
-                    <div class="game-pill">
-                        MODE:
-                        <strong>
-                            ${escapeHtml(
-                                stage.description
-                            )}
-                        </strong>
-                    </div>
-                `;
+            renderLeaderboard();
         }
 
 
-        document
-            .querySelectorAll(
-                ".stage-btn"
-            )
-            .forEach(
-                button => {
-
-                    button.addEventListener(
-                        "click",
-                        () => {
-
-                            const stage =
-                                button.dataset.stage;
-
-                            currentStage =
-                                stage;
-
-                            localStorage.setItem(
-                                "consortium_current_stage",
-                                stage
-                            );
-
-                            renderGameControl();
-
-                            showToast(
-                                `${GAME_STAGES[stage].name} is now active.`
-                            );
-                        }
-                    );
-                }
-            );
-
-
-        /*
-         * HOUSE ADJUSTMENTS
-         */
-
-        function loadAdjustmentInputs() {
+        function renderHouseAdjustments() {
 
             HOUSES.forEach(
                 house => {
 
-                    const short =
+                    const key =
                         getHouseShortName(
                             house
                         );
 
                     const input =
                         document.getElementById(
-                            `adjustment-${short}`
+                            `adjustment-${key}`
                         );
 
-                    if (input) {
-
-                        input.value =
-                            getAdjustment(
-                                house
-                            );
+                    if (!input) {
+                        return;
                     }
-                }
-            );
-        }
 
-
-        function saveAdjustments() {
-
-            const next =
-                {};
-
-            HOUSES.forEach(
-                house => {
-
-                    const short =
-                        getHouseShortName(
+                    input.value =
+                        houseAdjustments[
                             house
-                        );
-
-                    const input =
-                        document.getElementById(
-                            `adjustment-${short}`
-                        );
-
-                    next[house] =
-                        Number(
-                            input?.value || 0
-                        );
+                        ] || 0;
                 }
             );
+        }
 
 
-            houseAdjustments =
-                next;
+        function getHouseAdjustment(
+            house
+        ) {
 
-            saveLocalData(
-                "consortium_house_adjustments",
-                houseAdjustments
-            );
-
-            renderLeaderboard();
-
-            showToast(
-                "House adjustments saved."
+            return Number(
+                houseAdjustments[
+                    house
+                ] || 0
             );
         }
 
 
-        function resetAdjustments() {
+        function getHouseScore(
+            house
+        ) {
 
-            const confirmed =
-                confirm(
-                    "Reset all House adjustments to zero?"
+            const record =
+                houseScores.find(
+                    item =>
+                        item.house === house
                 );
 
-            if (!confirmed) {
-                return;
-            }
-
-
-            houseAdjustments =
-                {};
-
-            saveLocalData(
-                "consortium_house_adjustments",
-                houseAdjustments
+            return Number(
+                record?.score || 0
+            ) +
+            getHouseAdjustment(
+                house
             );
-
-            loadAdjustmentInputs();
-
-            renderLeaderboard();
-
-            showToast(
-                "House adjustments reset."
-            );
-        }
-
-
-        document
-            .getElementById(
-                "saveAdjustmentsBtn"
-            )
-            .addEventListener(
-                "click",
-                saveAdjustments
-            );
-
-
-        document
-            .getElementById(
-                "resetAdjustmentsBtn"
-            )
-            .addEventListener(
-                "click",
-                resetAdjustments
-            );
-
-
-        /*
-         * GAME DATA
-         */
-
-        async function loadGameData() {
-
-            await Promise.all([
-                loadChallenges(),
-                loadHouseScores()
-            ]);
-
-            loadAdjustmentInputs();
-
-            renderLeaderboard();
-
-            renderChallenges();
-
-            renderMissions();
-
-            renderVault();
-        }
-
-
-        async function loadChallenges() {
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .from("challenges")
-                    .select("*")
-                    .order(
-                        "created_at",
-                        {
-                            ascending: true
-                        }
-                    );
-
-
-            if (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not load challenges.",
-                    "error"
-                );
-
-                return;
-            }
-
-            challenges =
-                data || [];
-        }
-
-
-        async function loadHouseScores() {
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .from("house_scores")
-                    .select("*");
-
-
-            if (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not load House scores.",
-                    "error"
-                );
-
-                return;
-            }
-
-            houseScores =
-                data || [];
         }
 
 
         function renderLeaderboard() {
 
-            const leaderboard =
+            const container =
+                document.getElementById(
+                    "leaderboard"
+                );
+
+            if (!container) {
+                return;
+            }
+
+            const rows =
+                HOUSES.map(
+                    house => ({
+                        house,
+                        score:
+                            getHouseScore(
+                                house
+                            )
+                    })
+                )
+                .sort(
+                    (a, b) =>
+                        b.score - a.score
+                );
+
+            container.innerHTML =
+                `
+                    <div class="leaderboard-head">
+                        <div>
+                            <h3>
+                                House Leaderboard
+                            </h3>
+
+                            <p>
+                                Live House scores and adjustments.
+                            </p>
+                        </div>
+
+                        <span class="leaderboard-stage">
+                            ${escapeHtml(
+                                GAME_STAGES[
+                                    currentStage
+                                ]?.name ||
+                                currentStage
+                            )}
+                        </span>
+                    </div>
+
+                    <div class="leaderboard-list">
+
+                        ${rows.map(
+                            (row, index) =>
+                                `
+                                    <div class="leaderboard-row">
+
+                                        <span class="rank">
+                                            ${index + 1}
+                                        </span>
+
+                                        <div class="leader-house">
+                                            <strong>
+                                                ${escapeHtml(
+
+                                                                const leaderboard =
                 document.getElementById(
                     "leaderboard"
                 );
@@ -4465,9 +3832,7 @@
                 "click",
                 saveChallenge
             );
-
-
-        async function saveChallenge() {
+            async function saveChallenge() {
 
             const name =
                 document
@@ -4477,12 +3842,14 @@
                     .value
                     .trim();
 
+
             const category =
                 document
                     .getElementById(
                         "challengeCategory"
                     )
                     .value;
+
 
             const description =
                 document
@@ -4492,15 +3859,17 @@
                     .value
                     .trim();
 
-            const max_points =
+
+            const maxPoints =
                 Number(
                     document
                         .getElementById(
                             "challengePoints"
                         )
                         .value ||
-                    0
+                        0
                 );
+
 
             const status =
                 document
@@ -4513,18 +3882,7 @@
             if (!name) {
 
                 showToast(
-                    "Challenge name is required.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if (max_points < 0) {
-
-                showToast(
-                    "Maximum points cannot be negative.",
+                    "Enter a challenge name.",
                     "error"
                 );
 
@@ -4533,11 +3891,18 @@
 
 
             const payload = {
+
                 name,
+
                 category,
+
                 description,
-                max_points,
+
+                max_points:
+                    maxPoints,
+
                 status
+
             };
 
 
@@ -4548,7 +3913,9 @@
 
                 result =
                     await supabaseClient
-                        .from("challenges")
+                        .from(
+                            "challenges"
+                        )
                         .update(
                             payload
                         )
@@ -4561,7 +3928,9 @@
 
                 result =
                     await supabaseClient
-                        .from("challenges")
+                        .from(
+                            "challenges"
+                        )
                         .insert([
                             payload
                         ]);
@@ -4575,7 +3944,6 @@
                 );
 
                 showToast(
-                    result.error.message ||
                     "Could not save challenge.",
                     "error"
                 );
@@ -4584,23 +3952,16 @@
             }
 
 
-            const wasEditing =
-                Boolean(
-                    editingChallenge
-                );
-
             closeChallengeModal();
 
             await loadChallenges();
 
-            renderChallenges();
-
             showToast(
-                wasEditing
-                ?
-                "Challenge updated."
-                :
-                "Challenge created."
+                editingChallenge
+                    ?
+                    "Challenge updated."
+                    :
+                    "Challenge created."
             );
         }
 
@@ -4617,51 +3978,90 @@
                             String(id)
                     );
 
+
                 if (!challenge) {
                     return;
                 }
 
-                await deleteChallenge(
-                    challenge
+
+                const confirmed =
+                    confirm(
+                        `Delete "${challenge.name}"?`
+                    );
+
+
+                if (!confirmed) {
+                    return;
+                }
+
+
+                const {
+                    error
+                } =
+                    await supabaseClient
+                        .from(
+                            "challenges"
+                        )
+                        .delete()
+                        .eq(
+                            "id",
+                            id
+                        );
+
+
+                if (error) {
+
+                    console.error(
+                        error
+                    );
+
+                    showToast(
+                        "Could not delete challenge.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                await loadChallenges();
+
+                await loadHouseScores();
+
+                showToast(
+                    "Challenge deleted."
                 );
             };
 
 
-        async function deleteChallenge(
-            challenge
-        ) {
-
-            const confirmed =
-                confirm(
-                    `Delete "${challenge.name}"?`
-                );
-
-            if (!confirmed) {
-                return;
-            }
-
+        async function loadChallenges() {
 
             const {
+                data,
                 error
             } =
                 await supabaseClient
                     .from(
                         "challenges"
                     )
-                    .delete()
-                    .eq(
-                        "id",
-                        challenge.id
+                    .select("*")
+                    .order(
+                        "created_at",
+                        {
+                            ascending:
+                                false
+                        }
                     );
 
 
             if (error) {
 
-                console.error(error);
+                console.error(
+                    error
+                );
 
                 showToast(
-                    error.message ||
-                    "Could not delete challenge.",
+                    "Could not load challenges.",
                     "error"
                 );
 
@@ -4670,37 +4070,85 @@
 
 
             challenges =
-                challenges.filter(
-                    item =>
-                        item.id !==
-                        challenge.id
+                data ||
+                [];
+
+            renderChallenges();
+        }
+
+
+        async function loadHouseScores() {
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "house_scores"
+                    )
+                    .select("*");
+
+
+            if (error) {
+
+                console.error(
+                    error
                 );
+
+                showToast(
+                    "Could not load House scores.",
+                    "error"
+                );
+
+                return;
+            }
 
 
             houseScores =
-                houseScores.filter(
-                    score =>
-                        String(
-                            score.challenge_id
-                        ) !==
-                        String(
-                            challenge.id
-                        )
-                );
-
-
-            renderChallenges();
+                data ||
+                [];
 
             renderLeaderboard();
+        }
 
-            showToast(
-                "Challenge deleted."
+
+        function calculateHouseTotal(
+            house
+        ) {
+
+            const challengeTotal =
+                houseScores
+                    .filter(
+                        item =>
+                            item.house ===
+                            house
+                    )
+                    .reduce(
+                        (
+                            total,
+                            item
+                        ) =>
+                            total +
+                            Number(
+                                item.points ||
+                                0
+                            ),
+                        0
+                    );
+
+
+            return (
+                challengeTotal +
+                getHouseAdjustment(
+                    house
+                )
             );
         }
 
 
         /*
-         * SECRET MISSIONS
+         * MISSIONS
          */
 
         function renderMissions() {
@@ -4729,40 +4177,39 @@
                             `
                                 <div class="mission-card">
 
-                                    <div class="mission-top">
+                                    <div class="mission-content">
 
-                                        <div>
-
-                                            <h3>
-                                                ${escapeHtml(
-                                                    mission.name
-                                                )}
-                                            </h3>
-
-                                            <p>
-                                                ${escapeHtml(
-                                                    mission.description
-                                                )}
-                                            </p>
-
+                                        <div class="mission-code">
+                                            SECRET MISSION
                                         </div>
 
-                                        <span class="category-badge">
-                                            ${
-                                                Number(
-                                                    mission.points ||
-                                                    0
-                                                )
-                                            } PTS
-                                        </span>
+                                        <h3>
+                                            ${escapeHtml(
+                                                mission.name
+                                            )}
+                                        </h3>
+
+                                        <p>
+                                            ${escapeHtml(
+                                                mission.description
+                                            )}
+                                        </p>
+
+                                        <div class="mission-reward">
+                                            REWARD:
+                                            ${Number(
+                                                mission.points ||
+                                                0
+                                            )}
+                                            POINTS
+                                        </div>
 
                                     </div>
-
 
                                     <div class="mission-actions">
 
                                         <button
-                                            class="primary-btn"
+                                            class="ghost-btn"
                                             type="button"
                                             onclick="openMissionById('${mission.id}')"
                                         >
@@ -4792,6 +4239,7 @@
 
             editingMission =
                 mission;
+
 
             document
                 .getElementById(
@@ -4853,9 +4301,11 @@
                             String(id)
                     );
 
+
                 if (!mission) {
                     return;
                 }
+
 
                 openMissionModal(
                     mission
@@ -4929,6 +4379,7 @@
                     .value
                     .trim();
 
+
             const description =
                 document
                     .getElementById(
@@ -4937,6 +4388,7 @@
                     .value
                     .trim();
 
+
             const points =
                 Number(
                     document
@@ -4944,14 +4396,14 @@
                             "missionPoints"
                         )
                         .value ||
-                    0
+                        0
                 );
 
 
             if (!name) {
 
                 showToast(
-                    "Mission name is required.",
+                    "Enter a mission name.",
                     "error"
                 );
 
@@ -4959,41 +4411,47 @@
             }
 
 
-            if (points < 0) {
+            const mission = {
 
-                showToast(
-                    "Mission points cannot be negative.",
-                    "error"
-                );
+                id:
+                    editingMission
+                    ?
+                    editingMission.id
+                    :
+                    Date.now()
+                        .toString(),
 
-                return;
-            }
+                name,
+
+                description,
+
+                points
+
+            };
 
 
             if (editingMission) {
 
-                editingMission.name =
-                    name;
-
-                editingMission.description =
-                    description;
-
-                editingMission.points =
-                    points;
+                missions =
+                    missions.map(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(
+                                editingMission.id
+                            )
+                            ?
+                            mission
+                            :
+                            item
+                    );
 
             } else {
 
-                missions.push({
-                    id:
-                        `mission-${Date.now()}-${Math.random()
-                            .toString(36)
-                            .slice(2, 8)}`,
-                    name,
-                    description,
-                    points,
-                    created_at:
-                        new Date().toISOString()
-                });
+                missions.unshift(
+                    mission
+                );
             }
 
 
@@ -5002,21 +4460,17 @@
                 missions
             );
 
-            const wasEditing =
-                Boolean(
-                    editingMission
-                );
 
             closeMissionModal();
 
             renderMissions();
 
             showToast(
-                wasEditing
-                ?
-                "Secret mission updated."
-                :
-                "Secret mission created."
+                editingMission
+                    ?
+                    "Mission updated."
+                    :
+                    "Secret mission created."
             );
         }
 
@@ -5033,17 +4487,17 @@
                             String(id)
                     );
 
+
                 if (!mission) {
                     return;
                 }
 
 
-                const confirmed =
-                    confirm(
+                if (
+                    !confirm(
                         `Delete "${mission.name}"?`
-                    );
-
-                if (!confirmed) {
+                    )
+                ) {
                     return;
                 }
 
@@ -5063,149 +4517,95 @@
                     missions
                 );
 
+
                 renderMissions();
 
                 showToast(
-                    "Secret mission deleted."
+                    "Mission deleted."
                 );
             };
-
-
-        /*
+            /*
          * VAULT
          */
 
-        function getVaultEntry(
-            house
-        ) {
-
-            return vaultState[house] ||
-                {
-                    decision: "UNDECIDED",
-                    amount: 0,
-                    resolved: false
-                };
-        }
-
-
         function renderVault() {
 
-            const list =
+            const container =
                 document.getElementById(
                     "vaultList"
                 );
 
+            if (!container) {
+                return;
+            }
 
-            list.innerHTML =
+
+            container.innerHTML =
                 HOUSES
                     .map(
                         house => {
 
-                            const entry =
-                                getVaultEntry(
-                                    house
+                            const current =
+                                Number(
+                                    vaultState[
+                                        house
+                                    ] || 0
                                 );
+
 
                             return `
                                 <div class="vault-card">
 
-                                    <div class="vault-top">
+                                    <div>
 
-                                        <div>
+                                        <span class="vault-label">
+                                            HOUSE
+                                        </span>
 
-                                            <h3>
-                                                ${escapeHtml(
+                                        <h3>
+                                            ${escapeHtml(
+                                                getHouseShortName(
                                                     house
-                                                )}
-                                            </h3>
+                                                )
+                                            )}
+                                        </h3>
 
-                                            <p>
-                                                ${
-                                                    entry.decision ===
-                                                    "PROTECT"
-                                                    ?
-                                                    "House is protecting its current position."
-                                                    :
-                                                    entry.decision ===
-                                                    "RISK"
-                                                    ?
-                                                    "House has chosen to risk points."
-                                                    :
-                                                    "No Vault decision recorded."
-                                                }
-                                            </p>
+                                    </div>
 
-                                        </div>
 
-                                        <span class="category-badge">
-                                            ${
-                                                entry.resolved
-                                                ?
-                                                "RESOLVED"
-                                                :
-                                                "OPEN"
-                                            }
+                                    <div class="vault-value">
+
+                                        <strong>
+                                            ${current}
+                                        </strong>
+
+                                        <span>
+                                            VAULT POINTS
                                         </span>
 
                                     </div>
 
 
-                                    <div class="game-status">
-
-                                        <div class="game-pill">
-                                            DECISION:
-                                            <strong>
-                                                ${escapeHtml(
-                                                    entry.decision
-                                                )}
-                                            </strong>
-                                        </div>
-
-                                        <div class="game-pill">
-                                            VALUE:
-                                            <strong>
-                                                ${Number(
-                                                    entry.amount ||
-                                                    0
-                                                )} PTS
-                                            </strong>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="house-select-grid">
+                                    <div class="vault-actions">
 
                                         <button
-                                            class="house-point-btn"
+                                            class="ghost-btn"
                                             type="button"
-                                            onclick="setVaultDecision('${house}', 'PROTECT')"
+                                            onclick="adjustVault('${escapeHtml(
+                                                house
+                                            )}', -10)"
                                         >
-                                            PROTECT
+                                            −10
                                         </button>
 
                                         <button
-                                            class="house-point-btn"
+                                            class="ghost-btn"
                                             type="button"
-                                            onclick="setVaultDecision('${house}', 'RISK')"
+                                            onclick="adjustVault('${escapeHtml(
+                                                house
+                                            )}', 10)"
                                         >
-                                            RISK
-                                        </button>
-
-                                        <button
-                                            class="house-point-btn"
-                                            type="button"
-                                            onclick="resolveVault('${house}')"
-                                        >
-                                            RESOLVE
-                                        </button>
-
-                                        <button
-                                            class="house-point-btn"
-                                            type="button"
-                                            onclick="clearVault('${house}')"
-                                        >
-                                            CLEAR
+                                            +10
                                         </button>
 
                                     </div>
@@ -5218,123 +4618,30 @@
         }
 
 
-        window.setVaultDecision =
+        window.adjustVault =
             function(
                 house,
-                decision
+                amount
             ) {
 
-                const existing =
-                    getVaultEntry(
-                        house
-                    );
-
-                const amount =
-                    decision ===
-                    "RISK"
-                    ?
+                const current =
                     Number(
-                        prompt(
-                            `How many points is ${house} risking?`,
-                            "100"
-                        ) ||
-                        0
-                    )
-                    :
-                    0;
-
-
-                if (
-                    decision ===
-                    "RISK" &&
-                    amount < 0
-                ) {
-
-                    showToast(
-                        "Vault value cannot be negative.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                vaultState[house] = {
-                    ...existing,
-                    decision,
-                    amount,
-                    resolved: false
-                };
-
-
-                saveLocalData(
-                    "consortium_vault",
-                    vaultState
-                );
-
-                renderVault();
-
-                showToast(
-                    `${house}: ${decision} recorded.`
-                );
-            };
-
-
-        window.resolveVault =
-            function(house) {
-
-                const entry =
-                    getVaultEntry(
-                        house
-                    );
-
-
-                if (
-                    entry.decision ===
-                    "UNDECIDED"
-                ) {
-
-                    showToast(
-                        "Choose Protect or Risk first.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                vaultState[house] = {
-                    ...entry,
-                    resolved: true
-                };
-
-
-                if (
-                    entry.decision ===
-                    "RISK" &&
-                    Number(
-                        entry.amount || 0
-                    ) > 0
-                ) {
-
-                    const current =
-                        getAdjustment(
+                        vaultState[
                             house
-                        );
+                        ] || 0
+                    );
 
-                    houseAdjustments[
-                        house
-                    ] =
+
+                vaultState[
+                    house
+                ] =
+                    Math.max(
+                        0,
                         current +
                         Number(
-                            entry.amount
-                        );
-
-                    saveLocalData(
-                        "consortium_house_adjustments",
-                        houseAdjustments
+                            amount
+                        )
                     );
-                }
 
 
                 saveLocalData(
@@ -5342,116 +4649,1549 @@
                     vaultState
                 );
 
-                loadAdjustmentInputs();
-
-                renderVault();
-
-                renderLeaderboard();
-
-                showToast(
-                    `${house} Vault resolved.`
-                );
-            };
-
-
-        window.clearVault =
-            function(house) {
-
-                delete vaultState[
-                    house
-                ];
-
-                saveLocalData(
-                    "consortium_vault",
-                    vaultState
-                );
 
                 renderVault();
 
                 showToast(
-                    `${house} Vault cleared.`
+                    `${getHouseShortName(house)} vault updated.`
                 );
             };
 
 
         /*
-         * MODAL CLOSE HANDLERS
+         * HOUSE ADJUSTMENTS
+         */
+
+        function saveHouseAdjustment(
+            house
+        ) {
+
+            const key =
+                getHouseShortName(
+                    house
+                );
+
+
+            const input =
+                document.getElementById(
+                    `adjustment-${key}`
+                );
+
+
+            if (!input) {
+                return;
+            }
+
+
+            const value =
+                Number(
+                    input.value ||
+                    0
+                );
+
+
+            houseAdjustments[
+                house
+            ] =
+                value;
+
+
+            saveLocalData(
+                "consortium_house_adjustments",
+                houseAdjustments
+            );
+
+
+            renderLeaderboard();
+
+            showToast(
+                `${key} adjustment saved.`
+            );
+        }
+
+
+        document
+            .querySelectorAll(
+                ".save-adjustment-btn"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            saveHouseAdjustment(
+                                button.dataset.house
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /*
+         * GAME STAGE CONTROL
+         */
+
+        document
+            .querySelectorAll(
+                ".stage-btn"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const stage =
+                                button.dataset.stage;
+
+
+                            if (
+                                !GAME_STAGES[
+                                    stage
+                                ]
+                            ) {
+                                return;
+                            }
+
+
+                            currentStage =
+                                stage;
+
+
+                            localStorage.setItem(
+                                "consortium_current_stage",
+                                currentStage
+                            );
+
+
+                            renderGameControl();
+
+                            showToast(
+                                `Game stage changed to ${GAME_STAGES[stage].name}.`
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /*
+         * MEMBERS
+         */
+
+        async function loadMembers() {
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "members"
+                    )
+                    .select("*")
+                    .order(
+                        "created_at",
+                        {
+                            ascending:
+                                false
+                        }
+                    );
+
+
+            if (error) {
+
+                console.error(
+                    error
+                );
+
+                showToast(
+                    "Could not load members.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            members =
+                data ||
+                [];
+
+
+            renderMembers();
+
+            updateHouseOverview();
+        }
+
+
+        function renderMembers() {
+
+            const list =
+                document.getElementById(
+                    "membersList"
+                );
+
+
+            if (!list) {
+                return;
+            }
+
+
+            const search =
+                (
+                    document
+                        .getElementById(
+                            "memberSearch"
+                        )
+                        ?.value ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            const house =
+                document
+                    .getElementById(
+                        "houseFilter"
+                    )
+                    ?.value ||
+                "ALL";
+
+
+            const status =
+                document
+                    .getElementById(
+                        "statusFilter"
+                    )
+                    ?.value ||
+                "ALL";
+
+
+            const filtered =
+                members.filter(
+                    member => {
+
+                        const matchesSearch =
+                            !search ||
+                            String(
+                                member.name ||
+                                ""
+                            )
+                                .toLowerCase()
+                                .includes(
+                                    search
+                                );
+
+
+                        const matchesHouse =
+                            house ===
+                            "ALL" ||
+                            member.house ===
+                            house;
+
+
+                        const matchesStatus =
+                            status ===
+                            "ALL" ||
+                            member.status ===
+                            status;
+
+
+                        return (
+                            matchesSearch &&
+                            matchesHouse &&
+                            matchesStatus
+                        );
+
+                    }
+                );
+
+
+            if (!filtered.length) {
+
+                list.innerHTML =
+                    `<div class="empty">
+                        No members match the current filters.
+                    </div>`;
+
+                return;
+            }
+
+
+            list.innerHTML =
+                filtered
+                    .map(
+                        member =>
+                            `
+                                <div class="member-row">
+
+                                    <div class="member-main">
+
+                                        <strong>
+                                            ${escapeHtml(
+                                                member.name
+                                            )}
+                                        </strong>
+
+                                        <span>
+                                            ${escapeHtml(
+                                                formatDate(
+                                                    member.created_at
+                                                )
+                                            )}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <span
+                                            class="house-badge ${getHouseClass(
+                                                member.house
+                                            )}"
+                                        >
+                                            ${escapeHtml(
+                                                getHouseShortName(
+                                                    member.house
+                                                )
+                                            )}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <span
+                                            class="status-badge ${getStatusClass(
+                                                member.status
+                                            )}"
+                                        >
+                                            ${escapeHtml(
+                                                member.status ||
+                                                "UNKNOWN"
+                                            )}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="member-actions">
+
+                                        <button
+                                            class="ghost-btn"
+                                            type="button"
+                                            onclick="openMemberHouse('${member.id}')"
+                                        >
+                                            Change House
+                                        </button>
+
+                                        <button
+                                            class="ghost-btn"
+                                            type="button"
+                                            onclick="toggleMemberStatus('${member.id}')"
+                                        >
+                                            ${
+                                                member.status ===
+                                                "ACTIVE"
+                                                ?
+                                                "Deactivate"
+                                                :
+                                                "Activate"
+                                            }
+                                        </button>
+
+                                        <button
+                                            class="danger-btn"
+                                            type="button"
+                                            onclick="removeMember('${member.id}')"
+                                        >
+                                            Remove
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                            `
+                    )
+                    .join("");
+        }
+
+
+        document
+            .getElementById(
+                "memberSearch"
+            )
+            ?.addEventListener(
+                "input",
+                renderMembers
+            );
+
+
+        document
+            .getElementById(
+                "houseFilter"
+            )
+            ?.addEventListener(
+                "change",
+                renderMembers
+            );
+
+
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            ?.addEventListener(
+                "change",
+                renderMembers
+            );
+
+
+        window.toggleMemberStatus =
+            async function(id) {
+
+                const member =
+                    members.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!member) {
+                    return;
+                }
+
+
+                const newStatus =
+                    member.status ===
+                    "ACTIVE"
+                    ?
+                    "INACTIVE"
+                    :
+                    "ACTIVE";
+
+
+                const {
+                    error
+                } =
+                    await supabaseClient
+                        .from(
+                            "members"
+                        )
+                        .update({
+                            status:
+                                newStatus
+                        })
+                        .eq(
+                            "id",
+                            id
+                        );
+
+
+                if (error) {
+
+                    console.error(
+                        error
+                    );
+
+                    showToast(
+                        "Could not update member status.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                await loadMembers();
+
+                showToast(
+                    `Member ${newStatus.toLowerCase()}.`
+                );
+            };
+
+
+        window.removeMember =
+            async function(id) {
+
+                const member =
+                    members.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!member) {
+                    return;
+                }
+
+
+                if (
+                    !confirm(
+                        `Remove ${member.name} from the Consortium?`
+                    )
+                ) {
+                    return;
+                }
+
+
+                const {
+                    error
+                } =
+                    await supabaseClient
+                        .from(
+                            "members"
+                        )
+                        .delete()
+                        .eq(
+                            "id",
+                            id
+                        );
+
+
+                if (error) {
+
+                    console.error(
+                        error
+                    );
+
+                    showToast(
+                        "Could not remove member.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                await loadMembers();
+
+                showToast(
+                    "Member removed."
+                );
+            };
+            /*
+         * MEMBER HOUSE MODAL
+         */
+
+        window.openMemberHouse =
+            function(id) {
+
+                const member =
+                    members.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!member) {
+                    return;
+                }
+
+
+                selectedMember =
+                    member;
+
+
+                document
+                    .getElementById(
+                        "memberHouseName"
+                    )
+                    .value =
+                    member.name ||
+                    "";
+
+
+                document
+                    .getElementById(
+                        "memberHouseSelect"
+                    )
+                    .value =
+                    member.house ||
+                    HOUSES[0];
+
+
+                document
+                    .getElementById(
+                        "memberHouseModal"
+                    )
+                    .classList
+                    .remove("hidden");
+            };
+
+
+        function closeMemberHouseModal() {
+
+            selectedMember =
+                null;
+
+
+            document
+                .getElementById(
+                    "memberHouseModal"
+                )
+                .classList
+                .add("hidden");
+        }
+
+
+        document
+            .getElementById(
+                "closeMemberHouseModal"
+            )
+            ?.addEventListener(
+                "click",
+                closeMemberHouseModal
+            );
+
+
+        document
+            .getElementById(
+                "cancelMemberHouseBtn"
+            )
+            ?.addEventListener(
+                "click",
+                closeMemberHouseModal
+            );
+
+
+        document
+            .getElementById(
+                "saveMemberHouseBtn"
+            )
+            ?.addEventListener(
+                "click",
+                async () => {
+
+                    if (!selectedMember) {
+                        return;
+                    }
+
+
+                    const house =
+                        document
+                            .getElementById(
+                                "memberHouseSelect"
+                            )
+                            .value;
+
+
+                    const {
+                        error
+                    } =
+                        await supabaseClient
+                            .from(
+                                "members"
+                            )
+                            .update({
+                                house
+                            })
+                            .eq(
+                                "id",
+                                selectedMember.id
+                            );
+
+
+                    if (error) {
+
+                        console.error(
+                            error
+                        );
+
+                        showToast(
+                            "Could not change House.",
+                            "error"
+                        );
+
+                        return;
+                    }
+
+
+                    closeMemberHouseModal();
+
+                    await loadMembers();
+
+                    showToast(
+                        "Member House updated."
+                    );
+                }
+            );
+
+
+        /*
+         * HOUSE OVERVIEW
+         */
+
+        function updateHouseOverview() {
+
+            const container =
+                document.getElementById(
+                    "houseOverview"
+                );
+
+
+            if (!container) {
+                return;
+            }
+
+
+            const counts =
+                HOUSES.map(
+                    house => {
+
+                        const count =
+                            members.filter(
+                                member =>
+                                    member.house ===
+                                    house &&
+                                    member.status ===
+                                    "ACTIVE"
+                            ).length;
+
+
+                        return {
+                            house,
+                            count
+                        };
+
+                    }
+                );
+
+
+            container.innerHTML =
+                counts
+                    .map(
+                        item =>
+                            `
+                                <div class="house-overview-card">
+
+                                    <div class="house-overview-top">
+
+                                        <span class="house-mark">
+                                            ${escapeHtml(
+                                                getHouseShortName(
+                                                    item.house
+                                                )
+                                                    .charAt(0)
+                                            )}
+                                        </span>
+
+                                        <span class="house-count">
+                                            ${item.count}
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        ${escapeHtml(
+                                            getHouseShortName(
+                                                item.house
+                                            )
+                                        )}
+                                    </h3>
+
+                                    <p>
+                                        Active Members
+                                    </p>
+
+                                </div>
+                            `
+                    )
+                    .join("");
+        }
+
+
+        /*
+         * ACCESS REQUESTS
+         */
+
+        async function loadRequests() {
+
+            const list =
+                document.getElementById(
+                    "requestsList"
+                );
+
+
+            list.innerHTML =
+                `<div class="empty">
+                    Loading access requests...
+                </div>`;
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "access_requests"
+                    )
+                    .select("*")
+                    .order(
+                        "created_at",
+                        {
+                            ascending:
+                                false
+                        }
+                    );
+
+
+            if (error) {
+
+                console.error(
+                    error
+                );
+
+
+                list.innerHTML =
+                    `<div class="empty">
+                        Could not load access requests.
+                    </div>`;
+
+
+                showToast(
+                    "Could not load access requests.",
+                    "error"
+                );
+
+
+                return;
+            }
+
+
+            requests =
+                data ||
+                [];
+
+
+            renderRequests();
+        }
+
+
+        function requestHasMember(
+            request
+        ) {
+
+            return members.some(
+                member =>
+                    member.name
+                        ?.trim()
+                        .toLowerCase() ===
+                    request.name
+                        ?.trim()
+                        .toLowerCase()
+            );
+        }
+
+
+        function getRequestStatus(
+            request
+        ) {
+
+            if (
+                request.status ===
+                "approved"
+            ) {
+                return "APPROVED";
+            }
+
+
+            if (
+                request.status ===
+                "rejected"
+            ) {
+                return "REJECTED";
+            }
+
+
+            if (
+                requestHasMember(
+                    request
+                )
+            ) {
+                return "APPROVED";
+            }
+
+
+            return "PENDING";
+        }
+
+
+        function renderRequests() {
+
+            const list =
+                document.getElementById(
+                    "requestsList"
+                );
+
+
+            if (!requests.length) {
+
+                list.innerHTML =
+                    `<div class="empty">
+                        No access requests yet.
+                    </div>`;
+
+                return;
+            }
+
+
+            list.innerHTML =
+                requests
+                    .map(
+                        request => {
+
+                            const status =
+                                getRequestStatus(
+                                    request
+                                );
+
+
+                            return `
+                                <div class="request-row">
+
+                                    <div class="request-main">
+
+                                        <strong>
+                                            ${escapeHtml(
+                                                request.name
+                                            )}
+                                        </strong>
+
+                                        <span>
+                                            ${escapeHtml(
+                                                request.email ||
+                                                "No email provided"
+                                            )}
+                                        </span>
+
+                                        <small>
+                                            ${escapeHtml(
+                                                formatDate(
+                                                    request.created_at
+                                                )
+                                            )}
+                                        </small>
+
+                                    </div>
+
+
+                                    <div class="request-status">
+
+                                        <span
+                                            class="status-badge ${getStatusClass(
+                                                status
+                                            )}"
+                                        >
+                                            ${status}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="request-actions">
+
+                                        ${
+                                            status ===
+                                            "PENDING"
+                                            ?
+                                            `
+                                                <button
+                                                    class="primary-btn"
+                                                    type="button"
+                                                    onclick="openRequestHouse('${request.id}')"
+                                                >
+                                                    Review
+                                                </button>
+                                            `
+                                            :
+                                            `
+                                                <button
+                                                    class="ghost-btn"
+                                                    type="button"
+                                                    onclick="viewRequest('${request.id}')"
+                                                >
+                                                    View
+                                                </button>
+                                            `
+                                        }
+
+                                    </div>
+
+                                </div>
+                            `;
+                        }
+                    )
+                    .join("");
+        }
+
+
+        document
+            .getElementById(
+                "refreshRequestsBtn"
+            )
+            ?.addEventListener(
+                "click",
+                loadRequests
+            );
+
+
+        window.openRequestHouse =
+            function(id) {
+
+                const request =
+                    requests.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!request) {
+                    return;
+                }
+
+
+                selectedRequest =
+                    request;
+
+
+                document
+                    .getElementById(
+                        "requestMemberName"
+                    )
+                    .value =
+                    request.name ||
+                    "";
+
+
+                document
+                    .getElementById(
+                        "requestHouseSelect"
+                    )
+                    .value =
+                    request.house ||
+                    HOUSES[0];
+
+
+                document
+                    .getElementById(
+                        "requestHouseModal"
+                    )
+                    .classList
+                    .remove("hidden");
+            };
+
+
+        window.viewRequest =
+            function(id) {
+
+                const request =
+                    requests.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!request) {
+                    return;
+                }
+
+
+                const details = [
+
+                    `Name: ${request.name || "N/A"}`,
+
+                    `Email: ${request.email || "N/A"}`,
+
+                    `Phone: ${request.phone || "N/A"}`,
+
+                    `House: ${request.house || "Not assigned"}`,
+
+                    `Status: ${getRequestStatus(request)}`,
+
+                    `Submitted: ${formatDate(
+                        request.created_at
+                    )}`
+
+                ];
+
+
+                alert(
+                    details.join("\n")
+                );
+            };
+            /*
+         * ACCESS REQUEST APPROVAL
+         */
+
+        function closeRequestHouseModal() {
+
+            selectedRequest =
+                null;
+
+            document
+                .getElementById(
+                    "requestHouseModal"
+                )
+                .classList
+                .add("hidden");
+        }
+
+
+        document
+            .getElementById(
+                "closeRequestHouseModal"
+            )
+            ?.addEventListener(
+                "click",
+                closeRequestHouseModal
+            );
+
+
+        document
+            .getElementById(
+                "cancelRequestHouseBtn"
+            )
+            ?.addEventListener(
+                "click",
+                closeRequestHouseModal
+            );
+
+
+        document
+            .getElementById(
+                "approveRequestBtn"
+            )
+            ?.addEventListener(
+                "click",
+                approveRequest
+            );
+
+
+        async function approveRequest() {
+
+            if (!selectedRequest) {
+                return;
+            }
+
+
+            const house =
+                document
+                    .getElementById(
+                        "requestHouseSelect"
+                    )
+                    .value;
+
+
+            const name =
+                selectedRequest.name
+                    ?.trim();
+
+
+            if (!name) {
+
+                showToast(
+                    "This request has no valid name.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const alreadyExists =
+                members.some(
+                    member =>
+                        member.name
+                            ?.trim()
+                            .toLowerCase() ===
+                        name.toLowerCase()
+                );
+
+
+            if (alreadyExists) {
+
+                showToast(
+                    "This person is already a member.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const {
+                error:
+                    memberError
+            } =
+                await supabaseClient
+                    .from(
+                        "members"
+                    )
+                    .insert([
+                        {
+                            name,
+                            house,
+                            status:
+                                "ACTIVE"
+                        }
+                    ]);
+
+
+            if (memberError) {
+
+                console.error(
+                    memberError
+                );
+
+                showToast(
+                    "Could not add member.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const {
+                error:
+                    requestError
+            } =
+                await supabaseClient
+                    .from(
+                        "access_requests"
+                    )
+                    .update({
+                        status:
+                            "approved"
+                    })
+                    .eq(
+                        "id",
+                        selectedRequest.id
+                    );
+
+
+            if (requestError) {
+
+                console.error(
+                    requestError
+                );
+
+                showToast(
+                    "Member was added, but request status could not be updated.",
+                    "error"
+                );
+
+                closeRequestHouseModal();
+
+                await loadMembers();
+
+                await loadRequests();
+
+                return;
+            }
+
+
+            closeRequestHouseModal();
+
+            await loadMembers();
+
+            await loadRequests();
+
+            showToast(
+                `${name} added to ${getHouseShortName(house)}.`
+            );
+        }
+
+
+        /*
+         * REQUEST REJECTION
          */
 
         document
             .getElementById(
-                "houseModal"
+                "rejectRequestBtn"
             )
-            .addEventListener(
+            ?.addEventListener(
                 "click",
-                event => {
+                rejectRequest
+            );
+
+
+        async function rejectRequest() {
+
+            if (!selectedRequest) {
+                return;
+            }
+
+
+            const name =
+                selectedRequest.name ||
+                "This applicant";
+
+
+            if (
+                !confirm(
+                    `Reject the access request from ${name}?`
+                )
+            ) {
+                return;
+            }
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "access_requests"
+                    )
+                    .update({
+                        status:
+                            "rejected"
+                    })
+                    .eq(
+                        "id",
+                        selectedRequest.id
+                    );
+
+
+            if (error) {
+
+                console.error(
+                    error
+                );
+
+                showToast(
+                    "Could not reject request.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            closeRequestHouseModal();
+
+            await loadRequests();
+
+            showToast(
+                "Access request rejected."
+            );
+        }
+
+
+        /*
+         * AUTHENTICATION
+         */
+
+        loginForm
+            ?.addEventListener(
+                "submit",
+                async event => {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "loginEmail"
+                            )
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById(
+                                "loginPassword"
+                            )
+                            .value;
+
 
                     if (
-                        event.target.id ===
-                        "houseModal"
+                        !email ||
+                        !password
                     ) {
 
-                        closeHouseModal();
+                        loginStatus
+                            .textContent =
+                            "Enter your email and password.";
+
+                        return;
                     }
+
+
+                    loginStatus
+                        .textContent =
+                        "Authenticating...";
+
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabaseClient
+                            .auth
+                            .signInWithPassword({
+                                email,
+                                password
+                            });
+
+
+                    if (error) {
+
+                        console.error(
+                            error
+                        );
+
+                        loginStatus
+                            .textContent =
+                            error.message ||
+                            "Login failed.";
+
+                        return;
+                    }
+
+
+                    loginStatus
+                        .textContent =
+                        "";
+
+
+                    await showDashboard(
+                        data.session
+                    );
                 }
             );
 
 
         document
             .getElementById(
-                "challengeModal"
+                "logoutBtn"
             )
-            .addEventListener(
+            ?.addEventListener(
                 "click",
-                event => {
+                async () => {
 
-                    if (
-                        event.target.id ===
-                        "challengeModal"
-                    ) {
+                    const {
+                        error
+                    } =
+                        await supabaseClient
+                            .auth
+                            .signOut();
 
-                        closeChallengeModal();
+
+                    if (error) {
+
+                        console.error(
+                            error
+                        );
+
+                        showToast(
+                            "Could not sign out.",
+                            "error"
+                        );
+
+                        return;
                     }
+
+
+                    adminApp
+                        .classList
+                        .add("hidden");
+
+
+                    loginScreen
+                        .classList
+                        .remove("hidden");
+
+
+                    document
+                        .getElementById(
+                            "loginPassword"
+                        )
+                        .value =
+                        "";
+
+
+                    loginStatus
+                        .textContent =
+                        "";
                 }
             );
 
 
-        document
-            .getElementById(
-                "missionModal"
-            )
-            .addEventListener(
-                "click",
-                event => {
+        /*
+         * DASHBOARD
+         */
 
-                    if (
-                        event.target.id ===
-                        "missionModal"
-                    ) {
+        async function showDashboard(
+            session
+        ) {
 
-                        closeMissionModal();
-                    }
-                }
-            );
+            loginScreen
+                .classList
+                .add("hidden");
 
 
-        document
-            .getElementById(
-                "requestHouseModal"
-            )
-            .addEventListener(
-                "click",
-                event => {
+            adminApp
+                .classList
+                .remove("hidden");
 
-                    if (
-                        event.target.id ===
-                        "requestHouseModal"
-                    ) {
 
-                        closeRequestHouseModal();
-                    }
-                }
-            );
+            document
+                .getElementById(
+                    "adminEmail"
+                )
+                .textContent =
+                session?.user?.email ||
+                "ADMIN";
+
+
+            renderGameControl();
+
+            renderMissions();
+
+            renderVault();
+
+            await loadRequests();
+
+            await loadMembers();
+
+            await loadChallenges();
+
+            await loadHouseScores();
+        }
 
 
         /*
@@ -5467,23 +6207,23 @@
                 ) => {
 
                     if (
-                        event ===
-                        "SIGNED_IN" &&
                         session
                     ) {
 
                         await showDashboard(
                             session
                         );
-                    }
 
+                    } else {
 
-                    if (
-                        event ===
-                        "SIGNED_OUT"
-                    ) {
+                        adminApp
+                            .classList
+                            .add("hidden");
 
-                        showLogin();
+                        loginScreen
+                            .classList
+                            .remove("hidden");
+
                     }
 
                 }
@@ -5494,17 +6234,43 @@
          * INITIAL LOAD
          */
 
-        loadAdjustmentInputs();
+        async function init() {
 
-        renderGameControl();
+            const {
+                data
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
 
-        renderMissions();
 
-        renderVault();
+            if (
+                data?.session
+            ) {
 
-        checkSession();
+                await showDashboard(
+                    data.session
+                );
+
+            } else {
+
+                adminApp
+                    .classList
+                    .add("hidden");
+
+                loginScreen
+                    .classList
+                    .remove("hidden");
+
+            }
+        }
+
+
+        init();
 
     </script>
 
 </body>
+
 </html>
+         
