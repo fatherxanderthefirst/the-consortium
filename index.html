@@ -166,6 +166,7 @@
                 color .3s ease,
                 transform .3s ease,
                 background .3s ease;
+            z-index: 10000;
         }
 
         .entrance-button.primary {
@@ -191,7 +192,7 @@
         .modal {
             position: fixed;
             inset: 0;
-            z-index: 9998;
+            z-index: 10001;
             background: rgba(8,7,7,.94);
             backdrop-filter: blur(8px);
             display: flex;
@@ -1968,22 +1969,10 @@
 
     <script>
 
-        /* SUPABASE */
-
-        const SUPABASE_URL =
-            "https://gtdznirtmbjoydlbwutp.supabase.co";
-
-        const SUPABASE_PUBLISHABLE_KEY =
-            "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
-
-        const supabaseClient =
-            window.supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_PUBLISHABLE_KEY
-            );
-
-
-        /* ELEMENTS */
+        /* ELEMENTS FIRST
+           The entrance interface is initialized before
+           any Supabase-dependent operation.
+        */
 
         const entrance =
             document.getElementById("entrance");
@@ -2017,13 +2006,18 @@
 
         function openModal(modal) {
 
+            if (!modal) return;
+
             modal.classList.add("open");
+
             document.body.classList.add("locked");
 
         }
 
 
         function closeModal(modal) {
+
+            if (!modal) return;
 
             modal.classList.remove("open");
 
@@ -2033,7 +2027,9 @@
         memberAccessButton.addEventListener(
             "click",
             function () {
+
                 openModal(memberModal);
+
             }
         );
 
@@ -2041,7 +2037,9 @@
         requestAccessButton.addEventListener(
             "click",
             function () {
+
                 openModal(requestModal);
+
             }
         );
 
@@ -2049,7 +2047,9 @@
         closeMemberModal.addEventListener(
             "click",
             function () {
+
                 closeModal(memberModal);
+
             }
         );
 
@@ -2057,7 +2057,9 @@
         closeRequestModal.addEventListener(
             "click",
             function () {
+
                 closeModal(requestModal);
+
             }
         );
 
@@ -2084,20 +2086,54 @@
         );
 
 
-        [memberModal, requestModal].forEach(function (modal) {
+        [memberModal, requestModal].forEach(
+            function (modal) {
 
-            modal.addEventListener(
-                "click",
-                function (event) {
+                modal.addEventListener(
+                    "click",
+                    function (event) {
 
-                    if (event.target === modal) {
-                        closeModal(modal);
+                        if (event.target === modal) {
+                            closeModal(modal);
+                        }
+
                     }
+                );
 
-                }
-            );
+            }
+        );
 
-        });
+
+        /* SUPABASE */
+
+        const SUPABASE_URL =
+            "https://gtdznirtmbjoydlbwutp.supabase.co";
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_FLdXseO-orp2lcyiS5vH-w_PhY59cNl";
+
+        let supabaseClient = null;
+
+
+        function initializeSupabase() {
+
+            if (
+                supabaseClient ||
+                !window.supabase ||
+                typeof window.supabase.createClient !== "function"
+            ) {
+                return !!supabaseClient;
+            }
+
+            supabaseClient =
+                window.supabase.createClient(
+                    SUPABASE_URL,
+                    SUPABASE_PUBLISHABLE_KEY
+                );
+
+            return true;
+
+        }
 
 
         /* MEMBER LOGIN */
@@ -2134,8 +2170,19 @@
                     return;
                 }
 
+                if (!initializeSupabase()) {
+
+                    memberLoginStatus.textContent =
+                        "THE HOUSE CONNECTION IS UNAVAILABLE. PLEASE TRY AGAIN.";
+
+                    return;
+
+                }
+
                 memberLoginSubmit.disabled = true;
-                memberLoginSubmit.textContent = "AUTHENTICATING...";
+                memberLoginSubmit.textContent =
+                    "AUTHENTICATING...";
+
                 memberLoginStatus.textContent = "";
 
 
@@ -2144,10 +2191,11 @@
                     const {
                         data,
                         error
-                    } = await supabaseClient.auth.signInWithPassword({
-                        email: email,
-                        password: password
-                    });
+                    } =
+                        await supabaseClient.auth.signInWithPassword({
+                            email: email,
+                            password: password
+                        });
 
 
                     if (error) {
@@ -2156,23 +2204,20 @@
 
 
                     if (!data.user) {
+
                         throw new Error(
                             "No authenticated member account was returned."
                         );
+
                     }
 
-
-                    /*
-                     * Securely claim the approved membership.
-                     * The database function checks the authenticated
-                     * account email against the approved member record.
-                     */
 
                     const {
                         data: claimResult,
                         error: claimError
-                    } = await supabaseClient
-                        .rpc("claim_member");
+                    } =
+                        await supabaseClient
+                            .rpc("claim_member");
 
 
                     if (claimError) {
@@ -2201,11 +2246,12 @@
                     const {
                         data: member,
                         error: memberError
-                    } = await supabaseClient
-                        .from("members")
-                        .select("id,name,house,status")
-                        .eq("auth_user_id", data.user.id)
-                        .maybeSingle();
+                    } =
+                        await supabaseClient
+                            .from("members")
+                            .select("id,name,house,status")
+                            .eq("auth_user_id", data.user.id)
+                            .maybeSingle();
 
 
                     if (memberError) {
@@ -2249,21 +2295,7 @@
                     );
 
 
-                    document.body.classList.remove("locked");
-                    document.body.classList.add("member-authenticated");
-
-                    entrance.classList.add("hidden");
-
-                    closeModal(memberModal);
-
-                    memberLoginForm.reset();
-
-                    memberLoginSubmit.disabled = false;
-                    memberLoginSubmit.textContent = "ENTER THE HOUSE";
-
-                    memberLoginStatus.textContent = "";
-
-                    initializeProtectedSite();
+                    enterProtectedSite(member);
 
                 } catch (error) {
 
@@ -2277,12 +2309,62 @@
                         "ACCESS DENIED. CHECK YOUR DETAILS.";
 
                     memberLoginSubmit.disabled = false;
-                    memberLoginSubmit.textContent = "ENTER THE HOUSE";
+
+                    memberLoginSubmit.textContent =
+                        "ENTER THE HOUSE";
 
                 }
 
             }
         );
+
+
+        /* ENTER PROTECTED SITE */
+
+        function enterProtectedSite(member) {
+
+            document.body.classList.remove("locked");
+
+            document.body.classList.add(
+                "member-authenticated"
+            );
+
+            entrance.classList.add("hidden");
+
+            closeModal(memberModal);
+
+            memberLoginForm.reset();
+
+            memberLoginSubmit.disabled = false;
+
+            memberLoginSubmit.textContent =
+                "ENTER THE HOUSE";
+
+            memberLoginStatus.textContent = "";
+
+
+            const memberStatus =
+                document.getElementById("memberStatus");
+
+            if (memberStatus && member) {
+
+                const name =
+                    member.name || "CONFIRMED MEMBER";
+
+                const house =
+                    member.house || "";
+
+                memberStatus.textContent =
+                    house
+                        ? "CONFIRMED MEMBER · " + name + " · " + house
+                        : "CONFIRMED MEMBER · " + name;
+
+            }
+
+
+            initializeProtectedSite();
+
+        }
 
 
         /* ACCESS REQUEST */
@@ -2319,8 +2401,20 @@
                     return;
                 }
 
+                if (!initializeSupabase()) {
+
+                    accessStatus.textContent =
+                        "THE HOUSE CONNECTION IS UNAVAILABLE. PLEASE TRY AGAIN.";
+
+                    return;
+
+                }
+
                 accessSubmit.disabled = true;
-                accessSubmit.textContent = "SENDING...";
+
+                accessSubmit.textContent =
+                    "SENDING...";
+
                 accessStatus.textContent = "";
 
 
@@ -2328,14 +2422,15 @@
 
                     const {
                         error
-                    } = await supabaseClient
-                        .from("access_requests")
-                        .insert([
-                            {
-                                name: name,
-                                email: email
-                            }
-                        ]);
+                    } =
+                        await supabaseClient
+                            .from("access_requests")
+                            .insert([
+                                {
+                                    name: name,
+                                    email: email
+                                }
+                            ]);
 
 
                     if (error) {
@@ -2362,10 +2457,10 @@
 
                     } catch (formspreeError) {
 
-                        /*
-                         * Supabase remains the primary request record.
-                         * Formspree remains the secondary notification channel.
-                         */
+                        console.warn(
+                            "Formspree notification failed:",
+                            formspreeError
+                        );
 
                     }
 
@@ -2374,6 +2469,7 @@
                         "REQUEST RECEIVED. THE HOUSE WILL BE IN TOUCH.";
 
                     accessName.value = "";
+
                     accessEmail.value = "";
 
                     accessSubmit.textContent =
@@ -2387,7 +2483,8 @@
                     );
 
                     accessStatus.textContent =
-                        "Something went wrong. Please try again.";
+                        error.message ||
+                        "SOMETHING WENT WRONG. PLEASE TRY AGAIN.";
 
                     accessSubmit.disabled = false;
 
@@ -2404,30 +2501,33 @@
 
         async function checkMemberSession() {
 
+            if (!initializeSupabase()) {
+                return false;
+            }
+
+
             try {
 
                 const {
                     data
-                } = await supabaseClient.auth.getSession();
+                } =
+                    await supabaseClient.auth.getSession();
 
                 const session =
                     data.session;
+
 
                 if (!session || !session.user) {
                     return false;
                 }
 
 
-                /*
-                 * Re-claim the membership on every restored session.
-                 * This makes the authenticated account the source of truth.
-                 */
-
                 const {
                     data: claimResult,
                     error: claimError
-                } = await supabaseClient
-                    .rpc("claim_member");
+                } =
+                    await supabaseClient
+                        .rpc("claim_member");
 
 
                 if (
@@ -2446,11 +2546,12 @@
                 const {
                     data: member,
                     error
-                } = await supabaseClient
-                    .from("members")
-                    .select("id,name,house,status")
-                    .eq("auth_user_id", session.user.id)
-                    .maybeSingle();
+                } =
+                    await supabaseClient
+                        .from("members")
+                        .select("id,name,house,status")
+                        .eq("auth_user_id", session.user.id)
+                        .maybeSingle();
 
 
                 if (
@@ -2478,12 +2579,7 @@
                 );
 
 
-                document.body.classList.remove("locked");
-                document.body.classList.add("member-authenticated");
-
-                entrance.classList.add("hidden");
-
-                initializeProtectedSite();
+                enterProtectedSite(member);
 
                 return true;
 
@@ -2511,7 +2607,12 @@
             "click",
             async function () {
 
-                await supabaseClient.auth.signOut();
+                if (initializeSupabase()) {
+
+                    await supabaseClient.auth.signOut();
+
+                }
+
 
                 sessionStorage.removeItem(
                     "consortium_member_name"
@@ -2521,6 +2622,7 @@
                     "consortium_member_house"
                 );
 
+
                 document.body.classList.remove(
                     "member-authenticated"
                 );
@@ -2529,7 +2631,9 @@
                     "locked"
                 );
 
-                entrance.classList.remove("hidden");
+                entrance.classList.remove(
+                    "hidden"
+                );
 
                 document.getElementById("menu")
                     .classList.remove("open");
@@ -2555,22 +2659,30 @@
         menuButton.addEventListener(
             "click",
             function () {
+
                 menu.classList.toggle("open");
+
             }
         );
 
 
         document.querySelectorAll("nav a")
-            .forEach(function (link) {
+            .forEach(
+                function (link) {
 
-                link.addEventListener(
-                    "click",
-                    function () {
-                        menu.classList.remove("open");
-                    }
-                );
+                    link.addEventListener(
+                        "click",
+                        function () {
 
-            });
+                            menu.classList.remove(
+                                "open"
+                            );
+
+                        }
+                    );
+
+                }
+            );
 
 
         /* REVEAL */
@@ -2591,9 +2703,15 @@
 
             if (!("IntersectionObserver" in window)) {
 
-                revealItems.forEach(function (item) {
-                    item.classList.add("visible");
-                });
+                revealItems.forEach(
+                    function (item) {
+
+                        item.classList.add(
+                            "visible"
+                        );
+
+                    }
+                );
 
                 return;
 
@@ -2604,21 +2722,25 @@
                 new IntersectionObserver(
                     function (entries) {
 
-                        entries.forEach(function (entry) {
+                        entries.forEach(
+                            function (entry) {
 
-                            if (entry.isIntersecting) {
+                                if (
+                                    entry.isIntersecting
+                                ) {
 
-                                entry.target.classList.add(
-                                    "visible"
-                                );
+                                    entry.target.classList.add(
+                                        "visible"
+                                    );
 
-                                observer.unobserve(
-                                    entry.target
-                                );
+                                    observer.unobserve(
+                                        entry.target
+                                    );
+
+                                }
 
                             }
-
-                        });
+                        );
 
                     },
                     {
@@ -2627,9 +2749,13 @@
                 );
 
 
-            revealItems.forEach(function (item) {
-                observer.observe(item);
-            });
+            revealItems.forEach(
+                function (item) {
+
+                    observer.observe(item);
+
+                }
+            );
 
         }
 
@@ -2647,13 +2773,19 @@
 
 
             const vaultDecision =
-                document.getElementById("vaultDecision");
+                document.getElementById(
+                    "vaultDecision"
+                );
 
             const vaultDecide =
-                document.getElementById("vaultDecide");
+                document.getElementById(
+                    "vaultDecide"
+                );
 
             const vaultChoices =
-                document.querySelectorAll(".vault-choice");
+                document.querySelectorAll(
+                    ".vault-choice"
+                );
 
 
             vaultDecide.addEventListener(
@@ -2661,7 +2793,9 @@
                 function () {
 
                     const isOpen =
-                        vaultDecision.classList.toggle("open");
+                        vaultDecision.classList.toggle(
+                            "open"
+                        );
 
                     vaultDecide.setAttribute(
                         "aria-expanded",
@@ -2677,33 +2811,35 @@
             );
 
 
-            vaultChoices.forEach(function (choice) {
+            vaultChoices.forEach(
+                function (choice) {
 
-                choice.addEventListener(
-                    "click",
-                    function () {
+                    choice.addEventListener(
+                        "click",
+                        function () {
 
-                        const selected =
-                            this.dataset.choice;
+                            const selected =
+                                this.dataset.choice;
 
-                        vaultDecide.textContent =
-                            selected === "protect"
-                                ? "PROTECT"
-                                : "RISK";
+                            vaultDecide.textContent =
+                                selected === "protect"
+                                    ? "PROTECT"
+                                    : "RISK";
 
-                        vaultDecision.classList.remove(
-                            "open"
-                        );
+                            vaultDecision.classList.remove(
+                                "open"
+                            );
 
-                        vaultDecide.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
+                            vaultDecide.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
 
-                    }
-                );
+                        }
+                    );
 
-            });
+                }
+            );
 
         }
 
@@ -2715,11 +2851,14 @@
 
         function initializeProtectedSite() {
 
-            if (protectedSiteInitialized) return;
+            if (protectedSiteInitialized) {
+                return;
+            }
 
             protectedSiteInitialized = true;
 
             initializeReveal();
+
             initializeVault();
 
         }
