@@ -6144,8 +6144,132 @@ renderRequests =
  * END OF PART 4
  */
         /*
+ * GAME CONTROL
+ */
+
+function renderGameControl() {
+
+    document
+        .querySelectorAll(
+            ".stage-btn"
+        )
+        .forEach(
+            button => {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.stage ===
+                    currentStage
+                );
+
+            }
+        );
+
+
+    const stage =
+        GAME_STAGES[
+            currentStage
+        ] ||
+        GAME_STAGES.OPENING;
+
+
+    const gameStatus =
+        document.getElementById(
+            "gameStatus"
+        );
+
+    if (!gameStatus) {
+        return;
+    }
+
+
+    gameStatus.innerHTML = `
+
+        <div class="game-pill">
+            CURRENT STAGE:
+            <strong>
+                ${escapeHtml(
+                    stage.name
+                )}
+            </strong>
+        </div>
+
+        <div class="game-pill">
+            STAGE:
+            <strong>
+                ${escapeHtml(
+                    stage.number
+                )}
+            </strong>
+        </div>
+
+        <div class="game-pill">
+            MODE:
+            <strong>
+                ${escapeHtml(
+                    stage.description
+                )}
+            </strong>
+        </div>
+
+    `;
+}
+
+
+/*
+ * GAME STAGE CONTROLS
+ */
+
+document
+    .querySelectorAll(
+        ".stage-btn"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const stage =
+                        button.dataset.stage;
+
+                    if (
+                        !GAME_STAGES[
+                            stage
+                        ]
+                    ) {
+                        return;
+                    }
+
+                    currentStage =
+                        stage;
+
+                    localStorage.setItem(
+                        "consortium_current_stage",
+                        stage
+                    );
+
+                    renderGameControl();
+
+                    showToast(
+                        `${GAME_STAGES[stage].name} is now active.`
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+renderGameControl();
+
+
+/*
  * FINAL APPLICATION INITIALISATION
  */
+        
 
 async function initialiseApplication() {
 
