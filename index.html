@@ -1084,6 +1084,21 @@
             font-size: 24px;
         }
 
+        /* FOOTER */
+
+        footer {
+            padding: 35px 8vw;
+            background: var(--black);
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: rgba(197,161,90,.5);
+            font-size: 7px;
+            letter-spacing: .3em;
+        }
+
         /* RESPONSIVE */
 
         @media (max-width: 800px) {
@@ -1152,6 +1167,11 @@
             .hero::before {
                 width: 330px;
                 height: 330px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 12px;
             }
         }
 
@@ -1310,7 +1330,7 @@
             </div>
 
             <h2>
-                Leave your name.
+                Leave your details.
             </h2>
 
             <p>
@@ -1331,6 +1351,15 @@
                     name="name"
                     placeholder="Your name"
                     autocomplete="name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="accessEmail"
+                    name="email"
+                    placeholder="Your email"
+                    autocomplete="email"
                     required
                 >
 
@@ -2096,7 +2125,7 @@
                 event.preventDefault();
 
                 const email =
-                    memberEmail.value.trim();
+                    memberEmail.value.trim().toLowerCase();
 
                 const password =
                     memberPassword.value;
@@ -2133,13 +2162,49 @@
                     }
 
 
+                    /*
+                     * Securely claim the approved membership.
+                     * The database function checks the authenticated
+                     * account email against the approved member record.
+                     */
+
+                    const {
+                        data: claimResult,
+                        error: claimError
+                    } = await supabaseClient
+                        .rpc("claim_member");
+
+
+                    if (claimError) {
+
+                        await supabaseClient.auth.signOut();
+
+                        throw claimError;
+
+                    }
+
+
+                    if (
+                        !claimResult ||
+                        claimResult.success !== true
+                    ) {
+
+                        await supabaseClient.auth.signOut();
+
+                        throw new Error(
+                            "This account could not be connected to a Consortium membership."
+                        );
+
+                    }
+
+
                     const {
                         data: member,
                         error: memberError
                     } = await supabaseClient
                         .from("members")
                         .select("id,name,house,status")
-                        .eq("email", email.toLowerCase())
+                        .eq("auth_user_id", data.user.id)
                         .maybeSingle();
 
 
@@ -2153,7 +2218,7 @@
                         await supabaseClient.auth.signOut();
 
                         throw new Error(
-                            "This account is not connected to a Consortium membership."
+                            "Your membership could not be verified."
                         );
 
                     }
@@ -2228,6 +2293,9 @@
         const accessName =
             document.getElementById("accessName");
 
+        const accessEmail =
+            document.getElementById("accessEmail");
+
         const accessSubmit =
             document.getElementById("accessSubmit");
 
@@ -2244,7 +2312,12 @@
                 const name =
                     accessName.value.trim();
 
-                if (!name) return;
+                const email =
+                    accessEmail.value.trim().toLowerCase();
+
+                if (!name || !email) {
+                    return;
+                }
 
                 accessSubmit.disabled = true;
                 accessSubmit.textContent = "SENDING...";
@@ -2259,7 +2332,8 @@
                         .from("access_requests")
                         .insert([
                             {
-                                name: name
+                                name: name,
+                                email: email
                             }
                         ]);
 
@@ -2300,6 +2374,7 @@
                         "REQUEST RECEIVED. THE HOUSE WILL BE IN TOUCH.";
 
                     accessName.value = "";
+                    accessEmail.value = "";
 
                     accessSubmit.textContent =
                         "REQUEST RECEIVED";
@@ -2343,8 +2418,29 @@
                 }
 
 
-                const email =
-                    session.user.email;
+                /*
+                 * Re-claim the membership on every restored session.
+                 * This makes the authenticated account the source of truth.
+                 */
+
+                const {
+                    data: claimResult,
+                    error: claimError
+                } = await supabaseClient
+                    .rpc("claim_member");
+
+
+                if (
+                    claimError ||
+                    !claimResult ||
+                    claimResult.success !== true
+                ) {
+
+                    await supabaseClient.auth.signOut();
+
+                    return false;
+
+                }
 
 
                 const {
@@ -2353,7 +2449,7 @@
                 } = await supabaseClient
                     .from("members")
                     .select("id,name,house,status")
-                    .eq("email", email.toLowerCase())
+                    .eq("auth_user_id", session.user.id)
                     .maybeSingle();
 
 
