@@ -8760,14 +8760,14 @@
             );
 
 
-        /*
+                /*
          * AUTH STATE
          */
 
         supabaseClient
             .auth
             .onAuthStateChange(
-                async (
+                (
                     event,
                     session
                 ) => {
@@ -8778,9 +8778,11 @@
                         session
                     ) {
 
-                        await showDashboard(
+                        showDashboard(
                             session
                         );
+
+                        return;
                     }
 
 
